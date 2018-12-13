@@ -309,6 +309,88 @@ console.log(re.flags); // g
 
 
 
+## 4. 模板字面量
+
+DSL（Domain Specific Language，领域专用语言）
+
+GPL（General Purpose Language，通用编程语言）
+
+### 4.1 基础语法
+
+用反撇号（`）进行字符串赋值。字符串内部使用反撇号需要转义（\）。在模板字面量中，不需要转义单、双引号。
+
+```javascript
+let message = `\`Hello\` world!`;
+
+console.log(message); // `Hello` world!
+console.log(typeof message); // string
+console.log(message.length); // 14
+```
+
+### 4.2 多行字符串
+
+在ES6之前的版本中，通常都依靠数组或字符串拼接的方法来创建多行字符串。ES6中的模板字面量的语法简单，极大地简化了多行字符串的创建过程。如果你需要在字符串中添加新的一行，只需在代码中直接换行，此处的换行将同步出现在结果中。
+
+反撇号中的所有空白符都属于字符串的一部分，所以要小心缩进。
+
+```javascript
+let message = `Multiline
+			string`;
+
+console.log(message);	// "Multiline
+						//			string"
+console.log(message.length); // 19
+```
+
+也可以在模板字面量中显式地使用\n来指明应当插入新行的位置。
+
+```javascript
+let message = `Multiline\nstring`;
+console.log(message);	// "Multiline
+						// string"
+console.log(message.length); // 16
+```
+
+
+
+### 4.3 字符串占位符
+
+在一个模板字面量中，你可以把任何合法的JavaScript表达式嵌入到占位符中并将其作为字符串的一部分输出到结果中。
+
+占位符由一个左侧的 ${ 和右侧的 } 符号组成，中间可以包含任意的 JavaScript 表达式。例如：
+
+```javascript
+let name = 'Sarah';
+let message = `Hello, ${name}!`;
+
+console.log(message); // Hello, Sarah!
+```
+
+既然所有的占位符都是 JavaScript 表达式，就可以嵌入除变量外的其他内容，如运算式、函数调用，等等。例如：
+
+```javascript
+let count = 5;
+let price = 0.8;
+let message = `${count} items cost $${(count * price).toFixed(2)}.`
+
+console.log(message); // 5 items cost $4.00.
+```
+
+模板字面量本身也是 JavaScript 表达式，所以可以在一个模板字面量里面嵌入另一个。例如：
+
+```javascript
+let name = 'Sarah';
+let message = `Hello, ${
+  `my name is ${name}`
+}.`;
+
+console.log(message); // Hello, my name is Sarah.
+```
+
+
+
+
+
 ## 附录
 
 ### 1. test(), exec(), match(), replace()
