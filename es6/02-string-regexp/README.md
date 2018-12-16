@@ -389,6 +389,57 @@ console.log(message); // Hello, my name is Sarah.
 
 
 
+### 4.4 标签模板
+
+每个模板标签都可以执行模板字面量上的转换并返回最终的字符值。标签指的是在模板字面量第一个反撇号（`）前方标注的字符串。
+
+标签可以是一个函数，调用时传入加工过的模板字面量各部分数据，必须结合每个部分来创建结果。第一个参数是一个数组，包括JavaScript解释过后的字面量字符串，它之后的所有参数都是每一个占位符的解释值。
+
+```javascript
+function tag(literals, ...substitutions) {
+    // 返回一个字符串
+}
+```
+
+注意，literals 里的第一个元素是一个空字符串，这确保了 literals[0] 总是字符串的始端，就像 literals[literals.length - 1] 总是字符串的结尾一样。substitutions 的数量总比 literals 少一个。
+
+```javascript
+function passthru(literals, ...substitutions) {
+    let result = 'On Sale! ';
+
+    for(let i = 0; i < substitutions.length; i++) {
+        result = result + literals[i] + substitutions[i];
+    }
+
+    result += literals[literals.length - 1];
+
+    return result;
+}
+
+let count = 10,
+    price = 0.5,
+    message = passthru`${count} items cost $${(count * price).toFixed(2)}.`;
+
+console.log(message); // On Sale! 10 items cost $5.00.
+```
+
+
+
+### 4.5 在模板字面量中使用原始值
+
+模板标签同样可以访问原生字符串的信息，也就是通过模板标签可以访问到字符转义被转换成等价字符前的原生字符串。最简单的例子是使用内建的String.raw() 标签。
+
+```javascript
+let message1 = `Multiline\nstring`,
+    message2 = String.raw`Multiline\nstring`;
+
+console.log(message1);  // "Multiline
+						// string"
+console.log(message2);	// Multiline\\nstring
+```
+
+> 注意，该标签目前只有 Chrome, Firefox 实现了。
+
 
 
 ## 附录
