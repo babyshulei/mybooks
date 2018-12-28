@@ -21,6 +21,7 @@ Accept-Encoding: gzip, deflate
   由 UNIX 文件压缩程序 compress 生成的编码格式，采用 Lempel-Ziv-Welch 算法（LZW）。
 
 - deflate
+
   组合使用 zlib 格式（RFC1950）及由 deflate 压缩算法（RFC1951）生成的编码格式。
 
 - identity
