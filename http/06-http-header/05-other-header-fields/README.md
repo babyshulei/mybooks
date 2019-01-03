@@ -29,3 +29,16 @@ Cookie 的工作机制是用户识别及状态管理。Web 网站为了管理用
 | Set-Cookie | 开始状态管理所使用的Cookie信息 | 响应首部字段 |
 | Cookie     | 服务器接收到的Cookie信息       | 请求首部字段 |
 
+
+
+## 其他首部字段
+
+HTTP 首部字段是可以自行扩展的。所以在 Web 服务器和浏览器的应用上，会出现各种非标准的首部字段。
+
+下面是几个常用的首部字段：
+
+- X-Frame-Options
+- X-XSS-Protection
+- DNT
+- P3P
+
