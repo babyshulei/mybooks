@@ -66,6 +66,8 @@
         * [DNT](06-http-header/05-other-header-fields/05-dnt.md)
         * [P3P](06-http-header/05-other-header-fields/06-p3p.md)
 * [第七章 确保Web安全的HTTPS](07-https/README.md)
+    * [HTTP的缺点](07-https/01-http-disadvantage.md)
+    * [HTTPS](07-https/02-https.md)
 * [第八章 确认访问用户身份的认证](08-authentication/README.md)
 * [第九章 基于HTTP的功能追加协议](09-additional-protocol/README.md)
 * [第十章 构建Web内容的技术](10-web-tech/README.md)
