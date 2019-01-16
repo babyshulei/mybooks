@@ -79,4 +79,8 @@
     * [HTTP/2.0](09-additional-protocol/03-http2.0.md)
     * [WebDAV](09-additional-protocol/04-webdav.md)
 * [第十章 构建Web内容的技术](10-web-tech/README.md)
+    * [HTML](10-web-tech/01-html.md)
+    * [动态 HTML](10-web-tech/02-dhtml.md)
+    * [Web 应用](10-web-tech/03-web-app.md)
+    * [数据发布的格式及语言](10-web-tech/04-format-language.md)
 * [第十一章 Web的攻击技术](11-web-attack-tech/README.md)
