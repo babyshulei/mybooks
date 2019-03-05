@@ -84,4 +84,8 @@
     * [Web 应用](10-web-tech/03-web-app.md)
     * [数据发布的格式及语言](10-web-tech/04-format-language.md)
 * [第十一章 Web的攻击技术](11-web-attack-tech/README.md)
+    * [因输出值转义不完全引发的安全漏洞](11-web-attack-tech/01-escape-security-hole.md)
+    * [因设置或设计上的缺陷引发的安全漏洞 ](11-web-attack-tech/02-design-security-hole.md)
+    * [因会话管理疏忽引发的安全漏洞 ](11-web-attack-tech/03-dialog-security-hole.md)
+    * [其他安全漏洞](11-web-attack-tech/04-other-security-hole.md)
 
