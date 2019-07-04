@@ -69,3 +69,138 @@ import * as mymath from "./mymath.js";
 >
 > export 和 import 关键字被设计成静态的，不能动态地导入或导出绑定。
 
+ECMAScript6 的 import 语句为变量、函数和类创建的是只读绑定，而不是像正常变量一样简单地引用原始绑定。
+
+
+
+## 4. 导出和导入时重命名
+
+可以使用 as 关键字来对导出、导入的元素重命名。
+
+```javascript
+function sum(num1, num2) {
+    return num1 + num2;
+}
+export { sum as add};
+```
+
+这里，sum是本地名称，add是导出时使用的名称。其他模块导入这个函数时，需要使用add这个名称。
+
+```javascript
+import { add as sum } from "./example.js"
+console.log(typeof add); // undefined
+console.log(sum(1, 2)); // 3
+```
+
+这段代码导入add函数时，使用sum重命名，改变了函数的本地名称。
+
+
+
+## 5. 模块的默认值
+
+模块的默认值指的是通过 default 关键字指定的单个变量、函数或类，只能为每个模块设置一个默认的导出值，导出时多次使用default关键字是一个语法错误。
+
+1）导出默认值
+
+```javascript
+// 方法一：直接导出默认值
+export default function(num1, num2) {
+    return num1 + num2;
+}
+
+// 方法二：添加默认导出值的标识符
+function sum(num1, num2) {
+    return num1 + num2;
+}
+
+export default sum;
+
+// 方法三：使用重命名语法
+function sum(num1, num2) {
+    return num1 + num2;
+}
+
+export { sum as default };
+```
+
+
+
+2）导入默认值
+
+```javascript
+// 导入默认值
+import sum from "./example.js";
+
+// 一句话导入所有导出的绑定
+impot sum, { color } from "./example.js"; // sum: 默认值，color：非默认值
+
+// 可以使用重命名语法
+import { default as sum, color } from "./example.js";
+```
+
+用逗号将默认的本地名称与大括号包裹的非默认值分隔开，在import语句中，默认值必须排在非默认值之前
+
+
+
+## 6. 重新导出一个绑定
+
+```javascript
+// 在example.js模块中查找sum声明，然后将其导出。
+export { sum } from "./example.js";
+
+// 在example.js模块中查找sum声明，然后再用add这个名字将其导出。
+export { sum as add } from "./example.js";
+
+// 导出模块中的所有值，包括默认导出值和所有命名导出值。可能会影响当前模块导出的内容，如默认导出。
+export * from "./example.js";
+```
+
+
+
+## 7. 无绑定导入
+
+某些模块可能不导出任何东西，只修改全局作用域的对象。可以使用简化的导入操作来执行模块代码，而且不导入任何的绑定。
+
+```javascript
+import "./example.js";
+```
+
+
+
+## 8. 加载模块
+
+脚本加载方法：
+
+- 在\<script\> 元素中通过src属性指定一个加载代码的地址来加载JavaScript代码文件。
+- 将JavaScript代码内嵌到没有src属性的\<script\>元素中。
+- 通过 Web Worker 或 Service Worker 的方法加载并执行JavaScript代码文件。
+
+### 在\<script\>中使用模块
+
+\<script\>元素的默认行为是将JavaScript文件作为脚本加载，而非作为模块加载。将 type 属性设置为 "module" 可以让浏览器将所有内联代码或包含在 src 指定的文件中的代码按照模块而非脚本的方法加载。
+
+```html
+<script type="module" src="./module.js"></script>
+```
+
+\<script\>元素的 type 属性为 "module" 时，自动应用 defer 属性。模块文件按照顺序下载并解析，在文档完全被解析之后，模块按照它们出现在HTML文件中的顺序依次执行。 
+
+当\<script\>元素的 async 属性应用在模块上时，会让模块以类似脚本的方式执行。唯一的区别是，在模块执行前，模块中的所有导入资源都必须下载下来。这可以确保只有当模块执行所需的所有资源都下载完成后才执行模块，但不能保证的是模块的执行时机。
+
+### 将模块作为Worker加载
+
+为了支持加载模块，Worker 的构造函数添加了第二个参数，为一个对象，其 type 属性默认值为 "script"，可以将其设置为 "module" 来加载模块文件。
+
+```javascript
+let worker = new Worker("module.js", { type: "module" });
+```
+
+### 模块说明符
+
+浏览器要求模块说明符具有以下几种格式之一：
+
+- 以 / 开头的解析为从根目录开始。
+- 以 ./ 开头的解析为从当前目录开始。
+- 以 ../ 开头的解析为从父目录开始。
+- URL 格式。
+
