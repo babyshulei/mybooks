@@ -2,7 +2,7 @@
 
 > 2019.07.04 @wsl
 
-## 1. Vue-router入门
+## 1. Vue Router入门
 
 安装：
 
@@ -166,7 +166,7 @@ App.vue内写路由导航：
 
 ![子路由效果](../images/demos-children.png)
 
-## 3. Vue-router 如何参数传递
+## 3. vue-router 如何参数传递
 
 ### 1) 用name传递参数
 
@@ -212,7 +212,7 @@ b. 模板里 App.vue 用 `$route.name` 的形式接收。
 
 效果：
 
-![用name传参](../images/demos-router-name.png)
+![用name传参](../images/demos-name.png)
 
 ### 2) 通过\<router-link\> 标签中的to传参
 
@@ -252,7 +252,7 @@ b. 在路由对应模板里，可以使用传进的参数。$route.params.cate
 
 效果：
 
-![1562234781878](../images/demos-router-params.png)
+![1562234781878](../images/demos-params.png)
 
 ## 4. 单页面多路由区域操作
 
@@ -307,25 +307,117 @@ b. 在路由对应模板里，可以使用传进的参数。$route.params.cate
 
 效果：
 
-![1562243799480](../images/demos-router-multi.png)
+![单页面多路由](../images/demos-multi.png)
 
+## 5. vue-router 利用url传递参数
 
+ **:冒号的形式传递参数**
 
+a. 在路由配置文件中，以:冒号的形式传递参数，这就是对参数的绑定。
 
+```javascript
+{
+    path: '/news/:newsId/:newsTitle',
+    component: News,
+},
+```
 
+b. News组件
 
+```vue
+<template>
+    <div class="news">
+        <p>{{ $route.params.newsId }}</p>
+        <p>{{ $route.params.newsTitle }}</p>
+    </div>
+</template>
 
+<script>
+export default {
+    name: 'News',
+};
+</script>
+```
 
+c. 通过url传参
 
+```vue
+<router-link to="/news/n001/Who are you">
+	news01
+</router-link>
+```
 
+效果：
 
+![1562297770188](../images/demos-url-params.png)
 
+**正则表达式在URL传值中的应用**
 
+vue的url传参，支持正则表达式，以圆括号形式写入即可。
 
+```javascript
+path:'/params/:newsId(\\d+)/:newsTitle',
+```
 
+该正则限制了新闻ID只能是数字的形式，加入了正则，我们再传递数字之外的其他参数，News组件就没有办法接收到。
 
+## 6. vue-router 的重定向 redirect
 
+开发中有时候我们虽然设置的路径不一致，但是我们希望跳转到同一个页面，或者说是打开同一个组件。这时候我们就用到了路由的重新定向redirect参数。
 
+**redirect基本重定向**
+
+只要在路由配置文件中把原来的component换成redirect参数就可以了。
+
+```javascript
+{
+    path: '/listv2',
+    redirect: '/apple',
+},
+```
+
+**重定向时传递参数**
+
+重定向时如果也需要传递参数怎么办？其实vue也已经为我们设置好了，我们只需要在ridirect后边的参数里复制重定向路径的path参数就可以了。
+
+```javascript
+{
+    path: '/news/:newsId(\\d+)/:newsTitle',
+    component: News,
+},
+{
+    path: '/gonews/:newsId(\\d+)/:newsTitle',
+    redirect: '/news/:newsId(\\d+)/:newsTitle',
+}
+```
+
+## 7. alias 别名的使用
+
+使用alias别名的形式，也可以实现类似重定向的效果。
+
+a. 在路由配置文件里，为路径起一个别名
+
+```javascript
+{
+    path: '/',
+    name: 'home',
+    component: Home,
+    alias: '/home',
+},
+```
+
+b. 起过别名之后，可以直接使用`<router-link>`标签里的to属性，进行重新定向。
+
+```vue
+<router-link to="/home">
+	home
+</router-link>
+```
+
+**redirect和alias的区别**
+
+- redirect：仔细观察URL，redirect是直接改变了url的值，把url变成了真实的path路径。
+- alias：URL路径没有别改变，这种情况更友好，让用户知道自己访问的路径，只是改变了`<router-view>`中的内容。
 
 
 
