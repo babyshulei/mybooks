@@ -46,7 +46,4 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-build.sh
-es6/node_modules/
-http/node_modules/
-computer/node_modules/
+*/node_modules/
