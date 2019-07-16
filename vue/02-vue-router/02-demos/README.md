@@ -464,23 +464,159 @@ b. 设置css样式
 - `in-out`：新元素先进入过渡，完成之后当前元素过渡离开。
 - `out-in`：当前元素先进行过渡离开，离开完成后新元素过渡进入。
 
+默认 mode 为 in-out，可以进行配置：
+
+```vue
+<transition name="fade" mode="out-in">
+	<router-view />
+</transition>
+```
+
 ## 9. mode的设置和404页面的处理
 
 **mode的两个值**
 
 路由有一个mode属性。
 
-- `histroy`:当你使用 `history` 模式时，URL 就像正常的 url，例如 `http://jsapng.com/lms/`，也好看！
+- `histroy`：URL 就像正常的 url，url/path。利用history.pushState API来完成URL跳转。符合普通链接样式，比较美观。
 
-- `hash`:默认’hash’值，但是hash看起来就像无意义的字符排列，不太好看也不符合我们一般的网址浏览习惯。
+- `hash`：默认’hash’值，url/#/path。URL改变时，页面不会重新加载。
+
+**404页面的设置：**
+
+当用户输错页面时，我们希望给他一个友好的提示，这个页面就是我们常说的404页面。
+
+a. 设置路由配置文件
+
+```javascript
+{
+    path: '*',
+    component: Error404,
+},
+```
+
+b. 新建404页面
+
+```vue
+<template>
+    <div class="error-404">
+        <div>{{ msg }}</div>
+    </div>
+</template>
+
+<script>
+
+export default {
+    name: 'Error404',
+    data() {
+        return {
+            msg: '404错误',
+        };
+    },
+};
+</script>
+```
+
+此时，用户输错页面后，显示的就是这个错误页。
+
+## 10. 路由中的钩子
+
+一个组件从进入到销毁有很多的钩子函数，同样在路由中也设置了钩子函数。路由的钩子选项可以写在路由配置文件中，也可以写在组件模板中。
+
+**路由配置文件中的钩子函数**
+
+```javascript
+{
+    path: '/news/:newsId/:newsTitle',
+    component: News,
+    beforeEnter: (to, from, next) => {
+        console.log('beforeEnter News', to, from);
+        next();
+    }
+},
+```
+
+三个参数：
+
+- `to`:路由将要跳转的路径信息，信息是包含在对像里边的。
+- `from`:路径跳转前的路径信息，也是一个对象的形式。
+- `next`:路由的控制参数，常用的有next(true)和next(false)。
+
+**写在模板中的钩子函数**
+
+在配置文件中的钩子函数，只有一个钩子-beforeEnter，如果我们写在模板中就可以有两个钩子函数可以使用：
+
+- beforeRouteEnter：在路由进入前的钩子函数。
+- beforeRouteLeave：在路由离开前的钩子函数。
+
+```javascript
+export default {
+    name: 'News',
+    beforeRouteEnter: (to, from, next) => {
+        console.log('beforeRouteEnter', to, from);
+        next();
+    },
+    beforeRouteLeave: (to, from, next) => {
+        console.log('beforeRouteLeave', to, from);
+        next();
+    },
+};
+```
 
 
 
+## 11. 编程式导航
 
+编程式导航，顾名思义，就是在业务逻辑代码中实现导航。
 
+### this.$router.go(-1) 和 this.$router.go(1)
 
+这两个编程式导航的意思是后退和前进，功能跟我们浏览器上的后退和前进按钮一样，这在业务逻辑中经常用到。比如条件不满足时，我们需要后退。
 
+`router.go(-1)`代表着后退，我们可以让我们的导航进行后退，并且我们的地址栏也是有所变化的。
 
+a. 在`app.vue`文件里加入一个按钮，按钮并绑定一个`goback( )`方法。
 
+```vue
+<button @click="goBack">
+	BACK
+</button>
+```
 
+b. 在script模块中写入goback()方法，并使用this.$router.go(-1),进行后退操作。
+
+```vue
+<script>
+export default {
+    name: 'App',
+    methods: {
+        goBack() {
+            this.$router.go(-1);
+        },
+    },
+};
+</script>
+```
+
+`router.go(1)`:代表着前进，用法和后退一样。
+
+### this.$router.push
+
+`this.$router.push('/xxx')`：作用是跳转。
+
+a. 先编写一个按钮，在按钮上绑定`goHome()`方法。
+
+```vue
+<button @click="goHome">
+	回到首页
+</button>
+```
+
+b. 在`<script`>模块里加入`goHome`方法，并用`this.$router.push('/')`导航到首页
+
+```javascript
+goHome() {
+	this.$router.push('/');
+},
+```
 
