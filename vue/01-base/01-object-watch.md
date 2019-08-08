@@ -19,20 +19,20 @@ Angular 和 React 采用 pull，Vue.js 采用 push。pushpush 的优点是可以
 下面是将Object.defineProperty封装成一个函数，定义一个响应式数据，传入data, key, val，读取数据时，get 函数被触发；设置数据时，set 函数被触发。
 
 ```javascript
-function defineReactive (data, key, val) {
+function defineReactive(data, key, val) {
     Object.defineProperty(data, key, {
         enumerable: true,
         configurable: true,
-        get: function () {
-            return val
+        get: function() {
+            return val;
         },
-        set: function (newVal) {
-            if(val === newVal){
-                return
+        set: function(newVal) {
+            if (val === newVal) {
+                return;
             }
-            val = newVal
+            val = newVal;
         }
-    })
+    });
 }
 ```
 
@@ -46,69 +46,73 @@ function defineReactive (data, key, val) {
 
 ```javascript
 export default class Dep {
-  constructor () {
-    this.subs = []
-  }
-
-  addSub (sub) {
-    this.subs.push(sub)
-  }
-
-  removeSub (sub) {
-    remove(this.subs, sub)
-  }
-
-  depend () {
-    if (window.target) {
-      this.addSub(window.target)
+    constructor() {
+        this.subs = [];
     }
-  }
 
-  notify () {
-    const subs = this.subs.slice()
-    for (let i = 0, l = subs.length; i < l; i++) {
-      subs[i].update()
+    addSub(sub) {
+        this.subs.push(sub);
     }
-  }
-}
 
-function remove (arr, item) {
-  if (arr.length) {
-    const index = arr.indexOf(item)
-    if (index > -1) {
-      return arr.splice(index, 1)
+    removeSub(sub) {
+        remove(this.subs, sub);
     }
-  }
+
+    depend() {
+        if (window.target) {
+            this.addSub(window.target);
+        }
+    }
+
+    notify() {
+        const subs = this.subs.slice();
+
+        for (let i = 0; l = subs.length; i++) {
+            subs[i].update();
+        }
+    }
+};
+
+function remove(arr, item) {
+    if (arr.length) {
+        const index = arr.indexOf(item);
+
+        if (index > -1) {
+            arr.splice(index, 1);
+        }
+    }
 }
 ```
 
 改造defineReactive。
 
 ```javascript
-function defineReactive (data, key, val) {
-    let dep = new Dep()        // 修改
+function defineReactive(data, key, val) {
+    let dep = new Dep(); // 新增
+
     Object.defineProperty(data, key, {
         enumerable: true,
         configurable: true,
-        get: function () {
-            dep.depend() // 修改
-            return val
+        get: function() {
+            dep.depend(); // 新增
+            return val;
         },
-        set: function (newVal) {
-            if(val === newVal){
-                return
+        set: function(newVal) {
+            if (val === newVal) {
+                return;
             }
-
-            val = newVal
-            dep.notify() // 新增
+            val = newVal;
+            dep.notify(); // 新增
         }
-    })
+    });
 }
 ```
 
 ### 2.3 依赖什么，Watcher
 
-我们收集依赖，那依赖是什么呢？依赖应该是属性发生变化后，所要通知的地方，是用到这个数据的地方。用这个数据的地方可能有很多，类型也不一样，有模板，有watch，所以这个时候需要抽象出一个能集中处理这些不同情况的类，然后在依赖收集的阶段只收集这个封装好的类的实例进来，通知也只通知它一个，它再负责通知其他地方。抽象的这个类，叫做 Watcher。
+在上面代码中，我们收集依赖是window.target，那它到底是什么呢？
+
+依赖应该是属性发生变化后，所要通知的地方，是用到这个数据的地方。用这个数据的地方可能有很多，类型也不一样，有模板，有watch，所以这个时候需要抽象出一个能集中处理这些不同情况的类，然后在依赖收集的阶段只收集这个封装好的类的实例进来，通知也只通知它一个，它再负责通知其他地方。抽象的这个类，叫做 Watcher。
 
 可以看到，Watcher 是一个中介的角色，数据发生变化通知给它，然后它再通知给其他地方。
 
