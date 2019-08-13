@@ -1,0 +1,16 @@
+.scroll-el {
+    width: 100%;
+    overflow: scroll;
+}
+
+.bg1 {
+    width: 100%;
+    height: 500px;
+    background: #eee;
+}
+
+.bg2 {
+    width: 100%;
+    height: 500px;
+    background: #ab8;
+}
