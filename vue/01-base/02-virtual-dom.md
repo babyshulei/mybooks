@@ -244,23 +244,386 @@ functional: true
 
 ## 三、patch
 
+虚拟Dom最核心的部分是patch，它将vnode渲染成真实的Dom。
+
+patch也可以叫做patching算法，通过它来渲染真实Dom时，并不是暴力覆盖原有Dom，而是对比新旧两个vnode之间的不同，从而找出需要更新的节点进行更新。实际作用是在现有Dom基础上进行修改来实现更新视图的目的。
+
+这么做的原因是Dom操作的执行速度远不如JavaScript运行速度快。因此，将大量的Dom操作搬运到JavaScript中，使用patching算法来计算出真正需要更新的节点，最大限度地减少Dom操作，从而显著提升性能。本质上是使用JavaScript的运算成本来换Dom操作的执行成本。
+
+### 1. patch介绍
+
+patch的目的是修改Dom节点，渲染视图。对现有Dom进行修改所做的事情：
+
+- 创建新增的节点
+- 删除已经废弃的节点
+- 修改需要更新的节点
+
+渲染视图的标准是以vnode（使用最新状态创建的vnode）来进行渲染的。
+
+#### 1.1 新增节点
+
+事实上，只有那些因为状态的改变而新增的节点在Dom中并不存在时，我们才需要创建一个节点并插入到Dom中。
+
+新增节点的场景有：
+
+- 当oldVnode不存在而vnode存在时，需要使用vnode生成真实的Dom元素并将其插入到视图当中。
+
+  这通常出现在首次渲染中。首次渲染时，Dom中不存在任何节点，oldVnode是不存在的，直接使用vnode即可。
+
+  ![新增节点](./images/vnode-add.png)
+
+- 当vnode和oldVnode完全不是同一个节点时，需要使用vnode生成真实的Dom元素并将其插入到视图当中。
+
+  这种场景，说明vnode是一个全新的节点，oldValue就是一个被废弃的节点。需要使用vnode创建一个新的Dom节点，用它去替换oldVnode所对应的真实Dom节点。
+
+  ![新增节点](./images/vnode-add-2.png)
+
+#### 1.2 删除节点
+
+当一个节点只在oldVnode中存在时，需要把它从Dom中删除。
+
+如上节所述，当vnode和oldVnode完全不是同一个节点时，在Dom中需要使用vnode创建的新节点替换oldVnode所对应的旧节点，替换的过程是将新创建的Dom节点插入到旧节点的旁边，然后再将旧节点删除，从而完成替换的过程。
+
+#### 1.3 更新节点
+
+当新旧两个节点是相同的节点时，需要对这两个节点进行比较细致的比对，然后对oldVnode在视图中所对应的真实节点进行更新。
+
+#### 1.4 总结
+
+![patch](./images/vnode-patch.png)
+
+关键源码：
+
+```javascript
+function patch (oldVnode, vnode, hydrating, removeOnly, parentElm, refElm) {
+    //当新的vnode不存在，并且旧的vnode存在时，直接返回旧的vnode，不做patch
+    if (isUndef(vnode)) {
+      if (isDef(oldVnode)) { invokeDestroyHook(oldVnode); }
+      return
+    }
+    var insertedVnodeQueue = [];
+
+    //如果旧的vnode不存在
+    if (isUndef(oldVnode)) {
+      //就创建一个新的节点
+      createElm(vnode, insertedVnodeQueue, parentElm, refElm);
+    } else {
+      //获取旧vnode的节点类型
+      var isRealElement = isDef(oldVnode.nodeType);
+      // 如果不是真实的dom节点并且属性相同
+      if (!isRealElement && sameVnode(oldVnode, vnode)) {
+        // 对oldVnode和vnode进行diff，并对oldVnode打patch
+        patchVnode(oldVnode, vnode, insertedVnodeQueue, removeOnly);
+      } 
+      }
+    }
+    //最后返回新vnode的节点内容
+    return vnode.elm
+}
+
+// 只有当基本属性相同的情况下才认为这个2个vnode只是局部发生了更新，然后才会对这2个vnode进行diff，如果2个vnode的基本属性存在不一致的情况，那么就会直接跳过diff的过程，进而依据vnode新建一个真实的dom，同时删除老的节点。
+function sameVnode (a, b) {
+  return (
+    a.key === b.key &&
+    a.tag === b.tag &&
+    a.isComment === b.isComment &&
+    isDef(a.data) === isDef(b.data) &&
+    sameInputType(a, b)
+  )
+}
+```
+
+### 2. 创建节点
+
+根据vnode的类型来创建出相同类型的Dom元素，然后将Dom元素插入到视图中。
+
+有三种类型的节点会被创建并插入到Dom中：元素节点、注释节点、文本节点。
+
+**元素节点**
+
+判断vnode是否是元素节点，看其是否具有tag属性。有tag属性的vnode，就认为它是元素节点。接着可以通过调用document.createElement方法来创建真实的元素节点。
+
+当一个元素节点创建后，接下来要将它插入到指定的父节点中。调用document.appendChild方法，就可以将一个元素插入到指定的父节点中。
+
+如果元素节点有子节点，需要将它的子节点也创建出来并插入到这个刚创建出的节点下面。
+
+创建子节点的过程是一个递归的过程，vnode中的children属性保存了当前节点的所有子虚拟节点（child virtual node），所以只需要将vnode中的children属性循环一遍，将每个子虚拟节点都执行一遍创建元素的逻辑，就可以了。
+
+创建子节点时，子节点的父节点就是当前刚创建出来的这个节点，子节点被创建后，会被插入到当前节点的下面。当所有子节点都创建完并插入到当前节点之中后，我们把当前节点插入到指定父节点的下面。
+
+如果这个指定的父节点已经被渲染到视图中，那么将当前这个节点插入进去之后，会将当前节点（包括子节点）渲染到视图中。
+
+![创建元素节点](./images/vnode-patch-elm.png)
+
+**注释节点**
+
+通过isComment属性进行判断，为true是注释节点。
+
+调用document.createComment方法创建真实的注释节点，并插入到指定的父节点中。
+
+**文本节点**
+
+tag属性不存在，isComment为false，则是文本节点。
+
+调用document.createTextNode方法创建真实的文本节点，并插入到指定的父节点中。
 
 
 
+关键源码如下：
+
+```javascript
+function createElm (vnode, insertedVnodeQueue, parentElm, refElm, nested) {
+    vnode.isRootInsert = !nested // for transition enter check
+    if (createComponent(vnode, insertedVnodeQueue, parentElm, refElm)) {
+      return
+    }
+
+    const data = vnode.data
+    const children = vnode.children
+    const tag = vnode.tag
+    if (isDef(tag)) {
+      if (process.env.NODE_ENV !== 'production') {
+        if (data && data.pre) {
+          inPre++
+        }
+        if (
+          !inPre &&
+          !vnode.ns &&
+          !(config.ignoredElements.length && config.ignoredElements.indexOf(tag) > -1) &&
+          config.isUnknownElement(tag)
+        ) {
+          warn(
+            'Unknown custom element: <' + tag + '> - did you ' +
+            'register the component correctly? For recursive components, ' +
+            'make sure to provide the "name" option.',
+            vnode.context
+          )
+        }
+      }
+      vnode.elm = vnode.ns
+        ? nodeOps.createElementNS(vnode.ns, tag)
+        : nodeOps.createElement(tag, vnode)
+      setScope(vnode)
+
+      /* istanbul ignore if */
+      if (__WEEX__) {
+        // ...
+      } else {
+        createChildren(vnode, children, insertedVnodeQueue)
+        if (isDef(data)) {
+          invokeCreateHooks(vnode, insertedVnodeQueue)
+        }
+        insert(parentElm, vnode.elm, refElm)
+      }
+
+      if (process.env.NODE_ENV !== 'production' && data && data.pre) {
+        inPre--
+      }
+    } else if (isTrue(vnode.isComment)) {
+      vnode.elm = nodeOps.createComment(vnode.text)
+      insert(parentElm, vnode.elm, refElm)
+    } else {
+      vnode.elm = nodeOps.createTextNode(vnode.text)
+      insert(parentElm, vnode.elm, refElm)
+    }
+}
+
+function createChildren (vnode, children, insertedVnodeQueue) {
+    if (Array.isArray(children)) {
+      for (let i = 0; i < children.length; ++i) {
+        createElm(children[i], insertedVnodeQueue, vnode.elm, null, true)
+      }
+    } else if (isPrimitive(vnode.text)) {
+      nodeOps.appendChild(vnode.elm, nodeOps.createTextNode(vnode.text))
+    }
+}
+
+function insert (parent, elm, ref) {
+    if (isDef(parent)) {
+      if (isDef(ref)) {
+        if (ref.parentNode === parent) {
+          nodeOps.insertBefore(parent, elm, ref)
+        }
+      } else {
+        nodeOps.appendChild(parent, elm)
+      }
+    }
+}
+```
+
+流程图：
+
+![创建节点](./images/vnode-patch-node.png)
+
+### 3. 删除节点
+
+删除节点的过程比较简单，源码如下：
+
+```javascript
+function removeVnodes (parentElm, vnodes, startIdx, endIdx) {
+    for (; startIdx <= endIdx; ++startIdx) {
+      const ch = vnodes[startIdx]
+      if (isDef(ch)) {
+        if (isDef(ch.tag)) {
+          removeAndInvokeRemoveHook(ch)
+          invokeDestroyHook(ch)
+        } else { // Text node
+          removeNode(ch.elm)
+        }
+      }
+    }
+}
+
+function removeNode (el) {
+    const parent = nodeOps.parentNode(el)
+    // element may have already been removed due to v-html / v-text
+    if (isDef(parent)) {
+      nodeOps.removeChild(parent, el)
+    }
+}
+```
+
+其中，removeVNodes是删除vnodes数组中从startIdx指定的位置到endIdx指定位置的内容。
+
+removeNode是将当前元素从它的父节点中删除，其中nodeOps是对节点操作的封装。
+
+removeNode用于删除视图中的单个节点，而removeVNodes用于删除一组指定的节点。
+
+> 为什么用nodeOps而不直接使用节点操作函数？
+>
+> 这是为了跨平台渲染。阿里开发的Weex可以让我们使用相同的组件模型为iOS和Android编写原生渲染的应用。
+>
+> 跨平台渲染的本质是在设计框架的时候，要让框架的渲染机制和Dom解耦。只要把框架更新Dom时的节点操作进行封装，就可以实现跨平台渲染，在不同平台下调用节点的操作。
+
+### 4. 更新节点
+
+只有两个节点是同一个节点时，才需要更新元素节点，而更新节点并不是暴力地使用新节点覆盖旧节点，而是通过比对找出新旧两个节点不一样的地方，针对那些不一样的地方进行更新。
+
+#### 4.1 静态节点
+
+更新节点时，首先需要判断新旧两个虚拟节点是否是静态节点，如果是，就不需要进行更新操作，可以直接跳过更新节点的过程。
+
+> 什么是静态节点？
+>
+> 静态节点指的是那些一旦渲染到界面上之后，无论之后状态如何变化，都不会发生任何变化的节点。
+>
+> 例如：
+>
+> ```html
+> <p>我是一个静态节点，不会变哦。</p>
+> ```
+
+#### 4.2 新虚拟节点有文本属性
+
+当新旧两个虚拟节点不是静态节点，并且有不同的属性时，要以新虚拟节点（vnode）为准来更新视图。
+
+如果新节点（vnode）具有text属性，并且和旧虚拟节点的文本属性不一样时，直接调用node.setTextContent方法，将视图中Dom节点的内容改为新虚拟节点的文本。
+
+#### 4.3 新虚拟节点无文本属性
+
+如果新创建的虚拟节点没有text属性，那么它就是一个元素节点。有两种情况：
+
+- 有children。此时根据旧虚拟节点是否有children，分为两种情况：
+
+  - 旧虚拟节点有children。
+
+    对新旧两个虚拟节点进行一个更详细的对比并更新。
+
+  - 旧虚拟节点无children。说明旧虚拟节点是个空标签或者是文本节点。
+
+    如果是文本节点，将文本清空变成空标签，将新虚拟节点的children创建成真实的Dom元素节点，并将其插入到视图中的Dom节点下面。
+
+- 无children
+
+  说明新创建的节点是一个空节点，将旧虚拟节点下的Dom节点或文本内容删除。
 
 
 
+关键源码：
 
+```javascript
+function patchVnode (oldVnode, vnode, insertedVnodeQueue, removeOnly) {
+    if (oldVnode === vnode) {
+      return
+    }
 
+    //如果新vnode和旧vnode都是静态节点，key相同，或者新vnode是一次性渲染或者克隆节点，那么直接替换该组件实例并返回
+    if (isTrue(vnode.isStatic) &&
+      isTrue(oldVnode.isStatic) &&
+      vnode.key === oldVnode.key &&
+      (isTrue(vnode.isCloned) || isTrue(vnode.isOnce))
+    ) {
+      vnode.elm = oldVnode.elm
+      vnode.componentInstance = oldVnode.componentInstance
+      return
+    }
 
+    // data是节点属性，包含class style attr和指令等
+    let i
+    const data = vnode.data
+    // 如果组件实例存在属性并且存在prepatch钩子函数就更新attrs/style/class/events/directives/refs等属性
+    if (isDef(data) && isDef(i = data.hook) && isDef(i = i.prepatch)) {
+      i(oldVnode, vnode)
+    }
 
-
-
-
+    const elm = vnode.elm = oldVnode.elm
+    const oldCh = oldVnode.children
+    const ch = vnode.children
+    //如果新的vnode带有节点属性，isPatchable返回是否含有组件实例的tag标签，两者满足
+    if (isDef(data) && isPatchable(vnode)) {
+      // cbs保存了hooks钩子函数: 'create', 'activate', 'update', 'remove', 'destroy'
+      for (i = 0; i < cbs.update.length; ++i) cbs.update[i](oldVnode, vnode)
+      // 取出cbs保存的update钩子函数，依次调用，更新attrs/style/class/events/directives/refs等属性
+      if (isDef(i = data.hook) && isDef(i = i.update)) i(oldVnode, vnode)
+    }
+    //如果vnode没有文本节点
+    if (isUndef(vnode.text)) {
+      //如果旧vnode和新vnode的子节点都存在
+      if (isDef(oldCh) && isDef(ch)) {
+        // 如果子节点不同，updateChildren就对子节点进行diff
+        if (oldCh !== ch) updateChildren(elm, oldCh, ch, insertedVnodeQueue, removeOnly)
+        // 如果只新vnode有子节点
+      } else if (isDef(ch)) {
+        // 先将旧节点的文本清空
+        if (isDef(oldVnode.text)) nodeOps.setTextContent(elm, '')
+        // 然后将vnode的children放进去
+        addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue)
+        // 如果只旧vnode有子节点
+      } else if (isDef(oldCh)) {
+        // 就删除elm下的oldchildren
+        removeVnodes(elm, oldCh, 0, oldCh.length - 1)
+        // 如果只有旧vnode的文本内容
+      } else if (isDef(oldVnode.text)) {
+        // 直接清空内容
+        nodeOps.setTextContent(elm, '')
+      }
+      // 如果是两者文本内容不同
+    } else if (oldVnode.text !== vnode.text) {
+      // 直接更新vnode的文本内容
+      nodeOps.setTextContent(elm, vnode.text)
+    }
+    // 更新完毕后，执行 data.hook.postpatch 钩子，表明 patch 完毕
+    if (isDef(data)) {
+      if (isDef(i = data.hook) && isDef(i = i.postpatch)) i(oldVnode, vnode)
+    }
+}
+```
 
 
 
 ## 参考链接
 
-函数式组件：<https://cn.vuejs.org/v2/guide/render-function.html#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6>
+<https://cn.vuejs.org/v2/guide/render-function.html#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6>
+
+<https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createElementNS>
+
+<https://juejin.im/post/5b28f54be51d45587f49fd41>
+
+<https://ustbhuangyi.github.io/vue-analysis/data-driven/virtual-dom.html>
+
+<http://hcysun.me/vue-design/zh/renderer-patch.html>
+
+<https://weex.apache.org/zh/guide/introduction.html>
+
+
 
