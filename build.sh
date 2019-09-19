@@ -11,6 +11,9 @@ case "$target" in
     http)
         gitbook build ./http/ /home/$USER/gitbooks/http/
     ;;
+    javascript)
+	gitbook build ./javascript/ /home/$USER/gitbooks/javascript/
+    ;;
     computer)
 	gitbook build ./computer/ /home/$USER/gitbooks/computer/
     ;;
@@ -23,6 +26,7 @@ case "$target" in
     all)
 	gitbook build ./es6/ /home/$USER/gitbooks/es6/
 	gitbook build ./http/ /home/$USER/gitbooks/http/
+	gitbook build ./javascript/ /home/$USER/gitbooks/javascript/
 	gitbook build ./computer/ /home/$USER/gitbooks/computer/
 	gitbook build ./reading/ /home/$USER/gitbooks/reading/
 	gitbook build ./vue/ /home/$USER/gitbooks/vue/
