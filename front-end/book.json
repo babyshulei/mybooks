@@ -1,0 +1,13 @@
+{
+    "plugins": [
+        "expandable-chapters",
+        "splitter",
+        "anchor-navigation-ex"
+    ],
+    "pluginsConfig": {
+        "anchor-navigation-ex": {
+            "showLevel": false
+        }
+    }
+}
+
