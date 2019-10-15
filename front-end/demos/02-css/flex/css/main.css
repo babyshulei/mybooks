@@ -9,18 +9,163 @@ body {
 }
 
 .flex {
-    height: 500px;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #ad7;
 }
 
 .box {
     margin: 5px;
     height: 30px;
-    background-color: #ac3494;
+    background-color: #ffe46d;
 }
 
 .box_a {
     height: 40px;
 }
+
+/* 骰子demo，从1-6 */
+.touzi {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+[class$="face"] {
+    margin: 10px;
+    width: 70px;
+    height: 70px;
+    background-color: #e7e7e7;
+    box-shadow:
+        inset 0 4px white, 
+        inset 0 -4px #bbb,
+        inset 4px 0 #d7d7d7, 
+        inset -4px 0 #d7d7d7;
+    border-radius: 10%;
+}
+
+.item {
+    display: block;
+    margin: 5px;
+    width: 10px;
+    height: 10px;
+    background-color: #333;
+    box-shadow: inset 0 2px #111, inset 0 -2px #555;
+    border-radius: 50%;
+}
+
+.first-face {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.second-face {
+    display: flex;
+    justify-content: space-between;
+}
+
+.second-face .item:nth-child(2) {
+    align-self: flex-end;
+}
+
+.third-face {
+    display: flex;
+    justify-content: space-between;
+}
+
+.third-face .item:nth-child(2) {
+    align-self: center;
+}
+
+.third-face .item:nth-child(3) {
+    align-self: flex-end;
+}
+
+.forth-face,
+.fifth-face,
+.sixth-face {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+.column {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: space-between;
+}
+
+.fifth-face .column:nth-child(2) {
+    justify-content: center;
+}
+/* 骰子demo end */
+
+/* 网格布局demo */
+.grid {
+    display: flex;
+}
+
+/* 基本网格布局，平分空间 */
+.grid-cell {
+    margin: 0 0 5px 5px;
+    background-color: #aaa;
+    flex: 1;
+}
+
+.grid-cell:last-child {
+    margin-right: 5px;
+}
+
+/** 百分比网格布局
+ * 某个网格的宽度为固定的百分比，其余网格平均分配剩余的空间
+ */
+.grid-cell.percent-2 {
+    flex: 0 0 50%;
+}
+
+.grid-cell.percent-3 {
+    flex: 0 0 33.33%;
+}
+
+.grid-cell.percent-4 {
+    flex: 0 0 25%;
+}
+/* 网格布局 end */
+
+/** 圣杯布局demo
+ * 简化了一下。可以直接用标签header, footer, nav, main, aside
+ */
+.holy {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #777;
+}
+
+.holy-header,
+.holy-footer,
+.holy-body {
+    flex-basis: 100%;
+}
+
+.holy-body {
+    display: flex;
+    height: 200px;
+}
+
+.holy-left {
+    background-color: rgb(164, 233, 250);
+    flex-basis: 100px;    
+}
+
+.holy-main {
+    background-color: #eee;
+    flex: 1;
+}
+
+.holy-right {
+    background-color: rgb(252, 143, 139);
+    flex-basis: 50px;
+}
+/* 圣杯布局end */

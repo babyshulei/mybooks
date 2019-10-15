@@ -152,7 +152,7 @@ Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型�
 - flex-shrink：项目的缩小比例
 - flex-basis：项目占据的主轴空间
 - flex：上面三个的简写属性
-- align-self
+- align-self：单个项目的对齐方式
 
 ### 3.1 order
 
