@@ -90,7 +90,7 @@ demo：
 
 ### 2.1.1 AST概念
 
-抽象语法树（abstract syntax code，AST），是源代码的抽象语法结构的树状表示。
+[AST](https://zh.wikipedia.org/wiki/抽象語法樹) 的全称是 Abstract Syntax Tree（抽象语法树），是源代码的抽象语法结构的树状表现形式，计算机学科中编译原理的概念。Vue 源码中借鉴 jQuery 作者 [John Resig](https://zh.wikipedia.org/wiki/約翰·雷西格) 的 [HTML Parser](http://ejohn.org/blog/pure-javascript-html-parser/) 对模板进行解析，得到的就是 AST 代码。
 
 如上例，解析器将模板解析成AST，AST是用JavaScript中的对象来描述一个节点，一个对象代表一个节点，对象中的属性用来保存节点所需的各种数据。
 
@@ -137,9 +137,11 @@ declare type ASTText = {
 
 
 
+# 参考链接
 
+[Vue.js 模板解析器原理 - 来自《深入浅出Vue.js》第九章](https://github.com/berwin/Blog/issues/36#)
 
-
+[Vue2.0 源码阅读：模板渲染](http://zhouweicsu.github.io/blog/2017/04/21/vue-2-0-template/)
 
 
 
