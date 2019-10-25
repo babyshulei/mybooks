@@ -129,6 +129,35 @@ declare type ASTText = {
 
 可以看到，ASTNode 有三种形式：ASTElement，ASTText，ASTExpression。用属性 `type` 区分。
 
+## 2.2 原理
+
+解析器内部也分了好几个子解析器，比如HTML解析器、文本解析器以及过滤器解析器，其中最主要的是HTML解析器。
+
+HTML解析器的作用是解析HTML，它在解析HTML的过程中会不断触发各种钩子函数。这些钩子函数包括开始标签钩子函数、结束标签钩子函数、文本钩子函数以及注释钩子函数。
+
+伪代码：
+
+```javascript
+parseHTML(template, {
+    start (tag, attrs, unary) {
+        // 每当解析到标签的开始位置时，触发该函数
+    },
+    end () {
+        // 每当解析到标签的结束位置时，触发该函数
+    },
+    chars (text) {
+        // 每当解析到文本时，触发该函数
+    },
+    comment (text) {
+        // 每当解析到注释时，触发该函数
+    }
+})
+```
+
+
+
+
+
 
 
 
@@ -142,16 +171,4 @@ declare type ASTText = {
 [Vue.js 模板解析器原理 - 来自《深入浅出Vue.js》第九章](https://github.com/berwin/Blog/issues/36#)
 
 [Vue2.0 源码阅读：模板渲染](http://zhouweicsu.github.io/blog/2017/04/21/vue-2-0-template/)
-
-
-
-
-
-
-
-
-
-
-
-
 
