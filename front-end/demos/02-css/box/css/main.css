@@ -1,0 +1,59 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.box1 {
+    margin: 10px;
+    width: 0;
+    height: 0;
+    border-top: 20px solid #abc;
+    border-left: 30px solid #cae;
+    border-right: 50px solid #f02;
+    border-bottom: 40px solid #dec;
+}
+
+/* 倒立三角形 */
+.triangle-top {
+    border-top: 30px solid #abc;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 0;
+}
+
+/* 对话框 */
+.chat-msg {
+    position: relative;
+    margin: 0 auto;
+    width: 300px;
+    height: 100px;
+    border: 1px solid #cae;
+    border-radius: 5px;
+}
+
+.chat-msg::before {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 45px;
+    border-right: 8px solid #cae;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+.chat-msg::after {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 45px;
+    border-right: 8px solid #fff;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+/* 对话框加阴影 */
+.chat-msg {
+    filter: drop-shadow(0 0 2px #999);
+    background-color: #fff;
+}
