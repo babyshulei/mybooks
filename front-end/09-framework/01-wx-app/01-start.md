@@ -32,7 +32,7 @@
 
 标签属性、变量名都是大小写敏感的。
 
-**数据绑定**
+#### 数据绑定
 
 可以进行数据绑定，需要在对应js文件中的data添加对应变量，未定义的变量或值为undefined的变量不会同步到wxml中。
 
@@ -44,7 +44,7 @@
 
 用 {{}} 不仅可以进行数据动态绑定，还可以在内部进行简单的逻辑运算。如算数运算、三元运算、字符串拼接等。
 
-**条件逻辑**
+#### 条件逻辑
 
 ```html
 <view wx:if="{{length > 5}}"> 1 </view>
@@ -61,7 +61,7 @@
 </block>
 ```
 
-**列表渲染**
+#### 列表渲染
 
 在组件上使用 wx:for 控制属性绑定一个数组，即可使用数组中各项的数据重复渲染该组件。默认数组的当前项的下标变量名默认为 index，数组当前项的变量名默认为 item。
 
@@ -156,7 +156,7 @@ Page({
 })
 ```
 
-**模板**
+#### 模板
 
 WXML提供模板（template），可以在模板中定义代码片段，然后在不同的地方调用。使用 name 属性，作为模板的名字。然后在 `<template/>` 内定义代码片段，如：
 
@@ -189,7 +189,7 @@ item: {
 
 is可以动态决定具体需要渲染哪个模板。
 
-**引用**
+#### 引用
 
 WXML 提供两种文件引用方式import和include。
 
@@ -212,7 +212,7 @@ include 可以将目标文件中除了 `<template/> <wxs/>` 外的整个代码�
 <include src="footer.wxml"/>
 ```
 
-**共同属性**
+#### 共同属性
 
 所有wxml 标签都支持的属性称之为共同属性。
 
@@ -229,15 +229,15 @@ include 可以将目标文件中除了 `<template/> <wxs/>` 外的整个代码�
 
 类似css，页面样式。
 
-**尺寸单位**
+#### 尺寸单位
 
 引入 rpx 尺寸单位，用来适配不同宽度的屏幕。
 
-**wxss引用**
+#### wxss引用
 
 小程序中，可以通过`@import './test_0.wxss'` 进行样式文件的引用。
 
-**内联样式**
+#### 内联样式
 
 ```html
 <view style="color: red; font-size: 48rpx"></view>
@@ -258,7 +258,7 @@ include 可以将目标文件中除了 `<template/> <wxs/>` 外的整个代码�
 <view style="color: {{eleColor}}; font-size: {{eleFontsize}}"></view>
 ```
 
-**支持的选择器**
+#### 支持的选择器
 
 | **类型**     | **选择器** | **样例**      | **样例描述**                                   |
 | :----------- | :--------- | :------------ | :--------------------------------------------- |
@@ -268,11 +268,11 @@ include 可以将目标文件中除了 `<template/> <wxs/>` 外的整个代码�
 | 伪元素选择器 | ::after    | view::after   | 在 view 组件后边插入内容                       |
 | 伪元素选择器 | ::before   | view::before  | 在 view 组件前边插入内容                       |
 
-**权重计算**
+#### 权重计算
 
 ![1575631508225](..\images\wxss-weight.png)
 
-**官方样式库**
+#### 官方样式库
 
 微信提供了WeUI.wxss基础样式库。
 
@@ -281,6 +281,159 @@ WeUI是一套与微信原生视觉体验一致的基础样式库，由微信官�
 具体使用文档可参考：<https://github.com/Tencent/weui-wxss>
 
 ### 4. JavaScript脚本
+
+![1575858558936](..\images\wxjs.png)
+
+小程序中的 JavaScript 是由ECMAScript 以及小程序框架和小程序 API 来实现的。同浏览器中的JavaScript 相比没有 BOM 以及 DOM 对象，所以类似 JQuery、Zepto这种浏览器类库是无法在小程序中运行起来的，同样的缺少 Native 模块和NPM包管理的机制，小程序中无法加载原生库，也无法直接使用大部分的 NPM 包。
+
+#### 语法兼容
+
+ES6语法兼容问题，小程序IDE提供语法转码工具帮助开发者，将 ECMAScript 6代码转为 ECMAScript 5代码，从而在所有的环境都能得到很好的执行。
+
+开发者需要在项目设置中，勾选 ES6 转 ES5 开启此功能。
+
+![1575859290841](..\images\wxjs-es5.png)
+
+#### 模块化
+
+同浏览器不同，小程序中可以将任何一个JavaScript 文件作为一个模块，通过module.exports 或者 exports 对外暴露接口。
+
+在需要使用这些模块的文件中，使用 require(path) 将公共代码引入。
+
+```javascript
+// moduleA.js
+module.exports = function( value ){
+  return value * 2;
+}
+
+// B.js
+// 在B.js中引用模块A
+var multiplyBy2 = require('./moduleA')
+var result = multiplyBy2(4)
+```
+
+#### 脚本的执行顺序
+
+浏览器中，脚本严格按照加载的顺序执行。
+
+```html
+<html>
+<head>
+  <script src ="a.js"></script>
+  <script>
+    console.log('inline script')
+  </script>
+  <script src ="b.js"></script>
+</head>
+</html>
+```
+
+执行顺序：a.js -> inline script -> b.js
+
+而在小程序中的脚本执行顺序有所不同。小程序的执行的入口文件是 app.js 。并且会根据其中 require 的模块顺序决定文件的运行顺序。
+
+```javascript
+/* a.js
+console.log('a.js')
+*/
+var a = require('./a.js')
+console.log('app.js')
+
+/* b.js
+console.log('b.js')
+*/
+var b = require('./b.js')
+
+// 输出： a.js   app.js   b.js
+```
+
+当 app.js 执行结束后，小程序会按照开发者在 app.json 中定义的 pages 的顺序，逐一执行。
+
+```json
+{
+  "pages": [
+    "pages/index/index",
+    "pages/log/log",
+    "pages/result/result"
+  ],
+  "window": {}
+}
+```
+
+#### 作用域
+
+小程序的脚本的作用域同 NodeJS 更为相似。
+
+在文件中声明的变量和函数只在该文件中有效，不同的文件中可以声明相同名字的变量和函数，不会互相影响。
+
+当需要使用全局变量的时，通过使用全局函数 getApp() 获取全局的实例，并设置相关属性值，来达到设置全局变量的目的。
+
+```javascript
+// a.js
+// 获取全局变量
+var global = getApp()
+// 设置全局变量globalValue
+global.globalValue = 'globalValue'
+
+// b.js
+// 访问全局变量
+var global = getApp()
+console.log(global.globalValue) // 输出 globalValue
+```
+
+需要注意的是，上述示例只有在 a.js 比 b.js 先执行才有效，当需要保证全局的数据可以在任何文件中安全的被使用到，那么可以在 App() 中进行设置。
+
+```javascript
+// app.js
+App({
+  globalData: 1
+})
+```
+
+获取以及修改 global 变量的方法
+
+```javascript
+// a.js
+// 获取 global 变量
+var app = getApp()
+
+// 修改 global 变量
+app.globalData++  // 执行后 globalData 数值为 2
+```
+
+## 宿主环境
+
+### 1. 渲染层和逻辑层
+
+小程序的运行环境分成渲染层和逻辑层，WXML 模板和 WXSS 样式工作在渲染层，JS 脚本工作在逻辑层。
+
+#### 通信模型
+
+小程序的渲染层和逻辑层分别由2个线程管理：渲染层的界面使用了WebView 进行渲染；逻辑层采用JsCore线程运行JS脚本。一个小程序存在多个界面，所以渲染层存在多个WebView线程，这两个线程的通信会经由微信客户端（下文中也会采用Native来代指微信客户端）做中转，逻辑层发送网络请求也经由Native转发，小程序的通信模型如图所示。
+
+![1575876747708](..\images\wxapp-communication.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -295,3 +448,4 @@ WeUI是一套与微信原生视觉体验一致的基础样式库，由微信官�
 ## 参考链接
 
 [官方教程](https://developers.weixin.qq.com/ebook?action=get_post_info&docid=0008aeea9a8978ab0086a685851c0a)
+

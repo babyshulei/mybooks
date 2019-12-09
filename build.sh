@@ -5,30 +5,17 @@
 target=${1%/}
 
 case "$target" in
-    es6)
-        gitbook build ./es6/ /home/$USER/gitbooks/es6/
-    ;;
-    http)
-        gitbook build ./http/ /home/$USER/gitbooks/http/
-    ;;
-    javascript)
-	gitbook build ./javascript/ /home/$USER/gitbooks/javascript/
-    ;;
-    computer)
-	gitbook build ./computer/ /home/$USER/gitbooks/computer/
-    ;;
-    reading)
-	gitbook build ./reading/ /home/$USER/gitbooks/reading/
-    ;;
-    vue)
-	gitbook build ./vue/ /home/$USER/gitbooks/vue/
-    ;;
     all)
-	gitbook build ./es6/ /home/$USER/gitbooks/es6/
-	gitbook build ./http/ /home/$USER/gitbooks/http/
-	gitbook build ./javascript/ /home/$USER/gitbooks/javascript/
-	gitbook build ./computer/ /home/$USER/gitbooks/computer/
-	gitbook build ./reading/ /home/$USER/gitbooks/reading/
-	gitbook build ./vue/ /home/$USER/gitbooks/vue/
+	gitbook build ./computer/ /home/$USER/webroot/gitbooks/computer/
+	gitbook build ./front-end/ /home/$USER/webroot/gitbooks/front-end/
+    gitbook build ./http/ /home/$USER/webroot/gitbooks/http/
+	gitbook build ./javascript/ /home/$USER/webroot/gitbooks/javascript/
+	gitbook build ./language/ /home/$USER/webroot/gitbooks/language/
+	gitbook build ./programming/ /home/$USER/webroot/gitbooks/programming/
+	gitbook build ./reading/ /home/$USER/webroot/gitbooks/reading/
+	gitbook build ./vue/ /home/$USER/webroot/gitbooks/vue/
+    ;;
+    *)
+    gitbook build ./$target/ /home/$USER/webroot/gitbooks/$target/
     ;;
 esac
