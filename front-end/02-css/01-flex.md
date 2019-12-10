@@ -30,7 +30,9 @@ Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型�
 
 ![1570865540835](.\images\flex-box.png)
 
- 
+ 默认的情况下，水平方向的是主轴（main axis），垂直方向的是交叉轴（cross axis）。
+
+项目是在主轴上排列，排满后在交叉轴方向换行。需要注意的是，交叉轴垂直于主轴，它的方向取决于主轴方向。
 
 ## 2. 容器的属性
 
@@ -58,6 +60,8 @@ Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型�
 - `column`：主轴为垂直方向，起点在上沿。
 - `column-reverse`：主轴为垂直方向，起点在下沿。
 
+![1575958861852](.\images\flex-direction.png)
+
 ### 2.2 flex-wrap
 
 默认情况下，项目都排在一条线（又称"轴线"）上。`flex-wrap`属性定义，如果一条轴线排不下，如何换行。
@@ -73,6 +77,8 @@ Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型�
 - `nowrap`（默认）：不换行。
 - `wrap`：换行，第一行在上方。
 - `wrap-reverse`：换行，第一行在下方。
+
+![1575958981238](.\images\flex-wrap.png)
 
 ### 2.3 flex-flow
 
