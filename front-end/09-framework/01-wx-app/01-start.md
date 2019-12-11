@@ -972,6 +972,279 @@ justify-content 属性，多了个space-evenly的取值。
 
 需要注意的是，当flex-basis和width（或height），其中一个属性值为auto时，非auto的优先级更高。
 
+## 2. 界面常见的交互反馈
+
+### 触摸反馈
+
+通常页面会摆放一些button按钮或者view区域，用户触摸按钮之后会触发下一步的操作。这种情况下，我们要对触摸这个行为给予用户一些响应。比如对应的区域底色白色变成浅灰色。
+
+![1575962644947](..\images\wxapp-touch.png)
+
+小程序的view容器组件和button组件提供了hover-class属性，触摸时会往该组件加上对应的class改变组件的样式。
+
+```css
+/*page.wxss */
+.hover{
+  background-color: gray;
+}
+```
+
+```html
+<!--page.wxml -->
+<button hover-class="hover"> 点击button </button>
+<view hover-class="hover"> 点击view</view>
+```
+
+对于用户的操作及时响应是非常优秀的体验，有时候在点击button按钮处理更耗时的操作时，我们也会使用button组件的loading属性，在按钮的文字前边出现一个Loading，让用户明确的感觉到，这个操作会比较耗时，需要等待一小段时间。
+
+![1575962694240](..\images\wxapp-loading.png)
+
+```html
+<!--page.wxml -->
+<button loading="{{loading}}" bindtap="tap">操作</button>
+```
+
+```javascript
+//page.js
+Page({
+  data: { loading: false },
+  tap: function() {
+    // 把按钮的loading状态显示出来
+    this.setData({
+      loading: true
+    })
+    // 接着做耗时的操作
+  }
+})
+```
+
+### Toast和模态对话框
+
+小程序提供了显示隐藏Toast的接口，代码示例如下所示。
+
+```javascript
+Page({
+  onLoad: function() {
+    wx.showToast({ // 显示Toast
+      title: '已发送',
+      icon: 'success',
+      duration: 1500
+    })
+    // wx.hideToast() // 隐藏Toast
+  }
+})
+```
+
+![1575962733867](..\images\wxapp-toast.png)
+
+特别要注意，我们不应该把Toast用于错误提示，因为错误提示需要明确告知用户具体原因，因此不适合用这种一闪而过的Toast弹出式提示。一般需要用户明确知晓操作结果状态的话，会使用模态对话框来提示，同时附带下一步操作的指引。
+
+![1575962768394](..\images\wxapp-hint.png)
+
+```javascript
+Page({
+  onLoad: function() {
+    wx.showModal({
+      title: '标题',
+      content: '告知当前状态，信息和解决方法',
+      confirmText: '主操作',
+      cancelText: '次要操作',
+      success: function(res) {
+        if (res.confirm) {
+          console.log('用户点击主操作')
+        } else if (res.cancel) {
+          console.log('用户点击次要操作')
+        }
+      }
+    })
+  }
+})
+```
+
+### 界面滚动
+
+下拉刷新：
+
+宿主环境提供了统一的下拉刷新交互，开发者只需要通过配置开启当前页面的下拉刷新，用户往下拉动界面触发下拉刷新操作时，Page构造器的onPullDownRefresh回调会被触发，此时开发者重新拉取新数据进行渲染，实例代码如下所示。
+
+```json
+//page.json
+{"enablePullDownRefresh": true }
+```
+
+```javascript
+//page.js
+Page({
+  onPullDownRefresh: function() {
+    // 用户触发了下拉刷新操作
+    // 拉取新数据重新渲染界面
+    // wx.stopPullDownRefresh() // 可以停止当前页面的下拉刷新。
+  }
+})
+```
+
+上拉触底：
+
+```json
+//page.json
+// 界面的下方距离页面底部距离小于onReachBottomDistance像素时触发onReachBottom回调
+{"onReachBottomDistance": 100 }
+```
+
+```javascript
+//page.js
+Page({
+  onReachBottom: function() {
+    // 当界面的下方距离页面底部距离小于100像素时触发回调
+  }
+})
+```
+
+些时候并不想整个页面进行滚动，而是页面中某一小块区域需要可滚动，此时就要用到宿主环境所提供的scroll-view可滚动视图组件。可以通过组件的scroll-x和scroll-y属性决定滚动区域是否可以横向或者纵向滚动，scroll-view组件也提供了丰富的滚动回调触发事件，详见scroll-view组件的官方文档。
+
+## 3. 发起HTTPS网络通信
+
+小程序经常需要往服务器传递数据或者从服务器拉取信息，这个时候可以使用wx.request这个API。
+
+```javascript
+wx.request({
+  url: 'https://test.com/getinfo',
+  success: function(res) {
+    console.log(res)// 服务器回包信息
+  }
+})
+```
+
+wx.request详细参数
+
+| **参数名** | **类型**      | **必填** | **默认值** | **描述**                                                     |
+| :--------- | :------------ | :------- | :--------- | :----------------------------------------------------------- |
+| url        | String        | 是       |            | 开发者服务器接口地址                                         |
+| data       | Object/String | 否       |            | 请求的参数                                                   |
+| header     | Object        | 否       |            | 设置请求的 header，header 中不能设置 Referer，默认header['content-type'] = 'application/json' |
+| method     | String        | 否       | GET        | （需大写）有效值：OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT |
+| dataType   | String        | 否       | json       | 回包的内容格式，如果设为json，会尝试对返回的数据做一次 JSON解析 |
+| success    | Function      | 否       |            | 收到开发者服务成功返回的回调函数，其参数是一个Object，见表4-2。 |
+| fail       | Function      | 否       |            | 接口调用失败的回调函数                                       |
+| complete   | Function      | 否       |            | 接口调用结束的回调函数（调用成功、失败都会执行）             |
+
+url参数是当前发起请求的服务器接口地址，小程序宿主环境要求request发起的网络请求**必须是https协议请求**，因此开发者服务器必须提供HTTPS服务的接口，同时为了保证小程序不乱用任意域名的服务，wx.request**请求的域名需要在小程序管理平台进行配置**，如果小程序正式版使用wx.request请求未配置的域名，在控制台会有相应的报错。
+
+一般我们在开发阶段时，处于开发阶段的服务器接口还没部署到现网的域名下，经常会通过另一个域名来进行开发调试，考虑到这一点，为了方便开发者进行开发调试，开发者工具、小程序的开发版和小程序的体验版在某些情况下允许wx.request请求任意域名。
+
+### 返回参数
+
+通过wx.request发送请求后，服务器处理请求并返回HTTP包，小程序端收到回包后会触发success回调，同时回调会带上一个Object信息，详细参数如下所示。
+
+wx.request的success返回参数
+
+| **参数名** | **类型**      | **描述**                                |
+| :--------- | :------------ | :-------------------------------------- |
+| data       | Object/String | 开发者服务器返回的数据                  |
+| statusCode | Number        | 开发者服务器返回的 HTTP 状态码          |
+| header     | Object        | 开发者服务器返回的 HTTP Response Header |
+
+> 注意，只要成功收到服务器返回，无论HTTP状态码是多少都会进入success回调。
+
+### 设置请求超时时间
+
+在小程序项目根目录里边的app.json可以指定request的超时时间。
+
+```javascript
+// app.json
+{
+  "networkTimeout": {
+    "request": 3000
+  }
+}
+```
+
+### 排查异常的方法
+
+在使用wx.request接口我们会经常遇到无法发起请求或者服务器无法收到请求的情况，我们罗列排查这个问题的一般方法：
+
+1. 检查手机网络状态以及wifi连接点是否工作正常。
+2. 检查小程序是否为开发版或者体验版，因为开发版和体验版的小程序不会校验域名。
+3. 检查对应请求的HTTPS证书是否有效，同时TLS的版本必须支持1.2及以上版本，可以在开发者工具的console面板输入showRequestInfo()查看相关信息。
+4. 域名不要使用IP地址或者localhost，并且不能带端口号，同时域名需要经过ICP备案。
+5. 检查app.json配置的超时时间配置是否太短，超时时间太短会导致还没收到回报就触发fail回调。
+6. 检查发出去的请求是否302到其他域名的接口，这种302的情况会被视为请求别的域名接口导致无法发起请求。
+
+## 4. 微信登录
+
+微信登录的整个过程：
+
+![1576048564579](..\images\wxapp-login.png)
+
+## 5. 本地数据缓存
+
+小程序提供了读写本地数据缓存的接口，通过wx.getStorage/wx.getStorageSync读取本地缓存，通过wx.setStorage/wx.setStorageSync写数据到缓存，其中Sync后缀的接口表示是同步接口，执行完毕之后会立马返回，示例代码和参数说明如下所示。
+
+```javascript
+wx.getStorage({
+  key: 'key1',
+  success: function(res) {
+    // 异步接口在success回调才能拿到返回值
+    var value1 = res.data
+  },
+  fail: function() {
+    console.log('读取key1发生错误')
+  }
+})
+
+try{
+  // 同步接口立即返回值
+  var value2 = wx.getStorageSync('key2')
+}catch (e) {
+  console.log('读取key2发生错误')
+}
+
+// 异步接口在success/fail回调才知道写入成功与否
+wx.setStorage({
+  key:"key",
+  data:"value1"
+  success: function() {
+    console.log('写入value1成功')
+  },
+  fail: function() {
+    console.log('写入value1发生错误')
+  }
+})
+
+try{
+  // 同步接口立即写入
+  wx.setStorageSync('key', 'value2')
+  console.log('写入value2成功')
+}catch (e) {
+  console.log('写入value2发生错误')
+}
+```
+
+wx.getStorage/wx.getStorageSync详细参数
+
+| **参数名** | **类型** | **必填** | **描述**                                                     |
+| :--------- | :------- | :------- | :----------------------------------------------------------- |
+| key        | String   | 是       | 本地缓存中指定的 key                                         |
+| success    | Function | 否       | 异步接口调用成功的回调函数，回调参数格式: {data: key对应的内容} |
+| fail       | Function | 否       | 异步接口调用失败的回调函数                                   |
+| complete   | Function | 否       | 异步接口调用结束的回调函数（调用成功、失败都会执行）         |
+
+wx.setStorage/wx.setStorageSync详细参数
+
+| **参数名** | **类型**      | **必填** | **描述**                                             |
+| :--------- | :------------ | :------- | :--------------------------------------------------- |
+| key        | String        | 是       | 本地缓存中指定的 key                                 |
+| data       | Object/String | 是       | 需要存储的内容                                       |
+| success    | Function      | 否       | 异步接口调用成功的回调函数                           |
+| fail       | Function      | 否       | 异步接口调用失败的回调函数                           |
+| complete   | Function      | 否       | 异步接口调用结束的回调函数（调用成功、失败都会执行） |
+
+### 缓存限制和隔离
+
+小程序宿主环境会管理不同小程序的数据缓存，不同小程序的本地缓存空间是分开的，每个小程序的缓存空间上限为10MB，如果当前缓存已经达到10MB，再通过wx.setStorage写入缓存会触发fail回调。
+
+小程序的本地缓存不仅仅通过小程序这个维度来隔离空间，考虑到同一个设备可以登录不同微信用户，宿主环境还对不同用户的缓存进行了隔离，避免用户间的数据隐私泄露。
+
 
 
 ## 参考链接
