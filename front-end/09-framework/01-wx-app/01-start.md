@@ -197,7 +197,6 @@ import 可以在该文件中使用目标文件定义的 template，需要注意�
 
 ```html
 <import src="item.wxml"/>
-
 <template is="item" data="{{text: 'forbar'}}"/>
 ```
 
@@ -206,9 +205,7 @@ include 可以将目标文件中除了 `<template/> <wxs/>` 外的整个代码�
 ```html
 <!-- index.wxml -->
 <include src="header.wxml"/>
-
 <view> body </view>
-
 <include src="footer.wxml"/>
 ```
 
