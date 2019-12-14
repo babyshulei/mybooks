@@ -1,2 +1,2 @@
-# 6 Symbol和Symbol属性
+# Symbol和Symbol属性
 

@@ -1,2 +1,2 @@
-# 9 JavaScript中的类
+# JavaScript中的类
 
