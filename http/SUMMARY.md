@@ -3,6 +3,7 @@
 * [前言](README.md)
 * [第一章 了解Web及网络基础](01-understand-web/README.md)
 * [第二章 简单的HTTP协议](02-easy-http/README.md)
+    * [post请求方法](02-easy-http/01-post.md)
 * [第三章 HTTP报文内的HTTP](03-http-message/README.md)
 * [第四章 返回结果的HTTP状态码](04-status-code/README.md)
 * [第五章 与HTTP协作的Web服务器](05-web-server/README.md)
@@ -88,4 +89,3 @@
     * [因设置或设计上的缺陷引发的安全漏洞 ](11-web-attack-tech/02-design-security-hole.md)
     * [因会话管理疏忽引发的安全漏洞 ](11-web-attack-tech/03-dialog-security-hole.md)
     * [其他安全漏洞](11-web-attack-tech/04-other-security-hole.md)
-

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>POST Request</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
+    <script src="./js/main.js"></script>
+</head>
+<body>
+    <div class="container">
+        <form action="url.do" method="post" enctype="application/x-www-form-urlencoded" target="targetIfr">
+            <input type="text" name="hello" value="Hello"/>
+            <input type="text" name="world" value="World"/>
+            <input type="submit" value="Submit" />
+        </form>
+        <iframe name="targetIfr" style="display:none"></iframe> 
+    </div>
+</body>
+</html>

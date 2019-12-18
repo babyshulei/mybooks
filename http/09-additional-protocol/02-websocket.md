@@ -65,7 +65,7 @@ WebSocket，即 Web 浏览器与 Web 服务器之间全双工通信标准。其�
 
 - WebSocket API
 
-  JavaScript 可调用“The WebSocket API”（http://www.w3.org/TR/websockets/，由 W3C 标准制定）内
+  JavaScript 可调用“The WebSocket API”（<http://www.w3.org/TR/websockets/>，由 W3C 标准制定）内
   提供的 WebSocket 程序接口，以实现 WebSocket 协议下全双工通信。
 
   例子：
