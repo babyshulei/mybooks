@@ -89,13 +89,13 @@ The second line.
 
 ## 2、请求方式
 
-- html \<form\>表单
+- html `<form>` 表单
 - fetch
 - xhr(axios)
 - SSE
 - WebSocket
 
-### html \<form\>表单
+### html `<form>` 表单
 
 html \<form\> 可以被以四种方式发送：（自动地） 
 
@@ -108,40 +108,40 @@ html \<form\> 可以被以四种方式发送：（自动地）
 
 1. 使用 application/x-www-form-urlencoded
 
-2. - 方法1：使用 [URLSearchParams ](https://developer.mozilla.org/zh-CN/docs/Web/API/URLSearchParams)实例作为 body（xhr.send(body)）
+   方法1：使用 [URLSearchParams ](https://developer.mozilla.org/zh-CN/docs/Web/API/URLSearchParams)实例作为 body（xhr.send(body)）
 
-3. - 方法2：设置 Content-Type Header       为 application/x-www-form-urlencode
+   方法2：设置 Content-Type Header       为 application/x-www-form-urlencode
 
-     然后自己编码（如果直接使用字符串作为 body 则实际会被浏览器解析 Content-Type 为 text/plain） 
+   然后自己编码（如果直接使用字符串作为 body 则实际会被浏览器解析 Content-Type 为 text/plain） 
 
-     ```javascript
-     import axios from 'axios';
-     const queryString = require('qs');
-     
-     axios.post(
-     	url,
-         queryString.stringify(data),
-         { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }},
-     );
-     ```
+   ```javascript
+   import axios from 'axios';
+   const queryString = require('qs');
+   
+   axios.post(
+   	url,
+       queryString.stringify(data),
+       { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }},
+   );
+   ```
 
 2. multipart/form-data
 
-1. - 方法1：不要设置 Content-Type，传输 data 为 [FormData](https://developer.mozilla.org/zh-CN/docs/Web/API/FormData) 的实例，浏览器会自动处理
+   方法1：不要设置 Content-Type，传输 data 为 [FormData](https://developer.mozilla.org/zh-CN/docs/Web/API/FormData) 的实例，浏览器会自动处理
 
-     ```javascript
-     import axios from 'axios'
-     
-     let data = new FormData();
-     data.append(key, value);
-     
-     axios.post(url, data);
-     ```
+   ```javascript
+   import axios from 'axios'
+   
+   let data = new FormData();
+   data.append(key, value);
+   
+   axios.post(url, data);
+   ```
 
-2. - 方法2：手动设置 Content-Type（还需要设置 boundary，比较麻烦）
-     需要注意：如果要设置 requestHeader('Content-Type', 'multipart\/form-data')是不够的，还需要加上 boundary
+   方法2：手动设置 Content-Type（还需要设置 boundary，比较麻烦）
+   需要注意：如果要设置 requestHeader('Content-Type', 'multipart\/form-data')是不够的，还需要加上 boundary
 
-     ![Boundary](./images/post.png)
+   ![Boundary](./images/post.png)
 
 3. application/json（非标准）
 
@@ -155,7 +155,8 @@ html \<form\> 可以被以四种方式发送：（自动地）
 
 4. application/json-seq [rfc7464](https://tools.ietf.org/html/rfc7464)（非标准，json 序列）
 
-1. 分隔符（标准：RS = %x1E）
+   分隔符（标准：RS = %x1E）
+
 
 
 
