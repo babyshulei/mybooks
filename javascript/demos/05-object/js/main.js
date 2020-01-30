@@ -75,3 +75,41 @@ console.log(Object.is(5, 5));
 console.log(5 == '5');
 console.log(5 === '5');
 console.log(Object.is(5, '5'));
+
+// Object.assign()
+var receiver = {};
+Object.assign(receiver, {
+    type: 'js',
+    name: 'file.js',
+}, {
+    type: 'css',
+});
+
+console.log(receiver);
+
+var rece = {},
+    supplier = {
+        get name() {
+            return 'file.js';
+        }
+    };
+Object.assign(rece, supplier);
+console.log(rece, supplier);
+
+// 对象字面量重复属性
+/*
+// ES5
+'use strict';
+var person = {
+    name: 'aaa',
+    name: 'bbb' // 报语法错误
+};
+// ES6
+'use strict';
+var person = {
+    name: 'aaa',
+    name: 'bbb'
+};
+console.log(person);
+*/
+
