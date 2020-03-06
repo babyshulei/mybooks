@@ -20,7 +20,7 @@ Ajax 即“Asynchronous Javascript And XML”（异步 JavaScript 和 XML），�
 
 当创建了XMLHttpRequest对象后，要先设置**onreadystatechange的回调函数**。在回调函数中，通常我们只需通过readyState === 4判断请求是否完成，如果已完成，再根据status === 200判断是否是一个成功的响应。
 
-XMLHttpRequest对象的**open()方法**有3个参数，第一个参数指定是GET还是POST，第二个参数指定URL地址，第三个参数指定是否使用异步，默认是true，所以不用写。
+XMLHttpRequest对象的**open()方法**有3个参数，第一个参数指定是GET还是POST，第二个参数指定URL地址，第三个参数指定是否使用异步，默认是true。
 
 > 注意，千万不要把第三个参数指定为false，否则浏览器将停止响应，直到AJAX请求完成。如果这个请求耗时10秒，那么10秒内你会发现浏览器处于“假死”状态。
 
@@ -67,7 +67,7 @@ request.send();
 
 默认情况下，浏览器遵循**同源策略**，JavaScript在发送AJAX请求时，URL的域名必须和当前页面完全一致。
 
->  完全一致的意思是，域名要相同（www.example.com和example.com不同），协议要相同（http和https不同），端口号要相同（默认是:80端口，它和:8080就不同）。有的浏览器口子松一点，允许端口不同，大多数浏览器都会严格遵守这个限制。
+>  完全一致的意思是，域名要相同（www.example.com和example.com不同），协议要相同（http和https不同），端口号要相同（默认是:80端口，它和:8080就不同）。有的浏览器宽松一点，允许端口不同，大多数浏览器都会严格遵守这个限制。
 
 跨域的方式：
 
@@ -107,7 +107,15 @@ var myRequest = new XMLHttpRequest();
 
 ### 3.2 Properties
 
-**XMLHttpRequest.readyState** Read only
+只列了一部分，详见 <https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest>。
+
+#### XMLHttpRequest.onreadystatechange
+
+当 readyState 属性发生变化时调用的 `EventHandler`。
+
+#### XMLHttpRequest.readyState
+
+> 只读
 
 请求的五种状态：
 
@@ -133,33 +141,51 @@ xhr.onload = function () {
 xhr.send(null);
 ```
 
-**XMLHttpRequest.response** Read only
+#### XMLHttpRequest.response
 
-响应实体的类型由 responseType 来指定， 可以是 ArrayBuffer， Blob， Document， JavaScript 对象 (即 "json")， 或者是字符串。如果请求未完成或失败，则该值为 null。
+> 只读
 
-**XMLHttpRequest.responseType**
+包含整个响应实体（response body），响应实体的类型由 responseType 来指定， 可以是 ArrayBuffer， Blob， Document， JavaScript 对象 (即 "json")， 或者是字符串。如果请求未完成或失败，则该值为 null。
+
+#### XMLHttpRequest.responseType
 
 设置该值能够改变响应类型。就是告诉服务器你期望的响应格式。
 
-**XMLHttpRequest.status** Read only
+#### XMLHttpRequest.status
+
+> 只读
 
 该请求的响应状态码 (例如, 状态码200 表示一个成功的请求)。
 
-**XMLHttpRequest.withCredentials**
+#### XMLHttpRequest.timeout
+一个无符号长整型（unsigned long）数字，表示该请求的最大请求时间（毫秒），若超出该时间，则请求会自动结束。
 
-表明在进行跨站(cross-site)的访问控制(Access-Control)请求时，是否使用认证信息(例如cookie或授权的header)。 默认为 false。
+#### XMLHttpRequestEventTarget.ontimeout
+当请求超时调用的 EventHandler。
 
- 
+#### XMLHttpRequest.withCredentials
+
+一个布尔值，表明在进行跨站(cross-site)的访问控制(Access-Control)请求时，是否使用认证信息(例如cookie或授权的header)。 默认为 false。
+
+ #### 事件处理
+
+作为 `XMLHttpRequest` 实例的属性，所有浏览器都支持 `onreadystatechange`。
+
+后来，许多浏览器实现了一些额外的事件（`onload`、`onerror`、`onprogress` 等）。详见[Using XMLHttpRequest](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest)。
+
+更多现代浏览器，包括 Firefox，除了可以设置 `on*` 属性外，也提供标准监听器 [`addEventListener()`](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener) API 来监听`XMLHttpRequest` 事件。
 
 ### 3.3 Methods
 
-**XMLHttpRequest.abort()**
+部分方法，详见只列了一部分，详见 <https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest>。
 
-Aborts the request if it has already been sent.
+#### XMLHttpRequest.abort()
 
-**XMLHttpRequest.open()**
+如果请求已被发送，则立刻中止请求。
 
-Initializes a request. This method is to be used from JavaScript code; to initialize a request from native code, use openRequest() instead.
+#### XMLHttpRequest.open()
+
+初始化一个请求。该方法只能在 JavaScript 代码中使用，若要在 native code 中初始化请求，请使用 [`openRequest()`](https://developer.mozilla.org/zh-CN/docs/Mozilla/Tech/XPCOM/Reference/Interface/nsIXMLHttpRequest)。
 
 ```javascript
 void open(
@@ -175,7 +201,7 @@ void open(
 
 - **method**
 
-  请求所使用的HTTP方法; 例如 "GET", "POST", "PUT", "DELETE"等. 如果下个参数是非HTTP(S)的URL,则忽略该参数.
+  请求所使用的HTTP方法；例如 "GET"、"POST"、"PUT"、"DELETE"等。如果下个参数是非HTTP(S)的URL，则忽略该参数。
 
 - **url**
 
@@ -183,19 +209,21 @@ void open(
 
 - **async**
 
-  一个可选的布尔值参数，默认为true,意味着是否执行异步操作，如果值为false,则send()方法不会返回任何东西，直到接受到了服务器的返回数据。如果为值为true，一个对开发者透明的通知会发送到相关的事件监听者。这个值必须是true,如果multipart 属性是true，否则将会出现一个意外。
+  一个可选的布尔参数，默认为`true`，表示要不要异步执行操作。如果值为`false`，`send()`方法直到收到答复前不会返回。如果`true`，已完成事务的通知可供事件监听器使用。
+
+  如果`multipart`属性为`true`则这个必须为`true`，否则将引发异常。
 
 - **user**
 
-  用户名,可选参数,为授权使用;默认参数为空string.
+  用户名，可选参数，为授权使用；默认参数为空string。
 
 - **password**
 
-  密码,可选参数,为授权使用;默认参数为空string.
+  密码，可选参数，为授权使用；默认参数为空string。
 
-**XMLHttpRequest.send()**
+#### XMLHttpRequest.send()
 
-Sends the request. If the request is asynchronous (which is the default), this method returns as soon as the request is sent.
+发送请求。如果请求是异步的（默认），那么该方法将在请求发送后立即返回。
 
 
 
