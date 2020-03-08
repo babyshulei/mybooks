@@ -43,4 +43,17 @@ Object.defineProperties(man, {
 
 console.log(man[first], man[last]);
 
+// Symbol共享体系
+let uid = Symbol.for('uid');
+let obj = {};
 
+obj[uid] = 'haha';
+console.log(uid, obj[uid]); // Symbol(uid) "haha"
+
+let uid2 = Symbol.for('uid');
+
+console.log(uid === uid2, uid2, obj[uid2]); // true Symbol(uid) "haha"
+
+let uid3 = Symbol('uid');
+
+console.log(Symbol.keyFor(uid), Symbol.keyFor(uid2), Symbol.keyFor(uid3)); // uid uid undefined
