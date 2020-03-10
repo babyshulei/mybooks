@@ -1,12 +1,17 @@
 {
     "plugins": [
-        "expandable-chapters",
+        "chapter-fold",
         "splitter",
-        "anchor-navigation-ex"
+        "anchor-navigation-ex",
+        "git-author"
     ],
     "pluginsConfig": {
         "anchor-navigation-ex": {
             "showLevel": false
+        },
+        "git-author": {
+            "modifyTpl": "<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>",
+            "createTpl": "<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"
         }
     }
 }
