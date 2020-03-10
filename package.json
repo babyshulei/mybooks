@@ -1,0 +1,27 @@
+{
+    "name": "mybooks",
+    "version": "1.0.0",
+    "description": "Study Notes",
+    "main": "index.js",
+    "dependencies": {
+        "gh-pages": "^2.2.0",
+        "gitbook-plugin-anchor-navigation-ex": "^1.0.14",
+        "gitbook-plugin-expandable-chapters": "^0.2.0",
+        "gitbook-plugin-splitter": "^0.0.8"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "gitbook build && gh-pages -d _book"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/babyshulei/mybooks.git"
+    },
+    "author": "Shulei",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/babyshulei/mybooks/issues"
+    },
+    "homepage": "https://github.com/babyshulei/mybooks#readme"
+}
