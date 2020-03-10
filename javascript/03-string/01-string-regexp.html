@@ -1,0 +1,2785 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>字符串和正则表达式 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../04-function/" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">前端</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../../front-end/01-browser-kernel/">
+            
+                <a href="../../front-end/01-browser-kernel/">
+            
+                    
+                    浏览器内核
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../../front-end/01-browser-kernel/01-webkit.html">
+            
+                <a href="../../front-end/01-browser-kernel/01-webkit.html">
+            
+                    
+                    webkit
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../../front-end/01-browser-kernel/02-blink.html">
+            
+                <a href="../../front-end/01-browser-kernel/02-blink.html">
+            
+                    
+                    blink
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../../front-end/01-browser-kernel/03-process.html">
+            
+                <a href="../../front-end/01-browser-kernel/03-process.html">
+            
+                    
+                    多进程架构
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../../front-end/02-css/">
+            
+                <a href="../../front-end/02-css/">
+            
+                    
+                    CSS/CSS3
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="../../front-end/02-css/01-flex.html">
+            
+                <a href="../../front-end/02-css/01-flex.html">
+            
+                    
+                    Flex布局
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="../../front-end/02-css/02-box.html">
+            
+                <a href="../../front-end/02-css/02-box.html">
+            
+                    
+                    盒子模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3" data-path="../../front-end/02-css/03-selectors.html">
+            
+                <a href="../../front-end/02-css/03-selectors.html">
+            
+                    
+                    选择器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../../front-end/03-html/">
+            
+                <a href="../../front-end/03-html/">
+            
+                    
+                    HTML
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="../../front-end/03-html/01-history.html">
+            
+                <a href="../../front-end/03-html/01-history.html">
+            
+                    
+                    H5的History
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../../front-end/04-tools/">
+            
+                <a href="../../front-end/04-tools/">
+            
+                    
+                    工具
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="../../front-end/04-tools/01-webpack/">
+            
+                <a href="../../front-end/04-tools/01-webpack/">
+            
+                    
+                    webpack
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../../front-end/05-optimize/">
+            
+                <a href="../../front-end/05-optimize/">
+            
+                    
+                    优化
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.5.1" data-path="../../front-end/05-optimize/01-image.html">
+            
+                <a href="../../front-end/05-optimize/01-image.html">
+            
+                    
+                    图片优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../../front-end/08-network/">
+            
+                <a href="../../front-end/08-network/">
+            
+                    
+                    网络
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.6.1" data-path="../../front-end/08-network/01-tcp/">
+            
+                <a href="../../front-end/08-network/01-tcp/">
+            
+                    
+                    TCP
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.6.1.1" data-path="../../front-end/08-network/01-tcp/01-congestion-control.html">
+            
+                <a href="../../front-end/08-network/01-tcp/01-congestion-control.html">
+            
+                    
+                    拥塞控制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.2" data-path="../../front-end/08-network/02-proxy/">
+            
+                <a href="../../front-end/08-network/02-proxy/">
+            
+                    
+                    正向代理、反向代理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.3" data-path="../../front-end/08-network/03-nginx/">
+            
+                <a href="../../front-end/08-network/03-nginx/">
+            
+                    
+                    Nginx
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../../front-end/09-framework/">
+            
+                <a href="../../front-end/09-framework/">
+            
+                    
+                    框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.7.1" data-path="../../front-end/09-framework/01-wx-app/">
+            
+                <a href="../../front-end/09-framework/01-wx-app/">
+            
+                    
+                    微信小程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">JavaScript</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../01-cases/">
+            
+                <a href="../01-cases/">
+            
+                    
+                    实例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../01-cases/01-resize-observer.html">
+            
+                <a href="../01-cases/01-resize-observer.html">
+            
+                    
+                    监听元素变化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../02-scope/">
+            
+                <a href="../02-scope/">
+            
+                    
+                    作用域
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="../02-scope/01-block-scope.html">
+            
+                <a href="../02-scope/01-block-scope.html">
+            
+                    
+                    块级作用域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="../02-scope/02-lexical-scope.html">
+            
+                <a href="../02-scope/02-lexical-scope.html">
+            
+                    
+                    词法作用域
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    字符串
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="3.3.1" data-path="01-string-regexp.html">
+            
+                <a href="01-string-regexp.html">
+            
+                    
+                    字符串和正则表达式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../04-function/">
+            
+                <a href="../04-function/">
+            
+                    
+                    函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../05-object/">
+            
+                <a href="../05-object/">
+            
+                    
+                    对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="../06-destructure/">
+            
+                <a href="../06-destructure/">
+            
+                    
+                    解构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="../07-symbol/">
+            
+                <a href="../07-symbol/">
+            
+                    
+                    Symbol
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="../08-set-map/">
+            
+                <a href="../08-set-map/">
+            
+                    
+                    Set集合与Map集合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="../09-iterator-generator/">
+            
+                <a href="../09-iterator-generator/">
+            
+                    
+                    迭代器(Iterator)和生成器(Generator)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="../10-class/">
+            
+                <a href="../10-class/">
+            
+                    
+                    JavaScript中的类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="../11-array/">
+            
+                <a href="../11-array/">
+            
+                    
+                    数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="../12-promise/">
+            
+                <a href="../12-promise/">
+            
+                    
+                    Promise与异步编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.13" data-path="../13-proxy-reflection/">
+            
+                <a href="../13-proxy-reflection/">
+            
+                    
+                    代理(Proxy)和反射(Reflection)API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.14" data-path="../14-module/">
+            
+                <a href="../14-module/">
+            
+                    
+                    模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Vue</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../../vue/01-base/">
+            
+                <a href="../../vue/01-base/">
+            
+                    
+                    基础
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="../../vue/01-base/01-data-detect/">
+            
+                <a href="../../vue/01-base/01-data-detect/">
+            
+                    
+                    数据侦测
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1.1" data-path="../../vue/01-base/01-data-detect/01-object-watch.html">
+            
+                <a href="../../vue/01-base/01-data-detect/01-object-watch.html">
+            
+                    
+                    对象数据侦测
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="../../vue/01-base/02-virtual-dom/">
+            
+                <a href="../../vue/01-base/02-virtual-dom/">
+            
+                    
+                    虚拟Dom
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="../../vue/01-base/03-template/">
+            
+                <a href="../../vue/01-base/03-template/">
+            
+                    
+                    模板编译原理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.3.1" data-path="../../vue/01-base/03-template/01-parser.html">
+            
+                <a href="../../vue/01-base/03-template/01-parser.html">
+            
+                    
+                    解析器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4" data-path="../../vue/01-base/04-overview/">
+            
+                <a href="../../vue/01-base/04-overview/">
+            
+                    
+                    整体流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../../vue/02-vue-router/">
+            
+                <a href="../../vue/02-vue-router/">
+            
+                    
+                    Vue Router
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.1" data-path="../../vue/02-vue-router/01-base/">
+            
+                <a href="../../vue/02-vue-router/01-base/">
+            
+                    
+                    基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.2" data-path="../../vue/02-vue-router/02-demos/">
+            
+                <a href="../../vue/02-vue-router/02-demos/">
+            
+                    
+                    实例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">编程</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../../programming/01-codding/">
+            
+                <a href="../../programming/01-codding/">
+            
+                    
+                    代码
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="../../programming/01-codding/01-programming.html">
+            
+                <a href="../../programming/01-codding/01-programming.html">
+            
+                    
+                    编程思想
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2" data-path="../../programming/01-codding/02-throttle-debounce.html">
+            
+                <a href="../../programming/01-codding/02-throttle-debounce.html">
+            
+                    
+                    节流防抖
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../../programming/02-design/">
+            
+                <a href="../../programming/02-design/">
+            
+                    
+                    设计模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.2.1" data-path="../../programming/02-design/01-mvvm.html">
+            
+                <a href="../../programming/02-design/01-mvvm.html">
+            
+                    
+                    MV*模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../../programming/03-algorithm/">
+            
+                <a href="../../programming/03-algorithm/">
+            
+                    
+                    算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">语言</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../../language/01-script/">
+            
+                <a href="../../language/01-script/">
+            
+                    
+                    脚本语言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="../../language/01-script/">
+            
+                <a href="../../language/01-script/">
+            
+                    
+                    脚本语言
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.2.1" data-path="../../language/01-script/01-bash.html">
+            
+                <a href="../../language/01-script/01-bash.html">
+            
+                    
+                    bash
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="../../language/02-nodejs/01-start.html">
+            
+                <a href="../../language/02-nodejs/01-start.html">
+            
+                    
+                    Node.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.3.1" data-path="../../language/02-nodejs/02-module.html">
+            
+                <a href="../../language/02-nodejs/02-module.html">
+            
+                    
+                    模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.2" data-path="../../language/02-nodejs/03-async-io.html">
+            
+                <a href="../../language/02-nodejs/03-async-io.html">
+            
+                    
+                    异步I/O
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.3" data-path="../../language/02-nodejs/04-files.html">
+            
+                <a href="../../language/02-nodejs/04-files.html">
+            
+                    
+                    文件处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">HTTP</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../../http/01-understand-web/">
+            
+                <a href="../../http/01-understand-web/">
+            
+                    
+                    第一章 了解Web及网络基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="../../http/02-easy-http/">
+            
+                <a href="../../http/02-easy-http/">
+            
+                    
+                    第二章 简单的HTTP协议
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.2.1" data-path="../../http/02-easy-http/01-post.html">
+            
+                <a href="../../http/02-easy-http/01-post.html">
+            
+                    
+                    post请求方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="../../http/03-http-message/">
+            
+                <a href="../../http/03-http-message/">
+            
+                    
+                    第三章 HTTP报文内的HTTP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="../../http/04-status-code/">
+            
+                <a href="../../http/04-status-code/">
+            
+                    
+                    第四章 返回结果的HTTP状态码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="../../http/05-web-server/">
+            
+                <a href="../../http/05-web-server/">
+            
+                    
+                    第五章 与HTTP协作的Web服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="../../http/06-http-header/">
+            
+                <a href="../../http/06-http-header/">
+            
+                    
+                    第六章 HTTP首部
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.1" data-path="../../http/06-http-header/01-general-header-fields/">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/">
+            
+                    
+                    HTTP通用首部字段
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.1.1" data-path="../../http/06-http-header/01-general-header-fields/01-cache-control.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/01-cache-control.html">
+            
+                    
+                    Cache-Control
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.2" data-path="../../http/06-http-header/01-general-header-fields/02-connection.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/02-connection.html">
+            
+                    
+                    Connection
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.3" data-path="../../http/06-http-header/01-general-header-fields/03-date.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/03-date.html">
+            
+                    
+                    Date
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.4" data-path="../../http/06-http-header/01-general-header-fields/04-pragma.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/04-pragma.html">
+            
+                    
+                    Pragma
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.5" data-path="../../http/06-http-header/01-general-header-fields/05-trailer.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/05-trailer.html">
+            
+                    
+                    Trailer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.6" data-path="../../http/06-http-header/01-general-header-fields/06-transfer-encoding.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/06-transfer-encoding.html">
+            
+                    
+                    Transfer-Encoding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.7" data-path="../../http/06-http-header/01-general-header-fields/07-upgrade.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/07-upgrade.html">
+            
+                    
+                    Upgrade
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.8" data-path="../../http/06-http-header/01-general-header-fields/08-via.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/08-via.html">
+            
+                    
+                    Via
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.9" data-path="../../http/06-http-header/01-general-header-fields/09-warning.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/09-warning.html">
+            
+                    
+                    Warning
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2" data-path="../../http/06-http-header/02-request-header-fields/">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/">
+            
+                    
+                    HTTP请求首部字段
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.2.1" data-path="../../http/06-http-header/02-request-header-fields/01-accept.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/01-accept.html">
+            
+                    
+                    Accept
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.2" data-path="../../http/06-http-header/02-request-header-fields/02-accept-charset.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/02-accept-charset.html">
+            
+                    
+                    Accept-Charset
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.3" data-path="../../http/06-http-header/02-request-header-fields/03-accept-encoding.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/03-accept-encoding.html">
+            
+                    
+                    Accept-Encoding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.4" data-path="../../http/06-http-header/02-request-header-fields/04-accept-language.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/04-accept-language.html">
+            
+                    
+                    Accept-Language
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.5" data-path="../../http/06-http-header/02-request-header-fields/05-authorization.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/05-authorization.html">
+            
+                    
+                    Authorization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.6" data-path="../../http/06-http-header/02-request-header-fields/06-expect.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/06-expect.html">
+            
+                    
+                    Expect
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.7" data-path="../../http/06-http-header/02-request-header-fields/07-from.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/07-from.html">
+            
+                    
+                    From
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.8" data-path="../../http/06-http-header/02-request-header-fields/08-host.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/08-host.html">
+            
+                    
+                    Host
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.9" data-path="../../http/06-http-header/02-request-header-fields/09-if-match.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/09-if-match.html">
+            
+                    
+                    If-Match
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.10" data-path="../../http/06-http-header/02-request-header-fields/10-if-modified-since.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/10-if-modified-since.html">
+            
+                    
+                    If-Modified-Since
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.11" data-path="../../http/06-http-header/02-request-header-fields/11-if-none-match.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/11-if-none-match.html">
+            
+                    
+                    If-None-Match
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.12" data-path="../../http/06-http-header/02-request-header-fields/12-if-range.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/12-if-range.html">
+            
+                    
+                    If-Range
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.13" data-path="../../http/06-http-header/02-request-header-fields/13-if-unmodified-since.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/13-if-unmodified-since.html">
+            
+                    
+                    If-Unmodified-Since
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.14" data-path="../../http/06-http-header/02-request-header-fields/14-max-forwards.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/14-max-forwards.html">
+            
+                    
+                    Max-Forwards
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.15" data-path="../../http/06-http-header/02-request-header-fields/15-proxy-authorization.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/15-proxy-authorization.html">
+            
+                    
+                    Proxy-Authorization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.16" data-path="../../http/06-http-header/02-request-header-fields/16-range.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/16-range.html">
+            
+                    
+                    Range
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.17" data-path="../../http/06-http-header/02-request-header-fields/17-referer.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/17-referer.html">
+            
+                    
+                    Referer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.18" data-path="../../http/06-http-header/02-request-header-fields/18-te.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/18-te.html">
+            
+                    
+                    TE
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.19" data-path="../../http/06-http-header/02-request-header-fields/19-user-agent.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/19-user-agent.html">
+            
+                    
+                    User-Agent
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3" data-path="../../http/06-http-header/03-response-header-fields/">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/">
+            
+                    
+                    HTTP响应首部字段
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.3.1" data-path="../../http/06-http-header/03-response-header-fields/01-accept-ranges.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/01-accept-ranges.html">
+            
+                    
+                    Accept-Ranges
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3.2" data-path="../../http/06-http-header/03-response-header-fields/02-age.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/02-age.html">
+            
+                    
+                    Age
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3.3" data-path="../../http/06-http-header/03-response-header-fields/03-etag.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/03-etag.html">
+            
+                    
+                    ETag
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3.4" data-path="../../http/06-http-header/03-response-header-fields/04-location.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/04-location.html">
+            
+                    
+                    Location
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3.5" data-path="../../http/06-http-header/03-response-header-fields/05-proxy-authenticate.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/05-proxy-authenticate.html">
+            
+                    
+                    Proxy-Authenticate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3.6" data-path="../../http/06-http-header/03-response-header-fields/06-retry-after.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/06-retry-after.html">
+            
+                    
+                    Retry-After
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3.7" data-path="../../http/06-http-header/03-response-header-fields/07-server.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/07-server.html">
+            
+                    
+                    Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3.8" data-path="../../http/06-http-header/03-response-header-fields/08-vary.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/08-vary.html">
+            
+                    
+                    Vary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3.9" data-path="../../http/06-http-header/03-response-header-fields/09-www-authenticate.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/09-www-authenticate.html">
+            
+                    
+                    WWW-Authenticate
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4" data-path="../../http/06-http-header/04-entity-header-fields/">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/">
+            
+                    
+                    HTTP实体首部字段
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.4.1" data-path="../../http/06-http-header/04-entity-header-fields/01-allow.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/01-allow.html">
+            
+                    
+                    Allow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.2" data-path="../../http/06-http-header/04-entity-header-fields/02-content-encoding.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/02-content-encoding.html">
+            
+                    
+                    Content-Encoding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.3" data-path="../../http/06-http-header/04-entity-header-fields/03-content-language.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/03-content-language.html">
+            
+                    
+                    Content-Language
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.4" data-path="../../http/06-http-header/04-entity-header-fields/04-content-length.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/04-content-length.html">
+            
+                    
+                    Content-Length
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.5" data-path="../../http/06-http-header/04-entity-header-fields/05-content-location.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/05-content-location.html">
+            
+                    
+                    Content-Location
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.6" data-path="../../http/06-http-header/04-entity-header-fields/06-content-md5.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/06-content-md5.html">
+            
+                    
+                    Content-MD5
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.7" data-path="../../http/06-http-header/04-entity-header-fields/07-content-range.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/07-content-range.html">
+            
+                    
+                    Content-Range
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.8" data-path="../../http/06-http-header/04-entity-header-fields/08-content-type.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/08-content-type.html">
+            
+                    
+                    Content-Type
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.9" data-path="../../http/06-http-header/04-entity-header-fields/09-expires.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/09-expires.html">
+            
+                    
+                    Expires
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.10" data-path="../../http/06-http-header/04-entity-header-fields/10-last-modified.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/10-last-modified.html">
+            
+                    
+                    Last-Modified
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.5" data-path="../../http/06-http-header/05-other-header-fields/">
+            
+                <a href="../../http/06-http-header/05-other-header-fields/">
+            
+                    
+                    HTTP其他首部字段
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.5.1" data-path="../../http/06-http-header/05-other-header-fields/01-set-cookie.html">
+            
+                <a href="../../http/06-http-header/05-other-header-fields/01-set-cookie.html">
+            
+                    
+                    Set-Cookie
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.5.2" data-path="../../http/06-http-header/05-other-header-fields/02-cookie.html">
+            
+                <a href="../../http/06-http-header/05-other-header-fields/02-cookie.html">
+            
+                    
+                    Cookie
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.5.3" data-path="../../http/06-http-header/05-other-header-fields/03-x-frame-options.html">
+            
+                <a href="../../http/06-http-header/05-other-header-fields/03-x-frame-options.html">
+            
+                    
+                    X-Frame-Options
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.5.4" data-path="../../http/06-http-header/05-other-header-fields/04-x-xss-protection.html">
+            
+                <a href="../../http/06-http-header/05-other-header-fields/04-x-xss-protection.html">
+            
+                    
+                    X-XSS-Protection
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.5.5" data-path="../../http/06-http-header/05-other-header-fields/05-dnt.html">
+            
+                <a href="../../http/06-http-header/05-other-header-fields/05-dnt.html">
+            
+                    
+                    DNT
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.5.6" data-path="../../http/06-http-header/05-other-header-fields/06-p3p.html">
+            
+                <a href="../../http/06-http-header/05-other-header-fields/06-p3p.html">
+            
+                    
+                    P3P
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.7" data-path="../../http/07-https/">
+            
+                <a href="../../http/07-https/">
+            
+                    
+                    第七章 确保Web安全的HTTPS
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.7.1" data-path="../../http/07-https/01-http-disadvantage.html">
+            
+                <a href="../../http/07-https/01-http-disadvantage.html">
+            
+                    
+                    HTTP的缺点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.7.2" data-path="../../http/07-https/02-https.html">
+            
+                <a href="../../http/07-https/02-https.html">
+            
+                    
+                    HTTPS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.8" data-path="../../http/08-authentication/">
+            
+                <a href="../../http/08-authentication/">
+            
+                    
+                    第八章 确认访问用户身份的认证
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.8.1" data-path="../../http/08-authentication/01-basic.html">
+            
+                <a href="../../http/08-authentication/01-basic.html">
+            
+                    
+                    BASIC 认证
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.8.2" data-path="../../http/08-authentication/02-digest.html">
+            
+                <a href="../../http/08-authentication/02-digest.html">
+            
+                    
+                    DIGEST 认证
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.8.3" data-path="../../http/08-authentication/03-ssl.html">
+            
+                <a href="../../http/08-authentication/03-ssl.html">
+            
+                    
+                    SSL 客户端认证
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.8.4" data-path="../../http/08-authentication/04-formbase.html">
+            
+                <a href="../../http/08-authentication/04-formbase.html">
+            
+                    
+                    FormBase 认证
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.9" data-path="../../http/09-additional-protocol/">
+            
+                <a href="../../http/09-additional-protocol/">
+            
+                    
+                    第九章 基于HTTP的功能追加协议
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.9.1" data-path="../../http/09-additional-protocol/01-spdy.html">
+            
+                <a href="../../http/09-additional-protocol/01-spdy.html">
+            
+                    
+                    SPDY
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.9.2" data-path="../../http/09-additional-protocol/02-websocket.html">
+            
+                <a href="../../http/09-additional-protocol/02-websocket.html">
+            
+                    
+                    WebSocket
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.9.3" data-path="../../http/09-additional-protocol/03-http2.0.html">
+            
+                <a href="../../http/09-additional-protocol/03-http2.0.html">
+            
+                    
+                    HTTP/2.0
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.9.4" data-path="../../http/09-additional-protocol/04-webdav.html">
+            
+                <a href="../../http/09-additional-protocol/04-webdav.html">
+            
+                    
+                    WebDAV
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.10" data-path="../../http/10-web-tech/">
+            
+                <a href="../../http/10-web-tech/">
+            
+                    
+                    第十章 构建Web内容的技术
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.10.1" data-path="../../http/10-web-tech/01-html.html">
+            
+                <a href="../../http/10-web-tech/01-html.html">
+            
+                    
+                    HTML
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.10.2" data-path="../../http/10-web-tech/02-dhtml.html">
+            
+                <a href="../../http/10-web-tech/02-dhtml.html">
+            
+                    
+                    动态 HTML
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.10.3" data-path="../../http/10-web-tech/03-web-app.html">
+            
+                <a href="../../http/10-web-tech/03-web-app.html">
+            
+                    
+                    Web 应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.10.4" data-path="../../http/10-web-tech/04-format-language.html">
+            
+                <a href="../../http/10-web-tech/04-format-language.html">
+            
+                    
+                    数据发布的格式及语言
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.11" data-path="../../http/11-web-attack-tech/">
+            
+                <a href="../../http/11-web-attack-tech/">
+            
+                    
+                    第十一章 Web的攻击技术
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.11.1" data-path="../../http/11-web-attack-tech/01-escape-security-hole.html">
+            
+                <a href="../../http/11-web-attack-tech/01-escape-security-hole.html">
+            
+                    
+                    因输出值转义不完全引发的安全漏洞
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.11.2" data-path="../../http/11-web-attack-tech/02-design-security-hole.html">
+            
+                <a href="../../http/11-web-attack-tech/02-design-security-hole.html">
+            
+                    
+                    因设置或设计上的缺陷引发的安全漏洞 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.11.3" data-path="../../http/11-web-attack-tech/03-dialog-security-hole.html">
+            
+                <a href="../../http/11-web-attack-tech/03-dialog-security-hole.html">
+            
+                    
+                    因会话管理疏忽引发的安全漏洞 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.11.4" data-path="../../http/11-web-attack-tech/04-other-security-hole.html">
+            
+                <a href="../../http/11-web-attack-tech/04-other-security-hole.html">
+            
+                    
+                    其他安全漏洞
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >字符串和正则表达式</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;"><b></b>&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</a></li><ul><li><span class="title-icon "></span><a href="#1-&#x66F4;&#x597D;&#x7684;unicode&#x652F;&#x6301;"><b></b>1. &#x66F4;&#x597D;&#x7684;Unicode&#x652F;&#x6301;</a></li><ul><li><span class="title-icon "></span><a href="#11-codepointat&#x65B9;&#x6CD5;"><b></b>1.1 codePointAt()&#x65B9;&#x6CD5;</a></li><li><span class="title-icon "></span><a href="#12-stringfromcodepoint&#x65B9;&#x6CD5;"><b></b>1.2 String.fromCodePoint()&#x65B9;&#x6CD5;</a></li><li><span class="title-icon "></span><a href="#13-normalize&#x65B9;&#x6CD5;"><b></b>1.3 normalize()&#x65B9;&#x6CD5;</a></li><li><span class="title-icon "></span><a href="#14-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;-u-&#x4FEE;&#x9970;&#x7B26;"><b></b>1.4 &#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F; u &#x4FEE;&#x9970;&#x7B26;</a></li></ul><li><span class="title-icon "></span><a href="#2-&#x5176;&#x4ED6;&#x5B57;&#x7B26;&#x4E32;&#x53D8;&#x66F4;"><b></b>2. &#x5176;&#x4ED6;&#x5B57;&#x7B26;&#x4E32;&#x53D8;&#x66F4;</a></li><ul><li><span class="title-icon "></span><a href="#21-&#x5B50;&#x4E32;&#x8BC6;&#x522B;"><b></b>2.1 &#x5B50;&#x4E32;&#x8BC6;&#x522B;</a></li><li><span class="title-icon "></span><a href="#22-repeat-&#x65B9;&#x6CD5;"><b></b>2.2 repeat() &#x65B9;&#x6CD5;</a></li></ul><li><span class="title-icon "></span><a href="#3-&#x5176;&#x4ED6;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x8BED;&#x6CD5;&#x53D8;&#x66F4;"><b></b>3. &#x5176;&#x4ED6;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x8BED;&#x6CD5;&#x53D8;&#x66F4;</a></li><ul><li><span class="title-icon "></span><a href="#31-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;-y-&#x4FEE;&#x9970;&#x7B26;"><b></b>3.1 &#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F; y &#x4FEE;&#x9970;&#x7B26;</a></li><li><span class="title-icon "></span><a href="#32-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x590D;&#x5236;"><b></b>3.2 &#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x590D;&#x5236;</a></li><li><span class="title-icon "></span><a href="#33-flags&#x5C5E;&#x6027;"><b></b>3.3 flags&#x5C5E;&#x6027;</a></li></ul><li><span class="title-icon "></span><a href="#4-&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;"><b></b>4. &#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;</a></li><ul><li><span class="title-icon "></span><a href="#41-&#x57FA;&#x7840;&#x8BED;&#x6CD5;"><b></b>4.1 &#x57FA;&#x7840;&#x8BED;&#x6CD5;</a></li><li><span class="title-icon "></span><a href="#42-&#x591A;&#x884C;&#x5B57;&#x7B26;&#x4E32;"><b></b>4.2 &#x591A;&#x884C;&#x5B57;&#x7B26;&#x4E32;</a></li><li><span class="title-icon "></span><a href="#43-&#x5B57;&#x7B26;&#x4E32;&#x5360;&#x4F4D;&#x7B26;"><b></b>4.3 &#x5B57;&#x7B26;&#x4E32;&#x5360;&#x4F4D;&#x7B26;</a></li><li><span class="title-icon "></span><a href="#44-&#x6807;&#x7B7E;&#x6A21;&#x677F;"><b></b>4.4 &#x6807;&#x7B7E;&#x6A21;&#x677F;</a></li><li><span class="title-icon "></span><a href="#45-&#x5728;&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;&#x4E2D;&#x4F7F;&#x7528;&#x539F;&#x59CB;&#x503C;"><b></b>4.5 &#x5728;&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;&#x4E2D;&#x4F7F;&#x7528;&#x539F;&#x59CB;&#x503C;</a></li></ul><li><span class="title-icon "></span><a href="#&#x9644;&#x5F55;"><b></b>&#x9644;&#x5F55;</a></li><ul><li><span class="title-icon "></span><a href="#1-test-exec-match-replace"><b></b>1. test(), exec(), match(), replace()</a></li></ul></ul></ul></div><a href="#&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;"><a name="&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;" class="anchor-navigation-ex-anchor" href="#&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</h1>
+<blockquote>
+<p>2018-11-19 @wsl</p>
+</blockquote>
+<h2 id="1-&#x66F4;&#x597D;&#x7684;unicode&#x652F;&#x6301;"><a name="1-&#x66F4;&#x597D;&#x7684;unicode&#x652F;&#x6301;" class="anchor-navigation-ex-anchor" href="#1-&#x66F4;&#x597D;&#x7684;unicode&#x652F;&#x6301;"><i class="fa fa-link" aria-hidden="true"></i></a>1. &#x66F4;&#x597D;&#x7684;Unicode&#x652F;&#x6301;</h2>
+<p>&#x5728;ES6&#x4EE5;&#x524D;&#xFF0C;JavaScript&#x5B57;&#x7B26;&#x4E32;&#x4E00;&#x76F4;&#x57FA;&#x4E8E;16&#x4F4D;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#xFF08;UTF-16&#xFF09;&#x8FDB;&#x884C;&#x6784;&#x5EFA;&#x3002;</p>
+<p>UTF-16&#x4E2D;&#xFF0C;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x5B57;&#x7B26;&#x6709;&#x4E24;&#x79CD;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x7531;&#x4E00;&#x4E2A;&#x7F16;&#x7801;&#x5355;&#x5143;16&#x4F4D;&#x8868;&#x793A;&#x7684;BMP&#xFF08;Basic Multilingual Plane&#xFF0C;&#x57FA;&#x672C;&#x591A;&#x6587;&#x79CD;&#x5E73;&#x9762;&#xFF09;&#x5B57;&#x7B26;&#xFF0C;&#x53E6;&#x4E00;&#x79CD;&#x662F;&#x7531;&#x4E24;&#x4E2A;&#x7F16;&#x7801;&#x5355;&#x5143;32&#x4F4D;&#x8868;&#x793A;&#x7684;&#x8F85;&#x52A9;&#x5E73;&#x9762;&#xFF08;supplementary plane&#xFF09;&#x5B57;&#x7B26;&#x3002;</p>
+<h3 id="11-codepointat&#x65B9;&#x6CD5;"><a name="11-codepointat&#x65B9;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#11-codepointat&#x65B9;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1 codePointAt()&#x65B9;&#x6CD5;</h3>
+<p>ES6 &#x65B0;&#x589E;&#x4E86;&#x5B8C;&#x5168;&#x652F;&#x6301;UTF-16&#x7684; codePointAt() &#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;BMP&#x5B57;&#x7B26;&#x96C6;&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#xFF0C;codePointAt() &#x65B9;&#x6CD5;&#x7684;&#x8FD4;&#x56DE;&#x4E0E;charCodeAt()&#x65B9;&#x6CD5;&#x7684;&#x76F8;&#x540C;&#x3002;&#x975E;BMP&#x7684;&#xFF0C;&#x4F4D;&#x7F6E;0&#x5904;&#x7684;&#x8FD4;&#x56DE;&#x4E0D;&#x540C;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;&#x20BB7;&quot;</span>;
+<span class="hljs-built_in">console</span>.log(text.codePointAt(<span class="hljs-number">0</span>)); <span class="hljs-comment">// 134071</span>
+</code></pre>
+<p>&#x68C0;&#x6D4B;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x5360;&#x7528;&#x7684;&#x7F16;&#x7801;&#x5355;&#x5143;&#x6570;&#x91CF;&#xFF0C;&#x53EF;&#x4EE5;&#x8C03;&#x7528;&#x5B57;&#x7B26;&#x7684;codePointAt()&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">is32Bit</span>(<span class="hljs-params">c</span>) </span>{
+    <span class="hljs-keyword">return</span> c.codePointAt(<span class="hljs-number">0</span>) &gt; <span class="hljs-number">0xFFFF</span>
+}
+</code></pre>
+<h3 id="12-stringfromcodepoint&#x65B9;&#x6CD5;"><a name="12-stringfromcodepoint&#x65B9;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#12-stringfromcodepoint&#x65B9;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2 String.fromCodePoint()&#x65B9;&#x6CD5;</h3>
+<p>&#x4E0E;codePointAt()&#x65B9;&#x6CD5;&#x76F8;&#x53CD;&#xFF0C;&#x8BE5;&#x65B9;&#x6CD5;&#x6839;&#x636E;&#x6307;&#x5B9A;&#x7684;&#x7801;&#x4F4D;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x3002;&#x76F8;&#x5F53;&#x4E8E; String.fromCharCode()&#x7684;&#x5B8C;&#x6574;&#x7248;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">String</span>.fromCodePoint(<span class="hljs-number">134071</span>)); <span class="hljs-comment">// &#x20BB7;</span>
+</code></pre>
+<p>ES5&#x548C;ES6&#x5BF9;&#x6BD4;</p>
+<table>
+<thead>
+<tr>
+<th>ES5</th>
+<th>ES6</th>
+<th>&#x4F5C;&#x7528;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>charCodeAt()</td>
+<td>codePointAt()</td>
+<td>&#x8FD4;&#x56DE;&#x4E0E;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7ED9;&#x5B9A;&#x4F4D;&#x7F6E;&#x5BF9;&#x5E94;&#x7684;&#x7801;&#x4F4D;&#xFF0C;&#x5373;&#x4E00;&#x4E2A;&#x6574;&#x6570;&#x503C;</td>
+</tr>
+<tr>
+<td>String.fromCharCode()</td>
+<td>String.fromCodePoint()</td>
+<td>&#x6839;&#x636E;&#x6307;&#x5B9A;&#x7684;&#x7801;&#x4F4D;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-normalize&#x65B9;&#x6CD5;"><a name="13-normalize&#x65B9;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#13-normalize&#x65B9;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3 normalize()&#x65B9;&#x6CD5;</h3>
+<p>&#x63D0;&#x4F9B;Unicode&#x7684;&#x6807;&#x51C6;&#x5316;&#x5F62;&#x5F0F;&#x3002;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x63A5;&#x53D7;&#x4E00;&#x4E2A;&#x53EF;&#x9009;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x53C2;&#x6570;&#xFF0C;&#x6307;&#x660E;&#x5E94;&#x7528;&#x4EE5;&#x4E0B;&#x7684;&#x67D0;&#x79CD;Unicode&#x6807;&#x51C6;&#x5316;&#x5F62;&#x5F0F;&#xFF1A;</p>
+<ul>
+<li>NFC&#xFF0C;&#x9ED8;&#x8BA4;&#x53C2;&#x6570;&#xFF0C;&#x8868;&#x793A;&#x201C;&#x6807;&#x51C6;&#x7B49;&#x4EF7;&#x5408;&#x6210;&#x201D;&#xFF08;Normalization      Form Canonical Composition&#xFF09;&#xFF0C;&#x4EE5;&#x6807;&#x51C6;&#x7B49;&#x4EF7;&#x7684;&#x65B9;&#x5F0F;&#x5206;&#x89E3;&#xFF0C;&#x7136;&#x540E;&#x4EE5;&#x6807;&#x51C6;&#x7B49;&#x4EF7;&#x65B9;&#x5F0F;&#x91CD;&#x7EC4;&#x3002;</li>
+<li>NFD&#xFF0C;&#x8868;&#x793A;&#x201C;&#x6807;&#x51C6;&#x7B49;&#x4EF7;&#x5206;&#x89E3;&#x201D;&#xFF08;Normalization      Form Canonical Decomposition&#xFF09;&#xFF0C;&#x4EE5;&#x6807;&#x51C6;&#x7B49;&#x4EF7;&#x65B9;&#x5F0F;&#x5206;&#x89E3;&#x3002;</li>
+<li>NFKC&#xFF0C;&#x8868;&#x793A;&#x201C;&#x517C;&#x5BB9;&#x7B49;&#x4EF7;&#x5408;&#x6210;&#x201D;&#xFF08;Normalization      Form Compatibility Composition&#xFF09;&#xFF0C;&#x4EE5;&#x517C;&#x5BB9;&#x7B49;&#x4EF7;&#x65B9;&#x5F0F;&#x5206;&#x89E3;&#xFF0C;&#x4EE5;&#x6807;&#x51C6;&#x7B49;&#x4EF7;&#x65B9;&#x5F0F;&#x91CD;&#x7EC4;&#x3002;</li>
+<li>NFKD&#xFF0C;&#x8868;&#x793A;&#x201C;&#x517C;&#x5BB9;&#x7B49;&#x4EF7;&#x5206;&#x89E3;&#x201D;&#xFF08;Normalization      Form Compatibility Decomposition&#xFF09;&#xFF0C;&#x4EE5;&#x517C;&#x5BB9;&#x7B49;&#x4EF7;&#x65B9;&#x5F0F;&#x5206;&#x89E3;&#x3002;</li>
+</ul>
+<h3 id="14-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;-u-&#x4FEE;&#x9970;&#x7B26;"><a name="14-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;-u-&#x4FEE;&#x9970;&#x7B26;" class="anchor-navigation-ex-anchor" href="#14-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;-u-&#x4FEE;&#x9970;&#x7B26;"><i class="fa fa-link" aria-hidden="true"></i></a>1.4 &#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F; u &#x4FEE;&#x9970;&#x7B26;</h3>
+<p>&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x7B80;&#x5355;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x64CD;&#x4F5C;&#xFF0C;&#x4F46;&#x9ED8;&#x8BA4;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x6309;&#x7167;16&#x4F4D;&#x7F16;&#x7801;&#x5355;&#x5143;&#x5904;&#x7406;&#x3002;&#x4E3A;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;ES6&#x7ED9;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x652F;&#x6301;Unicode&#x7684; u &#x4FEE;&#x9970;&#x7B26;&#x3002;</p>
+<p>&#x5F53;&#x4E00;&#x4E2A;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x6DFB;&#x52A0;&#x4E86;u&#x4FEE;&#x9970;&#x7B26;&#x65F6;&#xFF0C;&#x5B83;&#x5C31;&#x4ECE;&#x7F16;&#x7801;&#x5355;&#x5143;&#x64CD;&#x4F5C;&#x6A21;&#x5F0F;&#x5207;&#x6362;&#x4E3A;&#x5B57;&#x7B26;&#x6A21;&#x5F0F;&#x3002;</p>
+<p>&#x4F8B;&#x5B50;&#xFF1A; </p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;&#x20BB7;&quot;</span>;
+<span class="hljs-built_in">console</span>.log(text.length); <span class="hljs-comment">// 2</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-regexp">/^.$/</span>.test(text)); <span class="hljs-comment">// false</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-regexp">/^.$/u</span>.test(text)); <span class="hljs-comment">// true</span>
+</code></pre>
+<ul>
+<li><p>&#x8BA1;&#x7B97;&#x7801;&#x4F4D;&#x6570;&#x91CF;</p>
+<p>ES6&#x4E0D;&#x652F;&#x6301;&#x5B57;&#x7B26;&#x4E32;&#x7801;&#x4F4D;&#x6570;&#x91CF;&#x7684;&#x68C0;&#x6D4B;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;u&#x4FEE;&#x9970;&#x7B26;&#x5229;&#x7528;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x83B7;&#x53D6;&#x7801;&#x4F4D;&#x6570;&#x91CF;&#x3002;</p>
+<p>&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">codePointLength</span>(<span class="hljs-params">text</span>) </span>{
+    <span class="hljs-keyword">let</span> result = text.match(<span class="hljs-regexp">/[\s\S]/gu</span>);
+    <span class="hljs-keyword">return</span> result ? result.length : <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-built_in">console</span>.log(codePointLength(<span class="hljs-string">&quot;&#x20BB7;bc&quot;</span>)); <span class="hljs-comment">// 3</span>
+<span class="hljs-built_in">console</span>.log(codePointLength(<span class="hljs-string">&quot;abc&quot;</span>)); <span class="hljs-comment">// 3</span>
+</code></pre>
+<blockquote>
+<p>&#x6CE8;&#xFF1A;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x8FD0;&#x884C;&#x6548;&#x7387;&#x5F88;&#x4F4E;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#x8FED;&#x4EE3;&#x5668;&#x89E3;&#x51B3;&#x6548;&#x7387;&#x4F4E;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+</blockquote>
+</li>
+<li><p>&#x68C0;&#x6D4B;u&#x4FEE;&#x9970;&#x7B26;&#x652F;&#x6301;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hasRegExpU</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">var</span> pattern = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(<span class="hljs-string">&quot;.&quot;</span>, <span class="hljs-string">&quot;u&quot;</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    } <span class="hljs-keyword">catch</span> (e) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+}
+</code></pre>
+</li>
+</ul>
+<h2 id="2-&#x5176;&#x4ED6;&#x5B57;&#x7B26;&#x4E32;&#x53D8;&#x66F4;"><a name="2-&#x5176;&#x4ED6;&#x5B57;&#x7B26;&#x4E32;&#x53D8;&#x66F4;" class="anchor-navigation-ex-anchor" href="#2-&#x5176;&#x4ED6;&#x5B57;&#x7B26;&#x4E32;&#x53D8;&#x66F4;"><i class="fa fa-link" aria-hidden="true"></i></a>2. &#x5176;&#x4ED6;&#x5B57;&#x7B26;&#x4E32;&#x53D8;&#x66F4;</h2>
+<h3 id="21-&#x5B50;&#x4E32;&#x8BC6;&#x522B;"><a name="21-&#x5B50;&#x4E32;&#x8BC6;&#x522B;" class="anchor-navigation-ex-anchor" href="#21-&#x5B50;&#x4E32;&#x8BC6;&#x522B;"><i class="fa fa-link" aria-hidden="true"></i></a>2.1 &#x5B50;&#x4E32;&#x8BC6;&#x522B;</h3>
+<p>&#x4E00;&#x76F4;&#x4F7F;&#x7528; indexOf() &#x8BC6;&#x522B;&#x5B50;&#x4E32;&#xFF0C;ES6&#x63D0;&#x4F9B;&#x4E86;&#x4EE5;&#x4E0B;3&#x4E2A;&#x7C7B;&#x4F3C;&#x7684;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x8FBE;&#x5230;&#x76F8;&#x540C;&#x6548;&#x679C;&#xFF1A;</p>
+<ul>
+<li><p>includes() &#x65B9;&#x6CD5;</p>
+<p>&#x5982;&#x679C;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x68C0;&#x6D4B;&#x5230;&#x6307;&#x5B9A;&#x6587;&#x672C;&#x5219;&#x8FD4;&#x56DE; true&#xFF0C;&#x5426;&#x5219;&#x8FD4;&#x56DE; false&#x3002;</p>
+</li>
+<li><p>startsWith() &#x65B9;&#x6CD5;</p>
+<p>&#x5982;&#x679C;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x8D77;&#x59CB;&#x90E8;&#x5206;&#x68C0;&#x6D4B;&#x5230;&#x6307;&#x5B9A;&#x6587;&#x672C;&#x5219;&#x8FD4;&#x56DE; true&#xFF0C;&#x5426;&#x5219;&#x8FD4;&#x56DE; false&#x3002;</p>
+</li>
+<li><p>endsWith() &#x65B9;&#x6CD5;</p>
+<p>&#x5982;&#x679C;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x7ED3;&#x675F;&#x90E8;&#x5206;&#x68C0;&#x6D4B;&#x5230;&#x6307;&#x5B9A;&#x6587;&#x672C;&#x5219;&#x8FD4;&#x56DE; true&#xFF0C;&#x5426;&#x5219;&#x8FD4;&#x56DE; false&#x3002;</p>
+</li>
+</ul>
+<p>&#x4EE5;&#x4E0A;3&#x4E2A;&#x65B9;&#x6CD5;&#x90FD;&#x63A5;&#x53D7;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#xFF1A;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x6307;&#x5B9A;&#x8981;&#x641C;&#x7D22;&#x7684;&#x6587;&#x672C;&#xFF1B;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x53EF;&#x9009;&#x7684;&#xFF0C;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x5F00;&#x59CB;&#x641C;&#x7D22;&#x7684;&#x4F4D;&#x7F6E;&#x7684;&#x7D22;&#x5F15;&#x503C;&#x3002;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> msg=<span class="hljs-string">&quot;Hello world!&quot;</span>;
+
+<span class="hljs-built_in">console</span>.log(msg.startsWith(<span class="hljs-string">&quot;Hello&quot;</span>)); <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">console</span>.log(msg.endsWith(<span class="hljs-string">&quot;!&quot;</span>)); <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">console</span>.log(msg.includes(<span class="hljs-string">&quot;o&quot;</span>)); <span class="hljs-comment">// true</span>
+
+<span class="hljs-built_in">console</span>.log(msg.startsWith(<span class="hljs-string">&quot;o&quot;</span>)); <span class="hljs-comment">// false</span>
+<span class="hljs-built_in">console</span>.log(msg.endsWith(<span class="hljs-string">&quot;world!&quot;</span>)); <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">console</span>.log(msg.includes(<span class="hljs-string">&quot;x&quot;</span>)); <span class="hljs-comment">// false</span>
+
+<span class="hljs-built_in">console</span>.log(msg.startsWith(<span class="hljs-string">&quot;o&quot;</span>, <span class="hljs-number">4</span>)); <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">console</span>.log(msg.endsWith(<span class="hljs-string">&quot;o&quot;</span>, <span class="hljs-number">8</span>)); <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">console</span>.log(msg.includes(<span class="hljs-string">&quot;o&quot;</span>, <span class="hljs-number">8</span>)); <span class="hljs-comment">// false</span>
+</code></pre>
+<p>&#x8FD9;&#x4E09;&#x4E2A;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x7684;&#x90FD;&#x662F;&#x5E03;&#x5C14;&#x503C;&#xFF0C;&#x7B80;&#x5316;&#x4E86;&#x5B50;&#x4E32;&#x5339;&#x914D;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x5982;&#x679C;&#x9700;&#x8981;&#x5728;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x5BFB;&#x627E;&#x53E6;&#x4E00;&#x4E2A;&#x5B50;&#x4E32;&#x7684;&#x5B9E;&#x9645;&#x4F4D;&#x7F6E;&#xFF0C;&#x8FD8;&#x9700;&#x8981;&#x7528; indexOf() &#x65B9;&#x6CD5;&#x6216; lastIndexOf() &#x65B9;&#x6CD5;&#x3002;</p>
+<blockquote>
+<p>&#x5BF9;&#x4E8E; startsWith()&#x3001;endsWith() &#x53CA; includes() &#x8FD9;&#x4E09;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x6309;&#x7167;&#x8981;&#x6C42;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x800C;&#x662F;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x5219;&#x4F1A;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x9519;&#x8BEF;&#x4EA7;&#x751F;&#xFF1B;&#x800C; indexOf() &#x548C; lastIndexOf() &#x65B9;&#x6CD5;&#xFF0C;&#x5B83;&#x4EEC;&#x4F1A;&#x628A;&#x4F20;&#x5165;&#x7684;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x8F6C;&#x5316;&#x4E3A;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5E76;&#x641C;&#x7D22;&#x5B83;&#x3002;</p>
+</blockquote>
+<h3 id="22-repeat-&#x65B9;&#x6CD5;"><a name="22-repeat-&#x65B9;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#22-repeat-&#x65B9;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>2.2 repeat() &#x65B9;&#x6CD5;</h3>
+<p>ES6 &#x8FD8;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x65B0;&#x589E;&#x4E86;&#x4E00;&#x4E2A; repeat() &#x65B9;&#x6CD5;&#xFF0C;&#x8BE5;&#x65B9;&#x6CD5;&#x63A5;&#x53D7;&#x4E00;&#x4E2A; number &#x7C7B;&#x578B;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x8868;&#x793A;&#x8BE5;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x91CD;&#x590D;&#x6B21;&#x6570;&#xFF0C;&#x8FD4;&#x56DE;&#x503C;&#x662F;&#x5F53;&#x524D;&#x5B57;&#x7B26;&#x4E32;&#x91CD;&#x590D;&#x4E00;&#x5B9A;&#x6B21;&#x6570;&#x540E;&#x7684;&#x65B0;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+<p>&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;x&quot;</span>.repeat(<span class="hljs-number">3</span>)); <span class="hljs-comment">// xxx</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;y&quot;</span>.repeat(<span class="hljs-number">4.8</span>)); <span class="hljs-comment">// yyyy</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;hello&quot;</span>.repeat(<span class="hljs-number">2</span>)); <span class="hljs-comment">// hellohello</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;abc&quot;</span>.repeat(<span class="hljs-number">3</span>)); <span class="hljs-comment">// abcabcabc</span>
+</code></pre>
+<h2 id="3-&#x5176;&#x4ED6;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x8BED;&#x6CD5;&#x53D8;&#x66F4;"><a name="3-&#x5176;&#x4ED6;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x8BED;&#x6CD5;&#x53D8;&#x66F4;" class="anchor-navigation-ex-anchor" href="#3-&#x5176;&#x4ED6;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x8BED;&#x6CD5;&#x53D8;&#x66F4;"><i class="fa fa-link" aria-hidden="true"></i></a>3. &#x5176;&#x4ED6;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x8BED;&#x6CD5;&#x53D8;&#x66F4;</h2>
+<h3 id="31-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;-y-&#x4FEE;&#x9970;&#x7B26;"><a name="31-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;-y-&#x4FEE;&#x9970;&#x7B26;" class="anchor-navigation-ex-anchor" href="#31-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;-y-&#x4FEE;&#x9970;&#x7B26;"><i class="fa fa-link" aria-hidden="true"></i></a>3.1 &#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F; y &#x4FEE;&#x9970;&#x7B26;</h3>
+<p>&#x5B83;&#x4F1A;&#x5F71;&#x54CD;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x641C;&#x7D22;&#x8FC7;&#x7A0B;&#x4E2D;&#x7684; sticky &#x5C5E;&#x6027;&#xFF0C;&#x5F53;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x5F00;&#x59CB;&#x5B57;&#x7B26;&#x5339;&#x914D;&#x65F6;&#xFF0C;&#x5B83;&#x4F1A;&#x901A;&#x77E5;&#x641C;&#x7D22;&#x4ECE;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x7684; lastIndex &#x5C5E;&#x6027;&#x5F00;&#x59CB;&#x8FDB;&#x884C;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x6307;&#x5B9A;&#x4F4D;&#x7F6E;&#x6CA1;&#x80FD;&#x6210;&#x529F;&#x5339;&#x914D;&#xFF0C;&#x5219;&#x505C;&#x6B62;&#x7EE7;&#x7EED;&#x5339;&#x914D;&#x3002;</p>
+<p>&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;hello1 hello2 hello3&quot;</span>,
+    pattern = <span class="hljs-regexp">/hello\d\s?/</span>,
+    result = pattern.exec(text),
+    globalPattern = <span class="hljs-regexp">/hello\d\s?/g</span>,
+    globalResult = globalPattern.exec(text),
+    stickyPattern = <span class="hljs-regexp">/hello\d\s?/y</span>,
+    stickyResult = stickyPattern.exec(text);
+
+<span class="hljs-built_in">console</span>.log(result[<span class="hljs-number">0</span>]); <span class="hljs-comment">// &quot;hello1 &quot;</span>
+<span class="hljs-built_in">console</span>.log(globalResult[<span class="hljs-number">0</span>]); <span class="hljs-comment">// &quot;hello1 &quot;</span>
+<span class="hljs-built_in">console</span>.log(stickyResult[<span class="hljs-number">0</span>]); <span class="hljs-comment">// &quot;hello1 &quot;</span>
+
+pattern.lastIndex = <span class="hljs-number">1</span>;
+globalPattern.lastIndex = <span class="hljs-number">1</span>;
+stickyPattern.lastIndex = <span class="hljs-number">1</span>;
+
+result = pattern.exec(text);
+globalResult = globalPattern.exec(text);
+stickyResult = stickyPattern.exec(text);
+
+<span class="hljs-built_in">console</span>.log(result[<span class="hljs-number">0</span>]); <span class="hljs-comment">// &quot;hello1 &quot;</span>
+<span class="hljs-built_in">console</span>.log(globalResult[<span class="hljs-number">0</span>]); <span class="hljs-comment">// &quot;hello2 &quot;</span>
+<span class="hljs-built_in">console</span>.log(stickyResult[<span class="hljs-number">0</span>]); <span class="hljs-comment">// Uncaught TypeError: Cannot read property &apos;0&apos; of null</span>
+</code></pre>
+<p>&#x7B2C;&#x4E00;&#x7EC4;&#x8FD4;&#x56DE;&#x7684;&#x7ED3;&#x679C;&#x90FD;&#x662F;&quot;hello1 &quot;&#xFF0C;&#x968F;&#x540E;&#xFF0C;3&#x79CD;&#x6A21;&#x5F0F;&#x7684; lastIndex &#x5C5E;&#x6027;&#x90FD;&#x88AB;&#x66F4;&#x6539;&#x4E3A;1&#xFF0C;&#x6B64;&#x65F6;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5E94;&#x8BE5;&#x4ECE;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x7B2C;&#x4E8C;&#x4E2A;&#x5B57;&#x7B26; &quot;e&quot; &#x5F00;&#x59CB;&#x5339;&#x914D;&#x3002;&#x6CA1;&#x6709;&#x4FEE;&#x9970;&#x7B26;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x81EA;&#x52A8;&#x5FFD;&#x7565;&#x8FD9;&#x4E2A;&#x53D8;&#x5316;&#xFF0C;&#x4ECD;&#x7136;&#x5339;&#x914D;&quot;hello1 &quot;&#xFF1B;&#x4F7F;&#x7528;&#x4E86; g &#x4FEE;&#x9970;&#x7B26;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x4ECE;&#x7B2C;&#x4E8C;&#x4E2A;&#x5B57;&#x7B26;&#x5F00;&#x59CB;&#x641C;&#x7D22;&#x7EE7;&#x7EED;&#x5411;&#x540E;&#x6210;&#x529F;&#x5339;&#x914D; &quot;hello2 &quot;&#xFF1B;&#x4F7F;&#x7528;&#x4E86; y &#x4FEE;&#x9970;&#x7B26;&#x7684;&#x7C98;&#x6EDE;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x7531;&#x4E8E;&#x4ECE;&#x7B2C;&#x4E8C;&#x4E2A;&#x5B57;&#x7B26;&#x5F00;&#x59CB;&#x5339;&#x914D;&#x4E0D;&#x5230;&#x76F8;&#x5E94;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5C31;&#x6B64;&#x7EC8;&#x6B62;&#xFF0C;&#x8FD4;&#x56DE; null&#x3002;</p>
+<p>&#x5F53;&#x6267;&#x884C;&#x64CD;&#x4F5C;&#x65F6;&#xFF0C;y &#x4FEE;&#x9970;&#x7B26;&#x4F1A;&#x628A;&#x4E0A;&#x6B21;&#x5339;&#x914D;&#x540E;&#x9762;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x7684;&#x7D22;&#x5F15;&#x4FDD;&#x5B58;&#x5728; lastIndex &#x4E2D;&#xFF1B;&#x5982;&#x679C;&#x8BE5;&#x64CD;&#x4F5C;&#x5339;&#x914D;&#x7684;&#x7ED3;&#x679C;&#x4E3A;&#x7A7A;&#xFF0C;&#x5219; lastIndex &#x4F1A;&#x88AB;&#x91CD;&#x7F6E;&#x4E3A;0&#x3002;g &#x4FEE;&#x9970;&#x7B26;&#x7684;&#x884C;&#x4E3A;&#x4E0E;&#x6B64;&#x76F8;&#x540C;&#x3002;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;hello1 hello2 hello3&quot;</span>,
+    pattern = <span class="hljs-regexp">/hello\d\s?/</span>,
+    result = pattern.exec(text),
+    globalPattern = <span class="hljs-regexp">/hello\d\s?/g</span>,
+    globalResult = globalPattern.exec(text),
+    stickyPattern = <span class="hljs-regexp">/hello\d\s?/y</span>,
+    stickyResult = stickyPattern.exec(text);
+
+<span class="hljs-built_in">console</span>.log(result[<span class="hljs-number">0</span>]); <span class="hljs-comment">// &quot;hello1 &quot;</span>
+<span class="hljs-built_in">console</span>.log(globalResult[<span class="hljs-number">0</span>]); <span class="hljs-comment">// &quot;hello1 &quot;</span>
+<span class="hljs-built_in">console</span>.log(stickyResult[<span class="hljs-number">0</span>]); <span class="hljs-comment">// &quot;hello1 &quot;</span>
+
+<span class="hljs-built_in">console</span>.log(pattern.lastIndex); <span class="hljs-comment">// 0</span>
+<span class="hljs-built_in">console</span>.log(globalPattern.lastIndex); <span class="hljs-comment">// 7</span>
+<span class="hljs-built_in">console</span>.log(stickyPattern.lastIndex); <span class="hljs-comment">// 7</span>
+
+result = pattern.exec(text);
+globalResult = globalPattern.exec(text);
+stickyResult = stickyPattern.exec(text);
+
+<span class="hljs-built_in">console</span>.log(result[<span class="hljs-number">0</span>]); <span class="hljs-comment">// &quot;hello1 &quot;</span>
+<span class="hljs-built_in">console</span>.log(globalResult[<span class="hljs-number">0</span>]); <span class="hljs-comment">// &quot;hello2 &quot;</span>
+<span class="hljs-built_in">console</span>.log(stickyResult[<span class="hljs-number">0</span>]); <span class="hljs-comment">// &quot;hello2 &quot;</span>
+
+<span class="hljs-built_in">console</span>.log(pattern.lastIndex); <span class="hljs-comment">// 0</span>
+<span class="hljs-built_in">console</span>.log(globalPattern.lastIndex); <span class="hljs-comment">// 14</span>
+<span class="hljs-built_in">console</span>.log(stickyPattern.lastIndex); <span class="hljs-comment">// 14</span>
+</code></pre>
+<blockquote>
+<p>&#x5173;&#x4E8E; y &#x4FEE;&#x9970;&#x7B26;&#x8FD8;&#x9700;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x53EA;&#x6709;&#x8C03;&#x7528; exec() &#x548C; test() &#x8FD9;&#x4E9B;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;&#x624D;&#x4F1A;&#x6D89;&#x53CA; lastIndex &#x5C5E;&#x6027;&#xFF1B;&#x8C03;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x4F8B;&#x5982; match()&#xFF0C;&#x5219;&#x4E0D;&#x4F1A;&#x89E6;&#x53D1;&#x7C98;&#x6EDE;&#x884C;&#x4E3A;&#x3002;</p>
+<p>&#x5176;&#x6B21;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528;^&#x5B57;&#x7B26;&#x6765;&#x5339;&#x914D;&#x5B57;&#x7B26;&#x4E32;&#x5F00;&#x7AEF;&#xFF0C;&#x53EA;&#x4F1A;&#x4ECE;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x8D77;&#x59CB;&#x4F4D;&#x7F6E;&#x6216;&#x591A;&#x884C;&#x6A21;&#x5F0F;&#x7684;&#x9996;&#x884C;&#x8FDB;&#x884C;&#x5339;&#x914D;&#x3002;&#x5F53; lastIndex &#x4E3A; 0 &#x65F6;&#xFF0C;&#x5982;&#x679C;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#x542B;&#x6709;^&#xFF0C;&#x5219;&#x662F;&#x5426;&#x4F7F;&#x7528;&#x7C98;&#x6EDE;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5E76;&#x65E0;&#x5DEE;&#x522B;&#xFF1B;&#x5982;&#x679C; lastIndex &#x7684;&#x503C;&#x5728;&#x5355;&#x884C;&#x6A21;&#x5F0F;&#x4E0B;&#x4E0D;&#x4E3A;0&#xFF0C;&#x6216;&#x8005;&#x5728;&#x591A;&#x884C;&#x6A21;&#x5F0F;&#x4E0B;&#x4E0D;&#x5BF9;&#x5E94;&#x884C;&#x9996;&#xFF0C;&#x5219;&#x7C98;&#x6EDE;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x6C38;&#x8FDC;&#x4E0D;&#x4F1A;&#x5339;&#x914D;&#x6210;&#x529F;&#x3002;</p>
+</blockquote>
+<p>&#x68C0;&#x6D4B; y &#x4FEE;&#x9970;&#x7B26;&#x662F;&#x5426;&#x5B58;&#x5728;&#xFF0C;&#x4E0E;&#x68C0;&#x6D4B;&#x5176;&#x4ED6;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x4FEE;&#x9970;&#x7B26;&#x7C7B;&#x4F3C;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5C5E;&#x6027;&#x540D;&#x6765;&#x68C0;&#x6D4B;&#x3002;&#x4E5F;&#x53EF;&#x4EE5;&#x68C0;&#x67E5; sticky &#x5C5E;&#x6027;&#xFF0C;&#x5982;&#x4E0B;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> pattern = <span class="hljs-regexp">/hello\d/y</span>;
+<span class="hljs-built_in">console</span>.log(pattern.sticky);
+</code></pre>
+<p>&#x5982;&#x679C; JavaScript &#x5F15;&#x64CE;&#x652F;&#x6301;&#x7C98;&#x6EDE;&#x4FEE;&#x9970;&#x7B26;&#xFF0C;&#x5219; sticky &#x5C5E;&#x6027;&#x4E3A; true&#xFF0C;&#x5426;&#x5219;&#x4E3A;false&#x3002;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x662F;&#x53EA;&#x8BFB;&#x7684;&#xFF0C;&#x7531;&#x8BE5;&#x4FEE;&#x9970;&#x7B26;&#x7684;&#x5B58;&#x5728;&#x6027;&#x6240;&#x51B3;&#x5B9A;&#x3002;</p>
+<p>y &#x4FEE;&#x9970;&#x7B26;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x65B0;&#x589E;&#x7684;&#x8BED;&#x6CD5;&#x53D8;&#x66F4;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x65B9;&#x6CD5;&#x6765;&#x68C0;&#x6D4B;&#x5F15;&#x64CE;&#x5BF9;&#x5B83;&#x7684;&#x652F;&#x6301;&#x7A0B;&#x5EA6;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hasRegExpY</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">var</span> pattern = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(<span class="hljs-string">&quot;.&quot;</span>, <span class="hljs-string">&quot;y&quot;</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    } <span class="hljs-keyword">catch</span> (e) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+}
+</code></pre>
+<h3 id="32-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x590D;&#x5236;"><a name="32-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x590D;&#x5236;" class="anchor-navigation-ex-anchor" href="#32-&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x590D;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>3.2 &#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x590D;&#x5236;</h3>
+<p>ES5&#x4E2D;&#xFF0C;&#x901A;&#x8FC7;&#x7ED9;RegExp&#x6784;&#x9020;&#x51FD;&#x6570;&#x4F20;&#x9012;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x6765;&#x590D;&#x5236;&#x8FD9;&#x4E2A;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x3002;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> re1 = <span class="hljs-regexp">/ab/i</span>,
+    re2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(re1);
+</code></pre>
+<p>&#x82E5;&#x7ED9;RegExp&#x6784;&#x9020;&#x51FD;&#x6570;&#x63D0;&#x4F9B;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x4E3A;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x4FEE;&#x9970;&#x7B26;&#xFF0C;&#x5219;ES5&#x4F1A;&#x629B;&#x51FA;&#x9519;&#x8BEF;&#x3002;</p>
+<p>ES6&#x4FEE;&#x6539;&#x4E86;&#x6B64;&#x884C;&#x4E3A;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4E3A;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4FEE;&#x6539;&#x5176;&#x4FEE;&#x9970;&#x7B26;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> re1 = <span class="hljs-regexp">/ab/i</span>,
+    re2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(re1, <span class="hljs-string">&quot;g&quot;</span>); <span class="hljs-comment">// &#x5728;ES5&#x4E2D;&#x629B;&#x51FA;&#x9519;&#x8BEF;&#xFF0C;&#x5728;ES6&#x4E2D;&#x6B63;&#x5E38;&#x8FD0;&#x884C;</span>
+
+<span class="hljs-built_in">console</span>.log(re1.toString()); <span class="hljs-comment">// &quot;/ab/i&quot;</span>
+<span class="hljs-built_in">console</span>.log(re2.toString()); <span class="hljs-comment">// &quot;/ab/g&quot;</span>
+</code></pre>
+<h3 id="33-flags&#x5C5E;&#x6027;"><a name="33-flags&#x5C5E;&#x6027;" class="anchor-navigation-ex-anchor" href="#33-flags&#x5C5E;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a>3.3 flags&#x5C5E;&#x6027;</h3>
+<p>&#x5728;ES5&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; source &#x5C5E;&#x6027;&#x83B7;&#x53D6;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x6587;&#x672C;&#xFF0C;&#x4F46;&#x5982;&#x679C;&#x8981;&#x83B7;&#x53D6;&#x4F7F;&#x7528;&#x7684;&#x4FEE;&#x9970;&#x7B26;&#xFF0C;&#x9700;&#x8981;&#x5982;&#x4E0B;&#x4EE3;&#x7801;&#x683C;&#x5F0F;&#x5316;toString()&#x65B9;&#x6CD5;&#x8F93;&#x51FA;&#x7684;&#x6587;&#x672C;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFlags</span>(<span class="hljs-params">re</span>) </span>{
+    <span class="hljs-keyword">var</span> text = re.toString();
+    <span class="hljs-keyword">return</span> text.substring(text.lastIndexOf(<span class="hljs-string">&apos;/&apos;</span>) + <span class="hljs-number">1</span>, text.length);
+}
+
+<span class="hljs-comment">// toString() &#x7684;&#x8FD4;&#x56DE;&#x503C;&#x4E3A; &quot;/ab/g&quot;</span>
+<span class="hljs-keyword">var</span> re = <span class="hljs-regexp">/ab/g</span>;
+
+<span class="hljs-built_in">console</span>.log(getFlags(re)); <span class="hljs-comment">// g</span>
+</code></pre>
+<p>ES6&#x65B0;&#x589E;&#x4E86;&#x4E00;&#x4E2A;flags&#x5C5E;&#x6027;&#xFF0C;&#x5B83;&#x4E0E;source&#x5C5E;&#x6027;&#x90FD;&#x662F;&#x53EA;&#x8BFB;&#x7684;&#x539F;&#x578B;&#x5C5E;&#x6027;&#x8BBF;&#x95EE;&#x5668;&#xFF0C;&#x8FD4;&#x56DE;&#x6240;&#x6709;&#x5E94;&#x7528;&#x4E8E;&#x5F53;&#x524D;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x4FEE;&#x9970;&#x7B26;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x5373;&#x6709;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> re = <span class="hljs-regexp">/ab/g</span>;
+<span class="hljs-built_in">console</span>.log(re.source); <span class="hljs-comment">// ab</span>
+<span class="hljs-built_in">console</span>.log(re.flags); <span class="hljs-comment">// g</span>
+</code></pre>
+<h2 id="4-&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;"><a name="4-&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;" class="anchor-navigation-ex-anchor" href="#4-&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>4. &#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;</h2>
+<p>DSL&#xFF08;Domain Specific Language&#xFF0C;&#x9886;&#x57DF;&#x4E13;&#x7528;&#x8BED;&#x8A00;&#xFF09;</p>
+<p>GPL&#xFF08;General Purpose Language&#xFF0C;&#x901A;&#x7528;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#xFF09;</p>
+<h3 id="41-&#x57FA;&#x7840;&#x8BED;&#x6CD5;"><a name="41-&#x57FA;&#x7840;&#x8BED;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#41-&#x57FA;&#x7840;&#x8BED;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>4.1 &#x57FA;&#x7840;&#x8BED;&#x6CD5;</h3>
+<p>&#x7528;&#x53CD;&#x6487;&#x53F7;&#xFF08;`&#xFF09;&#x8FDB;&#x884C;&#x5B57;&#x7B26;&#x4E32;&#x8D4B;&#x503C;&#x3002;&#x5B57;&#x7B26;&#x4E32;&#x5185;&#x90E8;&#x4F7F;&#x7528;&#x53CD;&#x6487;&#x53F7;&#x9700;&#x8981;&#x8F6C;&#x4E49;&#xFF08;\&#xFF09;&#x3002;&#x5728;&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;&#x4E2D;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x8F6C;&#x4E49;&#x5355;&#x3001;&#x53CC;&#x5F15;&#x53F7;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> message = <span class="hljs-string">`\`Hello\` world!`</span>;
+
+<span class="hljs-built_in">console</span>.log(message); <span class="hljs-comment">// `Hello` world!</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> message); <span class="hljs-comment">// string</span>
+<span class="hljs-built_in">console</span>.log(message.length); <span class="hljs-comment">// 14</span>
+</code></pre>
+<h3 id="42-&#x591A;&#x884C;&#x5B57;&#x7B26;&#x4E32;"><a name="42-&#x591A;&#x884C;&#x5B57;&#x7B26;&#x4E32;" class="anchor-navigation-ex-anchor" href="#42-&#x591A;&#x884C;&#x5B57;&#x7B26;&#x4E32;"><i class="fa fa-link" aria-hidden="true"></i></a>4.2 &#x591A;&#x884C;&#x5B57;&#x7B26;&#x4E32;</h3>
+<p>&#x5728;ES6&#x4E4B;&#x524D;&#x7684;&#x7248;&#x672C;&#x4E2D;&#xFF0C;&#x901A;&#x5E38;&#x90FD;&#x4F9D;&#x9760;&#x6570;&#x7EC4;&#x6216;&#x5B57;&#x7B26;&#x4E32;&#x62FC;&#x63A5;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x521B;&#x5EFA;&#x591A;&#x884C;&#x5B57;&#x7B26;&#x4E32;&#x3002;ES6&#x4E2D;&#x7684;&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;&#x7684;&#x8BED;&#x6CD5;&#x7B80;&#x5355;&#xFF0C;&#x6781;&#x5927;&#x5730;&#x7B80;&#x5316;&#x4E86;&#x591A;&#x884C;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x521B;&#x5EFA;&#x8FC7;&#x7A0B;&#x3002;&#x5982;&#x679C;&#x4F60;&#x9700;&#x8981;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x6DFB;&#x52A0;&#x65B0;&#x7684;&#x4E00;&#x884C;&#xFF0C;&#x53EA;&#x9700;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x76F4;&#x63A5;&#x6362;&#x884C;&#xFF0C;&#x6B64;&#x5904;&#x7684;&#x6362;&#x884C;&#x5C06;&#x540C;&#x6B65;&#x51FA;&#x73B0;&#x5728;&#x7ED3;&#x679C;&#x4E2D;&#x3002;</p>
+<p>&#x53CD;&#x6487;&#x53F7;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x7A7A;&#x767D;&#x7B26;&#x90FD;&#x5C5E;&#x4E8E;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x6240;&#x4EE5;&#x8981;&#x5C0F;&#x5FC3;&#x7F29;&#x8FDB;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> message = <span class="hljs-string">`Multiline
+            string`</span>;
+
+<span class="hljs-built_in">console</span>.log(message);    <span class="hljs-comment">// &quot;Multiline</span>
+                        <span class="hljs-comment">//            string&quot;</span>
+<span class="hljs-built_in">console</span>.log(message.length); <span class="hljs-comment">// 19</span>
+</code></pre>
+<p>&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;&#x4E2D;&#x663E;&#x5F0F;&#x5730;&#x4F7F;&#x7528;\n&#x6765;&#x6307;&#x660E;&#x5E94;&#x5F53;&#x63D2;&#x5165;&#x65B0;&#x884C;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> message = <span class="hljs-string">`Multiline\nstring`</span>;
+<span class="hljs-built_in">console</span>.log(message);    <span class="hljs-comment">// &quot;Multiline</span>
+                        <span class="hljs-comment">// string&quot;</span>
+<span class="hljs-built_in">console</span>.log(message.length); <span class="hljs-comment">// 16</span>
+</code></pre>
+<h3 id="43-&#x5B57;&#x7B26;&#x4E32;&#x5360;&#x4F4D;&#x7B26;"><a name="43-&#x5B57;&#x7B26;&#x4E32;&#x5360;&#x4F4D;&#x7B26;" class="anchor-navigation-ex-anchor" href="#43-&#x5B57;&#x7B26;&#x4E32;&#x5360;&#x4F4D;&#x7B26;"><i class="fa fa-link" aria-hidden="true"></i></a>4.3 &#x5B57;&#x7B26;&#x4E32;&#x5360;&#x4F4D;&#x7B26;</h3>
+<p>&#x5728;&#x4E00;&#x4E2A;&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;&#x4E2D;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x628A;&#x4EFB;&#x4F55;&#x5408;&#x6CD5;&#x7684;JavaScript&#x8868;&#x8FBE;&#x5F0F;&#x5D4C;&#x5165;&#x5230;&#x5360;&#x4F4D;&#x7B26;&#x4E2D;&#x5E76;&#x5C06;&#x5176;&#x4F5C;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x8F93;&#x51FA;&#x5230;&#x7ED3;&#x679C;&#x4E2D;&#x3002;</p>
+<p>&#x5360;&#x4F4D;&#x7B26;&#x7531;&#x4E00;&#x4E2A;&#x5DE6;&#x4FA7;&#x7684; ${ &#x548C;&#x53F3;&#x4FA7;&#x7684; } &#x7B26;&#x53F7;&#x7EC4;&#x6210;&#xFF0C;&#x4E2D;&#x95F4;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x4EFB;&#x610F;&#x7684; JavaScript &#x8868;&#x8FBE;&#x5F0F;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> name = <span class="hljs-string">&apos;Sarah&apos;</span>;
+<span class="hljs-keyword">let</span> message = <span class="hljs-string">`Hello, <span class="hljs-subst">${name}</span>!`</span>;
+
+<span class="hljs-built_in">console</span>.log(message); <span class="hljs-comment">// Hello, Sarah!</span>
+</code></pre>
+<p>&#x65E2;&#x7136;&#x6240;&#x6709;&#x7684;&#x5360;&#x4F4D;&#x7B26;&#x90FD;&#x662F; JavaScript &#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5D4C;&#x5165;&#x9664;&#x53D8;&#x91CF;&#x5916;&#x7684;&#x5176;&#x4ED6;&#x5185;&#x5BB9;&#xFF0C;&#x5982;&#x8FD0;&#x7B97;&#x5F0F;&#x3001;&#x51FD;&#x6570;&#x8C03;&#x7528;&#xFF0C;&#x7B49;&#x7B49;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> count = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">let</span> price = <span class="hljs-number">0.8</span>;
+<span class="hljs-keyword">let</span> message = <span class="hljs-string">`<span class="hljs-subst">${count}</span> items cost $<span class="hljs-subst">${(count * price).toFixed(2)}</span>.`</span>
+
+<span class="hljs-built_in">console</span>.log(message); <span class="hljs-comment">// 5 items cost $4.00.</span>
+</code></pre>
+<p>&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;&#x672C;&#x8EAB;&#x4E5F;&#x662F; JavaScript &#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x4E2A;&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;&#x91CC;&#x9762;&#x5D4C;&#x5165;&#x53E6;&#x4E00;&#x4E2A;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> name = <span class="hljs-string">&apos;Sarah&apos;</span>;
+<span class="hljs-keyword">let</span> message = <span class="hljs-string">`Hello, <span class="hljs-subst">${
+  `my name is ${name}</span>`</span>
+}.<span class="hljs-string">`;
+
+console.log(message); // Hello, my name is Sarah.
+</span></code></pre>
+<h3 id="44-&#x6807;&#x7B7E;&#x6A21;&#x677F;"><a name="44-&#x6807;&#x7B7E;&#x6A21;&#x677F;" class="anchor-navigation-ex-anchor" href="#44-&#x6807;&#x7B7E;&#x6A21;&#x677F;"><i class="fa fa-link" aria-hidden="true"></i></a>4.4 &#x6807;&#x7B7E;&#x6A21;&#x677F;</h3>
+<p>&#x6BCF;&#x4E2A;&#x6A21;&#x677F;&#x6807;&#x7B7E;&#x90FD;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;&#x4E0A;&#x7684;&#x8F6C;&#x6362;&#x5E76;&#x8FD4;&#x56DE;&#x6700;&#x7EC8;&#x7684;&#x5B57;&#x7B26;&#x503C;&#x3002;&#x6807;&#x7B7E;&#x6307;&#x7684;&#x662F;&#x5728;&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;&#x7B2C;&#x4E00;&#x4E2A;&#x53CD;&#x6487;&#x53F7;&#xFF08;`&#xFF09;&#x524D;&#x65B9;&#x6807;&#x6CE8;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+<p>&#x6807;&#x7B7E;&#x53EF;&#x4EE5;&#x662F;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x8C03;&#x7528;&#x65F6;&#x4F20;&#x5165;&#x52A0;&#x5DE5;&#x8FC7;&#x7684;&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;&#x5404;&#x90E8;&#x5206;&#x6570;&#x636E;&#xFF0C;&#x5FC5;&#x987B;&#x7ED3;&#x5408;&#x6BCF;&#x4E2A;&#x90E8;&#x5206;&#x6765;&#x521B;&#x5EFA;&#x7ED3;&#x679C;&#x3002;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#xFF0C;&#x5305;&#x62EC;JavaScript&#x89E3;&#x91CA;&#x8FC7;&#x540E;&#x7684;&#x5B57;&#x9762;&#x91CF;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5B83;&#x4E4B;&#x540E;&#x7684;&#x6240;&#x6709;&#x53C2;&#x6570;&#x90FD;&#x662F;&#x6BCF;&#x4E00;&#x4E2A;&#x5360;&#x4F4D;&#x7B26;&#x7684;&#x89E3;&#x91CA;&#x503C;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tag</span>(<span class="hljs-params">literals, ...substitutions</span>) </span>{
+    <span class="hljs-comment">// &#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;</span>
+}
+</code></pre>
+<p>&#x6CE8;&#x610F;&#xFF0C;literals &#x91CC;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x662F;&#x4E00;&#x4E2A;&#x7A7A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x8FD9;&#x786E;&#x4FDD;&#x4E86; literals[0] &#x603B;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x59CB;&#x7AEF;&#xFF0C;&#x5C31;&#x50CF; literals[literals.length - 1] &#x603B;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x7ED3;&#x5C3E;&#x4E00;&#x6837;&#x3002;substitutions &#x7684;&#x6570;&#x91CF;&#x603B;&#x6BD4; literals &#x5C11;&#x4E00;&#x4E2A;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">passthru</span>(<span class="hljs-params">literals, ...substitutions</span>) </span>{
+    <span class="hljs-keyword">let</span> result = <span class="hljs-string">&apos;On Sale! &apos;</span>;
+
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; substitutions.length; i++) {
+        result = result + literals[i] + substitutions[i];
+    }
+
+    result += literals[literals.length - <span class="hljs-number">1</span>];
+
+    <span class="hljs-keyword">return</span> result;
+}
+
+<span class="hljs-keyword">let</span> count = <span class="hljs-number">10</span>,
+    price = <span class="hljs-number">0.5</span>,
+    message = passthru<span class="hljs-string">`<span class="hljs-subst">${count}</span> items cost $<span class="hljs-subst">${(count * price).toFixed(2)}</span>.`</span>;
+
+<span class="hljs-built_in">console</span>.log(message); <span class="hljs-comment">// On Sale! 10 items cost $5.00.</span>
+</code></pre>
+<h3 id="45-&#x5728;&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;&#x4E2D;&#x4F7F;&#x7528;&#x539F;&#x59CB;&#x503C;"><a name="45-&#x5728;&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;&#x4E2D;&#x4F7F;&#x7528;&#x539F;&#x59CB;&#x503C;" class="anchor-navigation-ex-anchor" href="#45-&#x5728;&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;&#x4E2D;&#x4F7F;&#x7528;&#x539F;&#x59CB;&#x503C;"><i class="fa fa-link" aria-hidden="true"></i></a>4.5 &#x5728;&#x6A21;&#x677F;&#x5B57;&#x9762;&#x91CF;&#x4E2D;&#x4F7F;&#x7528;&#x539F;&#x59CB;&#x503C;</h3>
+<p>&#x6A21;&#x677F;&#x6807;&#x7B7E;&#x540C;&#x6837;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x539F;&#x751F;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x901A;&#x8FC7;&#x6A21;&#x677F;&#x6807;&#x7B7E;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x5230;&#x5B57;&#x7B26;&#x8F6C;&#x4E49;&#x88AB;&#x8F6C;&#x6362;&#x6210;&#x7B49;&#x4EF7;&#x5B57;&#x7B26;&#x524D;&#x7684;&#x539F;&#x751F;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x6700;&#x7B80;&#x5355;&#x7684;&#x4F8B;&#x5B50;&#x662F;&#x4F7F;&#x7528;&#x5185;&#x5EFA;&#x7684;String.raw() &#x6807;&#x7B7E;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> message1 = <span class="hljs-string">`Multiline\nstring`</span>,
+    message2 = <span class="hljs-built_in">String</span>.raw<span class="hljs-string">`Multiline\nstring`</span>;
+
+<span class="hljs-built_in">console</span>.log(message1);  <span class="hljs-comment">// &quot;Multiline</span>
+                        <span class="hljs-comment">// string&quot;</span>
+<span class="hljs-built_in">console</span>.log(message2);    <span class="hljs-comment">// Multiline\\nstring</span>
+</code></pre>
+<blockquote>
+<p>&#x6CE8;&#x610F;&#xFF0C;&#x8BE5;&#x6807;&#x7B7E;&#x76EE;&#x524D;&#x53EA;&#x6709; Chrome, Firefox &#x5B9E;&#x73B0;&#x4E86;&#x3002;</p>
+</blockquote>
+<h2 id="&#x9644;&#x5F55;"><a name="&#x9644;&#x5F55;" class="anchor-navigation-ex-anchor" href="#&#x9644;&#x5F55;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9644;&#x5F55;</h2>
+<h3 id="1-test-exec-match-replace"><a name="1-test-exec-match-replace" class="anchor-navigation-ex-anchor" href="#1-test-exec-match-replace"><i class="fa fa-link" aria-hidden="true"></i></a>1. test(), exec(), match(), replace()</h3>
+<table>
+<thead>
+<tr>
+<th>&#x7528;&#x6CD5;</th>
+<th>&#x8BF4;&#x660E;</th>
+<th>&#x8FD4;&#x56DE;&#x503C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pattern.test(str)</td>
+<td>&#x5224;&#x65AD; str &#x662F;&#x5426;&#x5305;&#x542B;&#x5339;&#x914D;&#x7ED3;&#x679C;</td>
+<td>&#x5305;&#x542B;&#x8FD4;&#x56DE; true&#xFF0C;&#x4E0D;&#x5305;&#x542B;&#x8FD4;&#x56DE;false&#x3002;</td>
+</tr>
+<tr>
+<td>pattern.exec(str)</td>
+<td>&#x6839;&#x636E; pattern &#x5BF9; str &#x8FDB;&#x884C;&#x6B63;&#x5219;&#x5339;&#x914D;</td>
+<td>&#x8FD4;&#x56DE;&#x5339;&#x914D;&#x7ED3;&#x679C;&#x6570;&#x7EC4;,&#x5982;&#x5339;&#x914D;&#x4E0D;&#x5230;&#x8FD4;&#x56DE; null</td>
+</tr>
+<tr>
+<td>str.match(pattern)</td>
+<td>&#x6839;&#x636E; pattern &#x5BF9; str &#x8FDB;&#x884C;&#x6B63;&#x5219;&#x5339;&#x914D;</td>
+<td>&#x8FD4;&#x56DE;&#x5339;&#x914D;&#x7ED3;&#x679C;&#x6570;&#x7EC4;,&#x5982;&#x5339;&#x914D;&#x4E0D;&#x5230;&#x8FD4;&#x56DE; null</td>
+</tr>
+<tr>
+<td>str.replace(pattern, replacement)</td>
+<td>&#x6839;&#x636E; pattern &#x8FDB;&#x884C;&#x6B63;&#x5219;&#x5339;&#x914D;,&#x628A;&#x5339;&#x914D;&#x7ED3;&#x679C;&#x66FF;&#x6362;&#x4E3A; replacement</td>
+<td>&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5B57;&#x7B26;&#x4E32;</td>
+</tr>
+</tbody>
+</table>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 字符串">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../04-function/" class="navigation navigation-next " aria-label="Next page: 函数">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"字符串和正则表达式","level":"3.3.1","depth":2,"next":{"title":"函数","level":"3.4","depth":1,"path":"javascript/04-function/README.md","ref":"javascript/04-function/README.md","articles":[]},"previous":{"title":"字符串","level":"3.3","depth":1,"path":"javascript/03-string/README.md","ref":"javascript/03-string/README.md","articles":[{"title":"字符串和正则表达式","level":"3.3.1","depth":2,"path":"javascript/03-string/01-string-regexp.md","ref":"javascript/03-string/01-string-regexp.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters","splitter","anchor-navigation-ex"],"pluginsConfig":{"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"javascript/03-string/01-string-regexp.md","mtime":"2020-03-10T03:12:53.953Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-10T07:49:06.766Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

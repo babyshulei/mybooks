@@ -1,0 +1,2454 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>编程思想 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="02-throttle-debounce.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">前端</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../../front-end/01-browser-kernel/">
+            
+                <a href="../../front-end/01-browser-kernel/">
+            
+                    
+                    浏览器内核
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../../front-end/01-browser-kernel/01-webkit.html">
+            
+                <a href="../../front-end/01-browser-kernel/01-webkit.html">
+            
+                    
+                    webkit
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../../front-end/01-browser-kernel/02-blink.html">
+            
+                <a href="../../front-end/01-browser-kernel/02-blink.html">
+            
+                    
+                    blink
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../../front-end/01-browser-kernel/03-process.html">
+            
+                <a href="../../front-end/01-browser-kernel/03-process.html">
+            
+                    
+                    多进程架构
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../../front-end/02-css/">
+            
+                <a href="../../front-end/02-css/">
+            
+                    
+                    CSS/CSS3
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="../../front-end/02-css/01-flex.html">
+            
+                <a href="../../front-end/02-css/01-flex.html">
+            
+                    
+                    Flex布局
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="../../front-end/02-css/02-box.html">
+            
+                <a href="../../front-end/02-css/02-box.html">
+            
+                    
+                    盒子模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3" data-path="../../front-end/02-css/03-selectors.html">
+            
+                <a href="../../front-end/02-css/03-selectors.html">
+            
+                    
+                    选择器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../../front-end/03-html/">
+            
+                <a href="../../front-end/03-html/">
+            
+                    
+                    HTML
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="../../front-end/03-html/01-history.html">
+            
+                <a href="../../front-end/03-html/01-history.html">
+            
+                    
+                    H5的History
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../../front-end/04-tools/">
+            
+                <a href="../../front-end/04-tools/">
+            
+                    
+                    工具
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="../../front-end/04-tools/01-webpack/">
+            
+                <a href="../../front-end/04-tools/01-webpack/">
+            
+                    
+                    webpack
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../../front-end/05-optimize/">
+            
+                <a href="../../front-end/05-optimize/">
+            
+                    
+                    优化
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.5.1" data-path="../../front-end/05-optimize/01-image.html">
+            
+                <a href="../../front-end/05-optimize/01-image.html">
+            
+                    
+                    图片优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../../front-end/08-network/">
+            
+                <a href="../../front-end/08-network/">
+            
+                    
+                    网络
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.6.1" data-path="../../front-end/08-network/01-tcp/">
+            
+                <a href="../../front-end/08-network/01-tcp/">
+            
+                    
+                    TCP
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.6.1.1" data-path="../../front-end/08-network/01-tcp/01-congestion-control.html">
+            
+                <a href="../../front-end/08-network/01-tcp/01-congestion-control.html">
+            
+                    
+                    拥塞控制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.2" data-path="../../front-end/08-network/02-proxy/">
+            
+                <a href="../../front-end/08-network/02-proxy/">
+            
+                    
+                    正向代理、反向代理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.3" data-path="../../front-end/08-network/03-nginx/">
+            
+                <a href="../../front-end/08-network/03-nginx/">
+            
+                    
+                    Nginx
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../../front-end/09-framework/">
+            
+                <a href="../../front-end/09-framework/">
+            
+                    
+                    框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.7.1" data-path="../../front-end/09-framework/01-wx-app/">
+            
+                <a href="../../front-end/09-framework/01-wx-app/">
+            
+                    
+                    微信小程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">JavaScript</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../../javascript/01-cases/">
+            
+                <a href="../../javascript/01-cases/">
+            
+                    
+                    实例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../../javascript/01-cases/01-resize-observer.html">
+            
+                <a href="../../javascript/01-cases/01-resize-observer.html">
+            
+                    
+                    监听元素变化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../../javascript/02-scope/">
+            
+                <a href="../../javascript/02-scope/">
+            
+                    
+                    作用域
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="../../javascript/02-scope/01-block-scope.html">
+            
+                <a href="../../javascript/02-scope/01-block-scope.html">
+            
+                    
+                    块级作用域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="../../javascript/02-scope/02-lexical-scope.html">
+            
+                <a href="../../javascript/02-scope/02-lexical-scope.html">
+            
+                    
+                    词法作用域
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../../javascript/03-string/">
+            
+                <a href="../../javascript/03-string/">
+            
+                    
+                    字符串
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="../../javascript/03-string/01-string-regexp.html">
+            
+                <a href="../../javascript/03-string/01-string-regexp.html">
+            
+                    
+                    字符串和正则表达式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../../javascript/04-function/">
+            
+                <a href="../../javascript/04-function/">
+            
+                    
+                    函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../../javascript/05-object/">
+            
+                <a href="../../javascript/05-object/">
+            
+                    
+                    对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="../../javascript/06-destructure/">
+            
+                <a href="../../javascript/06-destructure/">
+            
+                    
+                    解构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="../../javascript/07-symbol/">
+            
+                <a href="../../javascript/07-symbol/">
+            
+                    
+                    Symbol
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="../../javascript/08-set-map/">
+            
+                <a href="../../javascript/08-set-map/">
+            
+                    
+                    Set集合与Map集合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="../../javascript/09-iterator-generator/">
+            
+                <a href="../../javascript/09-iterator-generator/">
+            
+                    
+                    迭代器(Iterator)和生成器(Generator)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="../../javascript/10-class/">
+            
+                <a href="../../javascript/10-class/">
+            
+                    
+                    JavaScript中的类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="../../javascript/11-array/">
+            
+                <a href="../../javascript/11-array/">
+            
+                    
+                    数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="../../javascript/12-promise/">
+            
+                <a href="../../javascript/12-promise/">
+            
+                    
+                    Promise与异步编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.13" data-path="../../javascript/13-proxy-reflection/">
+            
+                <a href="../../javascript/13-proxy-reflection/">
+            
+                    
+                    代理(Proxy)和反射(Reflection)API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.14" data-path="../../javascript/14-module/">
+            
+                <a href="../../javascript/14-module/">
+            
+                    
+                    模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Vue</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../../vue/01-base/">
+            
+                <a href="../../vue/01-base/">
+            
+                    
+                    基础
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="../../vue/01-base/01-data-detect/">
+            
+                <a href="../../vue/01-base/01-data-detect/">
+            
+                    
+                    数据侦测
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1.1" data-path="../../vue/01-base/01-data-detect/01-object-watch.html">
+            
+                <a href="../../vue/01-base/01-data-detect/01-object-watch.html">
+            
+                    
+                    对象数据侦测
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="../../vue/01-base/02-virtual-dom/">
+            
+                <a href="../../vue/01-base/02-virtual-dom/">
+            
+                    
+                    虚拟Dom
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="../../vue/01-base/03-template/">
+            
+                <a href="../../vue/01-base/03-template/">
+            
+                    
+                    模板编译原理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.3.1" data-path="../../vue/01-base/03-template/01-parser.html">
+            
+                <a href="../../vue/01-base/03-template/01-parser.html">
+            
+                    
+                    解析器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4" data-path="../../vue/01-base/04-overview/">
+            
+                <a href="../../vue/01-base/04-overview/">
+            
+                    
+                    整体流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../../vue/02-vue-router/">
+            
+                <a href="../../vue/02-vue-router/">
+            
+                    
+                    Vue Router
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.1" data-path="../../vue/02-vue-router/01-base/">
+            
+                <a href="../../vue/02-vue-router/01-base/">
+            
+                    
+                    基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.2" data-path="../../vue/02-vue-router/02-demos/">
+            
+                <a href="../../vue/02-vue-router/02-demos/">
+            
+                    
+                    实例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">编程</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    代码
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="5.1.1" data-path="01-programming.html">
+            
+                <a href="01-programming.html">
+            
+                    
+                    编程思想
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2" data-path="02-throttle-debounce.html">
+            
+                <a href="02-throttle-debounce.html">
+            
+                    
+                    节流防抖
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../02-design/">
+            
+                <a href="../02-design/">
+            
+                    
+                    设计模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.2.1" data-path="../02-design/01-mvvm.html">
+            
+                <a href="../02-design/01-mvvm.html">
+            
+                    
+                    MV*模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../03-algorithm/">
+            
+                <a href="../03-algorithm/">
+            
+                    
+                    算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">语言</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../../language/01-script/">
+            
+                <a href="../../language/01-script/">
+            
+                    
+                    脚本语言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="../../language/01-script/">
+            
+                <a href="../../language/01-script/">
+            
+                    
+                    脚本语言
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.2.1" data-path="../../language/01-script/01-bash.html">
+            
+                <a href="../../language/01-script/01-bash.html">
+            
+                    
+                    bash
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="../../language/02-nodejs/01-start.html">
+            
+                <a href="../../language/02-nodejs/01-start.html">
+            
+                    
+                    Node.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.3.1" data-path="../../language/02-nodejs/02-module.html">
+            
+                <a href="../../language/02-nodejs/02-module.html">
+            
+                    
+                    模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.2" data-path="../../language/02-nodejs/03-async-io.html">
+            
+                <a href="../../language/02-nodejs/03-async-io.html">
+            
+                    
+                    异步I/O
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.3" data-path="../../language/02-nodejs/04-files.html">
+            
+                <a href="../../language/02-nodejs/04-files.html">
+            
+                    
+                    文件处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">HTTP</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../../http/01-understand-web/">
+            
+                <a href="../../http/01-understand-web/">
+            
+                    
+                    第一章 了解Web及网络基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="../../http/02-easy-http/">
+            
+                <a href="../../http/02-easy-http/">
+            
+                    
+                    第二章 简单的HTTP协议
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.2.1" data-path="../../http/02-easy-http/01-post.html">
+            
+                <a href="../../http/02-easy-http/01-post.html">
+            
+                    
+                    post请求方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="../../http/03-http-message/">
+            
+                <a href="../../http/03-http-message/">
+            
+                    
+                    第三章 HTTP报文内的HTTP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="../../http/04-status-code/">
+            
+                <a href="../../http/04-status-code/">
+            
+                    
+                    第四章 返回结果的HTTP状态码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="../../http/05-web-server/">
+            
+                <a href="../../http/05-web-server/">
+            
+                    
+                    第五章 与HTTP协作的Web服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="../../http/06-http-header/">
+            
+                <a href="../../http/06-http-header/">
+            
+                    
+                    第六章 HTTP首部
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.1" data-path="../../http/06-http-header/01-general-header-fields/">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/">
+            
+                    
+                    HTTP通用首部字段
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.1.1" data-path="../../http/06-http-header/01-general-header-fields/01-cache-control.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/01-cache-control.html">
+            
+                    
+                    Cache-Control
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.2" data-path="../../http/06-http-header/01-general-header-fields/02-connection.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/02-connection.html">
+            
+                    
+                    Connection
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.3" data-path="../../http/06-http-header/01-general-header-fields/03-date.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/03-date.html">
+            
+                    
+                    Date
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.4" data-path="../../http/06-http-header/01-general-header-fields/04-pragma.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/04-pragma.html">
+            
+                    
+                    Pragma
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.5" data-path="../../http/06-http-header/01-general-header-fields/05-trailer.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/05-trailer.html">
+            
+                    
+                    Trailer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.6" data-path="../../http/06-http-header/01-general-header-fields/06-transfer-encoding.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/06-transfer-encoding.html">
+            
+                    
+                    Transfer-Encoding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.7" data-path="../../http/06-http-header/01-general-header-fields/07-upgrade.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/07-upgrade.html">
+            
+                    
+                    Upgrade
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.8" data-path="../../http/06-http-header/01-general-header-fields/08-via.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/08-via.html">
+            
+                    
+                    Via
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.9" data-path="../../http/06-http-header/01-general-header-fields/09-warning.html">
+            
+                <a href="../../http/06-http-header/01-general-header-fields/09-warning.html">
+            
+                    
+                    Warning
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2" data-path="../../http/06-http-header/02-request-header-fields/">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/">
+            
+                    
+                    HTTP请求首部字段
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.2.1" data-path="../../http/06-http-header/02-request-header-fields/01-accept.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/01-accept.html">
+            
+                    
+                    Accept
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.2" data-path="../../http/06-http-header/02-request-header-fields/02-accept-charset.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/02-accept-charset.html">
+            
+                    
+                    Accept-Charset
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.3" data-path="../../http/06-http-header/02-request-header-fields/03-accept-encoding.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/03-accept-encoding.html">
+            
+                    
+                    Accept-Encoding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.4" data-path="../../http/06-http-header/02-request-header-fields/04-accept-language.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/04-accept-language.html">
+            
+                    
+                    Accept-Language
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.5" data-path="../../http/06-http-header/02-request-header-fields/05-authorization.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/05-authorization.html">
+            
+                    
+                    Authorization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.6" data-path="../../http/06-http-header/02-request-header-fields/06-expect.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/06-expect.html">
+            
+                    
+                    Expect
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.7" data-path="../../http/06-http-header/02-request-header-fields/07-from.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/07-from.html">
+            
+                    
+                    From
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.8" data-path="../../http/06-http-header/02-request-header-fields/08-host.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/08-host.html">
+            
+                    
+                    Host
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.9" data-path="../../http/06-http-header/02-request-header-fields/09-if-match.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/09-if-match.html">
+            
+                    
+                    If-Match
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.10" data-path="../../http/06-http-header/02-request-header-fields/10-if-modified-since.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/10-if-modified-since.html">
+            
+                    
+                    If-Modified-Since
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.11" data-path="../../http/06-http-header/02-request-header-fields/11-if-none-match.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/11-if-none-match.html">
+            
+                    
+                    If-None-Match
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.12" data-path="../../http/06-http-header/02-request-header-fields/12-if-range.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/12-if-range.html">
+            
+                    
+                    If-Range
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.13" data-path="../../http/06-http-header/02-request-header-fields/13-if-unmodified-since.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/13-if-unmodified-since.html">
+            
+                    
+                    If-Unmodified-Since
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.14" data-path="../../http/06-http-header/02-request-header-fields/14-max-forwards.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/14-max-forwards.html">
+            
+                    
+                    Max-Forwards
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.15" data-path="../../http/06-http-header/02-request-header-fields/15-proxy-authorization.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/15-proxy-authorization.html">
+            
+                    
+                    Proxy-Authorization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.16" data-path="../../http/06-http-header/02-request-header-fields/16-range.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/16-range.html">
+            
+                    
+                    Range
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.17" data-path="../../http/06-http-header/02-request-header-fields/17-referer.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/17-referer.html">
+            
+                    
+                    Referer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.18" data-path="../../http/06-http-header/02-request-header-fields/18-te.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/18-te.html">
+            
+                    
+                    TE
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.19" data-path="../../http/06-http-header/02-request-header-fields/19-user-agent.html">
+            
+                <a href="../../http/06-http-header/02-request-header-fields/19-user-agent.html">
+            
+                    
+                    User-Agent
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3" data-path="../../http/06-http-header/03-response-header-fields/">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/">
+            
+                    
+                    HTTP响应首部字段
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.3.1" data-path="../../http/06-http-header/03-response-header-fields/01-accept-ranges.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/01-accept-ranges.html">
+            
+                    
+                    Accept-Ranges
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3.2" data-path="../../http/06-http-header/03-response-header-fields/02-age.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/02-age.html">
+            
+                    
+                    Age
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3.3" data-path="../../http/06-http-header/03-response-header-fields/03-etag.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/03-etag.html">
+            
+                    
+                    ETag
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3.4" data-path="../../http/06-http-header/03-response-header-fields/04-location.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/04-location.html">
+            
+                    
+                    Location
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3.5" data-path="../../http/06-http-header/03-response-header-fields/05-proxy-authenticate.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/05-proxy-authenticate.html">
+            
+                    
+                    Proxy-Authenticate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3.6" data-path="../../http/06-http-header/03-response-header-fields/06-retry-after.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/06-retry-after.html">
+            
+                    
+                    Retry-After
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3.7" data-path="../../http/06-http-header/03-response-header-fields/07-server.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/07-server.html">
+            
+                    
+                    Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3.8" data-path="../../http/06-http-header/03-response-header-fields/08-vary.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/08-vary.html">
+            
+                    
+                    Vary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.3.9" data-path="../../http/06-http-header/03-response-header-fields/09-www-authenticate.html">
+            
+                <a href="../../http/06-http-header/03-response-header-fields/09-www-authenticate.html">
+            
+                    
+                    WWW-Authenticate
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4" data-path="../../http/06-http-header/04-entity-header-fields/">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/">
+            
+                    
+                    HTTP实体首部字段
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.4.1" data-path="../../http/06-http-header/04-entity-header-fields/01-allow.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/01-allow.html">
+            
+                    
+                    Allow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.2" data-path="../../http/06-http-header/04-entity-header-fields/02-content-encoding.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/02-content-encoding.html">
+            
+                    
+                    Content-Encoding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.3" data-path="../../http/06-http-header/04-entity-header-fields/03-content-language.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/03-content-language.html">
+            
+                    
+                    Content-Language
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.4" data-path="../../http/06-http-header/04-entity-header-fields/04-content-length.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/04-content-length.html">
+            
+                    
+                    Content-Length
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.5" data-path="../../http/06-http-header/04-entity-header-fields/05-content-location.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/05-content-location.html">
+            
+                    
+                    Content-Location
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.6" data-path="../../http/06-http-header/04-entity-header-fields/06-content-md5.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/06-content-md5.html">
+            
+                    
+                    Content-MD5
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.7" data-path="../../http/06-http-header/04-entity-header-fields/07-content-range.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/07-content-range.html">
+            
+                    
+                    Content-Range
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.8" data-path="../../http/06-http-header/04-entity-header-fields/08-content-type.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/08-content-type.html">
+            
+                    
+                    Content-Type
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.9" data-path="../../http/06-http-header/04-entity-header-fields/09-expires.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/09-expires.html">
+            
+                    
+                    Expires
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.4.10" data-path="../../http/06-http-header/04-entity-header-fields/10-last-modified.html">
+            
+                <a href="../../http/06-http-header/04-entity-header-fields/10-last-modified.html">
+            
+                    
+                    Last-Modified
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.5" data-path="../../http/06-http-header/05-other-header-fields/">
+            
+                <a href="../../http/06-http-header/05-other-header-fields/">
+            
+                    
+                    HTTP其他首部字段
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.5.1" data-path="../../http/06-http-header/05-other-header-fields/01-set-cookie.html">
+            
+                <a href="../../http/06-http-header/05-other-header-fields/01-set-cookie.html">
+            
+                    
+                    Set-Cookie
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.5.2" data-path="../../http/06-http-header/05-other-header-fields/02-cookie.html">
+            
+                <a href="../../http/06-http-header/05-other-header-fields/02-cookie.html">
+            
+                    
+                    Cookie
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.5.3" data-path="../../http/06-http-header/05-other-header-fields/03-x-frame-options.html">
+            
+                <a href="../../http/06-http-header/05-other-header-fields/03-x-frame-options.html">
+            
+                    
+                    X-Frame-Options
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.5.4" data-path="../../http/06-http-header/05-other-header-fields/04-x-xss-protection.html">
+            
+                <a href="../../http/06-http-header/05-other-header-fields/04-x-xss-protection.html">
+            
+                    
+                    X-XSS-Protection
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.5.5" data-path="../../http/06-http-header/05-other-header-fields/05-dnt.html">
+            
+                <a href="../../http/06-http-header/05-other-header-fields/05-dnt.html">
+            
+                    
+                    DNT
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.5.6" data-path="../../http/06-http-header/05-other-header-fields/06-p3p.html">
+            
+                <a href="../../http/06-http-header/05-other-header-fields/06-p3p.html">
+            
+                    
+                    P3P
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.7" data-path="../../http/07-https/">
+            
+                <a href="../../http/07-https/">
+            
+                    
+                    第七章 确保Web安全的HTTPS
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.7.1" data-path="../../http/07-https/01-http-disadvantage.html">
+            
+                <a href="../../http/07-https/01-http-disadvantage.html">
+            
+                    
+                    HTTP的缺点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.7.2" data-path="../../http/07-https/02-https.html">
+            
+                <a href="../../http/07-https/02-https.html">
+            
+                    
+                    HTTPS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.8" data-path="../../http/08-authentication/">
+            
+                <a href="../../http/08-authentication/">
+            
+                    
+                    第八章 确认访问用户身份的认证
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.8.1" data-path="../../http/08-authentication/01-basic.html">
+            
+                <a href="../../http/08-authentication/01-basic.html">
+            
+                    
+                    BASIC 认证
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.8.2" data-path="../../http/08-authentication/02-digest.html">
+            
+                <a href="../../http/08-authentication/02-digest.html">
+            
+                    
+                    DIGEST 认证
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.8.3" data-path="../../http/08-authentication/03-ssl.html">
+            
+                <a href="../../http/08-authentication/03-ssl.html">
+            
+                    
+                    SSL 客户端认证
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.8.4" data-path="../../http/08-authentication/04-formbase.html">
+            
+                <a href="../../http/08-authentication/04-formbase.html">
+            
+                    
+                    FormBase 认证
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.9" data-path="../../http/09-additional-protocol/">
+            
+                <a href="../../http/09-additional-protocol/">
+            
+                    
+                    第九章 基于HTTP的功能追加协议
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.9.1" data-path="../../http/09-additional-protocol/01-spdy.html">
+            
+                <a href="../../http/09-additional-protocol/01-spdy.html">
+            
+                    
+                    SPDY
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.9.2" data-path="../../http/09-additional-protocol/02-websocket.html">
+            
+                <a href="../../http/09-additional-protocol/02-websocket.html">
+            
+                    
+                    WebSocket
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.9.3" data-path="../../http/09-additional-protocol/03-http2.0.html">
+            
+                <a href="../../http/09-additional-protocol/03-http2.0.html">
+            
+                    
+                    HTTP/2.0
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.9.4" data-path="../../http/09-additional-protocol/04-webdav.html">
+            
+                <a href="../../http/09-additional-protocol/04-webdav.html">
+            
+                    
+                    WebDAV
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.10" data-path="../../http/10-web-tech/">
+            
+                <a href="../../http/10-web-tech/">
+            
+                    
+                    第十章 构建Web内容的技术
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.10.1" data-path="../../http/10-web-tech/01-html.html">
+            
+                <a href="../../http/10-web-tech/01-html.html">
+            
+                    
+                    HTML
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.10.2" data-path="../../http/10-web-tech/02-dhtml.html">
+            
+                <a href="../../http/10-web-tech/02-dhtml.html">
+            
+                    
+                    动态 HTML
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.10.3" data-path="../../http/10-web-tech/03-web-app.html">
+            
+                <a href="../../http/10-web-tech/03-web-app.html">
+            
+                    
+                    Web 应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.10.4" data-path="../../http/10-web-tech/04-format-language.html">
+            
+                <a href="../../http/10-web-tech/04-format-language.html">
+            
+                    
+                    数据发布的格式及语言
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.11" data-path="../../http/11-web-attack-tech/">
+            
+                <a href="../../http/11-web-attack-tech/">
+            
+                    
+                    第十一章 Web的攻击技术
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.11.1" data-path="../../http/11-web-attack-tech/01-escape-security-hole.html">
+            
+                <a href="../../http/11-web-attack-tech/01-escape-security-hole.html">
+            
+                    
+                    因输出值转义不完全引发的安全漏洞
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.11.2" data-path="../../http/11-web-attack-tech/02-design-security-hole.html">
+            
+                <a href="../../http/11-web-attack-tech/02-design-security-hole.html">
+            
+                    
+                    因设置或设计上的缺陷引发的安全漏洞 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.11.3" data-path="../../http/11-web-attack-tech/03-dialog-security-hole.html">
+            
+                <a href="../../http/11-web-attack-tech/03-dialog-security-hole.html">
+            
+                    
+                    因会话管理疏忽引发的安全漏洞 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.11.4" data-path="../../http/11-web-attack-tech/04-other-security-hole.html">
+            
+                <a href="../../http/11-web-attack-tech/04-other-security-hole.html">
+            
+                    
+                    其他安全漏洞
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >编程思想</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x7F16;&#x7A0B;&#x601D;&#x60F3;"><b></b>&#x7F16;&#x7A0B;&#x601D;&#x60F3;</a></li><ul><li><span class="title-icon "></span><a href="#1-popoopaopiop"><b></b>1. POP/OOP/AOP/IOP</a></li><ul><li><span class="title-icon "></span><a href="#oopaop-&#x5BF9;&#x6BD4;"><b></b>OOP/AOP &#x5BF9;&#x6BD4;</a></li></ul><li><span class="title-icon "></span><a href="#2-oop"><b></b>2. OOP</a></li></ul></ul></div><a href="#&#x7F16;&#x7A0B;&#x601D;&#x60F3;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x7F16;&#x7A0B;&#x601D;&#x60F3;"><a name="&#x7F16;&#x7A0B;&#x601D;&#x60F3;" class="anchor-navigation-ex-anchor" href="#&#x7F16;&#x7A0B;&#x601D;&#x60F3;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7F16;&#x7A0B;&#x601D;&#x60F3;</h1>
+<blockquote>
+<p>2019.10.11 @wsl</p>
+</blockquote>
+<h2 id="1-popoopaopiop"><a name="1-popoopaopiop" class="anchor-navigation-ex-anchor" href="#1-popoopaopiop"><i class="fa fa-link" aria-hidden="true"></i></a>1. POP/OOP/AOP/IOP</h2>
+<ul>
+<li>POP(Procedure Oriented Programming)&#xFF0C;&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#x7F16;&#x7A0B;&#x3002;&#x5206;&#x6790;&#x51FA;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x6240;&#x9700;&#x8981;&#x7684;&#x6B65;&#x9AA4;&#xFF0C;&#x7136;&#x540E;&#x7528;&#x51FD;&#x6570;&#x628A;&#x8FD9;&#x4E9B;&#x6B65;&#x9AA4;&#x4E00;&#x6B65;&#x4E00;&#x6B65;&#x5B9E;&#x73B0;&#xFF0C;&#x4F7F;&#x7528;&#x7684;&#x65F6;&#x5019;&#x4E00;&#x4E2A;&#x4E00;&#x4E2A;&#x4F9D;&#x6B21;&#x8C03;&#x7528;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;&#x5728;&#x65E9;&#x671F;&#x8BA1;&#x7B97;&#x673A;&#x914D;&#x7F6E;&#x4F4E;&#x3001;&#x5185;&#x5B58;&#x5C0F;&#x4E3A;&#x4E86;&#x8282;&#x7701;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF0C;&#x5927;&#x90FD;&#x91C7;&#x7528;&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#x7F16;&#x7A0B;&#xFF08;&#x4EE5;&#x65F6;&#x95F4;&#x6362;&#x7A7A;&#x95F4;&#xFF09;&#x3002;</li>
+<li>OOP(Object Oriented Programming)&#xFF0C;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;&#x3002;&#x6838;&#x5FC3;&#x601D;&#x60F3;&#x662F;&#x5C06;&#x5BA2;&#x89C2;&#x5B58;&#x5728;&#x7684;&#x4E0D;&#x540C;&#x4E8B;&#x7269;&#x62BD;&#x8C61;&#x6210;&#x76F8;&#x4E92;&#x72EC;&#x7ACB;&#x7684;&#x7C7B;&#xFF0C;&#x7136;&#x540E;&#x628A;&#x4E8B;&#x7269;&#x76F8;&#x5173;&#x7684;&#x5C5E;&#x6027;&#x548C;&#x884C;&#x4E3A;&#x5C01;&#x88C5;&#x5230;&#x7C7B;&#x91CC;&#xFF0C;&#x5E76;&#x901A;&#x8FC7;&#x7EE7;&#x627F;&#x548C;&#x591A;&#x6001;&#x6765;&#x5B9A;&#x4E49;&#x5F7C;&#x6B64;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x6700;&#x540E;&#x901A;&#x8FC7;&#x64CD;&#x4F5C;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x6765;&#x5B8C;&#x6210;&#x5B9E;&#x9645;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x7684;&#x529F;&#x80FD;&#x9700;&#x6C42;&#x3002;</li>
+<li>AOP(Aspect Oriented Programming)&#xFF0C;&#x9762;&#x5411;&#x5207;&#x9762;&#x7F16;&#x7A0B;&#x3002;&#x6838;&#x5FC3;&#x601D;&#x60F3;&#x662F;&#x5C06;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x4E2D;&#x4E0E;&#x7C7B;&#x4E0D;&#x76F8;&#x5173;&#x7684;&#x901A;&#x7528;&#x529F;&#x80FD;&#x5207;&#x9762;&#x5F0F;&#x7684;&#x63D0;&#x53D6;&#x5206;&#x79BB;&#x51FA;&#x6765;&#xFF0C;&#x8BA9;&#x591A;&#x4E2A;&#x7C7B;&#x5171;&#x4EAB;&#x4E00;&#x4E2A;&#x884C;&#x4E3A;&#xFF0C;&#x4E00;&#x65E6;&#x8FD9;&#x4E2A;&#x884C;&#x4E3A;&#x53D1;&#x751F;&#x6539;&#x53D8;&#xFF0C;&#x4E0D;&#x5FC5;&#x4FEE;&#x6539;&#x7C7B;&#xFF0C;&#x800C;&#x53EA;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x8FD9;&#x4E2A;&#x884C;&#x4E3A;&#x5373;&#x53EF;&#x3002;</li>
+<li>IOP(Interface Oriented Programming)&#xFF0C;&#x9762;&#x5411;&#x63A5;&#x53E3;&#x7F16;&#x7A0B;&#x3002;&#x662F;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x79CD;&#x5F62;&#x5F0F;&#xFF0C;&#x5E7F;&#x4E49;&#x4E0A;&#x8BB2;&#xFF0C;&#x62BD;&#x8C61;&#x7C7B;&#x4E5F;&#x662F;&#x63A5;&#x53E3;&#x7684;&#x4E00;&#x79CD;&#x5F62;&#x5F0F;&#xFF0C;&#x4F7F;&#x7528;&#x8BE5;&#x7C7B;&#x7684;&#x67D0;&#x79CD;&#x5C5E;&#x6027;&#xFF08;&#x63A5;&#x53E3;&#xFF09;&#x6765;&#x8868;&#x793A;&#xFF0C;&#x964D;&#x4F4E;&#x8026;&#x5408;&#x6027;&#xFF0C;&#x589E;&#x52A0;&#x4EE3;&#x7801;&#x590D;&#x7528;&#x6027;&#x3002;</li>
+</ul>
+<p>AOP&#x662F;OOP&#x7684;&#x5EF6;&#x7EED;&#xFF0C;&#x662F;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x70ED;&#x70B9;&#xFF0C;&#x4E5F;&#x662F;Spring&#x6846;&#x67B6;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x5185;&#x5BB9;&#xFF0C;&#x662F;&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x7684;&#x4E00;&#x79CD;&#x884D;&#x751F;&#x8303;&#x578B;&#x3002;&#x5229;&#x7528;AOP&#x53EF;&#x4EE5;&#x5BF9;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x7684;&#x5404;&#x4E2A;&#x90E8;&#x5206;&#x8FDB;&#x884C;&#x9694;&#x79BB;&#xFF0C;&#x4ECE;&#x800C;&#x4F7F;&#x5F97;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x5404;&#x90E8;&#x5206;&#x4E4B;&#x95F4;&#x7684;&#x8026;&#x5408;&#x5EA6;&#x964D;&#x4F4E;&#xFF0C;&#x63D0;&#x9AD8;&#x7A0B;&#x5E8F;&#x7684;&#x53EF;&#x91CD;&#x7528;&#x6027;&#xFF0C;&#x540C;&#x65F6;&#x63D0;&#x9AD8;&#x4E86;&#x5F00;&#x53D1;&#x7684;&#x6548;&#x7387;&#x3002;</p>
+<h3 id="oopaop-&#x5BF9;&#x6BD4;"><a name="oopaop-&#x5BF9;&#x6BD4;" class="anchor-navigation-ex-anchor" href="#oopaop-&#x5BF9;&#x6BD4;"><i class="fa fa-link" aria-hidden="true"></i></a>OOP/AOP &#x5BF9;&#x6BD4;</h3>
+<p><strong>OOP&#x4E0E;AOP&#x7684;&#x533A;&#x522B;&#xFF1A; </strong></p>
+<p>1&#x3001;&#x9762;&#x5411;&#x76EE;&#x6807;&#x4E0D;&#x540C;&#xFF1A;&#x7B80;&#x5355;&#x6765;&#x8BF4;OOP&#x662F;&#x9762;&#x5411;&#x540D;&#x8BCD;&#x9886;&#x57DF;&#xFF0C;AOP&#x9762;&#x5411;&#x52A8;&#x8BCD;&#x9886;&#x57DF;&#x3002;</p>
+<p>2&#x3001;&#x601D;&#x60F3;&#x7ED3;&#x6784;&#x4E0D;&#x540C;&#xFF1A;OOP&#x662F;&#x7EB5;&#x5411;&#x7ED3;&#x6784;&#xFF0C;AOP&#x662F;&#x6A2A;&#x5411;&#x7ED3;&#x6784;&#x3002;</p>
+<p>3&#x3001;&#x6CE8;&#x91CD;&#x65B9;&#x9762;&#x4E0D;&#x540C;&#xFF1A;OOP&#x6CE8;&#x91CD;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x5355;&#x5143;&#x7684;&#x5212;&#x5206;&#xFF0C;AOP&#x504F;&#x91CD;&#x4E1A;&#x52A1;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x7684;&#x67D0;&#x4E2A;&#x6B65;&#x9AA4;&#x6216;&#x9636;&#x6BB5;&#x3002;</p>
+<p><strong>OOP&#x4E0E;AOP&#x8054;&#x7CFB;&#xFF1A;</strong></p>
+<p>&#x4E24;&#x8005;&#x4E4B;&#x95F4;&#x662F;&#x4E00;&#x4E2A;&#x76F8;&#x4E92;&#x8865;&#x5145;&#x548C;&#x5B8C;&#x5584;&#x7684;&#x5173;&#x7CFB;&#x3002;</p>
+<p><strong>AOP&#x7684;&#x4F18;&#x70B9;&#xFF1A;</strong></p>
+<p>&#x5229;&#x7528;AOP&#x53EF;&#x4EE5;&#x5BF9;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x7684;&#x5404;&#x4E2A;&#x90E8;&#x5206;&#x8FDB;&#x884C;&#x9694;&#x79BB;&#xFF0C;&#x4ECE;&#x800C;&#x4F7F;&#x5F97;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x5404;&#x90E8;&#x5206;&#x4E4B;&#x95F4;&#x7684;&#x8026;&#x5408;&#x5EA6;&#x964D;&#x4F4E;&#xFF0C;&#x63D0;&#x9AD8;&#x7A0B;&#x5E8F;&#x7684;&#x53EF;&#x91CD;&#x7528;&#x6027;&#xFF0C;&#x540C;&#x65F6;&#x63D0;&#x9AD8;&#x4E86;&#x5F00;&#x53D1;&#x7684;&#x6548;&#x7387;&#x3002;</p>
+<p><strong>AOP&#x7684;&#x4E3B;&#x8981;&#x5E94;&#x7528;&#xFF1A;</strong></p>
+<p>&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;&#x3001;&#x4E8B;&#x52A1;&#x5904;&#x7406;&#x3001;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x3001;&#x5B89;&#x5168;&#x63A7;&#x5236;&#x548C;&#x6027;&#x80FD;&#x7EDF;&#x8BA1;&#x65B9;&#x9762;&#x3002;</p>
+<h2 id="2-oop"><a name="2-oop" class="anchor-navigation-ex-anchor" href="#2-oop"><i class="fa fa-link" aria-hidden="true"></i></a>2. OOP</h2>
+<p>&#x5C01;&#x88C5;&#xFF1A;&#x5C01;&#x88C5;&#x6210;&#x4E00;&#x4E2A;&#x7C7B;&#x3002;</p>
+<p>&#x7EE7;&#x627F;&#xFF1A;&#x7EE7;&#x627F;&#x73B0;&#x6709;&#x7C7B;+&#x6269;&#x5C55;&#x3002;&#x7EE7;&#x627F;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x5C31;&#x662F;&#x4ECE;&#x4E00;&#x822C;&#x5230;&#x7279;&#x6B8A;&#x7684;&#x8FC7;&#x7A0B;&#x3002; </p>
+<p>&#x591A;&#x6001;&#xFF1A;&#x65B9;&#x6CD5;&#x91CD;&#x5199;&#x3001;&#x65B9;&#x6CD5;&#x91CD;&#x8F7D;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 代码">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="02-throttle-debounce.html" class="navigation navigation-next " aria-label="Next page: 节流防抖">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"编程思想","level":"5.1.1","depth":2,"next":{"title":"节流防抖","level":"5.1.2","depth":2,"path":"programming/01-codding/02-throttle-debounce.md","ref":"programming/01-codding/02-throttle-debounce.md","articles":[]},"previous":{"title":"代码","level":"5.1","depth":1,"path":"programming/01-codding/README.md","ref":"programming/01-codding/README.md","articles":[{"title":"编程思想","level":"5.1.1","depth":2,"path":"programming/01-codding/01-programming.md","ref":"programming/01-codding/01-programming.md","articles":[]},{"title":"节流防抖","level":"5.1.2","depth":2,"path":"programming/01-codding/02-throttle-debounce.md","ref":"programming/01-codding/02-throttle-debounce.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters","splitter","anchor-navigation-ex"],"pluginsConfig":{"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"programming/01-codding/01-programming.md","mtime":"2020-03-10T03:12:53.956Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-10T07:49:06.766Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
