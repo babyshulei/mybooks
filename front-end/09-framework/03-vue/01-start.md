@@ -12,19 +12,24 @@ webpack4
 
 ## 项目搭建
 
-1、初始化项目
+### 1、初始化项目
 
 ```shell
 npm init
 ```
 
-2、安装webpack四件套
+### 2、安装webpack四件套
 
 ```shell
-npm install vue vue-loader webpack webpack-cli --save-dev
+npm i webpack webpack-cli webpack-dev-server webpack-merge --save-dev
 ```
 
-3、创建相应文件
+**webpack**：前端打包工具
+**webpack-cli**：在webpack 3中，webpack和CLI都在同一个包中，但在第4版中，两者被分开了，因此这里必须安装CLI
+**webpack-dev-server**：用于起一个本地服务器
+**webpack-merge**：用于合并webpack基础配置项
+
+### 3、创建相应文件
 
 ```
 vue-project
@@ -109,6 +114,257 @@ module.exports = merge(baseWebpackConfig, {
     plugins: [],
 });
 ```
+
+webpack4 增加了 mode 属性，设置为 development / production,以下是默认配置
+
+```
+development:
+
+process.env.NODE_ENV 的值设为 development
+默认开启以下插件，充分利用了持久化缓存。参考基于 webpack 的持久化缓存方案
+
+NamedChunksPlugin ：以名称固化 chunk id
+NamedModulesPlugin ：以名称固化 module id
+
+
+production:
+
+process.env.NODE_ENV 的值设为 production
+默认开启以下插件，其中 SideEffectsFlagPlugin 和 UglifyJsPlugin 用于 tree-shaking
+
+FlagDependencyUsagePlugin ：编译时标记依赖
+FlagIncludedChunksPlugin ：标记子chunks，防子chunks多次加载
+ModuleConcatenationPlugin ：作用域提升(scope hosting),预编译功能,提升或者预编译所有模块到一个闭包中，提升代码在浏览器中的执行速度
+NoEmitOnErrorsPlugin ：在输出阶段时，遇到编译错误跳过
+OccurrenceOrderPlugin ：给经常使用的ids更短的值
+SideEffectsFlagPlugin ：识别 package.json 或者 module.rules 的 sideEffects 标志（纯的 ES2015 模块)，安全地删除未用到的 export 导出
+UglifyJsPlugin ：删除未引用代码，并压缩
+```
+
+main.js
+
+```javascript
+import Vue from 'vue';
+import App from './App';
+
+new Vue({
+    el: '#app',
+    render: h => h(App),
+});
+```
+
+App.vue
+
+```vue
+<template>
+    <div class="app">
+        hello world
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'App',
+};
+</script>
+```
+
+index.html
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>TRY MORE</title>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+</body>
+</html>
+```
+
+### 4、安装vue 核心解析插件
+
+```shell
+npm i vue vue-router --save
+npm i vue-loader vue-template-compiler --save-dev
+```
+
+由于 vue 的解析在 dev 和 prod 中均需使用，因此归入基本配置 base
+
+```javascript
+// webpack.base.js
+//...
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+
+module.exports = {
+    // ...
+    module: {
+        rules: [
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader',
+            }
+        ]
+    },
+    plugins: [
+        new VueLoaderPlugin(),
+    ],
+};
+```
+
+### 5、安装 html 模板解析插件
+
+```shell
+npm i html-webpack-plugin --save-dev
+```
+
+
+
+```javascript
+// webpack.dev.js
+
+// ...
+// html插件
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+module.exports = {
+  //...
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../public/index.html'),
+    }),
+  ]
+};
+```
+
+### 6、创建 npm 命令
+
+```json
+"scripts": {
+	"start": "webpack-dev-server --hot --open --config build/webpack.dev.js",
+    "dev": "npm run start",
+    "build": "webpack --config build/webpack.prod.js"
+},
+```
+
+--hot 模块热替换
+
+--open 开启本地服务器
+
+此时 npm start，项目可正常运行
+
+## 功能扩展
+
+### dev环境配置
+
+添加 friendly-errors-webpack-plugin, portfinder, node-notifier
+
+```javascript
+// webpack.dev.js
+// 存放 dev 配置
+const merge = require('webpack-merge');
+const path = require('path');
+const baseWebpackConfig = require('./webpack.base');
+const portfinder = require('portfinder');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+
+function createNotifierCallback() {
+    const notifier = require('node-notifier');
+
+    return (severity, errors) => {
+        if (severity !== 'error') return;
+
+        const error = errors[0];
+        const filename = error.file && error.file.split('!').pop();
+
+        notifier.notify({
+            error,
+            title: packageConfig.name,
+            message: severity + ': ' + error.name,
+            subtitle: filename || ''
+        });
+    };
+}
+
+const devWebpackConfig = merge(baseWebpackConfig, {
+    mode: 'development',
+    devtool: 'inline-source-map',
+    devServer: { // 开发服务器
+        quiet: true,
+        contentBase: path.join(__dirname, 'public'),
+        historyApiFallback: true,
+        port: 8080,
+        hot: true,
+        open: 'http://localhost:8080/',
+        host: '0.0.0.0',
+        proxy: {
+            '/api': {
+                target: 'http://localhost:7001',
+            },
+        },
+    },
+    output: { // 输出
+        filename: 'js/[name].[hash].js', // 每次保存 hash 都变化
+        path: path.resolve(__dirname, '../dist')
+    },
+});
+
+module.exports = new Promise((resolve, reject) => {
+    portfinder.basePort = devWebpackConfig.devServer.port;
+    portfinder.getPort((err, port) => {
+        if (err) {
+            reject(err);
+        } else {
+            // publish the new Port, necessary for e2e tests
+            process.env.PORT = port;
+            // add port to devServer config
+            devWebpackConfig.devServer.port = port;
+
+            // Add FriendlyErrorsPlugin
+            devWebpackConfig.plugins.push(
+                new FriendlyErrorsPlugin({
+                    compilationSuccessInfo: {
+                        messages: [`Your application is running here: http://localhost:${port}`]
+                    },
+                    onErrors: createNotifierCallback()
+                })
+            );
+            resolve(devWebpackConfig);
+        }
+    });
+});
+```
+
+
+
+
+
+
+
+## 附录
+
+### 关于安装依赖
+
+**有哪些依赖**
+
+1.    dependencies：应用能够正常运行所依赖的包。这种 dependencies 是最常见的，用户在使用 npm install 安装你的包时会自动安装这些依赖。
+2.    devDependencies：开发应用时所依赖的工具包。通常是一些开发、测试、打包工具，例如 webpack、ESLint、Mocha。应用正常运行并不依赖于这些包，用户在使用 npm install 安装你的包时也不会安装这些依赖。
+3.    peerDependencies：应用运行依赖的宿主包。最典型的就是插件，例如各种 jQuery 插件，这些插件本身不包含 jQeury，需要外部提供。用户使用 npm 1 或 2 时会自动安装这种依赖，npm 3 不会自动安装，会提示用户安装。
+4.    bundledDependencies：发布包时需要打包的依赖，似乎很少见。
+5.    optionalDependencies：可选的依赖包。此种依赖不是程序运行所必须的，但是安装后可能会有新功能，例如一个图片解码库，安装了 optionalDependencies 后会支持更多的格式。
+
+**如何安装依赖**
+
+在使用npm install 安装模块或插件的时候，有两种命令把他们写入到 package.json 文件里面去，他们是：
+
+`-D | --save-dev` 将包记录到`"devDependencies"`中
+
+`-S | --save` 将包记录到`"dependencies"`中
+
+两者的区别即是否会在生产环境中被使用。若在生产环境中需要用到，则记录到dependencies中，反之则记录到devDependencies中。
 
 
 
