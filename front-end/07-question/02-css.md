@@ -80,29 +80,3 @@ float的元素不在文档流里，无法撑开容器，clearfix就是为了解�
 
 方案五，display: flex; justify-content: center; align-items: center;
 
-
-
-
-
-
-
-### Flex布局
-
-
-
-
-
-
-
-#### 盒模型
-
-
-
-
-
-#### margin折叠
-
-
-
-
-
