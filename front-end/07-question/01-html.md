@@ -24,6 +24,8 @@
   - 闭合标签：`<html>, <body>, <div>, <p>, <span>...`
   - 空标签：`<img>, <br>, <input>, <hr>, <link>, <meta>... `
 
+替换元素、不可替换元素
+
 
 
 #### 2. i vs em？strong vs b？
@@ -62,7 +64,23 @@ HTML5提供的`<DOCTYPE html>`是标准模式，向后兼容的, 等同于开启
 
 #### 4. h5新特性
 
-
+- 文件类型声明（<!DOCTYPE>）仅有一型：`<!DOCTYPE HTML>`。
+- 新的解析顺序：不再基于SGML。
+- 新增标签：section, video, progress, nav, meter, time, aside, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, mark, output, rp, rt, ruby, source, summary, wbr。
+- input元素的新类型：date, email, url等等。
+- 新的属性：ping（用于a与area）, charset（用于meta）, async（用于script）。
+- 全域属性：id, tabindex, repeat。
+- 新的全域属性：contenteditable, contextmenu, draggable, dropzone, hidden, spellcheck。
+- 移除标签：acronym, applet, basefont, big, center, dir, font, frame, frameset, isindex, noframes, strike, tt。
+- 提供了新的API
+  - HTML Geolocation
+  - HTML Drag and Drop
+  - HTML Local Storage
+  - HTML Application Cache
+  - HTML Web Workers
+  - HTML SSE
+  - HTML Canvas/WebGL
+  - HTML Audio/Video
 
 
 
@@ -70,7 +88,60 @@ HTML5提供的`<DOCTYPE html>`是标准模式，向后兼容的, 等同于开启
 
 #### 5. 你对 HTML DOM 是怎么理解的？
 
+DOM: Document Object Module, 文档对象模型。我们通过JavaScript操作页面的元素，进行添加、移动、改变或移除的方法和属性, 都是DOM提供的。
 
+##### 什么是DOM节点？
+
+根据 W3C 的 HTML DOM 标准，HTML 文档中的所有内容都是节点：
+
+- 整个文档是一个文档节点
+- 每个 HTML 元素是元素节点
+- HTML 元素内的文本是文本节点
+- 每个 HTML 属性是属性节点
+- 注释是注释节点
+
+##### 什么是 HTML DOM节点树？
+
+HTML文本会被解析为DOM树, 树中的所有节点均可通过 JavaScript 进行访问。所有 HTML 元素（节点）均可被修改，也可以创建或删除节点。
+
+![ct_htmltree](.\images\htmltree.gif)
+
+##### 节点的关系
+
+父（parent）、子（child）和同胞（sibling）等术语用于描述这些关系。父节点拥有子节点。同级的子节点被称为同胞（兄弟或姐妹）:
+
+- 在节点树中，顶端节点被称为根（root）
+- 每个节点都有父节点、除了根（它没有父节点）
+- 一个节点可拥有任意数量的子
+- 同胞是拥有相同父节点的节点
+
+##### 如何操作 DOM？
+
+```javascript
+document.createElement('div');
+document.createTextNode(node);
+document.createDocumentFragment();
+
+document.getElementById('id');
+document.getElementByTagName('div');
+document.getElementByClassName('ss');
+
+document.querySelector('#id');
+$elm.querySelectorAll('.ss');
+
+$elm.children
+$elm.firstElementChild
+$elm.lastElementChild
+
+$elm.appendChild(child);
+$elm.insertBefore(newNode, refNode);
+$elm.insertAdjacentHTML('beforebegin', htmlString);
+
+parent.removeChild(node);
+parent.replaceChild(newChild, oldChild);
+```
+
+[总结js常用的dom操作（js的dom操作API）](https://www.haorooms.com/post/js_dom_api)
 
 
 

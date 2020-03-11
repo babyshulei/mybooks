@@ -190,27 +190,3 @@ obj instanceof Array;
 Array[Symbol.hasInstance](obj);
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
