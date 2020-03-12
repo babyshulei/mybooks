@@ -10,6 +10,23 @@ HTML element的style属性，HTML内部style标签引入，HTML外部link标签�
 
 先比较选择器里id选择器的个数，如果相同则比较class选择器的个数，如果还相同就比较type(tag)选择器的个数。
 
+内联  > ID选择器  > 类选择器 > 标签选择器
+
+**!important 例外规则**
+
+!important 用于单独指定某条样式中的单个属性。对于被指定的属性，有 !important 指定的权重值大于所有未用 !important 指定的规则。
+
+**权重计算**
+
+优先级是由 `A` 、`B`、`C`、`D` 的值来决定的，其中它们的值计算规则如下：
+
+1. 如果存在内联样式，那么 `A = 1`, 否则 `A = 0`;
+2. `B` 的值等于 `ID选择器` 出现的次数;
+3. `C` 的值等于 `类选择器` 和 `属性选择器` 和 `伪类` 出现的总次数;
+4. `D` 的值等于 `标签选择器` 和 `伪元素` 出现的总次数 。
+
+浏览器实现：1,10,100,1000
+
 
 
 #### 什么是盒子模型？
@@ -30,9 +47,31 @@ box-sizing: border-box | content-box;
 
 同一个BFC内的文档流里的多个相邻（兄弟和父子）块级元素的垂直方向的margin合并成一个。
 
+相邻margin条件：
+
+- 流内块级盒，同一个BFC
+- 无行盒、间隙、padding、border相隔
+- 同属垂直相邻盒边
+  - 盒的top、margin和其第一个子级的top margin
+  - 盒的bottom margin和下面相邻兄弟的top margin
+  - 盒最后一个子级的bottom margin和其父级的bottom margin
+  - 特殊盒子自身的top和bottom margin
+
+相邻margin会发生折叠。
+
 ##### 计算如下margin宽度折叠后的margin宽度：(3px, 5px)，(3px, -5px)，(3px, 5px, -4px)，并说明计算方法。
 
 5px， -2px，1px。计算方法是正值的最大值加上负值的最小值。
+
+##### 什么时候不折叠？
+
+- 浮动不折叠
+- 创建BFC与其子级不折叠
+- 绝对定位不折叠
+- 内联块不折叠
+- 兄弟有间隙不折叠
+- 父子间有padding，border，间隙不折叠
+- 特殊盒子有padding，border不折叠
 
 
 
@@ -54,6 +93,14 @@ BFC 的原理，其实也就是 BFC 的渲染规则（能说出以下四点就�
 - BFC在页面中是独立的容器，外面的元素不会影响里面的元素，反之亦然。
 - **BFC区域不与旁边的float box区域重叠**。（可以用来清除浮动带来的影响 overflow: hidden）。
 - 计算BFC的高度时，浮动的子元素也参与计算。
+
+##### 如何生成BFC
+
+- 浮动中：float的值不为none
+
+- overflow的值不为visible
+- display的值为inline-block、table-cell、table-caption、flex、inline-flex
+- 定位中：position的值为absolute或fixed
 
 
 
@@ -79,9 +126,9 @@ em相对于自身的字体大小，而rem相对于root element(html)。
 
 
 
-
-
 #### 如何清除float？
+
+> 在非IE浏览器（如Firefox）下，当容器的高度为auto，且容器的内容中有浮动（float为left或right）的元素，在这种情况下，容器的高度不能自动伸长以适应内容的高度，使得内容溢出到容器外面而影响（甚至破坏）布局的现象。这个现象叫浮动溢出，为了防止这个现象的出现而进行的CSS处理，就叫CSS清除浮动。
 
 float的元素不在文档流里，无法撑开容器，clearfix就是为了解决这个问题。可以用overflow:hidden，也可以在容器末尾加一个空div并设置clear:both，还可以用如下代码：
 
@@ -93,9 +140,19 @@ float的元素不在文档流里，无法撑开容器，clearfix就是为了解�
 }
 ```
 
+- 使用带clear属性的空元素
+- 使用css的overflow属性 hidden, auto
+- 利用伪元素 clearfix
 
 
-#### 以下文档结构，如果设置img为float:left则p的文字会在图片的右边展示，如果文字很长则会绕到图片的下方，给出一个方案让文字都在图片的右边不绕到图片的下边，且p需要占满图片右边的空间，并解释原因。
+
+[清除浮动的四种方式及其原理理解- 掘金](https://juejin.im/post/59e7190bf265da4307025d91)
+
+
+
+#### float实例
+
+以下文档结构，如果设置img为float:left则p的文字会在图片的右边展示，如果文字很长则会绕到图片的下方，给出一个方案让文字都在图片的右边不绕到图片的下边，且p需要占满图片右边的空间，并解释原因。
 
 ```html
 <div>

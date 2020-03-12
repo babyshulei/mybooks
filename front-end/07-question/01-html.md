@@ -141,6 +141,32 @@ parent.removeChild(node);
 parent.replaceChild(newChild, oldChild);
 ```
 
+##### DOM事件
+
+事件捕获：从外到内
+
+事件冒泡：从内（目标元素）到外
+
+Dom事件流：
+
+捕获 -> 目标阶段 ->冒泡
+
+事件委派：
+
+原理是在容器节点上绑定事件，利用冒泡，判断事件是否在匹配指定的选择器的节点上被触发。优点是只用绑定一次，不用对每个目标做绑定，还有对动态插入的节点也生效，无需重新绑定。
+
+常见api：
+
+阻止默认事件：e.preventDefault()；
+
+阻止冒泡：e.stopPropagation();
+
+event.currentTarget   //当前所绑定的事件对象。在事件委托中，指的是【父元素】。
+
+event.target  //当前被点击的元素。在事件委托中，指的是【子元素】。
+
+
+
 [总结js常用的dom操作（js的dom操作API）](https://www.haorooms.com/post/js_dom_api)
 
 
