@@ -195,7 +195,7 @@ Web 组件是一种与 HTML 相关联（HTML-related）的技术，简单来说�
 ### 可替换元素
 
 可替换元素就是浏览器根据元素的标签和属性，来决定元素的具体显示内容，在其显示中生成了框。
-HTML中的`<img>、<video>、<input>、<textarea>、<select>、<object>`都是替换元素。这些元素往往没有实际的内容，即是一个空元素。
+HTML中的`<img>、<video>、<input>、<textarea>、<iframe>、<select>、<object>`都是替换元素。这些元素往往没有实际的内容，即是一个空元素。
 
 **可替换元素**（**replaced element**）的展现效果不是由 CSS 来控制的。这些元素是一种外部对象，它们外观的渲染，是独立于 CSS 的。
 
@@ -218,6 +218,36 @@ Example：
 ### 不可替换元素
 
 HTML的大多数元素是不可替换元素，即其内容直接表现在浏览器。
+
+
+
+## 总结
+
+- 按功能分类
+  - 主根元素：`<html>`
+  - 文档元数据：`<base>, <head>, <meta>, <link>, <style>, <title>`
+  - 分区根元素：`<body>`
+  - 内容分区：`<nav>, <header>, <main>, <footer>, <aside>, <session>, <article>, <address>,... `
+  - 文本内容：`<div>, <p>, <ul>, <ol>, <li>, <dl>, <dt>, <dd>, <blockquote>...`
+  - 内联文本语义：`<a>, <b>, <br>, <span>, <em>, <s>...`
+  - 图片和多媒体：`<img>, <audio>, <video>, <map>...`
+  - 内嵌内容：`<iframe>, <picture>, <source>...`
+  - 脚本：`<canvas>, <script>, <noscript>`
+  - 表格内容：`<table>, <tr>, <th>, <td>, <thead>, <tbody>, <tfoot>, <caption>...`
+  - 表单：`<form>, <select>, <option>, <button>, <input>, <textarea>...`
+  - 交互：`<dialog>, <menu>...`
+  - web组件：`<element>, <slot>, <template>`
+- 按样式分类
+  - 块级元素：`<div>, <p>, <h1>~<h6>, <ul>, <ol>, <li>, <table>...`
+  - 内联元素：`<a>, <b>, <em>, <s>, <span>, <br>...`
+  - 内联块级元素：`<img>, <input>`
+- 按闭合特征分类
+  - 闭合标签：`<html>, <body>, <div>, <p>, <span>...`
+  - 空标签：`<img>, <br>, <input>, <hr>, <link>, <meta>... `
+
+- 按元素本身的特点分类
+  - 可替换元素：`<img>, <video>, <input>, <textarea>...`
+  - 不可替换元素：大部分都是
 
 
 
