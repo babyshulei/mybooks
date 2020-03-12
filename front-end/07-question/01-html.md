@@ -2,29 +2,7 @@
 
 #### 1. 写出你了解的 HTML 标签，并把他们分一下类。
 
-- 按功能分类
-  - 主根元素：`<html>`
-  - 文档元数据：`<base>, <head>, <meta>, <link>, <style>, <title>`
-  - 分区根元素：`<body>`
-  - 内容分区：`<nav>, <header>, <main>, <footer>, <aside>, <session>, <article>, <address>,... `
-  - 文本内容：`<div>, <p>, <ul>, <ol>, <li>, <dl>, <dt>, <dd>, <blockquote>...`
-  - 内联文本语义：`<a>, <b>, <br>, <span>, <em>, <s>...`
-  - 图片和多媒体：`<img>, <audio>, <video>, <map>...`
-  - 内嵌内容：`<iframe>, <picture>, <source>...`
-  - 脚本：`<canvas>, <script>, <noscript>`
-  - 表格内容：`<table>, <tr>, <th>, <td>, <thead>, <tbody>, <tfoot>, <caption>...`
-  - 表单：`<form>, <select>, <option>, <button>, <input>, <textarea>...`
-  - 交互：`<dialog>, <menu>...`
-  - web组件：`<element>, <slot>, <template>`
-- 按样式分类
-  - 块级元素：`<div>, <p>, <h1>~<h6>, <ul>, <ol>, <li>, <table>...`
-  - 内联元素：`<a>, <b>, <em>, <s>, <span>, <br>...`
-  - 内联块级元素：`<img>, <input>`
-- 按闭合特征分类
-  - 闭合标签：`<html>, <body>, <div>, <p>, <span>...`
-  - 空标签：`<img>, <br>, <input>, <hr>, <link>, <meta>... `
-
-替换元素、不可替换元素
+详见笔记：[HTML标签](https://babyshulei.github.io/mybooks/front-end/03-html/01-tags.html)
 
 
 

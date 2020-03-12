@@ -186,9 +186,38 @@ Web 组件是一种与 HTML 相关联（HTML-related）的技术，简单来说�
 
 2、元素的高度、宽度、行高以及顶和底边距都可设置
 
-
-
 常见的有：`<img>、<input>`
+
+
+
+## 按元素本身的特点分类
+
+### 可替换元素
+
+可替换元素就是浏览器根据元素的标签和属性，来决定元素的具体显示内容，在其显示中生成了框。
+HTML中的`<img>、<video>、<input>、<textarea>、<select>、<object>`都是替换元素。这些元素往往没有实际的内容，即是一个空元素。
+
+**可替换元素**（**replaced element**）的展现效果不是由 CSS 来控制的。这些元素是一种外部对象，它们外观的渲染，是独立于 CSS 的。
+
+简单来说，它们的内容不受当前文档的样式的影响。CSS 可以影响可替换元素的位置，但不会影响到可替换元素自身的内容。某些可替换元素，例如 [`<iframe>`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/iframe) 元素，可能具有自己的样式表，但它们不会继承父文档的样式。
+
+Example：
+
+```html
+<img src="path/to/picture.jpg"/>
+```
+
+浏览器根据`<img>`标签的src属性的值来读取图片信息并显示出来，而如果查看HTML代码，则看不到图片的实际内容。
+
+```html
+<input type="submit" name="submit" value="提交"/>
+```
+
+浏览器根据`<input>`标签的type属性来决定是显示输入框，还是按钮。
+
+### 不可替换元素
+
+HTML的大多数元素是不可替换元素，即其内容直接表现在浏览器。
 
 
 
@@ -202,3 +231,6 @@ Web 组件是一种与 HTML 相关联（HTML-related）的技术，简单来说�
 
 [HTML标签元素的分类（块级元素、行内元素、内联块状元素） - 简书](https://www.jianshu.com/p/3ce96819fc47)
 
+[可替换元素- CSS（层叠样式表）| MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Replaced_element)
+
+[替换元素和不可替换元素，块级元素和行内元素](https://www.cnblogs.com/hzj680539/p/5093702.html)
