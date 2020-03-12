@@ -256,7 +256,7 @@ module.exports = {
 
 此时 npm start，项目可正常运行
 
-## 功能扩展
+## 功能拓展
 
 ### dev环境配置
 
@@ -338,6 +338,338 @@ module.exports = new Promise((resolve, reject) => {
 });
 ```
 
+### 添加loader
+
+#### css loader
+
+CSS 基础 loader
+
+```
+npm i css-loader style-loader -D
+```
+
+CSS 前处理 less 两件套
+
+```shell
+npm i less less-loader -D
+```
+
+CSS 前处理 sass 两件套
+
+```shell
+npm i node-sass sass-loader -D
+```
+
+CSS 后处理 postcss 两件套
+
+```shell
+npm i postcss-loader autoprefixer -D
+```
+
+并在根文件夹创建 postcss.config.js 文件
+
+```javascript
+// postcss.config.js
+// 自动添加css兼容属性
+module.exports = {
+  plugins: [
+    require('autoprefixer')
+  ]
+}
+```
+
+安装以上依赖，在 base 文件中加入一下 loader 代码
+
+```javascript
+// webpack.base.js
+
+// ...省略号
+rules: [
+  {
+    test: /\.(sa|sc|c)ss$/,
+    use: [
+      'style-loader',
+      'css-loader',
+      'postcss-loader',
+      'sass-loader',
+    ],
+  },
+  {
+    test: /\.less$/,
+    use: [
+      'style-loader',
+      'css-loader',
+      'postcss-loader',
+      'less-loader',
+    ],
+  },
+]
+```
+
+按需引入，可以只引入其中几种loader。
+
+可以创建通用逻辑：
+
+```javascript
+// utils.js，在webpack的config文件中可以调用 utils.styleLoaders()
+
+// ...
+
+exports.cssLoaders = function (options) {
+  options = options || {}
+
+  const cssLoader = {
+    loader: 'css-loader',
+    options: {
+      sourceMap: options.sourceMap
+    }
+  }
+
+  const postcssLoader = {
+    loader: 'postcss-loader',
+    options: {
+      sourceMap: options.sourceMap
+    }
+  }
+
+  // generate loader string to be used with extract text plugin
+  function generateLoaders (loader, loaderOptions) {
+    const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
+
+    if (loader) {
+      loaders.push({
+        loader: loader + '-loader',
+        options: Object.assign({}, loaderOptions, {
+          sourceMap: options.sourceMap
+        })
+      })
+    }
+
+    // Extract CSS when that option is specified
+    // (which is the case during production build)
+    if (options.extract) {
+      return ExtractTextPlugin.extract({
+        use: loaders,
+        fallback: 'vue-style-loader'
+      })
+    } else {
+      return ['vue-style-loader'].concat(loaders)
+    }
+  }
+
+  // https://vue-loader.vuejs.org/en/configurations/extract-css.html
+  return {
+    css: generateLoaders(),
+    postcss: generateLoaders(),
+    less: generateLoaders('less'),
+    sass: generateLoaders('sass', { indentedSyntax: true }),
+    scss: generateLoaders('sass'),
+    stylus: generateLoaders('stylus'),
+    styl: generateLoaders('stylus')
+  }
+}
+
+// Generate loaders for standalone style files (outside of .vue)
+exports.styleLoaders = function (options) {
+  const output = []
+  const loaders = exports.cssLoaders(options)
+
+  for (const extension in loaders) {
+    const loader = loaders[extension]
+    output.push({
+      test: new RegExp('\\.' + extension + '$'),
+      use: loader
+    })
+  }
+
+  return output
+}
+```
+
+#### 图片，文字loader
+
+解析图片，字体等可以用 file-loader 或 url-loader。
+
+```shell
+npm i url-loader -D
+```
+
+```javascript
+// webpack.base.js
+// ...
+module.exports = {
+    // ...
+    module: {
+        rules: [
+            {
+                test: /\.(png|jpg|svg|gif)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 5000,
+                            name: 'imgs/[name].[ext]',
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: '[name].[hash:7].[ext]',
+                },
+            },
+        ],
+    },
+};
+```
+
+### 添加 vue-router
+
+```shell
+npm i vue-router -S
+```
+
+src文件夹下添加 router.js 文件（或 router/index.js）
+
+```javascript
+// router.js
+
+import Vue from 'vue';
+import Router from 'vue-router';
+import HelloWorld from '@/views/HelloWorld';
+
+Vue.use(Router);
+
+export default new Router({
+    base: process.env.BASE_URL,
+    routes: [
+        {
+            path: '/',
+            name: 'HelloWorld',
+            component: HelloWorld,
+        },
+    ],
+});
+```
+
+App.vue 添加 router-view 标签
+
+```vue
+<template>
+    <div id="app">
+        <router-view />
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'App',
+};
+</script>
+```
+
+main.js 添加router
+
+```javascript
+// main.js
+import Vue from 'vue';
+import App from './App';
+import router from './router';
+
+new Vue({
+    el: '#app',
+    router,
+    render: h => h(App),
+});
+```
+
+### 添加vuex
+
+安装vuex插件
+
+```shell
+npm i vuex -S
+```
+
+src文件夹下添加store.js （或store/index.js）
+
+```javascript
+import Vue from 'vue';
+import Vuex from 'vuex';
+import request from '../api/request';
+import { utilsIsXiangkan } from '../utils/utils';
+
+const mutations = {
+    setGreeting(state, payload) {
+        state.greeting = payload.greeting;
+    },
+    // ...
+};
+
+const actions = {
+    getPoem({ state }, options) {
+        request.post('/activity/springFestival/poem', {
+            greeting: state.greeting,
+        })
+            .then((data) => {
+                if (data.status === 200 && data.data.status === 0 && data.data.data.length) {
+                    if (typeof options.success === 'function') {
+                        options.success(data);
+                    }
+                } else if (typeof options.error === 'function') {
+                    options.error(data);
+                }
+            })
+            .catch(() => {
+                if (typeof options.error === 'function') {
+                    options.error();
+                }
+            });
+    },
+    // ...
+};
+
+const state = {
+    greeting: '',
+	// ...
+};
+
+Vue.use(Vuex);
+
+export default new Vuex.Store({
+    state,
+    mutations,
+    actions,
+});
+```
+
+main.js引入store
+
+```js
+import Vue from 'vue';
+import App from './App';
+import router from './router';
+import store from './store';
+
+new Vue({
+    el: '#app',
+    router,
+    store,
+    render: h => h(App),
+});
+```
+
+## 打包优化
+
+
+
+
+
+
+
 
 
 
@@ -379,4 +711,6 @@ module.exports = new Promise((resolve, reject) => {
 [从零开始Webpack 4 配置Vue项目- 张琳琳个人网站](https://zhanglinlin.site/2019/06/27/vue-init/)
 
 [Webpack4.x 初步配置vue 项目| Vue.js 技术论坛 - LearnKu 社区](https://learnku.com/vuejs/t/23365)
+
+[使用 Vue2.x + webpack4.x 从零开始一步步搭建项目框架](https://blog.csdn.net/Dandelion_drq/article/details/83623603)
 

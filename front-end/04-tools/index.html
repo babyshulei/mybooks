@@ -76,7 +76,7 @@
     <link rel="next" href="01-webpack/" />
     
     
-    <link rel="prev" href="../03-html/01-history.html" />
+    <link rel="prev" href="../03-html/01-history.md" />
     
 
     </head>
@@ -255,9 +255,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.3.1" data-path="../03-html/01-history.html">
+        <li class="chapter " data-level="2.3.1" data-path="../03-html/01-history.md">
             
-                <a href="../03-html/01-history.html">
+                <span>
             
                     
                     H5的History
@@ -2341,7 +2341,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x5DE5;&#x5177;"><b></b>&#x5DE5;&#x5177;</a></li></ul></div><a href="#&#x5DE5;&#x5177;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x5DE5;&#x5177;"><a name="&#x5DE5;&#x5177;" class="anchor-navigation-ex-anchor" href="#&#x5DE5;&#x5177;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5DE5;&#x5177;</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x5DE5;&#x5177;"><b></b>&#x5DE5;&#x5177;</a></li><ul><li><span class="title-icon "></span><a href="#&#x9879;&#x76EE;&#x6784;&#x5EFA;&#x5DE5;&#x5177;"><b></b>&#x9879;&#x76EE;&#x6784;&#x5EFA;&#x5DE5;&#x5177;</a></li><ul><li><span class="title-icon "></span><a href="#1-&#x80CC;&#x666F;"><b></b>1. &#x80CC;&#x666F;</a></li><li><span class="title-icon "></span><a href="#2-&#x76EE;&#x6807;"><b></b>2. &#x76EE;&#x6807;</a></li><li><span class="title-icon "></span><a href="#3-&#x5BF9;&#x6BD4;"><b></b>3. &#x5BF9;&#x6BD4;</a></li></ul><li><span class="title-icon "></span><a href="#&#x53C2;&#x8003;&#x94FE;&#x63A5;"><b></b>&#x53C2;&#x8003;&#x94FE;&#x63A5;</a></li></ul></ul></div><a href="#&#x5DE5;&#x5177;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x5DE5;&#x5177;"><a name="&#x5DE5;&#x5177;" class="anchor-navigation-ex-anchor" href="#&#x5DE5;&#x5177;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5DE5;&#x5177;</h1>
 <blockquote>
 <p>2019.10.24 @wsl</p>
 </blockquote>
@@ -2365,9 +2365,211 @@
 <li>charles</li>
 </ul>
 </li>
+<li>.....</li>
 </ul>
-<p>.......</p>
-<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2019-10-25 19:16:48</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2019-10-25 19:16:48</span></div></div>
+<h2 id="&#x9879;&#x76EE;&#x6784;&#x5EFA;&#x5DE5;&#x5177;"><a name="&#x9879;&#x76EE;&#x6784;&#x5EFA;&#x5DE5;&#x5177;" class="anchor-navigation-ex-anchor" href="#&#x9879;&#x76EE;&#x6784;&#x5EFA;&#x5DE5;&#x5177;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9879;&#x76EE;&#x6784;&#x5EFA;&#x5DE5;&#x5177;</h2>
+<h3 id="1-&#x80CC;&#x666F;"><a name="1-&#x80CC;&#x666F;" class="anchor-navigation-ex-anchor" href="#1-&#x80CC;&#x666F;"><i class="fa fa-link" aria-hidden="true"></i></a>1. &#x80CC;&#x666F;</h3>
+<h4 id="modular"><a name="modular" class="anchor-navigation-ex-anchor" href="#modular"><i class="fa fa-link" aria-hidden="true"></i></a>Modular</h4>
+<ul>
+<li>&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x51B2;&#x7A81;</li>
+<li>&#x7BA1;&#x7406;&#x9879;&#x76EE;&#x4F9D;&#x8D56;&#x548C;&#x7248;&#x672C;</li>
+<li>&#x63A7;&#x5236;&#x4F9D;&#x8D56;&#x7684;&#x52A0;&#x8F7D;&#x987A;&#x5E8F;</li>
+<li>&#x53EF;&#x7EF4;&#x62A4;&#x6027;</li>
+<li>&#x53EF;&#x590D;&#x7528;&#x6027;</li>
+</ul>
+<p>&#x65E0;&#x6A21;&#x5757;&#x5316;--&gt;CommonJS&#x89C4;&#x8303;--&gt;AMD&#x89C4;&#x8303;--&gt;CMD&#x89C4;&#x8303;--&gt;ES6&#x6A21;&#x5757;&#x5316;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// CommonJS</span>
+<span class="hljs-keyword">const</span> moduleA = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./moduleA&apos;</span>);
+<span class="hljs-built_in">module</span>.exports = moduleA.someFunc;
+</code></pre>
+<p>commonJS &#x53EF;&#x590D;&#x7528;&#x4E8E;Nodejs&#x73AF;&#x5883;&#xFF0C;&#x65B9;&#x4FBF;&#x505A;&#x540C;&#x6784;&#x5E94;&#x7528;&#xFF0C;&#x65E0;&#x6CD5;&#x76F4;&#x63A5;&#x8FD0;&#x884C;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x4E0A;&#xFF0C;&#x5FC5;&#x987B;&#x901A;&#x8FC7;&#x5DE5;&#x5177;&#x8F6C;&#x6362;&#x6210;ES5</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">//AMD</span>
+define(<span class="hljs-string">&apos;module&apos;</span>, [<span class="hljs-string">&apos;dep&apos;</span>], dep =&gt; {
+    <span class="hljs-keyword">return</span> exports;
+});
+<span class="hljs-built_in">require</span>([<span class="hljs-string">&apos;module&apos;</span>], <span class="hljs-built_in">module</span> =&gt; {
+     <span class="hljs-comment">// do Somethind</span>
+});
+</code></pre>
+<p>AMD &#x91C7;&#x7528;&#x5F02;&#x6B65;&#x7684;&#x65B9;&#x5F0F;&#x52A0;&#x8F7D;&#x4F9D;&#x8D56;&#xFF0C;&#x5B9E;&#x73B0;AMD&#x7684;&#x4EE3;&#x8868;&#x662F; requirejs&#x3002;</p>
+<p>AMD&#x63A8;&#x5D07;&#x4F9D;&#x8D56;&#x524D;&#x7F6E;&#xFF0C;&#x5728;&#x5B9A;&#x4E49;&#x6A21;&#x5757;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x8981;&#x58F0;&#x660E;&#x5176;&#x4F9D;&#x8D56;&#x7684;&#x6A21;&#x5757;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// CMD</span>
+define(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">require, exports, module</span>) </span>{
+     <span class="hljs-keyword">let</span> a = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./a&apos;</span>);
+     a.doSomething();
+     <span class="hljs-keyword">let</span> b = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./b&apos;</span>);
+     b.doSomething();
+});
+</code></pre>
+<p>CMD&#x63A8;&#x5D07;&#x5C31;&#x8FD1;&#x4F9D;&#x8D56;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x7528;&#x5230;&#x67D0;&#x4E2A;&#x6A21;&#x5757;&#x7684;&#x65F6;&#x5019;&#x518D;&#x53BB;require&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// ES6 module</span>
+<span class="hljs-keyword">import</span> { readFile } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;fs&apos;</span>
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hello</span>(<span class="hljs-params"></span>) </span>{}
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> { }
+</code></pre>
+<p>ES6 &#x6A21;&#x5757;&#xFF0C;ECMA &#x63D0;&#x51FA;&#x7684;JS&#x6A21;&#x5757;&#x89C4;&#x8303;&#xFF0C;&#x5C06;&#x6765;&#x4F1A;&#x6210;&#x4E3A;&#x4E3B;&#x6D41;&#x3002;</p>
+<h4 id="framework"><a name="framework" class="anchor-navigation-ex-anchor" href="#framework"><i class="fa fa-link" aria-hidden="true"></i></a>Framework</h4>
+<ul>
+<li>React  ( jsx )</li>
+<li>Vue  ( .vue file )</li>
+<li>Angular ( Typescript )</li>
+</ul>
+<h4 id="language"><a name="language" class="anchor-navigation-ex-anchor" href="#language"><i class="fa fa-link" aria-hidden="true"></i></a>Language</h4>
+<ul>
+<li>ES6</li>
+<li>TypeScript</li>
+<li>Flow</li>
+<li>Scss/Less</li>
+</ul>
+<h3 id="2-&#x76EE;&#x6807;"><a name="2-&#x76EE;&#x6807;" class="anchor-navigation-ex-anchor" href="#2-&#x76EE;&#x6807;"><i class="fa fa-link" aria-hidden="true"></i></a>2. &#x76EE;&#x6807;</h3>
+<ul>
+<li>&#x4EE3;&#x7801;&#x8F6C;&#x6362;&#xFF1A;&#x5C06;Typescript, Es6, vue, react&#x7F16;&#x8BD1;&#x6210;&#x6D4F;&#x89C8;&#x5668;&#x53EF;&#x8FD0;&#x884C;&#x7684;JS&#xFF0C;&#x5C06;Less&#x7F16;&#x8BD1;&#x6210;CSS</li>
+<li>&#x6587;&#x4EF6;&#x4F18;&#x5316;&#xFF1A;&#x538B;&#x7F29;&#x4EE3;&#x7801;&#xFF0C;&#x5408;&#x5E76;&#x56FE;&#x7247;</li>
+<li>&#x4EE3;&#x7801;&#x5206;&#x5272;&#xFF1A;&#x63D0;&#x53D6;&#x591A;&#x4E2A;&#x9875;&#x9762;&#x7684;&#x516C;&#x5171;&#x4EE3;&#x7801;</li>
+<li>&#x5F02;&#x6B65;&#x52A0;&#x8F7D;&#xFF1A;&#x63D0;&#x5347;&#x9996;&#x5C4F;&#x901F;&#x5EA6;&#xFF0C;&#x53EA;&#x52A0;&#x8F7D;&#x4E0E;&#x9996;&#x5C4F;&#x76F8;&#x5173;&#x7684;&#x4EE3;&#x7801;</li>
+<li>&#x6A21;&#x5757;&#x5408;&#x5E76;</li>
+<li>&#x70ED;&#x66F4;&#x65B0;&#xFF0C;&#x70ED;&#x66FF;&#x6362;</li>
+<li>&#x4EE3;&#x7801;&#x6821;&#x9A8C;</li>
+<li>&#x81EA;&#x52A8;&#x53D1;&#x5E03;</li>
+<li>More . . .  </li>
+</ul>
+<h3 id="3-&#x5BF9;&#x6BD4;"><a name="3-&#x5BF9;&#x6BD4;" class="anchor-navigation-ex-anchor" href="#3-&#x5BF9;&#x6BD4;"><i class="fa fa-link" aria-hidden="true"></i></a>3. &#x5BF9;&#x6BD4;</h3>
+<ul>
+<li>Grunt</li>
+<li>Gulp</li>
+<li>Fis3</li>
+<li>Webpack</li>
+<li>Rollup</li>
+<li>Parcel</li>
+<li>Bash</li>
+</ul>
+<h4 id="grunt"><a name="grunt" class="anchor-navigation-ex-anchor" href="#grunt"><i class="fa fa-link" aria-hidden="true"></i></a>Grunt</h4>
+<ul>
+<li>&#x4EFB;&#x52A1;&#x6267;&#x884C;&#x8005;</li>
+<li>&#x7075;&#x6D3B;&#xFF0C;&#x53EA;&#x8D1F;&#x8D23;&#x6267;&#x884C;&#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x7684;&#x4EFB;&#x52A1;</li>
+<li>&#x5927;&#x91CF;&#x7684;&#x53EF;&#x590D;&#x7528;&#x7684;&#x63D2;&#x4EF6;&#x5C01;&#x88C5;&#x597D;&#x4E86;&#x5E38;&#x89C1;&#x7684;&#x6784;&#x5EFA;&#x4EFB;&#x52A1;</li>
+<li>&#x96C6;&#x6210;&#x5EA6;&#x4E0D;&#x9AD8;&#xFF0C;&#x9700;&#x8981;&#x5199;&#x5F88;&#x591A;&#x914D;&#x7F6E;&#x624D;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">grunt</span>) </span>{
+ grunt.initConfig({
+   jshint: {
+     files: [<span class="hljs-string">&apos;Gruntfile.js&apos;</span>, <span class="hljs-string">&apos;src/**/*.js&apos;</span>, <span class="hljs-string">&apos;test/**/*.js&apos;</span>],
+     options: {
+       globals: {
+         jQuery: <span class="hljs-literal">true</span>
+       }
+     }
+   },
+   watch: {
+     files: [<span class="hljs-string">&apos;&lt;%= jshint.files %&gt;&apos;</span>],
+     tasks: [<span class="hljs-string">&apos;jshint&apos;</span>]
+   }
+ });
+ grunt.loadNpmTasks(<span class="hljs-string">&apos;grunt-contrib-jshint&apos;</span>);
+ grunt.loadNpmTasks(<span class="hljs-string">&apos;grunt-contrib-watch&apos;</span>);
+ grunt.registerTask(<span class="hljs-string">&apos;default&apos;</span>, [<span class="hljs-string">&apos;jshint&apos;</span>]);
+};
+</code></pre>
+<h4 id="gulp"><a name="gulp" class="anchor-navigation-ex-anchor" href="#gulp"><i class="fa fa-link" aria-hidden="true"></i></a>Gulp</h4>
+<ul>
+<li>&#x57FA;&#x4E8E;&#x6D41;&#x7684;&#x81EA;&#x52A8;&#x5316;&#x6784;&#x5EFA;&#x5DE5;&#x5177;&#xFF0C;&#x652F;&#x6301;&#x76D1;&#x542C;&#x6587;&#x4EF6;&#xFF0C;&#x8BFB;&#x5199;&#x6587;&#x4EF6;</li>
+<li>&#x96C6;&#x6210;&#x5EA6;&#x4E0D;&#x9AD8;&#xFF0C;&#x9700;&#x8981;&#x5199;&#x5F88;&#x591A;&#x914D;&#x7F6E;</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-comment">//task&#x914D;&#x7F6E;</span>
+<span class="hljs-comment">//js&#x538B;&#x7F29;,&#x4F7F;&#x7528;gulp jsmin&#x542F;&#x52A8;</span>
+gulp.task(<span class="hljs-string">&apos;jsmin&apos;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+ gulp.src(devJs) .pipe(uglify())
+     .pipe(gulp.dest(distJs));
+});
+<span class="hljs-comment">//less&#x7F16;&#x8BD1;</span>
+gulp.task(<span class="hljs-string">&apos;less&apos;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+ gulp.src(devLess)
+     .pipe(less({
+       outputStyle:<span class="hljs-string">&apos;compressed&apos;</span>
+     })).pipe(gulp.dest(distLess));
+});
+<span class="hljs-comment">//css&#x538B;&#x7F29;</span>
+gulp.task(<span class="hljs-string">&apos;minifyCss&apos;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+ gulp.src(devCss).pipe(minifyCss()).pipe(gulp.dest(distCss))
+});
+<span class="hljs-comment">//&#x76D1;&#x63A7;&#x6539;&#x52A8;&#x5E76;&#x81EA;&#x52A8;&#x5237;&#x65B0;</span>
+gulp.task(<span class="hljs-string">&apos;auto&apos;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{  gulp.watch(devJs,[<span class="hljs-string">&apos;jsmin&apos;</span>]);  gulp.watch(devLess,[<span class="hljs-string">&apos;less&apos;</span>]);
+ gulp.watch([<span class="hljs-string">&apos;dev&apos;</span>]).on(<span class="hljs-string">&apos;change&apos;</span>,browserSync.reload);
+});
+gulp.task(<span class="hljs-string">&apos;default&apos;</span>,[<span class="hljs-string">&apos;jsmin&apos;</span>,<span class="hljs-string">&apos;less&apos;</span>,<span class="hljs-string">&apos;minifyCss&apos;</span>,<span class="hljs-string">&apos;imgmin&apos;</span>,<span class="hljs-string">&apos;tplmin&apos;</span>,<span class="hljs-string">&apos;copyLib&apos;</span>,<span class="hljs-string">&apos;server&apos;</span>,<span class="hljs-string">&apos;auto&apos;</span>]);
+</code></pre>
+<h4 id="fis3"><a name="fis3" class="anchor-navigation-ex-anchor" href="#fis3"><i class="fa fa-link" aria-hidden="true"></i></a>Fis3</h4>
+<ul>
+<li>&#x8BFB;&#x5199;&#x6587;&#x4EF6;</li>
+<li>&#x8D44;&#x6E90;&#x5B9A;&#x4F4D;</li>
+<li>&#x6587;&#x4EF6;&#x7F13;&#x5B58;</li>
+<li>&#x6587;&#x4EF6;&#x7F16;&#x8BD1;</li>
+<li>&#x8D44;&#x6E90;&#x538B;&#x7F29;</li>
+<li>&#x56FE;&#x7247;&#x5408;&#x5E76;</li>
+<li>&#x914D;&#x7F6E;&#x7B80;&#x5355;&#xFF0C;&#x5F00;&#x7BB1;&#x5373;&#x7528;</li>
+<li>&#x76EE;&#x524D;&#x5B98;&#x65B9;&#x5DF2;&#x7ECF;&#x505C;&#x6B62;&#x7EF4;&#x62A4;</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-comment">// &#x52A0; md5</span>
+fis.match(<span class="hljs-string">&apos;*.{js,css,png}&apos;</span>, { useHash: <span class="hljs-literal">true</span> });
+<span class="hljs-comment">// &#x542F;&#x7528; fis-spriter-csssprites &#x63D2;&#x4EF6;</span>
+fis.match(<span class="hljs-string">&apos;::package&apos;</span>, { spriter: fis.plugin(<span class="hljs-string">&apos;csssprites&apos;</span>) });
+<span class="hljs-comment">// &#x5BF9; CSS &#x8FDB;&#x884C;&#x56FE;&#x7247;&#x5408;&#x5E76;</span>
+<span class="hljs-comment">// &#x7ED9;&#x5339;&#x914D;&#x5230;&#x7684;&#x6587;&#x4EF6;&#x5206;&#x914D;&#x5C5E;&#x6027; `useSprite`</span>
+fis.match(<span class="hljs-string">&apos;*.css&apos;</span>, { useSprite: <span class="hljs-literal">true</span> });
+<span class="hljs-comment">// fis-optimizer-uglify-js &#x63D2;&#x4EF6;&#x8FDB;&#x884C;&#x538B;&#x7F29;&#xFF0C;&#x5DF2;&#x5185;&#x7F6E;</span>
+fis.match(<span class="hljs-string">&apos;*.js&apos;</span>, { optimizer: fis.plugin(<span class="hljs-string">&apos;uglify-js&apos;</span>) });
+<span class="hljs-comment">// fis-optimizer-clean-css &#x63D2;&#x4EF6;&#x8FDB;&#x884C;&#x538B;&#x7F29;&#xFF0C;&#x5DF2;&#x5185;&#x7F6E;</span>
+fis.match(<span class="hljs-string">&apos;*.css&apos;</span>, { optimizer: fis.plugin(<span class="hljs-string">&apos;clean-css&apos;</span>)});
+<span class="hljs-comment">// fis-optimizer-png-compressor &#x63D2;&#x4EF6;&#x8FDB;&#x884C;&#x538B;&#x7F29;&#xFF0C;&#x5DF2;&#x5185;&#x7F6E;</span>
+fis.match(<span class="hljs-string">&apos;*.png&apos;</span>, { optimizer: fis.plugin(<span class="hljs-string">&apos;png-compressor&apos;</span>)});
+</code></pre>
+<h4 id="rollup"><a name="rollup" class="anchor-navigation-ex-anchor" href="#rollup"><i class="fa fa-link" aria-hidden="true"></i></a>Rollup</h4>
+<ul>
+<li>Webpack &#x6D41;&#x884C;&#x540E;&#x7684;&#x4EA7;&#x54C1;</li>
+<li>&#x751F;&#x6001;&#x4E0D;&#x591F;&#x5B8C;&#x5584;</li>
+<li>&#x529F;&#x80FD;&#x4E0D;&#x5982;webpack&#x5F3A;&#x5927;</li>
+<li>Tree-shaking </li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+ entry: <span class="hljs-string">&apos;src/scripts/main.js&apos;</span>,
+ dest: <span class="hljs-string">&apos;build/js/main.min.js&apos;</span>,
+ format: <span class="hljs-string">&apos;iife&apos;</span>,
+ sourceMap: <span class="hljs-string">&apos;inline&apos;</span>,
+ plugins: [
+   resolve({
+     jsnext: <span class="hljs-literal">true</span>,
+     main: <span class="hljs-literal">true</span>,
+     browser: <span class="hljs-literal">true</span>,
+   }),
+   commonjs(),
+   eslint({
+     exclude: [
+       <span class="hljs-string">&apos;src/styles/**&apos;</span>,
+     ]
+   }),
+   babel({  exclude: <span class="hljs-string">&apos;node_modules/**&apos;</span> }),
+   replace({ ENV: <span class="hljs-built_in">JSON</span>.stringify(process.env.NODE_ENV || <span class="hljs-string">&apos;development&apos;</span>) }),
+ ],
+};
+</code></pre>
+<h4 id="parcel"><a name="parcel" class="anchor-navigation-ex-anchor" href="#parcel"><i class="fa fa-link" aria-hidden="true"></i></a>Parcel</h4>
+<p>&#x4E00;&#x4E2A;&#x53F7;&#x79F0;&#x6781;&#x901F;&#x96F6;&#x914D;&#x7F6E;Web&#x5E94;&#x7528;&#x6253;&#x5305;&#x5DE5;&#x5177;</p>
+<p><img src="C:/develop/mybooks/front-end/04-tools/01-webpack/images/parcel.png" alt="img"></p>
+<h4 id="webpack"><a name="webpack" class="anchor-navigation-ex-anchor" href="#webpack"><i class="fa fa-link" aria-hidden="true"></i></a>Webpack</h4>
+<ul>
+<li>&#x5177;&#x6709;&#x826F;&#x597D;&#x7684;&#x751F;&#x6001;&#x548C;&#x7EF4;&#x62A4;&#x56E2;&#x961F;</li>
+<li>&#x9488;&#x5BF9;&#x5F88;&#x591A;&#x4E1A;&#x52A1;&#x573A;&#x666F;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x7AD9;&#x5F0F;&#x89E3;&#x51B3;&#x65B9;&#x6848;</li>
+<li>&#x5176;&#x4ED6;&#x6253;&#x5305;&#x5DE5;&#x5177;&#x6709;&#x7684;&#x7279;&#x6027;&#x4ED6;&#x90FD;&#x6709;</li>
+<li>...</li>
+</ul>
+<h2 id="&#x53C2;&#x8003;&#x94FE;&#x63A5;"><a name="&#x53C2;&#x8003;&#x94FE;&#x63A5;" class="anchor-navigation-ex-anchor" href="#&#x53C2;&#x8003;&#x94FE;&#x63A5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x53C2;&#x8003;&#x94FE;&#x63A5;</h2>
+<p><a href="https://docs.google.com/presentation/d/1X1ONpKuV0Bi0sU2Xems2rUufjTqp9CpB503uBCwE0U8/edit" target="_blank">&#x5206;&#x4EAB;|Webpack &#x63ED;&#x79D8;</a></p>
+<p><a href="https://segmentfault.com/a/1190000011081338" target="_blank">segmentfault|JavaScript&#x6A21;&#x5757;&#x5316;&#x5F00;&#x53D1;&#x7684;&#x6F14;&#x8FDB;&#x5386;&#x7A0B;</a></p>
+<p><a href="https://juejin.im/post/5b4420e7f265da0f4b7a7b27" target="_blank">&#x6398;&#x91D1;|&#x8FD9;&#x4E00;&#x6B21;&#xFF0C;&#x6211;&#x8981;&#x5F04;&#x61C2;javascript&#x7684;&#x6A21;&#x5757;&#x5316;</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/22890374" target="_blank">&#x77E5;&#x4E4E;|JavaScript &#x6A21;&#x5757;&#x5316;&#x5165;&#x95E8;&#x2160;&#xFF1A;&#x7406;&#x89E3;&#x6A21;&#x5757;</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/22945985" target="_blank">&#x77E5;&#x4E4E;|JavaScript &#x6A21;&#x5757;&#x5316;&#x5165;&#x95E8;&#x2161;&#xFF1A;&#x6A21;&#x5757;&#x6253;&#x5305;&#x6784;&#x5EFA;</a></p>
+<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2020-03-11 19:30:30</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2019-10-25 19:16:48</span></div></div>
                                 
                                 </section>
                             
@@ -2394,7 +2596,7 @@
 
             
                 
-                <a href="../03-html/01-history.html" class="navigation navigation-prev " aria-label="Previous page: H5的History">
+                <a href="../03-html/01-history.md" class="navigation navigation-prev " aria-label="Previous page: H5的History">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -2410,7 +2612,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"工具","level":"2.4","depth":1,"next":{"title":"webpack","level":"2.4.1","depth":2,"path":"front-end/04-tools/01-webpack/README.md","ref":"front-end/04-tools/01-webpack/README.md","articles":[]},"previous":{"title":"H5的History","level":"2.3.1","depth":2,"path":"front-end/03-html/01-history.md","ref":"front-end/03-html/01-history.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"front-end/04-tools/README.md","mtime":"2020-03-10T08:16:25.627Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-10T09:32:33.715Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"工具","level":"2.4","depth":1,"next":{"title":"webpack","level":"2.4.1","depth":2,"path":"front-end/04-tools/01-webpack/README.md","ref":"front-end/04-tools/01-webpack/README.md","articles":[]},"previous":{"title":"H5的History","level":"2.3.1","depth":2,"path":"front-end/03-html/01-history.md","ref":"front-end/03-html/01-history.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"front-end/04-tools/README.md","mtime":"2020-03-11T11:32:15.035Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-12T02:09:32.253Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
