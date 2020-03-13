@@ -6,7 +6,13 @@
 
 技术栈：
 
-webpack4
+webpack4 工程化编译
+
+babel7 代码编译
+
+vue 开发框架
+
+vue-router 路由跳转
 
 
 
@@ -414,83 +420,7 @@ rules: [
 
 按需引入，可以只引入其中几种loader。
 
-可以创建通用逻辑：
 
-```javascript
-// utils.js，在webpack的config文件中可以调用 utils.styleLoaders()
-
-// ...
-
-exports.cssLoaders = function (options) {
-  options = options || {}
-
-  const cssLoader = {
-    loader: 'css-loader',
-    options: {
-      sourceMap: options.sourceMap
-    }
-  }
-
-  const postcssLoader = {
-    loader: 'postcss-loader',
-    options: {
-      sourceMap: options.sourceMap
-    }
-  }
-
-  // generate loader string to be used with extract text plugin
-  function generateLoaders (loader, loaderOptions) {
-    const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
-
-    if (loader) {
-      loaders.push({
-        loader: loader + '-loader',
-        options: Object.assign({}, loaderOptions, {
-          sourceMap: options.sourceMap
-        })
-      })
-    }
-
-    // Extract CSS when that option is specified
-    // (which is the case during production build)
-    if (options.extract) {
-      return ExtractTextPlugin.extract({
-        use: loaders,
-        fallback: 'vue-style-loader'
-      })
-    } else {
-      return ['vue-style-loader'].concat(loaders)
-    }
-  }
-
-  // https://vue-loader.vuejs.org/en/configurations/extract-css.html
-  return {
-    css: generateLoaders(),
-    postcss: generateLoaders(),
-    less: generateLoaders('less'),
-    sass: generateLoaders('sass', { indentedSyntax: true }),
-    scss: generateLoaders('sass'),
-    stylus: generateLoaders('stylus'),
-    styl: generateLoaders('stylus')
-  }
-}
-
-// Generate loaders for standalone style files (outside of .vue)
-exports.styleLoaders = function (options) {
-  const output = []
-  const loaders = exports.cssLoaders(options)
-
-  for (const extension in loaders) {
-    const loader = loaders[extension]
-    output.push({
-      test: new RegExp('\\.' + extension + '$'),
-      use: loader
-    })
-  }
-
-  return output
-}
-```
 
 #### html loader
 
@@ -722,9 +652,159 @@ new Vue({
 
 ## 打包优化
 
+### 解决每次打包，dist文件未清除
 
+- 安装 clean-webpack-plugin 插件
 
+```javascript
+// webpack.prod.js
 
+// 打包之前清除文件
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+// ...省略号
+plugins: [
+  new CleanWebpackPlugin(['dist/*'], {
+    root: path.resolve(__dirname, '../')
+  }),
+]
+```
+
+### 添加stylelint
+
+1. 安装 stylelint相关包
+
+```shell
+npm i -D stylelint stylelint-config-standard
+```
+
+后者 `stylelint-config-stand` 不是必需的，也可以自己根据文档从零开始配置规则，或者用第三方如 github 的规则 `stylelint-config-primer` 。
+
+2. package.json添加npm scripts
+
+```json
+{
+    // ...
+    "scripts": {
+        // ...
+        "stylelint": "stylelint src/**/*.css src/**/*.vue"
+    },
+}
+```
+
+3. 根目录下添加stylelint.config.js
+
+```js
+// https://stylelint.io/user-guide/configuration/
+// https://github.com/stylelint/stylelint-config-standard
+
+module.exports = {
+    extends: 'stylelint-config-standard',
+    rules: {
+        'function-url-quotes': 'never',
+        'string-quotes': 'double',
+        'selector-max-specificity': null,
+        'color-named': 'never',
+        'color-no-hex': null,
+        'no-duplicate-selectors': null,
+        'font-family-no-missing-generic-family-keyword': null,
+        indentation: 4,
+    },
+};
+```
+
+### 添加eslint
+
+1. 全局安装最新的eslint
+
+```shell
+npm i -g eslint
+eslint --init
+```
+
+2. 本地安装最新eslint
+
+```shell
+npm i -D eslint
+```
+
+3. `.eslintrc.js`文件添加配置，下面是参考，采用airbnb规范。
+
+```javascript
+module.exports = {
+    root: true,
+    parserOptions: {
+        parser: 'babel-eslint',
+    },
+    env: {
+        browser: true,
+    },
+    // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
+    // consider switching to `plugin:vue/strongly-recommended`
+    // or `plugin:vue/recommended` for stricter rules.
+    extends: [
+        'plugin:vue/strongly-recommended',
+        '@vue/airbnb',
+    ],
+    // add your custom rules here
+    rules: {
+        // don't require .vue extension when importing
+        'import/extensions': [
+            'error',
+            'always',
+            {
+                js: 'never',
+                vue: 'never',
+            },
+        ],
+        // disallow reassignment of function parameters
+        // disallow parameter object manipulation except for specific exclusions
+        'no-param-reassign': [
+            'error',
+            {
+                props: true,
+                ignorePropertyModificationsFor: [
+                    'state', // for vuex state
+                    'acc', // for reduce accumulators
+                    'e', // for e.returnvalue
+                    'robj', // for reassign object
+                ],
+            },
+        ],
+        // allow optionalDependencies
+        'import/no-extraneous-dependencies': [
+            'error',
+            {
+                optionalDependencies: ['test/unit/index.js'],
+            },
+        ],
+        'vue/html-indent': ['error', 4],
+        // allow debugger during development
+        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        'arrow-parens': 1,
+        'arrow-body-style': 1,
+        indent: ['error', 4],
+        'no-console': 'off',
+    },
+};
+```
+
+4. 安装相关依赖
+
+```shell
+npm i eslint-plugin-vue babel-eslint @vue/cli-service @vue/cli-plugin-eslint @vue/eslint-config-airbnb -D
+```
+
+5. package.json 添加 scripts
+
+```json
+{
+    // ...
+    "scripts": {
+        // ...
+        "lint": "eslint --ext .js,.vue src"
+    },
+}
+```
 
 
 
@@ -804,4 +884,11 @@ so.....感觉没必要，就直接把error打印出来就好了。
 [使用 Vue2.x + webpack4.x 从零开始一步步搭建项目框架](https://blog.csdn.net/Dandelion_drq/article/details/83623603)
 
 [分析vue-cli@2.9.3 搭建的webpack项目工程- 掘金](https://juejin.im/post/5b1df3d76fb9a01e6c0b439b)
+
+[如何为你的 Vue 项目添加配置 Stylelint](https://juejin.im/post/5c31c9a16fb9a049f8197000)
+
+[记为vue添加eslint过程，采用airbnb规范- 知乎](https://zhuanlan.zhihu.com/p/74887917)
+
+[Configuring ESLint - ESLint中文](https://cn.eslint.org/docs/user-guide/configuring)
+[VsCode保存时自动修复Eslint错误| 前端进阶积累 - 博客](http://obkoro1.com/web_accumulate/accumulate/tool/Eslint自动修复格式错误.html)
 
