@@ -62,8 +62,6 @@ HTML5提供的`<DOCTYPE html>`是标准模式，向后兼容的, 等同于开启
 
 
 
-
-
 #### 5. 你对 HTML DOM 是怎么理解的？
 
 DOM: Document Object Module, 文档对象模型。我们通过JavaScript操作页面的元素，进行添加、移动、改变或移除的方法和属性, 都是DOM提供的。
@@ -155,22 +153,10 @@ event.target  //当前被点击的元素。在事件委托中，指的是【子�
 
 
 
-
-
-
-
-
-
 #### 从哪里了解 Web 标准的？
 
 - [WHATWG: Opera, Mozilla, Chrome 和 Safari](https://whatwg.org/)
 - [W3C: 微软](https://www.w3.org/)
-
-
-
-
-
-
 
 
 

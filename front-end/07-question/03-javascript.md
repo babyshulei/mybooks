@@ -2,11 +2,13 @@
 
 ### 作用域
 
-#### 详述es5 es6中的作用域和闭包
+#### 1. 详述es5 es6中的作用域和闭包
 
 es5全局+函数级，函数化闭包，es6块级
 
-##### 给出如下代码的输出并解释原因：
+##### 变量提升题
+
+给出如下代码的输出并解释原因：
 
 ```javascript
 var a = 1;
@@ -40,7 +42,7 @@ if (condition) {
 
 ### 对象、原型链
 
-#### 写出让B原型继承A的代码。
+#### 1. 写出让B原型继承A的代码。
 
 ```javascript
 function A() {
@@ -54,7 +56,7 @@ function B() {
 
 B.prototype = new A; 
 
-#### 什么是原型链(prototype chain)？可举例说明。
+#### 2. 什么是原型链(prototype chain)？可举例说明。
 
 上一题的例子
 
@@ -66,73 +68,18 @@ var b = new B;
 
 b.b在b自己的属性上找，b.a自己的属性里没找到则去b的原型即b,`__proto__`也就是B.prototype里找，一层一层往上找，到null为止，`b.__proto__.__proto__`是Object.prototype，`b.__proto__.__proto__.__proto__`为null。
 
-### 函数
-
-#### 解释call、apply、bind的区别，可举例说明。
-
-call和apply都是调用一个函数，并指定this和参数，call和apply第一个参数都是指定的this的值，区别在于call第二个参数开始的参数是替换的参数，而apply的第二个参数是一个数组。bind是由一个函数创建一个新函数，并绑定this和部分参数，参数形式和call类似。
-
-#### ajax和jsonp哪个可以跨域，原理是什么？
-
-ajax默认无法跨域，xhr2新增的CORS让ajax也可以跨域，需要输出http头(Access-Control-Allow-Origin)。jsonp可以跨域， 原理是script元素的src可以跨域。
-
-#### 描述事件捕获和事件冒泡的顺序。
-
-先从外向内捕获，然后从内向外冒泡。
-
-#### 描述事件委派(delegation)的原理和优点。
-
-原理是在容器节点上绑定事件，利用冒泡，判断事件是否在匹配指定的选择器的节点上被触发。优点是只用绑定一次，不用对每个目标做绑定，还有对动态插入的节点也生效，无需重新绑定。
-
-#### 有哪些触屏事件？
-
-touchstart，touchmove，touchend，touchcancel
-
-####  为什么老版本的webkit的click事件有300ms延迟？
-
-为了支持双击放大，如果300ms以内有两次点击则触发放大操作，而不是click。chromium较新版本在没有双击放大的页面去掉了click事件的300ms延迟。
-
-#### 为什么cookie的容量比localStorage小？
-
-因为cookie会附带在http请求的header里，如果容量大会有性能问题。
-
-####  描述application cache更新的过程。
-
-第一次访问缓存manifest文件里列的文件，之后访问先加载缓存，在后台加载manifest文件按字节对比看是否有变化，如果没变化则说明缓存未失效，否则在后台按列表更新缓存，在下一次刷新页面的时候使用新的资源。
-
-#### classList和dataset分别是什么？
-
-classList类似className，区别是className是空格隔开的字符串，而classList是一个类数组对象，有add、remove、toggle方法。dataset是获取以data-开头的属性的方法。
-
-#### 描述history.pushState的作用。
-
-无刷新的新增一个历史记录，第一个参数是记录绑定的数据，第二个参数是标题(很多浏览器都忽略了)，第三个参数是新的URL。
-
-
-
-#### 数组去重方法
+#### 3. 数组去重方法
 
 1. 利用for嵌套for，然后splice去重：双层循环，外层循环元素，内层循环时比较值。值相同时，则删去这个值。NaN, {} 没有去重，null会消失。
-
 2. indexOf()：NaN，{}没去重。
-
 3. sort()：利用sort()排序方法，然后根据排序后的结果进行遍历及相邻元素比对。NaN、{}没有去重。
-
 4. includes()：利用includes检测数组是否有某个值，去重。{}没有去重。
-
 5. 利用Set()去重：代码量少，但是无法去掉重复{}。
-
 6. 利用for嵌套for，然后splice去重（ES5中最常用）：双层循环，外层循环元素，内层循环时比较值。值相同时，则删去这个值。NaN, null, {} 的去重会出问题。
-
 7. hasOwnProperty：利用hasOwnProperty 判断是否存在对象属性。完美去重。
-
 8. filter()
-
 9. 递归
-
 10. Map()
-
-
 
 [JavaScript数组去重（12种方法，史上最全） - 前端开发随笔 ...](https://segmentfault.com/a/1190000016418021)
 
@@ -140,9 +87,11 @@ classList类似className，区别是className是空格隔开的字符串，而cl
 
 
 
-#### 对象的浅拷贝、深拷贝
 
-![img](.\images\js-copy.jpg)
+
+#### 4. 对象的浅拷贝、深拷贝
+
+![img](C:/develop/mybooks/front-end/07-question/images/js-copy.jpg)
 
 ##### 浅拷贝
 
@@ -174,7 +123,72 @@ classList类似className，区别是className是空格隔开的字符串，而cl
 
 
 
+### 函数
+
+#### 1. 解释call、apply、bind的区别，可举例说明。
+
+call和apply都是调用一个函数，并指定this和参数，call和apply第一个参数都是指定的this的值，区别在于call第二个参数开始的参数是替换的参数，而apply的第二个参数是一个数组。bind是由一个函数创建一个新函数，并绑定this和部分参数，参数形式和call类似。
+
+
+
+#### 2. 箭头函数
+
+##### 箭头函数与function函数有哪些不同？
+
+- 没有this、super、arguments和new.target绑定。
+
+  箭头函数的这些值由外围最近一层非箭头函数决定。
+
+- 不能通过new关键字调用。
+
+  箭头函数没有[[Construct]]方法，所以不能被用作构造函数，如果通过new关键字调用会报错。
+
+- 没有原型。
+
+  由于不可以通过new关键字调用，因为没有构建原型的需求，所以箭头函数不存在prototype这个属性。
+
+- 不可以改变this的绑定。
+
+  函数内部的this值不可被改变，在函数的生命周期内始终保持一致。
+
+- 不支持arguments对象。
+
+  箭头函数没有arguments绑定，只能通过命名参数和不定参数这两种形式访问函数的参数。
+
+- 不支持重复的命名参数。
+
+  在严格、非严格模式下，箭头函数都不支持重复的命名参数；而在传统函数的规定中，只有在严格模式下才不能有重复的命名参数。
+
+> 箭头函数有name属性，和其他函数的规则相同。
+
+##### 箭头函数的this绑定？
+
+箭头函数中没有this绑定，必须通过查找作用域链来决定其值。如果箭头函数被非箭头函数包含，则this绑定的是最近一层非箭头函数的this；否则，this的值会被设置为全局对象。并且，不能通过call()、apply()、bind()方法来改变this的值。
+
+
+
+### 事件
+
+#### 1. 描述事件捕获和事件冒泡的顺序。
+
+先从外向内捕获，然后从内向外冒泡。
+
+#### 2. 描述事件委派(delegation)的原理和优点。
+
+原理是在容器节点上绑定事件，利用冒泡，判断事件是否在匹配指定的选择器的节点上被触发。优点是只用绑定一次，不用对每个目标做绑定，还有对动态插入的节点也生效，无需重新绑定。
+
+#### 3. 有哪些触屏事件？
+
+touchstart，touchmove，touchend，touchcancel
+
+####  4. 为什么老版本的webkit的click事件有300ms延迟？
+
+为了支持双击放大，如果300ms以内有两次点击则触发放大操作，而不是click。chromium较新版本在没有双击放大的页面去掉了click事件的300ms延迟。
+
+
+
 #### 详述js异步机制Event Loop，MacroTask和MicroTask
+
 1个主线程+n个任务队列，浏览器异步处理后推入队列，循环处理，一个macroTask后跟全部microtask
 
 
@@ -252,37 +266,13 @@ console.log(5);
 
 
 
-#### 箭头函数
+### HTML&DOM
 
-##### 箭头函数与function函数有哪些不同？
+#### classList和dataset分别是什么？
 
-- 没有this、super、arguments和new.target绑定。
+classList类似className，区别是className是空格隔开的字符串，而classList是一个类数组对象，有add、remove、toggle方法。dataset是获取以data-开头的属性的方法。
 
-  箭头函数的这些值由外围最近一层非箭头函数决定。
+#### 描述history.pushState的作用。
 
-- 不能通过new关键字调用。
-
-  箭头函数没有[[Construct]]方法，所以不能被用作构造函数，如果通过new关键字调用会报错。
-
-- 没有原型。
-
-  由于不可以通过new关键字调用，因为没有构建原型的需求，所以箭头函数不存在prototype这个属性。
-
-- 不可以改变this的绑定。
-
-  函数内部的this值不可被改变，在函数的生命周期内始终保持一致。
-
-- 不支持arguments对象。
-
-  箭头函数没有arguments绑定，只能通过命名参数和不定参数这两种形式访问函数的参数。
-
-- 不支持重复的命名参数。
-
-  在严格、非严格模式下，箭头函数都不支持重复的命名参数；而在传统函数的规定中，只有在严格模式下才不能有重复的命名参数。
-
-> 箭头函数有name属性，和其他函数的规则相同。
-
-##### 箭头函数的this绑定？
-
-箭头函数中没有this绑定，必须通过查找作用域链来决定其值。如果箭头函数被非箭头函数包含，则this绑定的是最近一层非箭头函数的this；否则，this的值会被设置为全局对象。并且，不能通过call()、apply()、bind()方法来改变this的值。
+无刷新的新增一个历史记录，第一个参数是记录绑定的数据，第二个参数是标题(很多浏览器都忽略了)，第三个参数是新的URL。
 

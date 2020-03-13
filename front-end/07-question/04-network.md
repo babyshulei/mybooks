@@ -2,7 +2,7 @@
 
 ### 跨域问题
 
-#### Ajax 请求 同步？异步？
+#### 1. Ajax 请求 同步？异步？
 
 AJAX中根据async的值不同分为同步（async = false）和异步（async = true）两种执行方式；在W3C的教程中推荐使用异步执行。
 
@@ -16,7 +16,7 @@ AJAX中根据async的值不同分为同步（async = false）和异步（async =
 
 发出请求后，其他代码继续执行，Ajax请求不影响页面的加载和用户的操作。不影响用户体验。
 
-#### ajax请求过程，简单实现一个Ajax请求
+##### ajax请求过程，简单实现一个Ajax请求
 
 1. 创建XMLHttpRequest对象后，并设置**onreadystatechange的回调函数**。在回调函数中，通常我们只需通过readyState === 4判断请求是否完成，如果已完成，再根据status === 200判断是否是一个成功的响应。
 
@@ -59,7 +59,11 @@ request.open('GET', '/api/categories');
 request.send();
 ```
 
-####  ajax是否可以跨域，浏览器跨域问题的解决方案？
+##### ajax和jsonp哪个可以跨域，原理是什么？
+
+ajax默认无法跨域，xhr2新增的CORS让ajax也可以跨域，需要输出http头(Access-Control-Allow-Origin)。jsonp可以跨域， 原理是script元素的src可以跨域。
+
+#### 2. 浏览器跨域问题的解决方案？
 
 默认情况下，浏览器遵循**同源策略**，JavaScript在发送AJAX请求时，URL的域名必须和当前页面完全一致。
 
@@ -101,6 +105,8 @@ request.send();
 
     利用img标签的src属性发送请求，上报打点相关的数据。
 
+
+
 [前端常见跨域解决方案（全） - 个人文章- SegmentFault 思否](https://segmentfault.com/a/1190000011145364)
 
 [9种常见的前端跨域解决方案（详解） - 掘金](https://juejin.im/post/5d1ecb96f265da1b6d404433)
@@ -109,7 +115,9 @@ request.send();
 
 
 
-#### tcp三次握手，四次挥手
+### 网络请求
+
+#### 1. tcp三次握手，四次挥手
 
 所谓三次握手(Three-way Handshake)，是指建立一个 TCP 连接时，需要客户端和服务器总共发送3个包。
 
@@ -159,13 +167,13 @@ TCP 的连接的拆除需要发送四个包，因此称为四次挥手(Four-way 
 
   客户端等待了某个固定时间（两个最大段生命周期，2MSL，2 Maximum Segment Lifetime）之后，没有收到服务器端的 ACK ，认为服务器端已经正常关闭连接，于是自己也关闭连接，进入 `CLOSED` 状态。
 
-#### 详述输入url到页面渲染完成
+#### 2. 详述输入url到页面渲染完成
 
 域名解析-TCP分包-IP寻路-握手-滑动窗口传输-持久化连接-挥手-解析-构建dom树与cssom-构建渲染树-回流-重绘-渲染
 
 
 
-#### 浏览器如何缓存？
+#### 3. 浏览器如何缓存？
 
 ##### HTTP缓存机制
 
@@ -214,25 +222,30 @@ TCP 的连接的拆除需要发送四个包，因此称为四次挥手(Four-way 
 
 [彻底理解浏览器的缓存机制- 前端- 掘金](https://juejin.im/entry/5ad86c16f265da505a77dca4)
 
+#### 4. 为什么cookie的容量比localStorage小？
+
+因为cookie会附带在http请求的header里，如果容量大会有性能问题。
 
 
-#### 应用缓存原理？
 
-app cache
+#### 4. 应用缓存原理？
 
-CacheStorage
+- app cache
+- CacheStorage
+- Web Worker
+- Service Worker
 
-Web Worker
+##### 描述application cache更新的过程。
 
-Service Worker
+第一次访问缓存manifest文件里列的文件，之后访问先加载缓存，在后台加载manifest文件按字节对比看是否有变化，如果没变化则说明缓存未失效，否则在后台按列表更新缓存，在下一次刷新页面的时候使用新的资源。
+
+
 
 [浏览器缓存、CacheStorage、Web Worker 与Service Worker ...](https://github.com/youngwind/blog/issues/113)
 
 
 
-#### 正向代理，反向代理都是什么？如何实现？
-
-
+#### 5. 正向代理，反向代理都是什么？如何实现？
 
 
 
@@ -241,3 +254,4 @@ Service Worker
 ## 参考链接
 
 <https://segmentfault.com/a/1190000015580896>
+

@@ -1,6 +1,8 @@
 # 框架
 
-#### 详述Vue双向绑定原理
+### Vue
+
+#### 1. 详述Vue双向绑定原理
 
 语法糖，dom监听+模型监听
 
@@ -30,7 +32,7 @@
 
 
 
-#### 组件通信
+#### 2. 组件通信
 
 ##### props 和 $emit
 
@@ -38,15 +40,11 @@ props：单向数据流，完成父子组件的通信。
 
 子=>父： this.$emit
 
-
-
 ##### `$attrs` 和 `$listeners`
 
 上面这种组件通信的方式只适合直接的父子组件，也就是如果父组件A下面有子组件B，组件B下面有组件C，这时如果组件A直接想传递数据给组件C那就行不通了！ 只能是组件A通过 props 将数据传给组件B，然后组件B获取到组件A 传递过来的数据后再通过 props 将数据传给组件C。当然这种方式是非常复杂的，无关组件中的逻辑业务一种增多了，代码维护也没变得困难，再加上如果嵌套的层级越多逻辑也复杂，无关代码越多！
 
 针对这样一个问题，`Vue 2.4` 提供了`$attrs` 和 `$listeners` 来实现能够直接让组件A传递消息给组件C。
-
-
 
 ##### eventBus
 
@@ -54,11 +52,7 @@ props：单向数据流，完成父子组件的通信。
 
 ##### v-model
 
-
-
 ##### $parent 和 $children
-
-
 
 ##### vuex 状态管理
 
@@ -68,7 +62,7 @@ props：单向数据流，完成父子组件的通信。
 
 
 
-#### props双向绑定
+#### 3. props双向绑定
 
 <https://juejin.im/entry/5843abb1a22b9d007a97854c>
 
@@ -82,7 +76,7 @@ vue.runtime.js:593 [Vue warn]: Avoid mutating a prop directly since the value wi
 
 
 
-#### 引入cdn资源
+#### 4. 引入cdn资源
 
 https://segmentfault.com/a/1190000015709430
 减小打包体积，将公用的依赖放到cdn上，缓存一次就可以。
@@ -137,3 +131,4 @@ import VueRouter from 'vue-router'
 ## 参考链接
 
 <https://segmentfault.com/a/1190000015580896>
+

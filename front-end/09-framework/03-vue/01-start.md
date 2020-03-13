@@ -260,7 +260,13 @@ module.exports = {
 
 ### dev环境配置
 
+添加报错处理：
+
 添加 friendly-errors-webpack-plugin, portfinder, node-notifier
+
+```shell
+npm i friendly-errors-webpack-plugin portfinder node-notifier -D
+```
 
 ```javascript
 // webpack.dev.js
@@ -486,6 +492,60 @@ exports.styleLoaders = function (options) {
 }
 ```
 
+#### html loader
+
+```shell
+npm i html-loader -D
+```
+
+```javascript
+// webpack.base.js
+// ...
+module.exports = {
+    // ...
+    module: {
+        rules: [
+            // ...
+            {
+                test: /\.html$/,
+                loader: 'html-loader',
+                options: {
+                    minimize: true
+                }
+            },
+        ],
+    },
+};
+```
+
+
+
+#### babel
+
+```shell
+npm i @babel/core @babel/preset-env babel-loader -D
+```
+
+```javascript
+// webpack.base.js
+// ...
+module.exports = {
+    // ...
+    module: {
+        rules: [
+            // ...
+            {
+                test: /\.(js)$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+            },
+        ],
+    },
+};
+```
+
+
+
 #### 图片，文字loader
 
 解析图片，字体等可以用 file-loader 或 url-loader。
@@ -503,15 +563,11 @@ module.exports = {
         rules: [
             {
                 test: /\.(png|jpg|svg|gif)$/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            limit: 5000,
-                            name: 'imgs/[name].[ext]',
-                        },
-                    },
-                ],
+                loader: 'url-loader',
+                options: {
+                	limit: 5000,
+                    name: 'imgs/[name].[ext]',
+                },
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -525,6 +581,8 @@ module.exports = {
     },
 };
 ```
+
+
 
 ### 添加 vue-router
 
@@ -700,6 +758,37 @@ new Vue({
 
 
 
+### 填坑
+
+#### dev环境配置了报错处理后，报错未正常展示
+
+查看配置，应该是没问题的，依赖也已经安装。
+
+排查定位到notifier.notify() 这个方法未正常调用。查看node-notifier包的相关信息：[npm包](https://www.npmjs.com/package/node-notifier)，[GitHub](https://github.com/mikaelbr/node-notifier)。
+
+notifier.notify()方法可以传一个回调，打印发现报错：
+
+```shell
+notifier Error: not found: notify-send
+```
+
+原来是这个方法需要调用notify-send，目标是桌面通知。需要系统支持。
+
+参考：[Notify-send - Alexey Vaskovsky](http://vaskovsky.net/notify-send/linux.html)
+
+包简介也有写Requirements：
+
+- **macOS**: >= 10.8 for native notifications, or Growl if earlier.
+- **Linux**: `notify-osd` or `libnotify-bin` installed (Ubuntu should have this by default)
+- **Windows**: >= 8, or task bar balloons for Windows < 8. Growl as fallback. Growl takes precedence over Windows balloons.
+- **General Fallback**: Growl
+
+so.....感觉没必要，就直接把error打印出来就好了。
+
+解决方案：添加 console.log(error);
+
+
+
 ## 参考链接
 
 [官方|webpack指南](https://webpack.docschina.org/concepts/)
@@ -710,7 +799,9 @@ new Vue({
 
 [从零开始Webpack 4 配置Vue项目- 张琳琳个人网站](https://zhanglinlin.site/2019/06/27/vue-init/)
 
-[Webpack4.x 初步配置vue 项目| Vue.js 技术论坛 - LearnKu 社区](https://learnku.com/vuejs/t/23365)
+[Webpack4.x 初步配置vue 项目|实例](https://learnku.com/vuejs/t/23365)
 
 [使用 Vue2.x + webpack4.x 从零开始一步步搭建项目框架](https://blog.csdn.net/Dandelion_drq/article/details/83623603)
+
+[分析vue-cli@2.9.3 搭建的webpack项目工程- 掘金](https://juejin.im/post/5b1df3d76fb9a01e6c0b439b)
 
