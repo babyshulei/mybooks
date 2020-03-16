@@ -17,3 +17,8 @@ vuex：<https://vuex.vuejs.org/zh-cn/>
 nuxt.js： <https://zh.nuxtjs.org/>
 
 VuePress主题：<https://vuepress.vuejs.org/zh/guide/>
+
+
+
+[参考笔记](https://babyshulei.github.io/mybooks/vue/01-base/)
+

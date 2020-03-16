@@ -164,7 +164,7 @@ App.vue内写路由导航：
 
 效果：
 
-![子路由效果](../images/demos-children.png)
+![子路由效果](./images/demos-children.png)
 
 ## 3. vue-router 如何参数传递
 
@@ -212,7 +212,7 @@ b. 模板里 App.vue 用 `$route.name` 的形式接收。
 
 效果：
 
-![用name传参](../images/demos-name.png)
+![用name传参](./images/demos-name.png)
 
 ### 2) 通过\<router-link\> 标签中的to传参
 
@@ -252,7 +252,7 @@ b. 在路由对应模板里，可以使用传进的参数。$route.params.cate
 
 效果：
 
-![1562234781878](../images/demos-params.png)
+![1562234781878](./images/demos-params.png)
 
 ## 4. 单页面多路由区域操作
 
@@ -307,7 +307,7 @@ b. 在路由对应模板里，可以使用传进的参数。$route.params.cate
 
 效果：
 
-![单页面多路由](../images/demos-multi.png)
+![单页面多路由](./images/demos-multi.png)
 
 ## 5. vue-router 利用url传递参数
 
@@ -349,7 +349,7 @@ c. 通过url传参
 
 效果：
 
-![1562297770188](../images/demos-url-params.png)
+![1562297770188](./images/demos-url-params.png)
 
 **正则表达式在URL传值中的应用**
 

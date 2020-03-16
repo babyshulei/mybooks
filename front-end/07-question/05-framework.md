@@ -128,6 +128,28 @@ import VueRouter from 'vue-router'
 
 
 
+#### 5. computed和watch的区别
+
+- computed：计算属性，由data/props中的已知值，计算得到的一个新值。依赖其他数据的变化。
+
+  生成一个惰性的watcher，只有在取值操作(getter触发)时收集依赖且计算值
+  当有依赖变动时仅将 dirty 置为 true，不做计算操作
+  当有取值操作时，根据自身标记 dirty 属性返回上一次计算结果/重新计算值
+
+- watch：监听某个数据的变化，支持深度监听。
+
+  生成一个watcher对象，在监视的属性每次变动时都会触发回调。
+
+适用场景：
+
+computed：一个数据受多个数据影响
+
+watch：一个数据影响多个数据
+
+
+
+
+
 ## 参考链接
 
 <https://segmentfault.com/a/1190000015580896>
