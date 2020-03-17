@@ -686,7 +686,8 @@ npm i -D stylelint stylelint-config-standard
     // ...
     "scripts": {
         // ...
-        "stylelint": "stylelint src/**/*.css src/**/*.vue"
+        "stylelint": "stylelint src/**/*.css src/**/*.vue",
+        "stylelintfix": "stylelint src/**/*.css src/**/*.vue --fix"
     },
 }
 ```
@@ -717,11 +718,11 @@ module.exports = {
 1. 全局安装最新的eslint
 
 ```shell
-npm i -g eslint
+npm i -g eslint@latest
 eslint --init
 ```
 
-2. 本地安装最新eslint
+2. 本地安装eslint
 
 ```shell
 npm i -D eslint
@@ -742,7 +743,7 @@ module.exports = {
     // consider switching to `plugin:vue/strongly-recommended`
     // or `plugin:vue/recommended` for stricter rules.
     extends: [
-        'plugin:vue/strongly-recommended',
+        'plugin:vue/essential',
         '@vue/airbnb',
     ],
     // add your custom rules here
@@ -801,16 +802,172 @@ npm i eslint-plugin-vue babel-eslint @vue/cli-service @vue/cli-plugin-eslint @vu
     // ...
     "scripts": {
         // ...
-        "lint": "eslint --ext .js,.vue src"
+        "lint": "vue-cli-service lint"
     },
 }
 ```
 
+#### 不依赖vue-cli 3.0，安装eslint
 
+安装依赖
 
+```shell
+npm i babel-eslint eslint-config-airbnb-base eslint-friendly-formatter eslint-import-resolver-webpack eslint-loader eslint-plugin-import eslint-plugin-vue -D
+```
 
+package.json
 
+```json
+{
+    // ...
+    "scripts": {
+        // ...
+        "lint": "npm run eslint && npm run stylelint",
+        "eslint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
+        "eslintfix": "eslint --ext .js,.vue src test/unit test/e2e/specs --fix"
+    },
+}
+```
 
+.eslintrc.js
+
+```js
+// https://eslint.org/docs/user-guide/configuring
+
+module.exports = {
+    root: true,
+    parserOptions: {
+        parser: 'babel-eslint'
+    },
+    env: {
+        browser: true,
+    },
+    // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
+    // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
+    extends: [
+        'plugin:vue/strongly-recommended',
+        'airbnb-base',
+    ],
+    // required to lint *.vue files
+    plugins: [
+        'vue'
+    ],
+    // check if imports actually resolve
+    settings: {
+        'import/resolver': {
+            webpack: {
+                config: 'build/webpack.base.conf.js'
+            }
+        }
+    },
+    // add your custom rules here
+    rules: {
+        "indent": ["error", 4],
+        "vue/html-indent": ["error", 4],
+        // don't require .vue extension when importing
+        'import/extensions': [
+            'error',
+            'always',
+            {
+                js: 'never',
+                vue: 'never'
+            }
+        ],
+        // disallow reassignment of function parameters
+        // disallow parameter object manipulation except for specific exclusions
+        'no-param-reassign': [
+            'error',
+            {
+                props: true,
+                ignorePropertyModificationsFor: [
+                    'state', // for vuex state
+                    'acc', // for reduce accumulators
+                    'e' // for e.returnvalue
+                ]
+            }
+        ],
+        // allow optionalDependencies
+        'import/no-extraneous-dependencies': [
+            'error',
+            {
+                optionalDependencies: ['test/unit/index.js']
+            }
+        ],
+        // allow debugger during development
+        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        'arrow-parens': 1,
+        'arrow-body-style': 1,
+        "ignoreTemplateLiterals": true
+    }
+}
+```
+
+#### 如何忽略eslint
+
+某些场景想要忽略eslint，可以通过如下方案忽略：
+
+- 直接忽略整个文件、文件夹：添加`.eslintignore`文件，在里面添加想要忽略的文件or文件夹
+
+  ```
+  /build/
+  /config/
+  /*.js
+  /docs
+  /deploy
+  ```
+
+- 忽略下一行
+
+  ```js
+  // eslint-disable-next-line no-bitwise
+  ```
+
+  
+
+- 忽略整个文件
+
+  ```html
+  <!-- eslint-disable vue/no-use-v-if-with-v-for -->
+  ```
+
+  ```js
+  /* eslint-disable no-param-reassign */
+  ```
+
+### 添加gitHooks
+
+如果安装了`@vue/cli-service` ，也会安装 [`yorkie`](https://github.com/yyx990803/yorkie)，它会让你在 `package.json` 的 `gitHooks` 字段中方便地指定 Git hook：
+
+```
+{
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  }
+}
+```
+
+[`yorkie`](https://github.com/yyx990803/yorkie)是尤大fork自[`husky`](https://github.com/typicode/husky)，内置到了`@vue/cli`中。
+
+#### 引入依赖添加
+
+安装 husky依赖
+
+```shell
+npm i -D husky
+```
+
+package.json添加配置
+
+```json
+{
+    // ...
+	"husky": {
+    	"hooks": {
+      		"pre-commit": "npm run lint"
+    	}
+  	},
+}
+```
 
 
 
@@ -892,3 +1049,4 @@ so.....感觉没必要，就直接把error打印出来就好了。
 [Configuring ESLint - ESLint中文](https://cn.eslint.org/docs/user-guide/configuring)
 [VsCode保存时自动修复Eslint错误| 前端进阶积累 - 博客](http://obkoro1.com/web_accumulate/accumulate/tool/Eslint自动修复格式错误.html)
 
+[记一次gitHook带来的思考🤔 - 掘金](https://juejin.im/post/5cade280f265da035d0c63fb)
