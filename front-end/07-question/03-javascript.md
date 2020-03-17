@@ -189,6 +189,10 @@ touchstart，touchmove，touchend，touchcancel
 
 #### 详述js异步机制Event Loop，MacroTask和MicroTask
 
+[参考笔记](https://babyshulei.github.io/mybooks/javascript/15-event/01-event-loop.html)
+
+
+
 1个主线程+n个任务队列，浏览器异步处理后推入队列，循环处理，一个macroTask后跟全部microtask
 
 

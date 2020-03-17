@@ -44,6 +44,7 @@
     * [字符串和正则表达式](javascript/03-string/01-string-regexp.md)
 * [函数](javascript/04-function/README.md)
 * [对象](javascript/05-object/README.md)
+    * [浅拷贝、深拷贝](javascript/05-object/01-copy.md)
 * [解构](javascript/06-destructure/README.md)
 * [Symbol](javascript/07-symbol/README.md)
 * [Set集合与Map集合](javascript/08-set-map/README.md)
@@ -53,6 +54,8 @@
 * [Promise与异步编程](javascript/12-promise/README.md)
 * [代理(Proxy)和反射(Reflection)API](javascript/13-proxy-reflection/README.md)
 * [模块](javascript/14-module/README.md)
+* [事件](javascript/15-event/README.md)
+    * [Event Loop](javascript/15-event/01-event-loop.md)
 
 ## Vue
 * [原理](vue/01-base/README.md)
