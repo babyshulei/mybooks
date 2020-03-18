@@ -91,8 +91,6 @@ b.b在b自己的属性上找，b.a自己的属性里没找到则去b的原型即
 
 #### 4. 对象的浅拷贝、深拷贝
 
-![img](C:/develop/mybooks/front-end/07-question/images/js-copy.jpg)
-
 ##### 浅拷贝
 
 1. Object.assign()
@@ -116,10 +114,6 @@ b.b在b自己的属性上找，b.a自己的属性里没找到则去b的原型即
    - 相同的引用会被重复复制
 
 3. 函数库lodash
-
-[js 深拷贝vs 浅拷贝- 掘金](https://juejin.im/post/59ac1c4ef265da248e75892b)
-
-[浅拷贝与深拷贝- 掘金](https://juejin.im/post/5b5dcf8351882519790c9a2e)
 
 
 
