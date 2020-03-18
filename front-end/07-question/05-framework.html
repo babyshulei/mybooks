@@ -709,6 +709,25 @@
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.5.1" data-path="../../javascript/05-object/01-copy.html">
+            
+                <a href="../../javascript/05-object/01-copy.html">
+            
+                    
+                    浅拷贝、深拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="3.6" data-path="../../javascript/06-destructure/">
@@ -828,6 +847,38 @@
             
         </li>
     
+        <li class="chapter " data-level="3.15" data-path="../../javascript/15-event/">
+            
+                <a href="../../javascript/15-event/">
+            
+                    
+                    事件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.15.1" data-path="../../javascript/15-event/01-event-loop.html">
+            
+                <a href="../../javascript/15-event/01-event-loop.html">
+            
+                    
+                    Event Loop
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
     
         
@@ -840,7 +891,7 @@
                 <a href="../../vue/01-base/">
             
                     
-                    基础
+                    原理
             
                 </a>
             
@@ -944,12 +995,12 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="../../vue/02-vue-router/">
+        <li class="chapter " data-level="4.2" data-path="../../vue/02-practice/">
             
-                <a href="../../vue/02-vue-router/">
+                <a href="../../vue/02-practice/">
             
                     
-                    Vue Router
+                    实战
             
                 </a>
             
@@ -958,9 +1009,36 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.2.1" data-path="../../vue/02-vue-router/01-base/">
+        <li class="chapter " data-level="4.2.1" data-path="../../vue/02-practice/01-start.html">
             
-                <a href="../../vue/02-vue-router/01-base/">
+                <a href="../../vue/02-practice/01-start.html">
+            
+                    
+                    项目搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.2" data-path="../../vue/02-practice/02-vue-router/">
+            
+                <a href="../../vue/02-practice/02-vue-router/">
+            
+                    
+                    Vue-router
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.2.1" data-path="../../vue/02-practice/02-vue-router/01-base.html">
+            
+                <a href="../../vue/02-practice/02-vue-router/01-base.html">
             
                     
                     基础
@@ -971,9 +1049,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2.2" data-path="../../vue/02-vue-router/02-demos/">
+        <li class="chapter " data-level="4.2.2.2" data-path="../../vue/02-practice/02-vue-router/02-demos.html">
             
-                <a href="../../vue/02-vue-router/02-demos/">
+                <a href="../../vue/02-practice/02-vue-router/02-demos.html">
             
                     
                     实例
@@ -981,6 +1059,11 @@
                 </a>
             
 
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -2536,9 +2619,23 @@
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
+<h4 id="5-computed&#x548C;watch&#x7684;&#x533A;&#x522B;"><a name="5-computed&#x548C;watch&#x7684;&#x533A;&#x522B;" class="anchor-navigation-ex-anchor" href="#5-computed&#x548C;watch&#x7684;&#x533A;&#x522B;"><i class="fa fa-link" aria-hidden="true"></i></a>5. computed&#x548C;watch&#x7684;&#x533A;&#x522B;</h4>
+<ul>
+<li><p>computed&#xFF1A;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;&#xFF0C;&#x7531;data/props&#x4E2D;&#x7684;&#x5DF2;&#x77E5;&#x503C;&#xFF0C;&#x8BA1;&#x7B97;&#x5F97;&#x5230;&#x7684;&#x4E00;&#x4E2A;&#x65B0;&#x503C;&#x3002;&#x4F9D;&#x8D56;&#x5176;&#x4ED6;&#x6570;&#x636E;&#x7684;&#x53D8;&#x5316;&#x3002;</p>
+<p>&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x60F0;&#x6027;&#x7684;watcher&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x53D6;&#x503C;&#x64CD;&#x4F5C;(getter&#x89E6;&#x53D1;)&#x65F6;&#x6536;&#x96C6;&#x4F9D;&#x8D56;&#x4E14;&#x8BA1;&#x7B97;&#x503C;
+&#x5F53;&#x6709;&#x4F9D;&#x8D56;&#x53D8;&#x52A8;&#x65F6;&#x4EC5;&#x5C06; dirty &#x7F6E;&#x4E3A; true&#xFF0C;&#x4E0D;&#x505A;&#x8BA1;&#x7B97;&#x64CD;&#x4F5C;
+&#x5F53;&#x6709;&#x53D6;&#x503C;&#x64CD;&#x4F5C;&#x65F6;&#xFF0C;&#x6839;&#x636E;&#x81EA;&#x8EAB;&#x6807;&#x8BB0; dirty &#x5C5E;&#x6027;&#x8FD4;&#x56DE;&#x4E0A;&#x4E00;&#x6B21;&#x8BA1;&#x7B97;&#x7ED3;&#x679C;/&#x91CD;&#x65B0;&#x8BA1;&#x7B97;&#x503C;</p>
+</li>
+<li><p>watch&#xFF1A;&#x76D1;&#x542C;&#x67D0;&#x4E2A;&#x6570;&#x636E;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x652F;&#x6301;&#x6DF1;&#x5EA6;&#x76D1;&#x542C;&#x3002;</p>
+<p>&#x751F;&#x6210;&#x4E00;&#x4E2A;watcher&#x5BF9;&#x8C61;&#xFF0C;&#x5728;&#x76D1;&#x89C6;&#x7684;&#x5C5E;&#x6027;&#x6BCF;&#x6B21;&#x53D8;&#x52A8;&#x65F6;&#x90FD;&#x4F1A;&#x89E6;&#x53D1;&#x56DE;&#x8C03;&#x3002;</p>
+</li>
+</ul>
+<p>&#x9002;&#x7528;&#x573A;&#x666F;&#xFF1A;</p>
+<p>computed&#xFF1A;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x53D7;&#x591A;&#x4E2A;&#x6570;&#x636E;&#x5F71;&#x54CD;</p>
+<p>watch&#xFF1A;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5F71;&#x54CD;&#x591A;&#x4E2A;&#x6570;&#x636E;</p>
 <h2 id="&#x53C2;&#x8003;&#x94FE;&#x63A5;"><a name="&#x53C2;&#x8003;&#x94FE;&#x63A5;" class="anchor-navigation-ex-anchor" href="#&#x53C2;&#x8003;&#x94FE;&#x63A5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x53C2;&#x8003;&#x94FE;&#x63A5;</h2>
 <p><a href="https://segmentfault.com/a/1190000015580896" target="_blank">https://segmentfault.com/a/1190000015580896</a></p>
-<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2020-03-13 11:28:52</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2020-03-11 19:30:30</span></div></div>
+<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2020-03-16 19:42:24</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2020-03-11 19:30:30</span></div></div>
                                 
                                 </section>
                             
@@ -2581,7 +2678,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"框架","level":"2.8.5","depth":2,"next":{"title":"算法","level":"2.8.6","depth":2,"path":"front-end/07-question/06-alg.md","ref":"front-end/07-question/06-alg.md","articles":[]},"previous":{"title":"网络","level":"2.8.4","depth":2,"path":"front-end/07-question/04-network.md","ref":"front-end/07-question/04-network.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"front-end/07-question/05-framework.md","mtime":"2020-03-13T03:29:19.266Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-13T03:39:13.803Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"框架","level":"2.8.5","depth":2,"next":{"title":"算法","level":"2.8.6","depth":2,"path":"front-end/07-question/06-alg.md","ref":"front-end/07-question/06-alg.md","articles":[]},"previous":{"title":"网络","level":"2.8.4","depth":2,"path":"front-end/07-question/04-network.md","ref":"front-end/07-question/04-network.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"front-end/07-question/05-framework.md","mtime":"2020-03-18T06:30:10.055Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-18T06:30:17.400Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
