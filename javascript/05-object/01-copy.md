@@ -104,10 +104,12 @@ function cloneDeep(source) {
     let target = {};
     
     Object.keys(source).forEach((key) => {
-        if (typeof source[key] === 'object') {
-            target[key] = cloneDeep(source[key]);
-        } else {
-            target[key] = source[key];
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+            if (typeof source[key] === 'object') {
+                target[key] = cloneDeep(source[key]);
+            } else {
+                target[key] = source[key];
+            }
         }
     });
     
@@ -138,13 +140,43 @@ function cloneDeep(source) {
     let target = Array.isArray(source) ? [] : {};
     
     Object.keys(source).forEach((key) => {
-        if (isObject(source[key])) {
-            target[key] = cloneDeep(source[key]);
-        } else {
-            target[key] = source[key];
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+            if (isObject(source[key])) {
+                target[key] = cloneDeep(source[key]);
+            } else {
+                target[key] = source[key];
+            }
         }
     });
     
+    return target;
+}
+```
+
+##### 循环引用
+
+使用哈希表
+
+解决方案很简单，其实就是循环检测，我们设置一个数组或者哈希表存储已拷贝过的对象，当检测到当前对象已存在于哈希表中时，取出该值并返回即可。
+
+```js
+function cloneDeep(source, hash = new WeakMap()) {
+    if (!isObject(source)) return source; 
+    if (hash.has(source)) return hash.get(source); // 新增代码，查哈希表
+      
+    var target = Array.isArray(source) ? [] : {};
+    hash.set(source, target); // 新增代码，哈希表设值
+    
+    Object.keys(source).forEach((key) => {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+            if (isObject(source[key])) {
+                target[key] = cloneDeep(source[key], hash); // 新增代码，传入哈希表
+            } else {
+                target[key] = source[key];
+            }
+        }
+    });
+
     return target;
 }
 ```

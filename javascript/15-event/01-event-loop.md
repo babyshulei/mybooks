@@ -33,16 +33,16 @@ task也被称为macrotask，task队列还是比较好理解的，就是一个先
 > 此任务源用于对用户交互作出反应，例如键盘或鼠标输入。响应用户操作的事件（例如[click](https://w3c.github.io/uievents/#event-type-click)）必须使用task队列。
 
 > **网络任务源：**
-> 网络任务源被用来响应网络活动。
+> 网络任务源被用来响应网络活动。如XHR回调。
 
 > **history traversal任务源：**
 > 当调用history.back()等类似的api时，将任务插进task队列。
 
 task任务源非常宽泛，比如`ajax`的`onload`，`click`事件，基本上我们经常绑定的各种事件都是task任务源，还有数据库操作（IndexedDB ），需要注意的是`setTimeout`、`setInterval`、`setImmediate`也是task任务源。总结来说task任务源：
 
-- setTimeout
-- setInterval
-- setImmediate
+- setTimeout / setInterval / setImmediate
+- 事件回调
+- XHR回调
 - I/O
 - UI rendering
 
@@ -159,17 +159,23 @@ event loop会不断循环上面的步骤，概括说来：
 >    给environment settings object发一个[ rejected promises ](https://html.spec.whatwg.org/multipage/webappapis.html#notify-about-rejected-promises)的通知。
 >
 > 5. [清理IndexedDB的事务](https://w3c.github.io/IndexedDB/#cleanup-indexed-database-transactions)。
->
-> 6. 将microtask checkpoint的flag设为flase。
+>6. 将microtask checkpoint的flag设为flase。
+
+
 
 `microtask checkpoint`所做的就是执行microtask队列里的任务。什么时候会调用`microtask checkpoint`呢?
 
-- [当上下文执行栈为空时，执行一个microtask checkpoint。](https://html.spec.whatwg.org/multipage/webappapis.html#clean-up-after-running-a-callback)
-- 在event loop中（Microtasks: Perform a microtask checkpoint）执行checkpoint，也就是在运行task之后，更新渲染之前。
+- 在event loop中步骤（Microtasks: Perform a microtask checkpoint）执行checkpoint，也就是在运行task之后，更新渲染之前。
+- Calling scripts - [clean up after running a callback](https://html.spec.whatwg.org/multipage/webappapis.html#clean-up-after-running-a-callback)。在Calling scripts 的清理阶段，如果 javascript 执行栈为空时，执行一个microtask checkpoint。
+- 在requestAnimationFrame 的执行过程：[在执行 ](https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html)[animation frame callbacks ](https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html)[时，](https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html)[会](https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html)[唤起](https://heycam.github.io/webidl/)[callback](https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html)[（](https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html)[invoke the callback](https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html)[）](https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html)，[在唤起 ](https://heycam.github.io/webidl/)[callback ](https://heycam.github.io/webidl/)[的最后一步，会 ](https://heycam.github.io/webidl/)[clean up after running a callback](https://heycam.github.io/webidl/)，此时若满足 javascript 执行栈为空的条件，则执行 microtask。
+- Creating and inserting nodes
+- Parsing XML documents
+
+
 
 ### 执行栈
 
-
+javaScript是单线程，也就是说只有一个主线程，主线程有一个栈，每一个函数执行的时候，都会生成新的execution context（执行上下文），执行上下文会包含一些当前函数的参数、局部变量之类的信息，它会被推入栈中，running execution context（正在执行的上下文）始终处于栈的顶部。当函数执行完后，它的执行上下文会从栈弹出。
 
 
 
@@ -190,4 +196,6 @@ event loop会不断循环上面的步骤，概括说来：
 [从event loop规范探究javaScript异步及浏览器更新渲染时机 ...](https://github.com/aooy/blog/issues/5)
 
 [一次弄懂Event Loop（JS, NodeJs）-掘金](<https://juejin.im/post/5c3d8956e51d4511dc72c200>)
+
+[第 25 题：浏览器和Node 事件循环的区别](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/26)
 

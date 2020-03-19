@@ -23,20 +23,22 @@ f();
 
 输出undefined，因为变量定义会提前到函数开头(hoisting)。
 
-#####  什么是作用域链(scope chain)？可举例说明。
+##### 对照题：临时死区
 
-几个要点：作用域的范围是函数，函数嵌套函数，查找变量从内层函数依次向外层找，最后找不到在window上找。
+```js
+let value = 10;
 
-##### 什么是临时死区？为什么会出现？
-
-由于let 和 const 声明的变量不会被提升，如果在声明之前访问这些变量，会触发引用错误，即“临时死区”的场景出现。
-
-```javascript
-if (condition) {
-    console.log(typeof value); // 报错
+if (true) {
+    console.log(value);
     let value = 'blue';
 }
 ```
+
+由于let 和 const 声明的变量不会被提升，如果在声明之前访问这些变量，会触发引用错误，即“临时死区”的场景出现。
+
+#####  什么是作用域链(scope chain)？可举例说明。
+
+几个要点：作用域的范围是函数，函数嵌套函数，查找变量从内层函数依次向外层找，最后找不到在window上找。
 
 
 
@@ -114,6 +116,8 @@ b.b在b自己的属性上找，b.a自己的属性里没找到则去b的原型即
    - 相同的引用会被重复复制
 
 3. 函数库lodash
+
+[参考笔记](<https://babyshulei.github.io/mybooks/javascript/05-object/01-copy.html>)
 
 
 
