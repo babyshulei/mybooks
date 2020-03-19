@@ -73,12 +73,12 @@
         * [实例](vue/02-practice/02-vue-router/02-demos.md)
 
 ## 编程
-* [代码](programming/01-codding/README.md)
-    * [编程思想](programming/01-codding/01-programming.md)
-    * [节流防抖](programming/01-codding/02-throttle-debounce.md)
+* [编程思想](programming/01-thinking/README.md)
+    * [节流防抖](programming/01-thinking/01-throttle-debounce.md)
 * [设计模式](programming/02-design/README.md)
     * [MV*模式](programming/02-design/01-mvvm.md)
 * [算法](programming/03-algorithm/README.md)
+    * [二维数组的查找](programming/03-algorithm/01-for-offer/01-2d-matrix-search.md)
 
 ## 语言
 * [脚本语言](language/01-script/README.md)
