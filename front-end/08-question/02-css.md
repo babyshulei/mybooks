@@ -79,7 +79,11 @@ box-sizing: border-box | content-box;
 
 #### 5. inline、block、inline-block的区别是什么？
 
-inline元素和其他inline元素在同一行展示，宽度由内容决定，无法设置宽度；block元素在新行开始，默认宽度为容器的宽度，可以设置宽度；inline-block从外面看是inline，里面看是block，可以设置宽度。
+inline元素和其他inline元素在同一行展示，宽度由内容决定，无法设置宽度、高度；可以设置水平方向的margin和padding。
+
+block元素在新行开始，默认宽度为容器的宽度，可以设置宽度、高度；可以设置margin和padding。
+
+inline-block从外面看是inline，里面看是block，可以设置宽度、高度；可以设置margin和padding。
 
 
 
