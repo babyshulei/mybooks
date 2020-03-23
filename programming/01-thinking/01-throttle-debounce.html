@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>代码 · GitBook</title>
+        <title>节流防抖 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -73,10 +73,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="01-programming.html" />
+    <link rel="next" href="../02-design/" />
     
     
-    <link rel="prev" href="../../vue/02-practice/02-vue-router/02-demos.html" />
+    <link rel="prev" href="./" />
     
 
     </head>
@@ -1092,23 +1092,9 @@
         
         
     
-        <li class="chapter active" data-level="5.1" data-path="./">
+        <li class="chapter " data-level="5.1" data-path="./">
             
                 <a href="./">
-            
-                    
-                    代码
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="5.1.1" data-path="01-programming.html">
-            
-                <a href="01-programming.html">
             
                     
                     编程思想
@@ -1117,11 +1103,12 @@
             
 
             
-        </li>
+            <ul class="articles">
+                
     
-        <li class="chapter " data-level="5.1.2" data-path="02-throttle-debounce.html">
+        <li class="chapter active" data-level="5.1.1" data-path="01-throttle-debounce.html">
             
-                <a href="02-throttle-debounce.html">
+                <a href="01-throttle-debounce.html">
             
                     
                     节流防抖
@@ -1179,6 +1166,25 @@
                 </a>
             
 
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.3.1" data-path="../03-algorithm/01-for-offer/01-2d-matrix-search.html">
+            
+                <a href="../03-algorithm/01-for-offer/01-2d-matrix-search.html">
+            
+                    
+                    二维数组的查找
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -2545,7 +2551,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >代码</a>
+        <a href="../.." >节流防抖</a>
     </h1>
 </div>
 
@@ -2560,7 +2566,155 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2019-11-05 14:07:34</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2019-11-05 14:07:34</span></div></div>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#debounce-&#x548C;-throttle-&#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;"><b></b>Debounce &#x548C; Throttle &#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;</a></li><ul><li><span class="title-icon "></span><a href="#1-debounce"><b></b>1. debounce</a></li><li><span class="title-icon "></span><a href="#2-throttle"><b></b>2. throttle</a></li><li><span class="title-icon "></span><a href="#3-vue&#x4E2D;&#x4F7F;&#x7528;"><b></b>3. vue&#x4E2D;&#x4F7F;&#x7528;</a></li><ul><li><span class="title-icon "></span><a href="#&#x4E00;&#x4E9B;&#x5751;"><b></b>&#x4E00;&#x4E9B;&#x5751;</a></li></ul><li><span class="title-icon "></span><a href="#&#x53C2;&#x8003;&#x94FE;&#x63A5;"><b></b>&#x53C2;&#x8003;&#x94FE;&#x63A5;</a></li></ul></ul></div><a href="#debounce-&#x548C;-throttle-&#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="debounce-&#x548C;-throttle-&#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;"><a name="debounce-&#x548C;-throttle-&#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;" class="anchor-navigation-ex-anchor" href="#debounce-&#x548C;-throttle-&#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;"><i class="fa fa-link" aria-hidden="true"></i></a>Debounce &#x548C; Throttle &#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;</h1>
+<blockquote>
+<p>2019.08.08 @wsl</p>
+</blockquote>
+<p>Dom &#x4E0A;&#x6709;&#x4E9B;&#x4E8B;&#x4EF6;&#x4F1A;&#x9891;&#x7E41;&#x89E6;&#x53D1;&#xFF0C;&#x5982; mosemove, scroll, resize... &#x5982;&#x679C;&#x4E0D;&#x8FDB;&#x884C;&#x6027;&#x80FD;&#x4F18;&#x5316;&#xFF0C;&#x9891;&#x7E41;&#x89E6;&#x53D1;&#x4E8B;&#x4EF6;&#x56DE;&#x8C03;&#xFF0C;&#x5F88;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x9875;&#x9762;&#x5361;&#x987F;&#x3002;&#x4E3A;&#x89E3;&#x51B3;&#x8FD9;&#x7C7B;&#x95EE;&#x9898;&#xFF0C;&#x5E38;&#x4F7F;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#x5C31;&#x662F; <strong>throttle&#xFF08;&#x8282;&#x6D41;&#xFF09;</strong> &#x548C; <strong>debounce&#xFF08;&#x9632;&#x6296;&#xFF09;</strong>&#x3002; </p>
+<h2 id="1-debounce"><a name="1-debounce" class="anchor-navigation-ex-anchor" href="#1-debounce"><i class="fa fa-link" aria-hidden="true"></i></a>1. debounce</h2>
+<p>&#x5728;&#x67D0;&#x6BB5;&#x8FDE;&#x7EED;&#x65F6;&#x95F4;&#x5185;&#xFF0C;&#x5728;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x540E;&#x53EA;&#x6267;&#x884C;&#x4E00;&#x6B21;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">debounce</span>(<span class="hljs-params">func, wait</span>) </span>{
+    <span class="hljs-keyword">var</span> timer;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> context = <span class="hljs-keyword">this</span>,
+            args = <span class="hljs-built_in">arguments</span>;
+
+        clearTimeout(timer);
+
+        timer = setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            func.apply(context, args);
+        }, wait);
+    };
+}
+</code></pre>
+<p>&#x5C06; Debounce &#x5316;&#x540E;&#x7684;&#x95ED;&#x5305;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x9891;&#x7E41;&#x89E6;&#x53D1;&#x7684;&#x4E8B;&#x4EF6;&#x7684;&#x56DE;&#x8C03;&#xFF0C;&#x5176;&#x5B9E;&#x8FD8;&#x662F;&#x9891;&#x7E41;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#xFF0C;&#x8FD4;&#x56DE;&#x7684;&#x95ED;&#x5305;&#x51FD;&#x6570;&#x5185;&#x90E8;&#x901A;&#x8FC7;<code>clearTimeout()</code>&#xFF0C;&#x8BA9;&#x771F;&#x6B63;&#x9700;&#x8981;&#x6267;&#x884C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x4E0D;&#x6267;&#x884C;&#x4E86;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x8FDE;&#x7EED;&#x65F6;&#x95F4;&#x5185;&#xFF0C;&#x4E0D;&#x5728;&#x89E6;&#x53D1;&#x9891;&#x7E41;&#x4E8B;&#x4EF6;&#x540E;&#x7684;<code>delay</code>&#x79D2;&#x540E;&#xFF0C;&#x6267;&#x884C;&#x771F;&#x6B63;&#x7684;&#x56DE;&#x8C03;&#x3002;</p>
+<h2 id="2-throttle"><a name="2-throttle" class="anchor-navigation-ex-anchor" href="#2-throttle"><i class="fa fa-link" aria-hidden="true"></i></a>2. throttle</h2>
+<p><code>throttle</code>&#x5C31;&#x662F;&#x8BBE;&#x7F6E;<strong>&#x56FA;&#x5B9A;&#x7684;&#x51FD;&#x6570;&#x6267;&#x884C;&#x901F;&#x7387;</strong>&#xFF0C;&#x4ECE;&#x800C;&#x964D;&#x4F4E;&#x9891;&#x7E41;&#x4E8B;&#x4EF6;&#x56DE;&#x8C03;&#x7684;&#x6267;&#x884C;&#x6B21;&#x6570;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">throttle</span>(<span class="hljs-params">func, wait</span>) </span>{
+    <span class="hljs-keyword">var</span> lastTime,
+        timer;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> now = <span class="hljs-built_in">Date</span>.now(),
+            context = <span class="hljs-keyword">this</span>,
+            args = <span class="hljs-built_in">arguments</span>;
+
+        <span class="hljs-keyword">if</span> (lastTime &amp;&amp; now &lt; lastTime + wait) {
+            clearTimeout(timer);
+
+            timer = setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+                lastTime = now;
+                func.apply(context, args);
+            }, wait);
+        } <span class="hljs-keyword">else</span> {
+            lastTime = now;
+            func.apply(context, args);
+        }
+    };
+}
+</code></pre>
+<h2 id="3-vue&#x4E2D;&#x4F7F;&#x7528;"><a name="3-vue&#x4E2D;&#x4F7F;&#x7528;" class="anchor-navigation-ex-anchor" href="#3-vue&#x4E2D;&#x4F7F;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a>3. vue&#x4E2D;&#x4F7F;&#x7528;</h2>
+<pre><code class="lang-vue">&lt;template&gt;
+    &lt;div class=&quot;hello&quot;
+        @scroll=&quot;throttleScroll&quot;
+        @click=&quot;debounceClick&quot;
+    /&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { debounce, throttle } from &apos;@/utils/function&apos;;
+
+export default {
+    name: &quot;hello&quot;,
+    methods: {
+        throttleScroll: throttle(function () {
+            console.log(&apos;scroll&apos;);
+        }, 200),
+        debouceClick: debounce(function () {
+            console.log(&apos;click&apos;);
+        }, 200),
+    },
+};
+&lt;/script&gt;
+</code></pre>
+<h3 id="&#x4E00;&#x4E9B;&#x5751;"><a name="&#x4E00;&#x4E9B;&#x5751;" class="anchor-navigation-ex-anchor" href="#&#x4E00;&#x4E9B;&#x5751;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E00;&#x4E9B;&#x5751;</h3>
+<p><strong>1&#x3001;&#x7ED1;&#x5B9A;&#x4E0D;&#x4FBF;&#xFF1A;&#x901A;&#x8FC7;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x51FD;&#x6570;&#x4E2D; this &#x6307;&#x5411;&#x95EE;&#x9898;</strong></p>
+<p>&#x65E0;&#x6CD5;&#x76F4;&#x63A5;&#x7ED1;&#x5B9A;&#x5230; component &#x7684; methods &#x4E0A;&#xFF0C;&#x9996;&#x5148;&#x662F;&#x65E0;&#x6CD5;&#x4F7F;&#x7528;&#x5BF9;&#x8C61;&#x65B9;&#x6CD5;&#x7684;&#x7B80;&#x5199;&#x8BED;&#x6CD5;&#xFF0C;&#x5373;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  methods:{
+    methods1:throttle(()=&gt;{
+      <span class="hljs-comment">// &#x6CA1;&#x6709; this </span>
+      })
+  }
+}
+</code></pre>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;&#x628A; function &#x5B9A;&#x4E49;&#x7684;&#x65B9;&#x6CD5;&#x7684; this &#x6307;&#x5411;&#x5F53;&#x524D;&#x7EC4;&#x4EF6;&#x5B9E;&#x4F8B;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  methods:{
+    methods3:throttle(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-comment">// &#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x4F7F;&#x7528; this</span>
+    })
+  }
+}
+</code></pre>
+<p><strong>2&#x3001;&#x5B9E;&#x4F8B;&#x5171;&#x4EAB;&#xFF1A;&#x901A;&#x8FC7;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x95ED;&#x5305;&#x79C1;&#x7528;&#x53D8;&#x91CF;&#x88AB;&#x5171;&#x4EAB;&#x7684;&#x95EE;&#x9898;</strong></p>
+<pre><code class="lang-vue">&lt;template&gt;
+  &lt;div @click=&apos;click&apos;  v-text=&apos;num&apos;&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  export default {
+    name:&apos;com&apos;
+    data(){
+      return {
+        num: 1
+      }
+      },
+    methods:{
+      click:throttle(function(){
+        // &#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x4F7F;&#x7528; this
+        this.num+=1
+      },2000)
+      }
+  }
+&lt;/script&gt;
+// -----------
+&lt;template&gt;
+  &lt;com&gt;&lt;/com&gt;  
+  &lt;com&gt;&lt;/com&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  export default {
+    name:&apos;parent&apos;
+    component:{com}
+  }
+&lt;/script&gt;
+</code></pre>
+<p>&#x5982;&#x4E0A;&#xFF0C;com&#x7EC4;&#x4EF6;&#x7684;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;2s&#x89E6;&#x53D1;&#x4E00;&#x6B21;&#xFF0C;2s&#x5185;&#x540C;&#x65F6;&#x70B9;&#x51FB;&#x4E24;&#x4E2A;com&#x7EC4;&#x4EF6;&#xFF0C;&#x53EA;&#x6709;&#x7B2C;&#x4E00;&#x4E2A;&#x88AB;&#x70B9;&#x51FB;&#x7684;com&#x7EC4;&#x4EF6;&#x6267;&#x884C;&#x4E86;&#x51FD;&#x6570;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#xFF0C;throttle &#x5B9E;&#x9645;&#x4E0A;&#x53EA;&#x5728;<strong>&#x5B9A;&#x4E49;&#x7EC4;&#x4EF6;</strong>&#x7684;&#x65F6;&#x5019;&#x6267;&#x884C;&#x4E86;&#x4E00;&#x6B21;&#xFF0C;&#x8D4B;&#x503C;&#x7ED9; click &#xFF0C;&#x56E0;&#x6B64;&#x8FD9;&#x4E2A;&#x7EC4;&#x4EF6;&#x7684;&#x6240;&#x6709;&#x5B9E;&#x4F8B;&#x5171;&#x4EAB;&#x540C;&#x4E00;&#x4E2A;&#x9759;&#x6001;&#x7684; click &#x65B9;&#x6CD5;&#xFF0C;&#x5171;&#x4EAB;&#x4E86;&#x540C;&#x4E00;&#x4E2A; throttle &#x8FD4;&#x56DE;&#x7684;&#x95ED;&#x5305;&#x8BA1;&#x65F6;&#x5668;&#x3002;</p>
+<p>&#x76EE;&#x524D;&#x6765;&#x8BF4;&#xFF0C;&#x53EA;&#x8981;&#x8FD8;&#x662F;&#x60F3;&#x8981;&#x5C06;&#x65B9;&#x6CD5;&#x90FD;&#x9759;&#x6001;&#x5B9A;&#x4E49;&#x4E8E; methods &#x4E2D;&#x5C31;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</p>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;</p>
+<p>&#x5728;&#x7EC4;&#x4EF6;&#x5B9E;&#x4F8B;&#x5316;&#x7684;&#x65F6;&#x5019;&#x5728;&#x5404;&#x4E2A;&#x751F;&#x547D;&#x5468;&#x671F;&#x4E2D;&#x6216;&#x8005;<code>data</code>&#x51FD;&#x6570;&#x4E2D;&#x5B9A;&#x4E49;&#x65B9;&#x6CD5;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  data(){
+    <span class="hljs-keyword">const</span> click = throttle(()=&gt;<span class="hljs-keyword">this</span>.num+ =<span class="hljs-number">1</span>, <span class="hljs-number">1000</span>)
+    <span class="hljs-keyword">return</span> {
+      click,
+    }
+  },
+  mounted(){
+    <span class="hljs-comment">// &#x4E00;&#x4E2A;&#x989D;&#x5916;&#x7684;&#x597D;&#x5904;&#x662F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7BAD;&#x5934;&#x51FD;&#x6570; </span>
+       <span class="hljs-keyword">this</span>.click = throttle(()=&gt;<span class="hljs-keyword">this</span>.num+ =<span class="hljs-number">1</span>, <span class="hljs-number">1000</span>) 
+  }
+}
+</code></pre>
+<p>&#x4E0D;&#x8FC7;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x5931;&#x53BB;&#x4E86;&#x5728; methods &#x5B9A;&#x4E49;&#x51FD;&#x6570;&#x7684;&#x76F4;&#x89C2;&#x8FD9;&#x4E00;&#x70B9;&#xFF0C;&#x5176;&#x6B21;&#x662F;&#x5728;&#x8FD9;&#x4E24;&#x8005;&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9700;&#x8981;&#x8003;&#x8651;&#x5230;&#x751F;&#x547D;&#x5468;&#x671F;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x662F;&#x5426;&#x5728;&#x5B9A;&#x4E49;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x4F7F;&#x7528;&#x5230;&#x4E00;&#x4E9B;&#x8FD8;&#x672A;&#x521D;&#x59CB;&#x5316;&#x7684;&#x6570;&#x636E;&#x3002;</p>
+<h2 id="&#x53C2;&#x8003;&#x94FE;&#x63A5;"><a name="&#x53C2;&#x8003;&#x94FE;&#x63A5;" class="anchor-navigation-ex-anchor" href="#&#x53C2;&#x8003;&#x94FE;&#x63A5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x53C2;&#x8003;&#x94FE;&#x63A5;</h2>
+<p><a href="https://www.html.cn/doc/lodash/#_debouncefunc-wait0-options" target="_blank">Lodash&#x4E2D;&#x6587;&#x6587;&#x6863;</a></p>
+<p><a href="https://github.com/lishengzxc/bblog/issues/7#" target="_blank">Javascript &#x7684; Debounce &#x548C; Throttle &#x7684;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;</a></p>
+<p><a href="https://cn.vuejs.org/v2/guide/computed.html" target="_blank">vue-&#x8BA1;&#x7B97;&#x5C5E;&#x6027;&#x548C;&#x4FA6;&#x542C;&#x5668;</a></p>
+<p><a href="http://fszer.github.io/2018/01/21/vue&#x4E0E;throltte&#x7684;&#x5751;/" target="_blank">vue &#x4E0E; throttle &#x7684;&#x5751;</a></p>
+<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2020-03-19 21:59:20</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2020-03-19 21:59:20</span></div></div>
                                 
                                 </section>
                             
@@ -2587,12 +2741,12 @@
 
             
                 
-                <a href="../../vue/02-practice/02-vue-router/02-demos.html" class="navigation navigation-prev " aria-label="Previous page: 实例">
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 编程思想">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="01-programming.html" class="navigation navigation-next " aria-label="Next page: 编程思想">
+                <a href="../02-design/" class="navigation navigation-next " aria-label="Next page: 设计模式">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -2603,7 +2757,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"代码","level":"5.1","depth":1,"next":{"title":"编程思想","level":"5.1.1","depth":2,"path":"programming/01-codding/01-programming.md","ref":"programming/01-codding/01-programming.md","articles":[]},"previous":{"title":"实例","level":"4.2.2.2","depth":3,"path":"vue/02-practice/02-vue-router/02-demos.md","ref":"vue/02-practice/02-vue-router/02-demos.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"programming/01-codding/README.md","mtime":"2020-03-10T08:16:25.633Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-19T01:55:02.182Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"节流防抖","level":"5.1.1","depth":2,"next":{"title":"设计模式","level":"5.2","depth":1,"path":"programming/02-design/README.md","ref":"programming/02-design/README.md","articles":[{"title":"MV*模式","level":"5.2.1","depth":2,"path":"programming/02-design/01-mvvm.md","ref":"programming/02-design/01-mvvm.md","articles":[]}]},"previous":{"title":"编程思想","level":"5.1","depth":1,"path":"programming/01-thinking/README.md","ref":"programming/01-thinking/README.md","articles":[{"title":"节流防抖","level":"5.1.1","depth":2,"path":"programming/01-thinking/01-throttle-debounce.md","ref":"programming/01-thinking/01-throttle-debounce.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"programming/01-thinking/01-throttle-debounce.md","mtime":"2020-03-23T02:46:15.604Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-23T02:46:20.574Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
