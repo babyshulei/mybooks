@@ -79,6 +79,9 @@
     * [MV*模式](programming/02-design/01-mvvm.md)
 * [算法](programming/03-algorithm/README.md)
     * [二维数组的查找](programming/03-algorithm/01-for-offer/01-2d-matrix-search.md)
+    * [替换空格](programming/03-algorithm/01-for-offer/02-replace-space.md)
+    * [从尾到头打印链表](programming/03-algorithm/01-for-offer/03-linked-list.md)
+    * [重建二叉树](programming/03-algorithm/01-for-offer/04-build-tree.md)
 
 ## 语言
 * [脚本语言](language/01-script/README.md)
@@ -88,6 +91,14 @@
     * [模块](language/02-nodejs/02-module.md)
     * [异步I/O](language/02-nodejs/03-async-io.md)
     * [文件处理](language/02-nodejs/04-files.md)
+
+## 计算机
+* [数据结构](computer/data-structure/README.md)
+    * [树](computer/data-structure/tree.md)
+* [数据库](computer/database/README.md)
+    * [数据类型](computer/database/datatype.md)
+    * [HDFS](computer/database/hdfs.md)
+    * [Sequelize](computer/database/sequelize.md)
 
 ## HTTP
 * [第一章 了解Web及网络基础](http/01-understand-web/README.md)
