@@ -82,6 +82,7 @@
     * [替换空格](programming/03-algorithm/01-for-offer/02-replace-space.md)
     * [从尾到头打印链表](programming/03-algorithm/01-for-offer/03-linked-list.md)
     * [重建二叉树](programming/03-algorithm/01-for-offer/04-build-tree.md)
+    * [用两个栈实现队列](programming/03-algorithm/01-for-offer/05-stack-queue.md)
 
 ## 语言
 * [脚本语言](language/01-script/README.md)
