@@ -228,10 +228,10 @@ module.exports = {
 npm i html-webpack-plugin --save-dev
 ```
 
-
+html 解析也属于基本配置，归入 base
 
 ```javascript
-// webpack.dev.js
+// webpack.base.js
 
 // ...
 // html插件
@@ -264,7 +264,7 @@ module.exports = {
 
 ## 功能拓展
 
-### dev环境配置
+### 1. dev环境添加报错
 
 添加报错处理：
 
@@ -350,7 +350,7 @@ module.exports = new Promise((resolve, reject) => {
 });
 ```
 
-### 添加loader
+### 2. 添加loader
 
 #### css loader
 
@@ -514,7 +514,7 @@ module.exports = {
 
 
 
-### 添加 vue-router
+### 3. 添加 vue-router
 
 ```shell
 npm i vue-router -S
@@ -574,7 +574,7 @@ new Vue({
 });
 ```
 
-### 添加vuex
+### 4. 添加vuex
 
 安装vuex插件
 
@@ -650,26 +650,7 @@ new Vue({
 });
 ```
 
-## 打包优化
-
-### 解决每次打包，dist文件未清除
-
-- 安装 clean-webpack-plugin 插件
-
-```javascript
-// webpack.prod.js
-
-// 打包之前清除文件
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-// ...省略号
-plugins: [
-  new CleanWebpackPlugin(['dist/*'], {
-    root: path.resolve(__dirname, '../')
-  }),
-]
-```
-
-### 添加stylelint
+### 5. 添加stylelint
 
 1. 安装 stylelint相关包
 
@@ -713,7 +694,7 @@ module.exports = {
 };
 ```
 
-### 添加eslint
+### 6. 添加eslint
 
 1. 全局安装最新的eslint
 
@@ -934,7 +915,7 @@ module.exports = {
   /* eslint-disable no-param-reassign */
   ```
 
-### 添加gitHooks
+### 7. 添加gitHooks
 
 如果安装了`@vue/cli-service` ，也会安装 [`yorkie`](https://github.com/yyx990803/yorkie)，它会让你在 `package.json` 的 `gitHooks` 字段中方便地指定 Git hook：
 
@@ -967,6 +948,219 @@ package.json添加配置
     	}
   	},
 }
+```
+
+
+
+## 打包优化
+
+### 1. 解决每次打包，dist文件未清除
+
+安装 clean-webpack-plugin 插件
+
+```shell
+npm i clean-webpack-plugin -D
+```
+
+webpack.prod.js
+
+```javascript
+// 打包之前清除文件
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// ...
+plugins: [
+  new CleanWebpackPlugin(),
+]
+```
+
+
+
+### 2. 设置环境变量
+
+通过设置process.env.NODE_ENV 来区分线上和开发环境，便于配置文件的编写。
+
+首先安装 cross-env，用于跨平台设置NODE_ENV。
+
+```shell
+npm i -D cross-env
+```
+
+可以修改对应文件的相关配置了
+
+package.json
+
+```json
+{
+    "scripts": {
+        "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js"
+    },
+}
+```
+
+
+
+### 3. 分离css
+
+webpack4 中使用 mini-css-extract-plugin 插件来分离 css。
+
+```shell
+npm i mini-css-extract-plugin -D
+```
+
+webpack.prod.js
+
+```js
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// ...
+plugins: [
+  	new MiniCssExtractPlugin({
+    	filename: "css/[name].[hash].css",
+    	chunkFilename: 'css/[id].[hash].css'
+  	}),
+]
+```
+
+另外，还需将各个 css loader中的style-loader 替换为 MiniCssExtractPlugin。
+
+```js
+// webpack.base.js
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const devMode = process.env.NODE_ENV !== 'production';
+
+// ...
+module.exports = {
+    module: {
+        // ...
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    'css-loader',
+                ],
+            },
+        ],
+    },
+}
+```
+
+
+
+### 4. 使用happypack多进程加快编译进度
+
+需要安装 happypack和babel两件套
+
+```shell
+npm i -D happypack babel-loader @babel/core
+```
+
+开发生产环境可以都用，放到base配置里
+
+```js
+// webpack.base.js
+// 使用happypack
+const HappyPack = require('happypack');
+const os = require('os');
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+
+// ...
+module.exports = {
+    module: {
+        // ...
+		rules: [
+    		{
+                test: /\.css$/,
+                use: [
+                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    'css-loader',
+                ],
+            },
+		]
+    },
+    plugins: [
+        new HappyPack({
+            //用id来标识 happypack处理类文件
+            id: "happyBabel",
+            //如何处理用法和loader的配置一样
+            loaders: [
+                {
+                    loader: "babel-loader?cacheDirectory=true"
+                }
+            ],
+            //共享进程池
+            threadPool: happyThreadPool,
+            //允许 HappyPack 输出日志
+            verbose: true
+        }),
+    ]
+}
+```
+
+### 5. 分离不常变化的文件
+
+如 node_modules下引用的库
+
+```js
+module.exports = merge(baseWebpackConfig, {
+    optimization: {
+        splitChunks: {
+            chunks: 'all', // initial、async和all
+            minSize: 30000, // 形成一个新代码块最小的体积
+            maxAsyncRequests: 5, // 按需加载时候最大的并行请求数
+            maxInitialRequests: 3, // 最大初始化请求数
+            automaticNameDelimiter: '~', // 打包分割符
+            name: true,
+            cacheGroups: {
+                vendor: {
+                    // split `node_modules`目录下被打包的代码到 `page/vendor.js && .css` 没找到可打包文件的话，则没有。css需要依赖 `ExtractTextPlugin`
+                    test: /node_modules\//,
+                    name: 'vendor',
+                    priority: 10,
+                    enforce: true
+                }
+            }
+        }
+    },
+});
+```
+
+
+
+### 6. 压缩CSS和JS代码
+
+安装 optimize-css-assets-webpack-plugin 和 uglifyjs-webpack-plugin 插件。
+
+```shell
+npm i -D optimize-css-assets-webpack-plugin uglifyjs-webpack-plugin
+```
+
+修改prod配置文件
+
+```js
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+module.exports = merge(baseWebpackConfig, {
+    optimization: {
+        minimizer: [
+            // 压缩JS
+            new UglifyJsPlugin({
+                uglifyOptions: {
+                    compress: {
+                    	warnings: false, // 去除警告
+                    	drop_debugger: true, // 去除debugger
+                    	drop_console: true // 去除console.log
+                    },
+                },
+                cache: true, // 开启缓存
+                parallel: true, // 平行压缩
+                sourceMap: false // set to true if you want JS source maps
+            }),
+            // 压缩css
+            new OptimizeCSSAssetsPlugin({})
+        ]
+    },
+});
 ```
 
 
@@ -1050,3 +1244,8 @@ so.....感觉没必要，就直接把error打印出来就好了。
 [VsCode保存时自动修复Eslint错误| 前端进阶积累 - 博客](http://obkoro1.com/web_accumulate/accumulate/tool/Eslint自动修复格式错误.html)
 
 [记一次gitHook带来的思考🤔 - 掘金](https://juejin.im/post/5cade280f265da035d0c63fb)
+
+[Webpack 设置环境变量的误区- 掘金](https://juejin.im/post/5dfa36f9f265da33c90b47ef)
+
+[cross-env](https://www.npmjs.com/package/cross-env)
+
