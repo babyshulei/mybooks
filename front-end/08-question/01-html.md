@@ -1,12 +1,14 @@
 # HTML
 
-#### 1. 写出你了解的 HTML 标签，并把他们分一下类。
+## 标签
+
+### 1. 写出你了解的 HTML 标签，并把他们分一下类。
 
 详见笔记：[HTML标签](https://babyshulei.github.io/mybooks/front-end/03-html/01-tags.html)
 
 
 
-#### 2. i vs em？strong vs b？
+### 2. i vs em？strong vs b？
 
 **HTML元素 `<i>`** 用于表现因某些原因需要区分普通文本的一系列文本。例如技术术语、外文短语或是小说中人物的思想活动等，它的内容通常以斜体显示。
 
@@ -20,7 +22,7 @@
 
 
 
-#### 3. 什么是 DOCTYPE，DOCTYPE 有什么用？浏览器渲染模式？
+### 3. 什么是 DOCTYPE，DOCTYPE 有什么用？浏览器渲染模式？
 
 文档类型，一个文档类型标记是一种标准通用标记语言的文档类型声明，它的目的是要告诉标准通用标记语言解析器，它应该使用什么样的文档类型定义（DTD）来解析文档。Doctype还会对浏览器的渲染模式产生影响，不同的渲染模式会影响到浏览器对于 CSS 代码甚至 JavaScript 脚本的解析，所以Doctype是非常关键的，尤其是在 IE 系列浏览器中，由DOCTYPE 所决定的 HTML 页面的渲染模式至关重要。
 
@@ -40,7 +42,15 @@ HTML5提供的`<DOCTYPE html>`是标准模式，向后兼容的, 等同于开启
 
 
 
-#### 4. h5新特性
+### 4. HTML语义化
+
+语义化的含义就是用正确的标签做正确的事情，html语义化就是让页面的内容结构化，便于对浏览器、搜索引擎解析；在没有样式CCS情况下也以一种文档格式显示，并且是容易阅读的。搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于 SEO。使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。
+
+
+
+## HTML5
+
+### 1. h5新特性
 
 - 文件类型声明（<!DOCTYPE>）仅有一型：`<!DOCTYPE HTML>`。
 - 新的解析顺序：不再基于SGML。
@@ -62,11 +72,13 @@ HTML5提供的`<DOCTYPE html>`是标准模式，向后兼容的, 等同于开启
 
 
 
-#### 5. 你对 HTML DOM 是怎么理解的？
+## DOM
+
+### 1. 你对 HTML DOM 是怎么理解的？
 
 DOM: Document Object Module, 文档对象模型。我们通过JavaScript操作页面的元素，进行添加、移动、改变或移除的方法和属性, 都是DOM提供的。
 
-##### 什么是DOM节点？
+#### 什么是DOM节点？
 
 根据 W3C 的 HTML DOM 标准，HTML 文档中的所有内容都是节点：
 
@@ -76,13 +88,13 @@ DOM: Document Object Module, 文档对象模型。我们通过JavaScript操作�
 - 每个 HTML 属性是属性节点
 - 注释是注释节点
 
-##### 什么是 HTML DOM节点树？
+#### 什么是 HTML DOM节点树？
 
 HTML文本会被解析为DOM树, 树中的所有节点均可通过 JavaScript 进行访问。所有 HTML 元素（节点）均可被修改，也可以创建或删除节点。
 
 ![ct_htmltree](.\images\htmltree.gif)
 
-##### 节点的关系
+#### 节点的关系
 
 父（parent）、子（child）和同胞（sibling）等术语用于描述这些关系。父节点拥有子节点。同级的子节点被称为同胞（兄弟或姐妹）:
 
@@ -91,7 +103,7 @@ HTML文本会被解析为DOM树, 树中的所有节点均可通过 JavaScript �
 - 一个节点可拥有任意数量的子
 - 同胞是拥有相同父节点的节点
 
-##### 如何操作 DOM？
+### 2. 如何操作 DOM？
 
 ```javascript
 document.createElement('div');
@@ -117,7 +129,11 @@ parent.removeChild(node);
 parent.replaceChild(newChild, oldChild);
 ```
 
-##### DOM事件
+[总结js常用的dom操作（js的dom操作API）](https://www.haorooms.com/post/js_dom_api)
+
+
+
+### 3. DOM事件
 
 事件捕获：从外到内
 
@@ -143,24 +159,13 @@ event.target  //当前被点击的元素。在事件委托中，指的是【子�
 
 
 
-[总结js常用的dom操作（js的dom操作API）](https://www.haorooms.com/post/js_dom_api)
+### 4. classList和dataset分别是什么？
+
+classList类似className，区别是className是空格隔开的字符串，而classList是一个类数组对象，有add、remove、toggle方法。dataset是获取以data-开头的属性的方法。
 
 
 
-#### 6. HTML语义化
+### 5. 描述history.pushState的作用。
 
-语义化的含义就是用正确的标签做正确的事情，html语义化就是让页面的内容结构化，便于对浏览器、搜索引擎解析；在没有样式CCS情况下也以一种文档格式显示，并且是容易阅读的。搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于 SEO。使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。
-
-
-
-#### 从哪里了解 Web 标准的？
-
-- [WHATWG: Opera, Mozilla, Chrome 和 Safari](https://whatwg.org/)
-- [W3C: 微软](https://www.w3.org/)
-
-
-
-
-
-
+无刷新的新增一个历史记录，第一个参数是记录绑定的数据，第二个参数是标题(很多浏览器都忽略了)，第三个参数是新的URL。
 

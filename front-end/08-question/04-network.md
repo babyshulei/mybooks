@@ -1,8 +1,8 @@
 # 网络相关
 
-### 跨域问题
+## 跨域问题
 
-#### 1. Ajax 请求 同步？异步？
+### 1. Ajax 请求 同步？异步？
 
 AJAX中根据async的值不同分为同步（async = false）和异步（async = true）两种执行方式；在W3C的教程中推荐使用异步执行。
 
@@ -16,7 +16,7 @@ AJAX中根据async的值不同分为同步（async = false）和异步（async =
 
 发出请求后，其他代码继续执行，Ajax请求不影响页面的加载和用户的操作。不影响用户体验。
 
-##### ajax请求过程，简单实现一个Ajax请求
+#### ajax请求过程，简单实现一个Ajax请求
 
 1. 创建XMLHttpRequest对象后，并设置**onreadystatechange的回调函数**。在回调函数中，通常我们只需通过readyState === 4判断请求是否完成，如果已完成，再根据status === 200判断是否是一个成功的响应。
 
@@ -59,11 +59,11 @@ request.open('GET', '/api/categories');
 request.send();
 ```
 
-##### ajax和jsonp哪个可以跨域，原理是什么？
+#### ajax和jsonp哪个可以跨域，原理是什么？
 
 ajax默认无法跨域，xhr2新增的CORS让ajax也可以跨域，需要输出http头(Access-Control-Allow-Origin)。jsonp可以跨域， 原理是script元素的src可以跨域。
 
-#### 2. 浏览器跨域问题的解决方案？
+### 2. 浏览器跨域问题的解决方案？
 
 默认情况下，浏览器遵循**同源策略**，JavaScript在发送AJAX请求时，URL的域名必须和当前页面完全一致。
 
@@ -115,9 +115,9 @@ ajax默认无法跨域，xhr2新增的CORS让ajax也可以跨域，需要输出h
 
 
 
-### 网络请求
+## 网络请求
 
-#### 1. tcp三次握手，四次挥手
+### 1. tcp三次握手，四次挥手
 
 所谓三次握手(Three-way Handshake)，是指建立一个 TCP 连接时，需要客户端和服务器总共发送3个包。
 
@@ -167,15 +167,22 @@ TCP 的连接的拆除需要发送四个包，因此称为四次挥手(Four-way 
 
   客户端等待了某个固定时间（两个最大段生命周期，2MSL，2 Maximum Segment Lifetime）之后，没有收到服务器端的 ACK ，认为服务器端已经正常关闭连接，于是自己也关闭连接，进入 `CLOSED` 状态。
 
-#### 2. 详述输入url到页面渲染完成
+### 2. 详述输入url到页面渲染完成
 
 域名解析-TCP分包-IP寻路-握手-滑动窗口传输-持久化连接-挥手-解析-构建dom树与cssom-构建渲染树-回流-重绘-渲染
 
+- 域名（DNS）解析
+- TCP 连接
+- 发送HTTP请求
+- 服务端处理请求并返回HTTP报文
+- 浏览器解析渲染页面
+- 连接结束
 
 
-#### 3. 浏览器如何缓存？
 
-##### HTTP缓存机制
+### 3. 浏览器如何缓存？
+
+#### HTTP缓存机制
 
 浏览器与服务器通信的方式为应答模式，即是：浏览器发起HTTP请求 – 服务器响应该请求。那么浏览器第一次向服务器发起该请求后拿到请求结果，会根据响应报文中HTTP头的缓存标识，决定是否缓存结果，是则将请求结果和缓存标识存入浏览器缓存中。
 
@@ -222,30 +229,28 @@ TCP 的连接的拆除需要发送四个包，因此称为四次挥手(Four-way 
 
 [彻底理解浏览器的缓存机制- 前端- 掘金](https://juejin.im/entry/5ad86c16f265da505a77dca4)
 
-#### 4. 为什么cookie的容量比localStorage小？
+### 4. 为什么cookie的容量比localStorage小？
 
 因为cookie会附带在http请求的header里，如果容量大会有性能问题。
 
 
 
-#### 4. 应用缓存原理？
+### 4. 应用缓存原理？
 
 - app cache
 - CacheStorage
 - Web Worker
 - Service Worker
 
-##### 描述application cache更新的过程。
+#### 描述application cache更新的过程。
 
 第一次访问缓存manifest文件里列的文件，之后访问先加载缓存，在后台加载manifest文件按字节对比看是否有变化，如果没变化则说明缓存未失效，否则在后台按列表更新缓存，在下一次刷新页面的时候使用新的资源。
-
-
 
 [浏览器缓存、CacheStorage、Web Worker 与Service Worker ...](https://github.com/youngwind/blog/issues/113)
 
 
 
-#### 5. 正向代理，反向代理都是什么？如何实现？
+### 5. 正向代理，反向代理都是什么？如何实现？
 
 
 
