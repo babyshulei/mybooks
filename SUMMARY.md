@@ -87,6 +87,7 @@
     * [重建二叉树](programming/03-algorithm/01-for-offer/04-build-tree.md)
     * [用两个栈实现队列](programming/03-algorithm/01-for-offer/05-stack-queue.md)
     * [无重复字符的最长字符串](programming/03-algorithm/02-byte-dance/01-max-string.md)
+    * [最长公共前缀](programming/03-algorithm/02-byte-dance/02-max-pre.md)
 
 ## 语言
 * [脚本语言](language/01-script/README.md)
