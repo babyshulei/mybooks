@@ -26,11 +26,11 @@
 
   客户端发送一个 TCP 的 SYN 标志位置1的包，指明客户端打算连接的服务器的端口，以及初始序号 X,保存在包头的序列号(Sequence Number)字段里。
 
-  发送完毕后，客户端进入 `SYN_SEND` 状态。
+  发送完毕后，客户端进入 `SYN_SENT` 状态。
 
 - 第二次握手(SYN=1, ACK=1, seq=y, ACKnum=x+1):
 
-  服务器发回确认包(ACK)应答。即 SYN 标志位和 ACK 标志位均为1。服务器端选择自己 ISN 序列号，放到 Seq 域里，同时将确认序号(Acknowledgement Number)设置为客户的 ISN 加1，即X+1。 发送完毕后，服务器端进入 `SYN_RCVD` 状态。
+  服务器发回确认包(ACK)应答。即 SYN 标志位和 ACK 标志位均为1。服务器端选择自己 ISN 序列号，放到 Seq 域里，同时将确认序号(Acknowledgement Number)设置为客户的 ISN 加1，即X+1。 发送完毕后，服务器端进入 `SYN_RECEVIED` 状态。
 
 - 第三次握手(ACK=1，ACKnum=y+1)
 
@@ -108,3 +108,5 @@ TCP KeepAlive 的基本原理是，隔一段时间给连接对端发送一个探
 ## 参考链接
 
 [TCP 协议](https://hit-alibaba.github.io/interview/basic/network/TCP.html)
+
+[传输控制协议- 维基百科，自由的百科全书](https://zh.wikipedia.org/zh-hans/传输控制协议)
