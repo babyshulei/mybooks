@@ -494,6 +494,19 @@
             
         </li>
     
+        <li class="chapter " data-level="2.7.2.2" data-path="../../front-end/07-engineering/02-user-auth/02-role-control.html">
+            
+                <a href="../../front-end/07-engineering/02-user-auth/02-role-control.html">
+            
+                    
+                    权限管理
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -2799,7 +2812,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x76D1;&#x542C;dom&#x5143;&#x7D20;&#x53D8;&#x5316;"><b></b>&#x76D1;&#x542C;Dom&#x5143;&#x7D20;&#x53D8;&#x5316;</a></li><ul><li><span class="title-icon "></span><a href="#1-resize-&#x4E8B;&#x4EF6;"><b></b>1. resize &#x4E8B;&#x4EF6;</a></li><li><span class="title-icon "></span><a href="#2-mutationobserver"><b></b>2. MutationObserver</a></li><li><span class="title-icon "></span><a href="#3-resizeobserver"><b></b>3. ResizeObserver</a></li><li><span class="title-icon "></span><a href="#&#x53C2;&#x8003;&#x94FE;&#x63A5;"><b></b>&#x53C2;&#x8003;&#x94FE;&#x63A5;</a></li></ul></ul></div><a href="#&#x76D1;&#x542C;dom&#x5143;&#x7D20;&#x53D8;&#x5316;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x76D1;&#x542C;dom&#x5143;&#x7D20;&#x53D8;&#x5316;"><a name="&#x76D1;&#x542C;dom&#x5143;&#x7D20;&#x53D8;&#x5316;" class="anchor-navigation-ex-anchor" href="#&#x76D1;&#x542C;dom&#x5143;&#x7D20;&#x53D8;&#x5316;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x76D1;&#x542C;Dom&#x5143;&#x7D20;&#x53D8;&#x5316;</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x76D1;&#x542C;dom&#x5143;&#x7D20;&#x53D8;&#x5316;"><b></b>&#x76D1;&#x542C;Dom&#x5143;&#x7D20;&#x53D8;&#x5316;</a></li><ul><li><span class="title-icon "></span><a href="#1-resize-&#x4E8B;&#x4EF6;"><b></b>1. resize &#x4E8B;&#x4EF6;</a></li><li><span class="title-icon "></span><a href="#2-mutationobserver"><b></b>2. MutationObserver</a></li><li><span class="title-icon "></span><a href="#3-resizeobserver"><b></b>3. ResizeObserver</a></li><li><span class="title-icon "></span><a href="#4-&#x901A;&#x8FC7;scroll&#x4E8B;&#x4EF6;"><b></b>4. &#x901A;&#x8FC7;Scroll&#x4E8B;&#x4EF6;</a></li><li><span class="title-icon "></span><a href="#&#x53C2;&#x8003;&#x94FE;&#x63A5;"><b></b>&#x53C2;&#x8003;&#x94FE;&#x63A5;</a></li></ul></ul></div><a href="#&#x76D1;&#x542C;dom&#x5143;&#x7D20;&#x53D8;&#x5316;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x76D1;&#x542C;dom&#x5143;&#x7D20;&#x53D8;&#x5316;"><a name="&#x76D1;&#x542C;dom&#x5143;&#x7D20;&#x53D8;&#x5316;" class="anchor-navigation-ex-anchor" href="#&#x76D1;&#x542C;dom&#x5143;&#x7D20;&#x53D8;&#x5316;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x76D1;&#x542C;Dom&#x5143;&#x7D20;&#x53D8;&#x5316;</h1>
 <blockquote>
 <p>2019.08.14 @wsl</p>
 </blockquote>
@@ -2839,12 +2852,177 @@ resizeObserver.observe($el);
 </code></pre>
 <p><strong>&#x517C;&#x5BB9;&#x6027;&#xFF1A;</strong></p>
 <p>Chrome 64+, Opera 51+, Firefox &#x548C; IE &#x672A;&#x652F;&#x6301;&#x3002;</p>
+<h2 id="4-&#x901A;&#x8FC7;scroll&#x4E8B;&#x4EF6;"><a name="4-&#x901A;&#x8FC7;scroll&#x4E8B;&#x4EF6;" class="anchor-navigation-ex-anchor" href="#4-&#x901A;&#x8FC7;scroll&#x4E8B;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>4. &#x901A;&#x8FC7;Scroll&#x4E8B;&#x4EF6;</h2>
+<p>&#x672A;&#x652F;&#x6301;ResizeObserver&#x7684;&#x6D4F;&#x89C8;&#x5668;&#xFF0C;&#x53EF;&#x4EE5;&#x91C7;&#x7528;<a href="https://github.com/marcj/css-element-queries/blob/master/src/ResizeSensor.js" target="_blank">css-element-queries</a>&#x4E2D;&#x7684;&#x65B9;&#x6848;&#xFF0C;&#x539F;&#x7406;&#x662F;&#x5728;&#x88AB;&#x76D1;&#x6D4B;&#x5143;&#x7D20;&#x91CC;&#x5305;&#x88F9;&#x4E00;&#x4E2A;&#x8DDF;&#x5143;&#x7D20;&#x4F4D;&#x7F6E;&#x5927;&#x5C0F;&#x76F8;&#x540C;&#x7684;&#x9690;&#x85CF;&#x5757;&#x3002;&#x9690;&#x85CF;&#x5757;&#x53EF;&#x4EE5;&#x6EDA;&#x52A8;&#xFF0C;&#x5F53;&#x88AB;&#x76D1;&#x6D4B;&#x5143;&#x7D20;&#x5C3A;&#x5BF8;&#x53D8;&#x5316;&#x65F6;&#x89E6;&#x53D1;&#x9690;&#x85CF;&#x5757;&#x7684;&#x6EDA;&#x52A8;&#x4E8B;&#x4EF6;&#xFF0C;&#x8FBE;&#x5230;&#x76D1;&#x6D4B;&#x5143;&#x7D20;&#x5C3A;&#x5BF8;&#x53D8;&#x5316;&#x7684;&#x76EE;&#x7684;&#x3002;</p>
+<p>&#x6EDA;&#x52A8;&#x7684;&#x63CF;&#x8FF0;&#xFF1A;</p>
+<blockquote>
+<p>To scroll an element element to x,y optionally with a scroll behavior behavior (which is &quot;auto&quot; if omitted) means to:</p>
+<ol>
+<li>Let box be element&#x2019;s associated scrolling box.</li>
+<li><ul>
+<li><strong>If box has rightward overflow direction</strong> Let x be max(0, min(x, element scrolling area width - element padding edge width)).</li>
+<li>If box has leftward overflow direction Let x be min(0, max(x, element padding edge width - element scrolling area width)).</li>
+</ul>
+</li>
+<li><ul>
+<li><strong>If box has downward overflow direction</strong> Let y be max(0, min(y, element scrolling area height - element padding edge height)).</li>
+<li>If box has upward overflow direction Let y be min(0, max(y, element padding edge height - element scrolling area height)).</li>
+</ul>
+</li>
+<li>Let position be the scroll position box would have by aligning scrolling area x-coordinate x with the left of box and aligning scrolling area y-coordinate y with the top of box.</li>
+<li>If position is the <strong>same as</strong> box&#x2019;s current scroll position, and box does not have an ongoing smooth scroll, <strong>abort these steps</strong>.</li>
+<li><strong>Perform a scroll</strong> of box to position, element as the associated element and behavior as the scroll behavior.</li>
+</ol>
+</blockquote>
+<p>&#x6700;&#x540E;&#x4E00;&#x6B65;<a href="https://www.w3.org/TR/cssom-view-1/#perform-a-scroll" target="_blank">&#x201C;perform a scroll&#x201D;</a>&#x624D;&#x4F1A;&#x771F;&#x6B63;&#x89E6;&#x53D1;&#x6EDA;&#x52A8;&#x4E8B;&#x4EF6;&#x3002;</p>
+<p>&#x7B2C;&#x4E94;&#x6B65;&#x4FBF;&#x662F;&#x95EE;&#x9898;&#x5173;&#x952E;&#xFF0C;&#x4F4D;&#x7F6E;&#x76F8;&#x540C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6EDA;&#x52A8;&#x4E8B;&#x4EF6;&#x4E0D;&#x4F1A;&#x53D1;&#x751F;&#x3002;</p>
+<p><strong>&#x76D1;&#x6D4B;&#x5143;&#x7D20;&#x653E;&#x5927;&#xFF1A;</strong></p>
+<p>&#x9690;&#x85CF;&#x5757;&#x91CC;&#x9762;&#x6709;&#x4E00;&#x4E2A;&#x8FDC;&#x5927;&#x4E8E;&#x9690;&#x85CF;&#x5757;&#x7684;&#x5B50;&#x5143;&#x7D20;&#xFF0C;&#x5148;&#x8BA9;&#x5B50;&#x5143;&#x7D20;&#x6EDA;&#x5230;&#x6700;&#x5C3D;&#x5934;&#xFF0C;&#x90A3;&#x4E48; x &#x548C; y &#x8FBE;&#x5230;&#x4E86;&#x6700;&#x5927;&#x503C;&#x3002;&#x5F53;&#x5BB9;&#x5668;&#x5C3A;&#x5BF8;&#x53D8;&#x5927;&#x65F6;&#xFF0C;&#x56E0;&#x4E3A;&#x5B50;&#x5143;&#x7D20;&#x7684;&#x5C3A;&#x5BF8;&#x662F;&#x56FA;&#x5B9A;&#x7684;&#xFF0C;&#x6545; scrolling area &#x7684;&#x5927;&#x5C0F;&#x4E0D;&#x53D8;&#xFF0C;&#x6240;&#x4EE5;&#x4E24;&#x8005;&#x7684;&#x5DEE;&#x53D8;&#x5C0F;&#x4E86;&#xFF0C;x &#x548C; y &#x5F97;&#x5230;&#x65B0;&#x7684;&#x6700;&#x5C0F;&#x503C;&#xFF0C;&#x53D1;&#x751F;&#x4E86;&#x6EDA;&#x52A8;&#x3002;</p>
+<p><strong>&#x76D1;&#x6D4B;&#x5143;&#x7D20;&#x7F29;&#x5C0F;&#xFF1A;</strong></p>
+<p>&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x5BB9;&#x5668;&#x53D8;&#x5C0F;&#x65F6;&#xFF0C;&#x5DEE;&#x503C;&#x4E5F;&#x53D8;&#x5C0F;&#x3002;&#x90A3;&#x4E48;&#x53EA;&#x80FD;&#x662F;&#x8BA9; scrolling area &#x4E5F;&#x8DDF;&#x7740;&#x53D8;&#x5C0F;&#x4E86;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x767E;&#x5206;&#x6BD4;&#x5904;&#x7406;&#x3002;</p>
+<p>&#x8BBE;&#x767E;&#x5206;&#x6BD4;&#x4E3A;<code>n</code>&#xFF0C;&#x6EDA;&#x52A8;&#x524D;&#x5BB9;&#x5668;&#x5BBD;&#x5EA6;&#x4E3A;<code>x1</code>&#xFF0C;&#x6EDA;&#x52A8;&#x540E;&#x5BB9;&#x5668;&#x5BBD;&#x5EA6;&#x4E3A;<code>x2</code>&#xFF0C;&#x90A3;&#x4E48;&#x6709;&#x5B50;&#x5143;&#x7D20; <code>n*x1, n*x2</code>&#xFF0C;&#x56E0;&#x4E3A;&#x662F;&#x7F29;&#x5C0F;&#xFF0C;&#x6240;&#x4EE5;<code>x1&gt;x2</code>&#x3002;&#x82E5;&#x8981;&#x89E6;&#x53D1;&#x6EDA;&#x52A8;&#x4E8B;&#x4EF6;&#xFF0C;&#x9700;&#x8981;&#xFF1A;</p>
+<pre><code>n*x1 - x1 &gt; n*x2 -x2 &#x53EF;&#x5F97; (n-1)x1 &gt; (n-1)x2 &#x90A3;&#x4E48; n -1 &gt; 0 &#x5373; n &gt; 1
+</code></pre><p>&#x540C;&#x65F6;&#xFF0C;&#x671F;&#x671B;&#x5BB9;&#x5668;&#x8FBE;&#x5230;&#x6700;&#x5C0F;&#x65F6; x&#x548C;y&#x90FD;&#x6CA1;&#x6709;&#x8FBE;&#x5230;&#x6700;&#x5C0F;&#x503C;&#xFF0C;&#x5BB9;&#x5668;&#x4E3A;0&#x65F6;&#x65E0;&#x610F;&#x4E49;&#xFF0C;&#x6545;&#x8BBE;&#x6700;&#x5C0F;&#x4E3A;1&#xFF0C;&#x5219;&#xFF1A;</p>
+<pre><code>(n-1)*1 &gt;= 1 &#x53EF;&#x5F97; n &gt;= 2
+</code></pre><p>&#x6545;&#x53EA;&#x9700;&#x8BA9;&#x5B50;&#x5143;&#x7D20;&#x5927;&#x5C0F;&#x81F3;&#x5C11;&#x4E3A;200%&#x5C31;&#x53EF;&#x4EE5;&#x3002;</p>
+<p>&#x9690;&#x85CF;&#x5757;&#x91CC;&#x6709;&#x4E00;&#x4E2A;&#x5B50;&#x5143;&#x7D20;&#xFF0C;&#x5927;&#x5C0F;&#x4E3A;200%&#xFF0C;&#x4F4D;&#x7F6E;&#x5728;&#x6700;&#x5C3D;&#x5934;&#xFF0C;&#x6B64;&#x65F6;&#x9690;&#x85CF;&#x5757;&#x7F29;&#x5C0F;&#x65F6;&#xFF0C;&#x4F1A;&#x89E6;&#x53D1;&#x6EDA;&#x52A8;&#x4E8B;&#x4EF6;&#x3002;</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">utils__fontResizer</span>(<span class="hljs-params">callback</span>) </span>{
+    <span class="hljs-keyword">var</span> resizer,
+        expand,
+        shrink,
+        reset,
+        dirty,
+        rafId,
+        newWidth,
+        newHeight,
+        lastWidth,
+        lastHeight,
+        expandChild,
+        fontResizer,
+        resizeObserve,
+        onResized,
+        onScroll;
+
+    fontResizer = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&apos;div&apos;</span>);
+    fontResizer.innerText = <span class="hljs-string">&apos;&amp;nbsp;&amp;nbsp;&amp;nbsp;&apos;</span>;
+    fontResizer.classList.add(<span class="hljs-string">&apos;font-resizer&apos;</span>);
+    <span class="hljs-built_in">document</span>.body.appendChild(fontResizer);
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.ResizeObserver != <span class="hljs-literal">undefined</span>) {
+        resizeObserve = <span class="hljs-keyword">new</span> <span class="hljs-built_in">window</span>.ResizeObserver(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">entries</span>) </span>{
+            <span class="hljs-keyword">var</span> entry = entries[<span class="hljs-number">0</span>];
+            callback(entry);
+        });
+
+        resizeObserve.observe(fontResizer);
+    } <span class="hljs-keyword">else</span> {
+        fontResizer.html(tpl__fontResizer());
+
+        resizer = fontResizer.childNodes[<span class="hljs-number">0</span>];
+        expand = resizer.childNodes[<span class="hljs-number">0</span>];
+        expandChild = expand.childNodes[<span class="hljs-number">0</span>];
+        shrink = resizer.childNodes[<span class="hljs-number">1</span>];
+
+        lastWidth = fontResizer.offsetWidth;
+        lastHeight = fontResizer.offsetHeight;
+
+        reset = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            expandChild.style.width = <span class="hljs-string">&apos;100000px&apos;</span>;
+            expandChild.style.height = <span class="hljs-string">&apos;100000px&apos;</span>;
+
+            expand.scrollLeft = <span class="hljs-number">100000</span>;
+            expand.scrollTop = <span class="hljs-number">100000</span>;
+
+            shrink.scrollLeft = <span class="hljs-number">100000</span>;
+            shrink.scrollTop = <span class="hljs-number">100000</span>;
+        };
+
+        reset();
+
+        onResized = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            rafId = <span class="hljs-number">0</span>;
+
+            <span class="hljs-keyword">if</span> (!dirty) {
+                <span class="hljs-keyword">return</span>;
+            }
+
+            lastWidth = newWidth;
+            lastHeight = newHeight;
+            callback();
+        };
+
+        onScroll = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            newWidth = fontResizer.offsetWidth;
+            newHeight = fontResizer.offsetHeight;
+            dirty = newWidth !== lastWidth || newHeight !== lastHeight;
+
+            <span class="hljs-keyword">if</span> (dirty &amp;&amp; !rafId) {
+                rafId = requestAnimationFrame(onResized);
+            }
+
+            reset();
+        };
+        expand.addEventListener(<span class="hljs-string">&apos;scroll&apos;</span>, onScroll);
+        shrink.addEventListener(<span class="hljs-string">&apos;scroll&apos;</span>, onScroll);
+    }
+}
+</code></pre>
+<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- tpl__fontResizer() --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;resizer&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;resize-sensor-expand&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;resize-sensor-expand__child&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;resize-sensor-shrink&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;resize-sensor-shrink__child&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<pre><code class="lang-css"><span class="hljs-selector-class">.font-resizer</span> {
+    <span class="hljs-attribute">position</span>: absolute;
+    <span class="hljs-attribute">font-size</span>: inherit;
+    <span class="hljs-attribute">top</span>: -<span class="hljs-number">10000000px</span>;
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">1em</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">1em</span>;
+}
+
+<span class="hljs-selector-class">.resize-sensor-expand</span>,
+<span class="hljs-selector-class">.resize-sensor-shrink</span> {
+    <span class="hljs-attribute">position</span>: absolute;
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">overflow</span>: hidden;
+    <span class="hljs-attribute">z-index</span>: -<span class="hljs-number">1</span>;
+    <span class="hljs-attribute">visibility</span>: hidden;
+}
+
+<span class="hljs-selector-class">.resize-sensor-expand__child</span> {
+    <span class="hljs-attribute">position</span>: absolute;
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">transition</span>: <span class="hljs-number">0s</span>;
+}
+
+<span class="hljs-selector-class">.resize-sensor-shrink__child</span> {
+    <span class="hljs-attribute">position</span>: absolute;
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">200%</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">200%</span>;
+    <span class="hljs-attribute">transition</span>: <span class="hljs-number">0s</span>;
+}
+</code></pre>
 <h2 id="&#x53C2;&#x8003;&#x94FE;&#x63A5;"><a name="&#x53C2;&#x8003;&#x94FE;&#x63A5;" class="anchor-navigation-ex-anchor" href="#&#x53C2;&#x8003;&#x94FE;&#x63A5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x53C2;&#x8003;&#x94FE;&#x63A5;</h2>
 <p><a href="https://juejin.im/post/5c26d01a6fb9a049b07d6ce2" target="_blank">&#x6398;&#x91D1;-JS&#x600E;&#x4E48;&#x76D1;&#x542C;div&#x5143;&#x7D20;&#x7684;resize</a></p>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/resize_event" target="_blank">MDN-resize</a></p>
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver" target="_blank">MDN-MutationObserver</a></p>
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/ResizeObserver" target="_blank">MDN-ResizeObserver</a></p>
-<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2019-11-05 14:07:34</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2019-11-05 14:07:34</span></div></div>
+<p><a href="https://github.com/marcj/css-element-queries/blob/master/src/ResizeSensor.js" target="_blank">GitHub-ResizeSensor.js</a></p>
+<p><a href="https://libin1991.github.io/2019/01/01/JS&#x76D1;&#x542C;div&#x5143;&#x7D20;&#x7684;resize/" target="_blank">JS&#x76D1;&#x542C;div&#x5143;&#x7D20;&#x7684;resize | &#x5577;&#x54E9;&#x54AF;&#x5577;</a></p>
+<p><a href="https://blog.crimx.com/2017/07/15/element-onresize/" target="_blank">&#x5DE7;&#x5999;&#x76D1;&#x6D4B;&#x5143;&#x7D20;&#x5C3A;&#x5BF8;&#x53D8;&#x5316;</a></p>
+<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2020-04-07 19:33:46</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2019-11-05 14:07:34</span></div></div>
                                 
                                 </section>
                             
@@ -2887,7 +3065,7 @@ resizeObserver.observe($el);
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"监听元素变化","level":"3.1.1","depth":2,"next":{"title":"作用域","level":"3.2","depth":1,"path":"javascript/02-scope/README.md","ref":"javascript/02-scope/README.md","articles":[{"title":"块级作用域","level":"3.2.1","depth":2,"path":"javascript/02-scope/01-block-scope.md","ref":"javascript/02-scope/01-block-scope.md","articles":[]},{"title":"词法作用域","level":"3.2.2","depth":2,"path":"javascript/02-scope/02-lexical-scope.md","ref":"javascript/02-scope/02-lexical-scope.md","articles":[]}]},"previous":{"title":"实例","level":"3.1","depth":1,"path":"javascript/01-cases/README.md","ref":"javascript/01-cases/README.md","articles":[{"title":"监听元素变化","level":"3.1.1","depth":2,"path":"javascript/01-cases/01-resize-observer.md","ref":"javascript/01-cases/01-resize-observer.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"javascript/01-cases/01-resize-observer.md","mtime":"2020-03-10T08:16:25.631Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-07T10:37:15.718Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"监听元素变化","level":"3.1.1","depth":2,"next":{"title":"作用域","level":"3.2","depth":1,"path":"javascript/02-scope/README.md","ref":"javascript/02-scope/README.md","articles":[{"title":"块级作用域","level":"3.2.1","depth":2,"path":"javascript/02-scope/01-block-scope.md","ref":"javascript/02-scope/01-block-scope.md","articles":[]},{"title":"词法作用域","level":"3.2.2","depth":2,"path":"javascript/02-scope/02-lexical-scope.md","ref":"javascript/02-scope/02-lexical-scope.md","articles":[]}]},"previous":{"title":"实例","level":"3.1","depth":1,"path":"javascript/01-cases/README.md","ref":"javascript/01-cases/README.md","articles":[{"title":"监听元素变化","level":"3.1.1","depth":2,"path":"javascript/01-cases/01-resize-observer.md","ref":"javascript/01-cases/01-resize-observer.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"javascript/01-cases/01-resize-observer.md","mtime":"2020-04-07T11:34:00.321Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-07T11:34:06.646Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
