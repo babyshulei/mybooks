@@ -73,10 +73,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../08-question/" />
+    <link rel="next" href="../06-framework/" />
     
     
-    <link rel="prev" href="02-user-auth/02-role-control.html" />
+    <link rel="prev" href="05-cross-domain.html" />
     
 
     </head>
@@ -318,9 +318,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.5" data-path="../05-network/">
+        <li class="chapter " data-level="2.5" data-path="./">
             
-                <a href="../05-network/">
+                <a href="./">
             
                     
                     网络
@@ -332,9 +332,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.5.1" data-path="../05-network/01-tcp/">
+        <li class="chapter " data-level="2.5.1" data-path="01-tcp/">
             
-                <a href="../05-network/01-tcp/">
+                <a href="01-tcp/">
             
                     
                     TCP
@@ -346,9 +346,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.5.1.1" data-path="../05-network/01-tcp/01-congestion-control.html">
+        <li class="chapter " data-level="2.5.1.1" data-path="01-tcp/01-congestion-control.html">
             
-                <a href="../05-network/01-tcp/01-congestion-control.html">
+                <a href="01-tcp/01-congestion-control.html">
             
                     
                     拥塞控制
@@ -364,9 +364,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.5.2" data-path="../05-network/02-proxy/">
+        <li class="chapter " data-level="2.5.2" data-path="02-proxy/">
             
-                <a href="../05-network/02-proxy/">
+                <a href="02-proxy/">
             
                     
                     正向代理、反向代理
@@ -377,12 +377,51 @@
             
         </li>
     
-        <li class="chapter " data-level="2.5.3" data-path="../05-network/03-nginx/">
+        <li class="chapter " data-level="2.5.3" data-path="03-nginx/">
             
-                <a href="../05-network/03-nginx/">
+                <a href="03-nginx/">
             
                     
                     Nginx
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.4" data-path="04-ajax/">
+            
+                <a href="04-ajax/">
+            
+                    
+                    Ajax
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.5" data-path="05-cross-domain.html">
+            
+                <a href="05-cross-domain.html">
+            
+                    
+                    浏览器跨域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.5.6" data-path="06-url-webpage.html">
+            
+                <a href="06-url-webpage.html">
+            
+                    
+                    URL->网页
             
                 </a>
             
@@ -440,9 +479,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="./">
+        <li class="chapter " data-level="2.7" data-path="../07-engineering/">
             
-                <a href="./">
+                <a href="../07-engineering/">
             
                     
                     工程化
@@ -454,9 +493,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.7.1" data-path="01-image.html">
+        <li class="chapter " data-level="2.7.1" data-path="../07-engineering/01-image.html">
             
-                <a href="01-image.html">
+                <a href="../07-engineering/01-image.html">
             
                     
                     图片优化
@@ -467,9 +506,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7.2" data-path="02-user-auth/">
+        <li class="chapter " data-level="2.7.2" data-path="../07-engineering/02-user-auth/">
             
-                <a href="02-user-auth/">
+                <a href="../07-engineering/02-user-auth/">
             
                     
                     用户鉴权
@@ -481,9 +520,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.7.2.1" data-path="02-user-auth/01-cas.html">
+        <li class="chapter " data-level="2.7.2.1" data-path="../07-engineering/02-user-auth/01-cas.html">
             
-                <a href="02-user-auth/01-cas.html">
+                <a href="../07-engineering/02-user-auth/01-cas.html">
             
                     
                     CAS登录
@@ -494,9 +533,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7.2.2" data-path="02-user-auth/02-role-control.html">
+        <li class="chapter " data-level="2.7.2.2" data-path="../07-engineering/02-user-auth/02-role-control.html">
             
-                <a href="02-user-auth/02-role-control.html">
+                <a href="../07-engineering/02-user-auth/02-role-control.html">
             
                     
                     权限管理
@@ -509,19 +548,6 @@
     
 
             </ul>
-            
-        </li>
-    
-        <li class="chapter active" data-level="2.7.3" data-path="02-url-webpage.html">
-            
-                <a href="02-url-webpage.html">
-            
-                    
-                    URL->网页
-            
-                </a>
-            
-
             
         </li>
     
@@ -2833,7 +2859,7 @@
 <p><strong>&#x4E3B;&#x8981;&#x7EC4;&#x6210;&#x90E8;&#x5206;&#xFF1A;<code>protocol :// hostname[:port] / path / [;parameters][?query]#fragment</code></strong></p>
 <ul>
 <li>protocol&#xFF08;&#x534F;&#x8BAE;&#xFF09;</li>
-<li>hostname&#xFF08;&#x4E3B;&#x673A;&#x540D;&#xFF09;</li>
+<li>hostname&#xFF08;&#x4E3B;&#x673A;&#x540D;or&#x57DF;&#x540D;&#xFF09;</li>
 <li>port&#xFF08;&#x7AEF;&#x53E3;&#x53F7;&#xFF09;</li>
 <li>path&#xFF08;&#x8DEF;&#x5F84;&#xFF09;</li>
 <li>parameters&#xFF08;&#x53C2;&#x6570;&#xFF09;</li>
@@ -2972,7 +2998,7 @@
 <p><a href="https://juejin.im/post/5b148a2ce51d4506965908d2" target="_blank">&#x4ECE;&#x8F93;&#x5165;URL&#x5230;&#x9875;&#x9762;&#x5C55;&#x793A;&#xFF0C;&#x4F60;&#x60F3;&#x77E5;&#x9053;&#x4E9B;&#x4EC0;&#x4E48;&#xFF1F; - &#x6398;&#x91D1;</a></p>
 <p><a href="https://zh.wikipedia.org/zh-hans/&#x4F20;&#x8F93;&#x63A7;&#x5236;&#x534F;&#x8BAE;" target="_blank">&#x4F20;&#x8F93;&#x63A7;&#x5236;&#x534F;&#x8BAE;- &#x7EF4;&#x57FA;&#x767E;&#x79D1;&#xFF0C;&#x81EA;&#x7531;&#x7684;&#x767E;&#x79D1;&#x5168;&#x4E66;</a></p>
 <p><a href="https://dailc.github.io/2018/03/12/whenyouenteraurl.html" target="_blank">&#x4ECE;&#x8F93;&#x5165;URL&#x5230;&#x9875;&#x9762;&#x52A0;&#x8F7D;&#x7684;&#x8FC7;&#x7A0B;&#xFF1F;&#x5982;&#x4F55;&#x7531;&#x4E00;&#x9053;&#x9898;&#x5B8C;&#x5584;&#x81EA;&#x5DF1;&#x7684;&#x524D;&#x7AEF; ...</a></p>
-<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2020-04-08 16:54:30</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2020-04-08 16:54:30</span></div></div>
+<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2020-04-08 19:03:06</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2020-04-08 19:03:06</span></div></div>
                                 
                                 </section>
                             
@@ -2999,12 +3025,12 @@
 
             
                 
-                <a href="02-user-auth/02-role-control.html" class="navigation navigation-prev " aria-label="Previous page: 权限管理">
+                <a href="05-cross-domain.html" class="navigation navigation-prev " aria-label="Previous page: 浏览器跨域">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../08-question/" class="navigation navigation-next " aria-label="Next page: 面试">
+                <a href="../06-framework/" class="navigation navigation-next " aria-label="Next page: 框架">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -3015,7 +3041,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"URL->网页","level":"2.7.3","depth":2,"next":{"title":"面试","level":"2.8","depth":1,"path":"front-end/08-question/README.md","ref":"front-end/08-question/README.md","articles":[{"title":"HTML","level":"2.8.1","depth":2,"path":"front-end/08-question/01-html.md","ref":"front-end/08-question/01-html.md","articles":[]},{"title":"CSS","level":"2.8.2","depth":2,"path":"front-end/08-question/02-css.md","ref":"front-end/08-question/02-css.md","articles":[]},{"title":"JavaScript","level":"2.8.3","depth":2,"path":"front-end/08-question/03-javascript.md","ref":"front-end/08-question/03-javascript.md","articles":[]},{"title":"网络","level":"2.8.4","depth":2,"path":"front-end/08-question/04-network.md","ref":"front-end/08-question/04-network.md","articles":[]},{"title":"框架","level":"2.8.5","depth":2,"path":"front-end/08-question/05-framework.md","ref":"front-end/08-question/05-framework.md","articles":[]},{"title":"算法","level":"2.8.6","depth":2,"path":"front-end/08-question/06-alg.md","ref":"front-end/08-question/06-alg.md","articles":[]},{"title":"工程化","level":"2.8.7","depth":2,"path":"front-end/08-question/07-engineering.md","ref":"front-end/08-question/07-engineering.md","articles":[]}]},"previous":{"title":"权限管理","level":"2.7.2.2","depth":3,"path":"front-end/07-engineering/02-user-auth/02-role-control.md","ref":"front-end/07-engineering/02-user-auth/02-role-control.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"front-end/07-engineering/02-url-webpage.md","mtime":"2020-04-08T08:58:33.716Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-08T09:07:38.877Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"URL->网页","level":"2.5.6","depth":2,"next":{"title":"框架","level":"2.6","depth":1,"path":"front-end/06-framework/README.md","ref":"front-end/06-framework/README.md","articles":[{"title":"微信小程序","level":"2.6.1","depth":2,"path":"front-end/06-framework/01-wx-app/README.md","ref":"front-end/06-framework/01-wx-app/README.md","articles":[]},{"title":"Egg","level":"2.6.2","depth":2,"path":"front-end/06-framework/02-egg/README.md","ref":"front-end/06-framework/02-egg/README.md","articles":[]}]},"previous":{"title":"浏览器跨域","level":"2.5.5","depth":2,"path":"front-end/05-network/05-cross-domain.md","ref":"front-end/05-network/05-cross-domain.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"front-end/05-network/06-url-webpage.md","mtime":"2020-04-08T11:03:18.726Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-08T11:03:27.192Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
