@@ -18,15 +18,13 @@ Ajax 即“Asynchronous Javascript And XML”（异步 JavaScript 和 XML），�
 
 ### 发送请求&处理响应
 
-当创建了XMLHttpRequest对象后，要先设置**onreadystatechange的回调函数**。在回调函数中，通常我们只需通过readyState === 4判断请求是否完成，如果已完成，再根据status === 200判断是否是一个成功的响应。
+1. 创建XMLHttpRequest对象后，并设置**onreadystatechange的回调函数**。在回调函数中，通常我们只需通过readyState === 4判断请求是否完成，如果已完成，再根据status === 200判断是否是一个成功的响应。
 
-XMLHttpRequest对象的**open()方法**有3个参数，第一个参数指定是GET还是POST，第二个参数指定URL地址，第三个参数指定是否使用异步，默认是true。
+2. 初始化请求。xhr.open(method, url, async)，第一个参数指定是GET还是POST，第二个参数指定URL地址，第三个参数指定是否使用异步，默认是true。
 
-> 注意，千万不要把第三个参数指定为false，否则浏览器将停止响应，直到AJAX请求完成。如果这个请求耗时10秒，那么10秒内你会发现浏览器处于“假死”状态。
+   > 注意，千万不要把第三个参数指定为false，否则浏览器将停止响应，直到AJAX请求完成。如果这个请求耗时10秒，那么10秒内你会发现浏览器处于“假死”状态。
 
-最后调用**send()方法**才真正发送请求。GET请求不需要参数，POST请求需要把body部分以字符串或者FormData对象传进去。
-
-例子：
+3. 发送请求。xhr.send()。GET请求不需要参数，POST请求需要把body部分以字符串或者FormData对象传进去。
 
 ```javascript
 function success(text) {

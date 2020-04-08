@@ -20,7 +20,7 @@
 **主要组成部分：`protocol :// hostname[:port] / path / [;parameters][?query]#fragment`**
 
 - protocol（协议）
-- hostname（主机名）
+- hostname（主机名or域名）
 - port（端口号）
 - path（路径）
 - parameters（参数）
