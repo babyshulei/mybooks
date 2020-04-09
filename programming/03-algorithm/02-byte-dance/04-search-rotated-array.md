@@ -115,6 +115,73 @@ var search = function(nums, target) {
 
 直接进行二分查找法，明确左移和右移的规律。
 
+- nums[0] <= nums[mid] 时，即 0 - mid 不包含旋转，nums[0] <= target < nums[mid] 时，取前半段。
+- nums[0] > nums[mid]时，即 0-target 包含旋转，target < nums[mid] 时，即target < nums[mid]  < nums[0]，取前半段。
+- nums[0] > nums[mid]时，即 0-target 包含旋转，target >= nums[0] 时，即 target >= nums[0] > nums[mid]，  取前半段。
+- 其他情况取后半段。
+
+```js
+var search = function(nums, target) {
+    const len = nums.length;
+
+    let left = 0;
+    let right = len - 1;
+
+    while (left <= right) {
+        const mid = Math.floor((left + right) / 2);
+
+        if (target === nums[mid]) {
+            return mid;
+        }
+
+        if ((nums[left] <= target) && (target < nums[mid])
+            || (target < nums[mid]) && (nums[mid] < nums[left])
+            || (target >= nums[left]) && (nums[left] > nums[mid])) {
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        }
+    }
+
+    return -1;
+};
+```
+
+或者
+
+```js
+var search = function(nums, target) {
+    const len = nums.length;
+
+    let left = 0;
+    let right = len - 1;
+
+    while (left <= right) {
+        const mid = Math.floor((left + right) / 2);
+
+        if (target === nums[mid]) {
+            return mid;
+        }
+
+        if (nums[mid] >= nums[left]) {
+            if (target >= nums[left] && target < nums[mid]) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        } else {
+            if (target > nums[mid] && target <= nums[right]) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+    }
+
+    return -1;
+};
+```
+
 
 
 ## 参考链接
