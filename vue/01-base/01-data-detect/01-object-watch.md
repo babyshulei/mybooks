@@ -6,7 +6,7 @@
 
 变化侦测：状态变化时，需要重新渲染。变化侦测就是为了解决这个问题，有两种类型：push, pull。
 
-Angular 和 React 采用 pull，Vue.js 采用 push。pushpush 的优点是可以进行更细粒度的更新。从Vue.js 2.0开始，引入了虚拟DOM，将粒度调整为中等粒度，即组件。
+Angular 和 React 采用 pull，Vue.js 采用 push。push 的优点是可以进行更细粒度的更新。从Vue.js 2.0开始，引入了虚拟DOM，将粒度调整为中等粒度，即组件。
 
 侦测一个对象的变化有两种方法：Object.defineProperty 和 Proxy。
 

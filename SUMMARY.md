@@ -14,6 +14,7 @@
 * [HTML](front-end/03-html/README.md)
     * [HTML标签](front-end/03-html/01-tags.md)
     * [H5的History](front-end/03-html/02-history.md)
+    * [HTML5新特性](front-end/03-html/03-html5.md)
 * [工具](front-end/04-tools/README.md)
     * [webpack](front-end/04-tools/01-webpack/README.md)
 * [网络](front-end/05-network/README.md)
@@ -79,6 +80,7 @@
 * [Vue-router](vue/02-practice//02-vue-router/README.md)
     * [基础](vue/02-practice/02-vue-router/01-base.md)
     * [实例](vue/02-practice/02-vue-router/02-demos.md)
+* [Vue 3.0](vue/03-vue3.md)
 
 ## 编程
 * [编程思想](programming/01-thinking/README.md)

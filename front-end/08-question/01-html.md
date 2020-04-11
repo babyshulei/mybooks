@@ -52,23 +52,15 @@ HTML5提供的`<DOCTYPE html>`是标准模式，向后兼容的, 等同于开启
 
 ### 1. h5新特性
 
-- 文件类型声明（<!DOCTYPE>）仅有一型：`<!DOCTYPE HTML>`。
-- 新的解析顺序：不再基于SGML。
-- 新增标签：section, video, progress, nav, meter, time, aside, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, mark, output, rp, rt, ruby, source, summary, wbr。
-- input元素的新类型：date, email, url等等。
-- 新的属性：ping（用于a与area）, charset（用于meta）, async（用于script）。
-- 全域属性：id, tabindex, repeat。
-- 新的全域属性：contenteditable, contextmenu, draggable, dropzone, hidden, spellcheck。
-- 移除标签：acronym, applet, basefont, big, center, dir, font, frame, frameset, isindex, noframes, strike, tt。
-- 提供了新的API
-  - HTML Geolocation
-  - HTML Drag and Drop
-  - HTML Local Storage
-  - HTML Application Cache
-  - HTML Web Workers
-  - HTML SSE
-  - HTML Canvas/WebGL
-  - HTML Audio/Video
+- 文件类型声明（<!DOCTYPE>）仅有一型：`<!DOCTYPE html>`。
+- 新增标签：语义化标签、其他标签
+- canvas，svg
+- video，audio
+- localstorage，sessionStorage
+- xhr2
+- websockets
+
+[参见笔记](https://babyshulei.github.io/mybooks/front-end/03-html/03-html5.html)
 
 
 

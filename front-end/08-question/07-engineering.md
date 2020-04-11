@@ -29,11 +29,11 @@
 
 伪模块化，通过命名来区分模块，BEM命名规范。export, global+lint检查。
 
-CommonJs：同步加载模块，node.js采用该规范。require('module'); module.exports。服务端好用，浏览器端不建议。
+CommonJs：同步加载模块，node.js采用该规范。require('module'); module.exports。因为是同步加载，可能会造成阻塞，服务端可以用，浏览器端不建议。
 
 AMD：异步加载模块，define定义模块，require加载模块。依赖前置，提前执行，提前加载所有的依赖，然后才可以使用。
 
-CMD：异步加载模块。依赖就近，延迟执行，用到哪个依赖时加载哪个模块。
+CMD：异步加载模块。依赖就近，延迟执行，需要时再引用，用到哪个依赖时加载哪个模块。
 
 
 

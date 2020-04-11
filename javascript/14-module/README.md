@@ -167,7 +167,26 @@ import "./example.js";
 
 
 
-## 8. 加载模块
+## 8. 动态import
+
+关键字import可以像调用函数一样来动态的导入模块。以这种方式调用，将返回一个 `promise`。
+
+```js
+import('/modules/my-module.js')
+  .then((module) => {
+    // Do something with the module.
+  });
+```
+
+这种使用方式也支持 `await` 关键字。
+
+```js
+let module = await import('/modules/my-module.js');
+```
+
+
+
+## 9. 加载模块
 
 脚本加载方法：
 
@@ -204,3 +223,8 @@ let worker = new Worker("module.js", { type: "module" });
 - 以 ../ 开头的解析为从父目录开始。
 - URL 格式。
 
+
+
+## 参考链接
+
+[MDN | import](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/import)
