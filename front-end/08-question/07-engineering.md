@@ -19,3 +19,23 @@
 
 ### 1. webpack打包
 
+
+
+
+
+### 2. 前端模块化
+
+无模块化 -> CommonJs -> AMD -> CMD -> ES6 module
+
+伪模块化，通过命名来区分模块，BEM命名规范。export, global+lint检查。
+
+CommonJs：同步加载模块，node.js采用该规范。require('module'); module.exports。服务端好用，浏览器端不建议。
+
+AMD：异步加载模块，define定义模块，require加载模块。依赖前置，提前执行，提前加载所有的依赖，然后才可以使用。
+
+CMD：异步加载模块。依赖就近，延迟执行，用到哪个依赖时加载哪个模块。
+
+
+
+[参见笔记：模块](https://babyshulei.github.io/mybooks/javascript/14-module/)
+

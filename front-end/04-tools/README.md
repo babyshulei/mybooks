@@ -31,50 +31,6 @@
 
 无模块化-->CommonJS规范-->AMD规范-->CMD规范-->ES6模块化
 
-```javascript
-// CommonJS
-const moduleA = require('./moduleA');
-module.exports = moduleA.someFunc;
-```
-
-commonJS 可复用于Nodejs环境，方便做同构应用，无法直接运行在浏览器上，必须通过工具转换成ES5
-
-```javascript
-//AMD
-define('module', ['dep'], dep => {
-	return exports;
-});
-require(['module'], module => {
- 	// do Somethind
-});
-```
-
-AMD 采用异步的方式加载依赖，实现AMD的代表是 requirejs。
-
-AMD推崇依赖前置，在定义模块的时候就要声明其依赖的模块。
-
-```javascript
-// CMD
-define(function(require, exports, module) {
- 	let a = require('./a');
- 	a.doSomething();
- 	let b = require('./b');
- 	b.doSomething();
-});
-```
-
-CMD推崇就近依赖，只有在用到某个模块的时候再去require。
-
-```javascript
-// ES6 module
-import { readFile } from 'fs'
-import React from 'react'
-export function hello() {}
-export default { }
-```
-
-ES6 模块，ECMA 提出的JS模块规范，将来会成为主流。
-
 #### Framework
 
 - React  ( jsx )
@@ -245,10 +201,6 @@ export default {
 ## 参考链接
 
 [分享|Webpack 揭秘](https://docs.google.com/presentation/d/1X1ONpKuV0Bi0sU2Xems2rUufjTqp9CpB503uBCwE0U8/edit)
-
-[segmentfault|JavaScript模块化开发的演进历程](https://segmentfault.com/a/1190000011081338)
-
-[掘金|这一次，我要弄懂javascript的模块化](https://juejin.im/post/5b4420e7f265da0f4b7a7b27)
 
 [知乎|JavaScript 模块化入门Ⅰ：理解模块](https://zhuanlan.zhihu.com/p/22890374)
 
