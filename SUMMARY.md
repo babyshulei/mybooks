@@ -46,11 +46,10 @@
     * [工程化](front-end/08-question/07-engineering.md)
 
 ## JavaScript
-* [实例](javascript/01-cases/README.md)
-    * [监听元素变化](javascript/01-cases/01-resize-observer.md)
-* [作用域](javascript/02-scope/README.md)
-    * [块级作用域](javascript/02-scope/01-block-scope.md)
-    * [词法作用域](javascript/02-scope/02-lexical-scope.md)
+* [作用域](javascript/01-scope/README.md)
+    * [块级作用域](javascript/01-scope/01-block-scope.md)
+    * [词法作用域](javascript/01-scope/02-lexical-scope.md)
+* [Number](javascript/02-number/README.md)
 * [字符串](javascript/03-string/README.md)
     * [字符串和正则表达式](javascript/03-string/01-string-regexp.md)
 * [函数](javascript/04-function/README.md)
@@ -68,6 +67,8 @@
     * [模块的演进](javascript/14-module/01-module-history.md)
 * [事件](javascript/15-event/README.md)
     * [Event Loop](javascript/15-event/01-event-loop.md)
+* [实例](javascript/16-cases/README.md)
+    * [监听元素变化](javascript/16-cases/01-resize-observer.md)
 
 ## Vue
 * [数据侦测](vue/01-base/01-data-detect/README.md)
