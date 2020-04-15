@@ -126,3 +126,15 @@ ajax默认无法跨域，xhr2新增的CORS让ajax也可以跨域，需要输出h
 
 [参见笔记](https://babyshulei.github.io/mybooks/front-end/05-network/)
 
+
+
+### 7. HTTP 2.0
+
+- HTTP/2
+  - 基于 SPDY协议
+  - 帧、消息、流和TCP连接：连接复用，没有线头阻塞（二进制分帧，可以乱序发送）
+  - HPACK算法：HTTP头部压缩
+  - 服务器推送
+
+- **HTTP/3** 是即将到来的第三个主要版本的[HTTP](https://zh.wikipedia.org/wiki/HTTP)协议，使用于[万维网](https://zh.wikipedia.org/wiki/%E4%B8%87%E7%BB%B4%E7%BD%91)。在HTTP/3中，将弃用[TCP](https://zh.wikipedia.org/wiki/%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE)协议，改为使用基于[UDP](https://zh.wikipedia.org/wiki/%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%8A%A5%E5%8D%8F%E8%AE%AE)协议的[QUIC](https://zh.wikipedia.org/wiki/%E5%BF%AB%E9%80%9FUDP%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5)协议实现。QUIC（快速UDP网络连接）是一种实验性的[网络传输协议](https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE)，由[Google](https://zh.wikipedia.org/wiki/Google)开发，该协议旨在使网页传输更快。
+
