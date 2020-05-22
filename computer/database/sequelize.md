@@ -126,6 +126,14 @@ const list = await ctx.model.UserRoute.findAll({
 
 
 
+## 联表查询
+
+
+
+
+
+
+
 ## 参考链接
 
 官网：<https://sequelize.org/>
@@ -137,3 +145,6 @@ sequelize api reference: <https://sequelize.org/master/index.html>
 [使用Sequelize-廖雪峰](https://www.liaoxuefeng.com/wiki/1022910821149312/1101571555324224)
 
 [IT笔录-sequelize中文API文档](https://itbilu.com/nodejs/npm/V1PExztfb.html)
+
+[在EggJS中使用Sequelize做联表查询- 掘金](https://juejin.im/post/5cd7da8e51882568b5358a91)
+

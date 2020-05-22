@@ -181,3 +181,4 @@ RBAC1+RBAC2的集合体。即支持角色间的继承关系，又支持角色间
 [RBAC权限管理](https://blog.csdn.net/painsonline/article/details/7183613/)
 
 [SaaS产品用户权限管理-RBAC - 知乎](https://zhuanlan.zhihu.com/p/58891497)
+
