@@ -110,6 +110,7 @@ QUIC是基于UDP的传输层协议，全称 Quick UDP Internet Connections，用
 
 - 零RTT建立连接
 - 解决队头阻塞：packet为传输、加密单元；基于UDP，接收端没有处理顺序
+- 拥塞控制优化：热插拔、向前纠错、单调递增的Packet Number、ACK Delay的计算、更多的ACK块、流量控制
 
 #### 建立连接
 

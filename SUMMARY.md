@@ -100,8 +100,11 @@
     * [最长公共前缀](programming/03-algorithm/02-byte-dance/02-max-pre.md)
     * [三数之和](programming/03-algorithm/02-byte-dance/03-three-sum.md)
     * [搜索旋转排序数组](programming/03-algorithm/02-byte-dance/04-search-rotated-array.md)
+    * [有效的括号](programming/03-algorithm/05-leetcode/01-valid-parentheses.md)
+    * [合并两个有序链表](programming/03-algorithm/05-leetcode/02-merge-sorted-lists.md)
 
 ## 语言
+
 * [脚本语言](language/01-script/README.md)
 * [脚本语言](language/01-script/README.md)
     * [bash](language/01-script/01-bash.md)
