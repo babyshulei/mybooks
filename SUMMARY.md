@@ -96,6 +96,8 @@
     * [重建二叉树](programming/03-algorithm/01-for-offer/04-build-tree.md)
     * [用两个栈实现队列](programming/03-algorithm/01-for-offer/05-stack-queue.md)
     * [数组中重复的数据](programming/03-algorithm/01-for-offer/06-duplicates-in-array.md)
+    * [旋转数组的最小数字](programming/03-algorithm/01-for-offer/07-find-minimum.md)
+    * [裴波那契数列](programming/03-algorithm/01-for-offer/08-fibonacci-number.md)
     * [无重复字符的最长字符串](programming/03-algorithm/02-byte-dance/01-max-string.md)
     * [最长公共前缀](programming/03-algorithm/02-byte-dance/02-max-pre.md)
     * [三数之和](programming/03-algorithm/02-byte-dance/03-three-sum.md)
