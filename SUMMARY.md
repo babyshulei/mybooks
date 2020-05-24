@@ -86,6 +86,7 @@
 ## 编程
 * [编程思想](programming/01-thinking/README.md)
     * [节流防抖](programming/01-thinking/01-throttle-debounce.md)
+    * [函数柯里化](programming/01-thinking/02-curry.md)
 * [设计模式](programming/02-design/README.md)
     * [MV*模式](programming/02-design/01-mvvm.md)
 * [数据结构与算法](programming/03-algorithm/README.md)
