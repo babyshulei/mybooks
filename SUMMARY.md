@@ -112,14 +112,16 @@
 ## 语言
 
 * [脚本语言](language/01-script/README.md)
-* [脚本语言](language/01-script/README.md)
     * [bash](language/01-script/01-bash.md)
 * [Node.js](language/02-nodejs/01-start.md)
-    * [模块](language/02-nodejs/02-module.md)
-    * [异步I/O](language/02-nodejs/03-async-io.md)
-    * [文件处理](language/02-nodejs/04-files.md)
+    * [模块](language/02-nodejs/03-module/README.md)
+    * [异步I/O](language/02-nodejs/04-async-io/README.md)
+    * [文件处理](language/02-nodejs/02-api/01-files.md)
+
+
 
 ## 计算机
+
 * [数据结构](computer/data-structure/README.md)
     * [树](computer/data-structure/tree.md)
 * [数据库](computer/database/README.md)
