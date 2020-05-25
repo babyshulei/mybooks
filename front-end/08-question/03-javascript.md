@@ -30,11 +30,15 @@ let value = 10;
 
 if (true) {
     console.log(value);
-    let value = 'blue';
+    let value = 'blue'; // Uncaught ReferenceError: Cannot access 'value' before initialization
 }
 ```
 
 由于let 和 const 声明的变量不会被提升，如果在声明之前访问这些变量，会触发引用错误，即“临时死区”的场景出现。
+
+#### 临时死区是什么？为什么此时无法访问变量？
+
+JS引擎在扫描代码发现变量声明时，var声明会提升到作用域顶部，let/const声明会放到TDZ中。访问TDZ变量会触发运行时错误。只有执行过变量声明语句后，变量才会从TDZ中移出，然后方可正常访问。
 
 ####  什么是作用域链(scope chain)？可举例说明。
 
@@ -56,14 +60,14 @@ function B() {
 }
 ```
 
-B.prototype = new A; 
+B.prototype = new A(); 
 
 ### 2. 什么是原型链(prototype chain)？可举例说明。
 
 上一题的例子
 
 ```javascript
-var b = new B;
+var b = new B();
 // b.b == 2
 // b.a == 1
 ```
@@ -73,15 +77,29 @@ b.b在b自己的属性上找，b.a自己的属性里没找到则去b的原型即
 ### 3. 数组去重方法
 
 1. 利用for嵌套for，然后splice去重：双层循环，外层循环元素，内层循环时比较值。值相同时，则删去这个值。NaN, {} 没有去重，null会消失。
+
 2. indexOf()：NaN，{}没去重。
+
 3. sort()：利用sort()排序方法，然后根据排序后的结果进行遍历及相邻元素比对。NaN、{}没有去重。
+
 4. includes()：利用includes检测数组是否有某个值，去重。{}没有去重。
+
 5. 利用Set()去重：代码量少，但是无法去掉重复{}。
-6. 利用for嵌套for，然后splice去重（ES5中最常用）：双层循环，外层循环元素，内层循环时比较值。值相同时，则删去这个值。NaN, null, {} 的去重会出问题。
-7. hasOwnProperty：利用hasOwnProperty 判断是否存在对象属性。完美去重。
-8. filter()
-9. 递归
-10. Map()
+
+   ```javascript
+   [...new Set(arr) ]
+   Array.from(new Set(arr))
+   ```
+
+   利用for嵌套for，然后splice去重（ES5中最常用）：双层循环，外层循环元素，内层循环时比较值。值相同时，则删去这个值。NaN, null, {} 的去重会出问题。
+
+6. hasOwnProperty：利用hasOwnProperty 判断是否存在对象属性。完美去重。
+
+7. filter()
+
+8. 递归
+
+9. Map()
 
 [JavaScript数组去重（12种方法，史上最全） - 前端开发随笔 ...](https://segmentfault.com/a/1190000016418021)
 
@@ -94,8 +112,9 @@ b.b在b自己的属性上找，b.a自己的属性里没找到则去b的原型即
 #### 浅拷贝
 
 1. Object.assign()
-2. Array.prototype.concat()
-3. Array.prototype.slice()
+2. 展开运算符...
+3. Array.prototype.concat()
+4. Array.prototype.slice()
 
 #### 深拷贝
 
@@ -116,6 +135,36 @@ b.b在b自己的属性上找，b.a自己的属性里没找到则去b的原型即
 3. 函数库lodash
 
 [参考笔记](<https://babyshulei.github.io/mybooks/javascript/05-object/01-copy.html>)
+
+### 5. 设计一个数据结构，使 `a==1 && a==2 && a==3` 为 true
+
+```js
+var a = {
+    value: 0,
+    valueOf() {
+        return this.value += 1;
+    },
+};
+
+console.log(a == 1 && a == 2 && a == 3);
+```
+
+#### 使`a===1 && a===2 && a===3` 为 true
+
+```js
+var value = 0;
+Object.defineProperty(window, 'a', {
+    get() {
+        return value += 1;
+    }
+});
+
+console.log(a === 1 && a === 2 && a === 3);
+```
+
+[参考笔记](<https://babyshulei.github.io/mybooks/javascript/00-basic/>)
+
+<https://blog.csdn.net/Bule_daze/article/details/103470176>
 
 
 
@@ -165,9 +214,15 @@ call和apply都是调用一个函数，并指定this和参数，call和apply第�
 
 ## 事件
 
-### 1. 描述事件捕获和事件冒泡的顺序。
+### 1. 事件捕获和事件冒泡的顺序，target和currentTarget。
 
 先从外向内捕获，然后从内向外冒泡。
+
+document.body.addEventListener(event, fn, useCapture); 
+
+- useCapture：true - 捕获阶段执行，false（默认值） - 冒泡阶段执行。
+
+currentTarget始终是监听事件者，而target是事件的真正发出者。
 
 ### 2. 描述事件委派(delegation)的原理和优点。
 
@@ -181,7 +236,21 @@ touchstart，touchmove，touchend，touchcancel
 
 为了支持双击放大，如果300ms以内有两次点击则触发放大操作，而不是click。chromium较新版本在没有双击放大的页面去掉了click事件的300ms延迟。
 
+### 5. 点击穿透现象，什么时候会出现？如何避免？
 
+click事件有300ms的延迟。点击蒙层上的关闭按钮，蒙层消失后发现触发了下面元素的click事件。
+
+蒙层上绑定 touch 事件，touch事件触发了，蒙层关闭，下面的元素成了 click事件的目标。
+
+下面恰好是个a标签的话，会导致页面的跳转
+
+- 解决方案：
+
+  - 不混用 touch 和 click
+
+  - 消费掉touch后的click
+
+    例如加个透明蒙层、pointer-events、下面元素的事件处理器处理等等。
 
 ### 详述js异步机制Event Loop，MacroTask和MicroTask
 

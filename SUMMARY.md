@@ -46,6 +46,9 @@
     * [工程化](front-end/08-question/07-engineering.md)
 
 ## JavaScript
+
+- [基本概念](javascript/00-basic/README.md)
+
 * [作用域](javascript/01-scope/README.md)
     * [块级作用域](javascript/01-scope/01-block-scope.md)
     * [词法作用域](javascript/01-scope/02-lexical-scope.md)
