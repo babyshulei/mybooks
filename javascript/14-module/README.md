@@ -188,23 +188,23 @@ let module = await import('/modules/my-module.js');
 
 ## 9. 加载模块
 
-脚本加载方法：
+在Web浏览器中使用模块，脚本加载方法：
 
-- 在\<script\> 元素中通过src属性指定一个加载代码的地址来加载JavaScript代码文件。
-- 将JavaScript代码内嵌到没有src属性的\<script\>元素中。
+- 在`<script>` 元素中通过src属性指定一个加载代码的地址来加载JavaScript代码文件。
+- 将JavaScript代码内嵌到没有src属性的`<script>`元素中。
 - 通过 Web Worker 或 Service Worker 的方法加载并执行JavaScript代码文件。
 
-### 在\<script\>中使用模块
+### 在`<script>`中使用模块
 
-\<script\>元素的默认行为是将JavaScript文件作为脚本加载，而非作为模块加载。将 type 属性设置为 "module" 可以让浏览器将所有内联代码或包含在 src 指定的文件中的代码按照模块而非脚本的方法加载。
+`<script>`元素的默认行为是将JavaScript文件作为脚本加载，而非作为模块加载。将 type 属性设置为 "module" 可以让浏览器将所有内联代码或包含在 src 指定的文件中的代码按照模块而非脚本的方法加载。
 
 ```html
 <script type="module" src="./module.js"></script>
 ```
 
-\<script\>元素的 type 属性为 "module" 时，自动应用 defer 属性。模块文件按照顺序下载并解析，在文档完全被解析之后，模块按照它们出现在HTML文件中的顺序依次执行。 
+`<script>`元素的 type 属性为 "module" 时，自动应用 defer 属性。模块文件按照顺序下载并解析，在文档完全被解析之后，模块按照它们出现在HTML文件中的顺序依次执行。 
 
-当\<script\>元素的 async 属性应用在模块上时，会让模块以类似脚本的方式执行。唯一的区别是，在模块执行前，模块中的所有导入资源都必须下载下来。这可以确保只有当模块执行所需的所有资源都下载完成后才执行模块，但不能保证的是模块的执行时机。
+当`<script>`元素的 async 属性应用在模块上时，会让模块以类似脚本的方式执行。唯一的区别是，在模块执行前，模块中的所有导入资源都必须下载下来。这可以确保只有当模块执行所需的所有资源都下载完成后才执行模块，但不能保证的是模块的执行时机。
 
 ### 将模块作为Worker加载
 

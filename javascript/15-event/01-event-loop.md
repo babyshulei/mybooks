@@ -12,6 +12,12 @@ event loop翻译出来就是**事件循环**，可以理解为实现异步的一
 
 **事件，用户交互，脚本，渲染，网络**这些都是我们所熟悉的东西，他们都是由event loop协调的。触发一个`click`事件，进行一次`ajax`请求，背后都有`event loop`在运作。
 
+每个线程（thread）都有自己的 event loop，所以每个 web worker 都有自己的 event loop，可以独立运行。
+
+但是同域的所有 windows （多个tab打开同一个域名下的页面）共用同一个 event loop，所以它们可以 synchronously communicate。
+
+Event loop 持续运行，它会执行任何排队的 task。
+
 ### task
 
 > 一个event loop有一个或者多个task队列。

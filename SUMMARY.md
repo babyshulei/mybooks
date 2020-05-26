@@ -58,6 +58,7 @@
 * [函数](javascript/04-function/README.md)
 * [对象](javascript/05-object/README.md)
     * [浅拷贝、深拷贝](javascript/05-object/01-copy.md)
+    * [原型、原型链](javascript/05-object/02-prototype.md)
 * [解构](javascript/06-destructure/README.md)
 * [Symbol](javascript/07-symbol/README.md)
 * [Set集合与Map集合](javascript/08-set-map/README.md)

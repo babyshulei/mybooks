@@ -2,11 +2,13 @@
 
 ## 作用域
 
-### 1. 详述es5 es6中的作用域和闭包
+### 1. 描述下ES中的作用域和闭包。
 
-es5全局+函数级，函数化闭包，es6块级
+es5全局+函数级，es6块级作用域。函数可以记住并访问所在的词法作用域，即使在当前作用域之外执行，这时就产生了闭包。
 
-#### 变量提升题
+### 2. 变量提升、临时死区出现的场景
+
+- 变量提升
 
 给出如下代码的输出并解释原因：
 
@@ -23,7 +25,11 @@ f();
 
 输出undefined，因为变量定义会提前到函数开头(hoisting)。
 
-#### 对照题：临时死区
+如果内部有函数，整个函数会提升到函数顶部。
+
+- 临时死区
+
+JS引擎在扫描代码发现变量声明时，var声明会提升到作用域顶部，let/const声明会放到TDZ中。访问TDZ变量会触发运行时错误。只有执行过变量声明语句后，变量才会从TDZ中移出，然后方可正常访问。
 
 ```js
 let value = 10;
@@ -36,11 +42,7 @@ if (true) {
 
 由于let 和 const 声明的变量不会被提升，如果在声明之前访问这些变量，会触发引用错误，即“临时死区”的场景出现。
 
-#### 临时死区是什么？为什么此时无法访问变量？
-
-JS引擎在扫描代码发现变量声明时，var声明会提升到作用域顶部，let/const声明会放到TDZ中。访问TDZ变量会触发运行时错误。只有执行过变量声明语句后，变量才会从TDZ中移出，然后方可正常访问。
-
-####  什么是作用域链(scope chain)？可举例说明。
+### 3. 什么是作用域链(scope chain)？可举例说明。
 
 几个要点：作用域的范围是函数，函数嵌套函数，查找变量从内层函数依次向外层找，最后找不到在window上找。
 
@@ -48,7 +50,9 @@ JS引擎在扫描代码发现变量声明时，var声明会提升到作用域顶
 
 ## 对象、原型链
 
-### 1. 写出让B原型继承A的代码。
+### 1. 如何实现对象的继承？
+
+写出让B原型继承A的代码。
 
 ```javascript
 function A() {
@@ -64,6 +68,8 @@ B.prototype = new A();
 
 ### 2. 什么是原型链(prototype chain)？可举例说明。
 
+每个实例对象（ object ）都有一个私有属性（称之为 `__proto__` ）指向它的构造函数的原型对象（**prototype** ）。该原型对象也有一个自己的原型对象( `__proto__` ) ，层层向上直到一个对象的原型对象为 `null`。根据定义，`null` 没有原型，并作为这个**原型链**中的最后一个环节。
+
 上一题的例子
 
 ```javascript
@@ -72,7 +78,11 @@ var b = new B();
 // b.a == 1
 ```
 
-b.b在b自己的属性上找，b.a自己的属性里没找到则去b的原型即b,`__proto__`也就是B.prototype里找，一层一层往上找，到null为止，`b.__proto__.__proto__`是Object.prototype，`b.__proto__.__proto__.__proto__`为null。
+b.b在b自己的属性上找，b.a自己的属性里没找到则去b的原型即b，`__proto__`也就是B.prototype里找，一层一层往上找，到null为止，`b.__proto__.__proto__`是Object.prototype，`b.__proto__.__proto__.__proto__`为null。
+
+[笔记](https://babyshulei.github.io/mybooks/javascript/05-object/02-prototype.html)
+
+
 
 ### 3. 数组去重方法
 
@@ -134,33 +144,15 @@ b.b在b自己的属性上找，b.a自己的属性里没找到则去b的原型即
 
 3. 函数库lodash
 
-[参考笔记](<https://babyshulei.github.io/mybooks/javascript/05-object/01-copy.html>)
+[参考笔记](https://babyshulei.github.io/mybooks/javascript/05-object/01-copy.html)
 
 ### 5. 设计一个数据结构，使 `a==1 && a==2 && a==3` 为 true
 
-```js
-var a = {
-    value: 0,
-    valueOf() {
-        return this.value += 1;
-    },
-};
+隐式类型转换
 
-console.log(a == 1 && a == 2 && a == 3);
-```
+### 6. 使`a===1 && a===2 && a===3` 为 true
 
-#### 使`a===1 && a===2 && a===3` 为 true
-
-```js
-var value = 0;
-Object.defineProperty(window, 'a', {
-    get() {
-        return value += 1;
-    }
-});
-
-console.log(a === 1 && a === 2 && a === 3);
-```
+Object.defineProperty
 
 [参考笔记](<https://babyshulei.github.io/mybooks/javascript/00-basic/>)
 
@@ -178,37 +170,32 @@ call和apply都是调用一个函数，并指定this和参数，call和apply第�
 
 ### 2. 箭头函数
 
+[参见笔记](https://babyshulei.github.io/mybooks/javascript/04-function/)
+
 #### 箭头函数与function函数有哪些不同？
 
 - 没有this、super、arguments和new.target绑定。
 
-  箭头函数的这些值由外围最近一层非箭头函数决定。
-
 - 不能通过new关键字调用。
-
-  箭头函数没有[[Construct]]方法，所以不能被用作构造函数，如果通过new关键字调用会报错。
 
 - 没有原型。
 
-  由于不可以通过new关键字调用，因为没有构建原型的需求，所以箭头函数不存在prototype这个属性。
-
 - 不可以改变this的绑定。
-
-  函数内部的this值不可被改变，在函数的生命周期内始终保持一致。
 
 - 不支持arguments对象。
 
-  箭头函数没有arguments绑定，只能通过命名参数和不定参数这两种形式访问函数的参数。
-
 - 不支持重复的命名参数。
 
-  在严格、非严格模式下，箭头函数都不支持重复的命名参数；而在传统函数的规定中，只有在严格模式下才不能有重复的命名参数。
 
 > 箭头函数有name属性，和其他函数的规则相同。
 
 #### 箭头函数的this绑定？
 
 箭头函数中没有this绑定，必须通过查找作用域链来决定其值。如果箭头函数被非箭头函数包含，则this绑定的是最近一层非箭头函数的this；否则，this的值会被设置为全局对象。并且，不能通过call()、apply()、bind()方法来改变this的值。
+
+### 3. 实现一个函数，使 add(1)(2)(3), add(1)(2, 3), add(1, 2, 3) 都返回 6
+
+函数柯里化，[参见笔记](https://babyshulei.github.io/mybooks/programming/01-thinking/02-curry.html)
 
 
 
@@ -252,53 +239,11 @@ click事件有300ms的延迟。点击蒙层上的关闭按钮，蒙层消失后�
 
     例如加个透明蒙层、pointer-events、下面元素的事件处理器处理等等。
 
-### 详述js异步机制Event Loop，MacroTask和MicroTask
+### 6. 详述js异步机制Event Loop，MacroTask和MicroTask
 
 [参考笔记](https://babyshulei.github.io/mybooks/javascript/15-event/01-event-loop.html)
 
 1个主线程+n个任务队列，浏览器异步处理后推入队列，循环处理，一个macroTask后跟全部microtask
-
-
-
-每个线程（thread）都有自己的 event loop，所以每个 web worker 都有自己的 event loop，可以独立运行。
-
-但是同域的所有 windows （多个tab打开同一个域名下的页面）共用同一个 event loop，所以它们可以 synchronously communicate。
-
-Event loop 持续运行，它会执行任何排队的 task。
-
-
-
-Event Loop 中的事件，分为 MacroTask（宏任务）和 MicroTask（微任务）。
-
-MacroTask: setTimeout, setInterval, setImmediate, requestAnimationFrame, I/O, UI rendering
-
-MicroTask: process.nextTick, Promises, Object.observe, MutationObserver
-
-
-
-通俗来说，MacroTasks 和 MicroTasks 最大的区别在它们会被放置在不同的任务调度队列中。
-
-每一次事件循环中，主进程都会先执行一个MacroTask 任务，这个任务就来自于所谓的MacroTask Queue队列；当该 MacroTask 执行完后，Event loop 会立马调用 MicroTask 队列的任务，直到消费完所有的 MicroTask，再继续下一个事件循环。
-
- 
-
-Promise中的then方法的函数会被推入microtasks队列
-
-Macrotask queues就是我们通常说的任务队列，microtask queues会特殊说明
-
-  
-
-事件循环每次只会入栈一个 macrotask ，主线程执行完该任务后又会先检查 microtasks 队列并完成里面的所有任务后再执行 macrotask
-
-  
-
-但是，重点来了
-
-Microtask queue has a higher priority than the macrotask queue.
-
-也就是说js引擎会首先执行完所有microtasks，然后再执行macrotask
-
- 简单来说代码的执行顺序：regular code（同步代码）, then promise handling, then everything else, like events etc.
 
 #### 例题
 
@@ -331,4 +276,14 @@ console.log(5);
 - 由于在第一步中已经执行完了第一个 macrotask ,  所以接下来会顺序执行所有的 microtask, 也就是 promise.then 的回调函数，从而打印出4
 - microtask 队列中的任务已经执行完毕，继续执行剩下的  macrotask 队列中的任务，也就是 setTimeout, 所以打印出 1
 
+## 模块
+
+### 1. JS的模块管理有哪些，分析下优缺点
+
+- commonJS：同步，node用，不适合浏览器
+- CMD：异步，依赖前置
+- AMD：异步，就近依赖
+- ES6 module：import，export；动态import
+
+[笔记](https://babyshulei.github.io/mybooks/javascript/14-module/01-module-history.html)
 
