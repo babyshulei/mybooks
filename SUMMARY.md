@@ -81,11 +81,11 @@
 * [模板编译原理](vue/01-base/03-template/README.md)
     * [解析器](vue/01-base/03-template/01-parser.md)
 * [整体流程](vue/01-base/04-overview/README.md)
-* [项目搭建](vue/02-practice/01-start.md)
+* [项目搭建](vue/02-practice/01-project/01-start.md)
 * [Vue-router](vue/02-practice//02-vue-router/README.md)
     * [基础](vue/02-practice/02-vue-router/01-base.md)
     * [实例](vue/02-practice/02-vue-router/02-demos.md)
-* [Vue 3.0](vue/03-vue3.md)
+* [Vue 3.0](vue/03-vue3/README.md)
 
 ## 编程
 * [编程思想](programming/01-thinking/README.md)
