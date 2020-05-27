@@ -2,7 +2,7 @@
 
 ## 跨域问题
 
-### 1. Ajax 请求 同步？异步？
+### 1. Ajax 请求相关问题
 
 AJAX中根据async的值不同分为同步（async = false）和异步（async = true）两种执行方式；在W3C的教程中推荐使用异步执行。
 
@@ -16,13 +16,13 @@ AJAX中根据async的值不同分为同步（async = false）和异步（async =
 
   发出请求后，其他代码继续执行，Ajax请求不影响页面的加载和用户的操作。不影响用户体验。
 
-#### ajax请求过程，简单实现一个Ajax请求
+**ajax请求过程，简单实现一个Ajax请求**
 
 参见：[笔记-AJAX](https://babyshulei.github.io/mybooks/front-end/05-network/04-ajax/)、<https://segmentfault.com/a/1190000015580896>
 
 
 
-#### ajax和jsonp哪个可以跨域，原理是什么？
+**ajax和jsonp哪个可以跨域，原理是什么？**
 
 ajax默认无法跨域，xhr2新增的CORS让ajax也可以跨域，需要输出http头(Access-Control-Allow-Origin)。jsonp可以跨域， 原理是script元素的src可以跨域。
 
@@ -128,7 +128,7 @@ ajax默认无法跨域，xhr2新增的CORS让ajax也可以跨域，需要输出h
 
 
 
-### 7. HTTP 2.0
+### 7. HTTP 各版本区别
 
 - HTTP/2
   - 基于 SPDY协议
@@ -137,4 +137,6 @@ ajax默认无法跨域，xhr2新增的CORS让ajax也可以跨域，需要输出h
   - 服务器推送
 
 - **HTTP/3** 是即将到来的第三个主要版本的[HTTP](https://zh.wikipedia.org/wiki/HTTP)协议，使用于[万维网](https://zh.wikipedia.org/wiki/%E4%B8%87%E7%BB%B4%E7%BD%91)。在HTTP/3中，将弃用[TCP](https://zh.wikipedia.org/wiki/%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE)协议，改为使用基于[UDP](https://zh.wikipedia.org/wiki/%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%8A%A5%E5%8D%8F%E8%AE%AE)协议的[QUIC](https://zh.wikipedia.org/wiki/%E5%BF%AB%E9%80%9FUDP%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5)协议实现。QUIC（快速UDP网络连接）是一种实验性的[网络传输协议](https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE)，由[Google](https://zh.wikipedia.org/wiki/Google)开发，该协议旨在使网页传输更快。
+
+[HTTP/3原理与实践](https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&mid=2651236564&idx=1&sn=4cfbf59ed50cc45d889613e5b19292bd&chksm=bd4971508a3ef8468f836165eb0bf520235ffa8c814f28ea8a7205f7e28e0fc56a300d6db412&scene=126&sessionid=1589892680&key=dd5072f5310af4877d83587aa9dda69a482e8c7e28c8d9ce49791567af183ec33252db68b16b3b81387b08db97a87172afc18fabe7ddb4a83b215d44e1e29f5a1418a4cf2cc9650d801d3a8f2e042f8b&ascene=1&uin=MTIxNDkzMTUwMA%3D%3D&devicetype=Windows+10&version=62080079&lang=zh_CN&exportkey=AbyK9wn%2BMK6L7h6g9P8SUsc%3D&pass_ticket=q%2FxVOmzgoR17ZWzgcaD8WJuC%2BLzCCWljh8Mkd6yupIirYn6VvBbfOpTbl%2FV9%2FQK9)
 

@@ -160,6 +160,83 @@ Object.defineProperty
 
 
 
+### 7. 如何获取一个变量的数据类型？
+
+```js
+function getType(param) {
+    let type = typeof param;
+
+    if (type === 'object') {
+        type = getObjectType(param);
+    }
+
+    return type;
+
+    function getObjectType(obj) {
+        const str = Object.prototype.toString.call(obj);
+
+        return str.slice(8, str.length - 1);
+    }
+}
+```
+
+
+
+## 字符串
+
+### 1. 写一个解析url的函数
+
+```js
+function parseUrl(url) {
+    const querystring = url.split('?')[1];
+    const vars = querystring && querystring.split('&') || [];
+    const query = {};
+
+    for(let i = 0; i < vars.length; i++) {
+        if (vars[i]) {
+            let pair = vars[i].split('=');
+            query[pair[0]] = pair[1];
+        }
+    }
+
+    return query;
+}
+```
+
+利用a标签
+
+```js
+function parseURL(url) {
+    var a = document.createElement('a');
+    a.href = url;
+    return {
+        source: url,
+        protocol: a.protocol.replace(':', ''),
+        host: a.hostname,
+        port: a.port,
+        query: a.search,
+        params: (function () {
+            var ret = {}, seg = a.search.replace(/^\?/, '').split('&'), len = seg.length, i = 0, s;
+            for (; i < len; i++) {
+                if (!seg[i]) {
+                    continue;
+                }
+                s = seg[i].split('=');
+                ret[s[0]] = s[1];
+            }
+            return ret;
+        })(),
+        file: (a.pathname.match(/\/([^\/?#]+)$/i) || [, ''])[1],
+        hash: a.hash.replace('#', ''),
+        path: a.pathname.replace(/^([^\/])/, '/$1'),
+        relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [, ''])[1],
+        segments: a.pathname.replace(/^\//, '').split('/')
+    };
+}; 
+```
+
+
+
 ## 函数
 
 ### 1. 解释call、apply、bind的区别，可举例说明。
