@@ -199,7 +199,7 @@ Cookie技术通过在请求和响应报文中写入Cookie信息来控制客户�
 
 [RFC 5789, section 2: Patch method](https://tools.ietf.org/html/rfc5789#section-2)
 
-[HTTP/3原理与实践](https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&mid=2651236564&idx=1&sn=4cfbf59ed50cc45d889613e5b19292bd&chksm=bd4971508a3ef8468f836165eb0bf520235ffa8c814f28ea8a7205f7e28e0fc56a300d6db412&scene=126&sessionid=1589892680&key=dd5072f5310af4877d83587aa9dda69a482e8c7e28c8d9ce49791567af183ec33252db68b16b3b81387b08db97a87172afc18fabe7ddb4a83b215d44e1e29f5a1418a4cf2cc9650d801d3a8f2e042f8b&ascene=1&uin=MTIxNDkzMTUwMA%3D%3D&devicetype=Windows+10&version=62080079&lang=zh_CN&exportkey=AbyK9wn%2BMK6L7h6g9P8SUsc%3D&pass_ticket=q%2FxVOmzgoR17ZWzgcaD8WJuC%2BLzCCWljh8Mkd6yupIirYn6VvBbfOpTbl%2FV9%2FQK9)
+[HTTP/3原理与实践](https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&mid=2651236564&idx=1&sn=4cfbf59ed50cc45d889613e5b19292bd)
 
 [Http协议的发展历史](https://www.imooc.com/article/266160)
 

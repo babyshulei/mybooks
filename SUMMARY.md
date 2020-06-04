@@ -32,7 +32,7 @@
     * [微信小程序](front-end/06-framework/01-wx-app/README.md)
     * [Egg](front-end/06-framework/02-egg/README.md)
 * [工程化](front-end/07-engineering/README.md)
-    * [图片优化](front-end/07-engineering/01-image.md)
+    * [图片优化](front-end/07-engineering/01-image-opt/README.md)
     * [用户鉴权](front-end/07-engineering/02-user-auth/README.md)
         * [CAS登录](front-end/07-engineering/02-user-auth/01-cas.md)
         * [权限管理](front-end/07-engineering/02-user-auth/02-role-control.md)
