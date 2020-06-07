@@ -105,6 +105,7 @@
     * [裴波那契数列](programming/03-algorithm/01-for-offer/08-fibonacci-number.md)
     * [二进制中1的个数](programming/03-algorithm/01-for-offer/09-number-of-1-bits.md)
     * [数值的整数次方](programming/03-algorithm/01-for-offer/10-pow-x-n.md)
+    * [调整数组顺序使奇数位于偶数前面](programming/03-algorithm/01-for-offer/11-adjust-odd-even.md)
     * [无重复字符的最长字符串](programming/03-algorithm/02-byte-dance/01-max-string.md)
     * [最长公共前缀](programming/03-algorithm/02-byte-dance/02-max-pre.md)
     * [三数之和](programming/03-algorithm/02-byte-dance/03-three-sum.md)
