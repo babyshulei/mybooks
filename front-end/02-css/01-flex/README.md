@@ -28,7 +28,7 @@ Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型�
 
 采用 Flex 布局的元素，称为 Flex 容器（flex container），简称"容器"。它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称"项目"。
 
-![1570865540835](.\images\flex-box.png)
+![1570865540835](..\images\flex-box.png)
 
  默认的情况下，水平方向的是主轴（main axis），垂直方向的是交叉轴（cross axis）。
 
@@ -60,7 +60,7 @@ Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型�
 - `column`：主轴为垂直方向，起点在上沿。
 - `column-reverse`：主轴为垂直方向，起点在下沿。
 
-![1575958861852](.\images\flex-direction.png)
+![1575958861852](..\images\flex-direction.png)
 
 ### 2.2 flex-wrap
 
@@ -78,7 +78,7 @@ Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型�
 - `wrap`：换行，第一行在上方。
 - `wrap-reverse`：换行，第一行在下方。
 
-![1575958981238](.\images\flex-wrap.png)
+![1575958981238](..\images\flex-wrap.png)
 
 ### 2.3 flex-flow
 
@@ -108,7 +108,7 @@ Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型�
 - `space-between`：两端对齐，项目之间的间隔都相等。
 - `space-around`：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
 
-![1571048069433](.\images\flex-justify-content.png)
+![1571048069433](..\images\flex-justify-content.png)
 
 ### 2.5 align-items
 
@@ -128,7 +128,7 @@ Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型�
 - `baseline`: 项目的第一行文字的基线对齐。
 - `stretch`（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。
 
-![1571048118798](.\images\flex-align-items.png)
+![1571048118798](..\images\flex-align-items.png)
 
 ### 2.6 align-content
 
@@ -149,7 +149,7 @@ Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型�
 - `space-around`：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
 - `stretch`（默认值）：轴线占满整个交叉轴。
 
-![1571048369198](.\images\flex-align-content.png)
+![1571048369198](..\images\flex-align-content.png)
 
 ## 3. 项目的属性
 
@@ -180,7 +180,7 @@ Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型�
 }
 ```
 
-![1571048930800](.\images\flex-grow.png)
+![1571048930800](..\images\flex-grow.png)
 
 如果所有项目的`flex-grow`属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的`flex-grow`属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。
 
@@ -194,7 +194,7 @@ Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型�
 }
 ```
 
-![img](.\images\flex-shrink.png)
+![img](..\images\flex-shrink.png)
 
 如果所有项目的`flex-shrink`属性都为1，当空间不足时，都将等比例缩小。如果一个项目的`flex-shrink`属性为0，其他项目都为1，则空间不足时，前者不缩小。
 
