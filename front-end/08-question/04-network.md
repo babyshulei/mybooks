@@ -60,7 +60,7 @@ ajax默认无法跨域，xhr2新增的CORS让ajax也可以跨域，需要输出h
 
     利用img标签的src属性发送请求，上报打点相关的数据。
 
-参见：[笔记-AJAX](https://babyshulei.github.io/mybooks/front-end/05-network/04-ajax/)、[笔记-跨域问题](https://babyshulei.github.io/mybooks/front-end/05-network/05-cross-domain.html)
+参见：[笔记-AJAX](https://babyshulei.github.io/mybooks/front-end/05-network/04-ajax/)、[笔记-跨域问题](https://babyshulei.github.io/mybooks/front-end/05-network/05-cross-domain/)
 
 
 
@@ -83,7 +83,7 @@ ajax默认无法跨域，xhr2新增的CORS让ajax也可以跨域，需要输出h
 - 浏览器解析渲染页面
 - 连接结束
 
-参见：[笔记-URL->PAGE](https://babyshulei.github.io/mybooks/front-end/05-network/06-url-webpage.html)
+参见：[笔记-URL->PAGE](https://babyshulei.github.io/mybooks/front-end/05-network/06-url-webpage/)
 
 
 

@@ -2,7 +2,7 @@
 
 ## Vue
 
-### 1. 详述Vue双向绑定原理
+### 1. 详述Vue数据双向绑定原理
 
 语法糖，dom监听+模型监听
 
@@ -30,9 +30,35 @@
 
 [这一次彻底搞懂Vue针对数组和双向绑定(MVVM)的处理方式- 掘金](https://juejin.im/post/5af665186fb9a07aa83ecde0)
 
+[vue 的双向绑定原理及实现- 前端- 掘金](https://juejin.im/entry/5923973da22b9d005893805a)
+
+[剖析Vue原理&实现双向绑定MVVM - 前端足迹- SegmentFault ...](https://segmentfault.com/a/1190000006599500)
 
 
-#### 2. 组件通信
+
+### 2. 详述vue的diff算法
+
+- 创建节点
+- 删除节点
+- 更新节点
+  - 更新子节点
+    - 创建子节点
+    - 更新子节点
+    - 移动子节点
+    - 删除子节点
+
+更新子节点遍历的优化策略：
+
+- 新前与旧前
+- 新后与旧后
+- 新后与旧前
+- 新前与旧后
+- key-index索引表
+- 循环遍历
+
+[笔记](https://babyshulei.github.io/mybooks/vue/01-base/02-virtual-dom/)
+
+### 3. 组件通信
 
 #### props 和 $emit
 
@@ -62,7 +88,7 @@ props：单向数据流，完成父子组件的通信。
 
 
 
-### 3. props双向绑定
+### 4. props双向绑定
 
 <https://juejin.im/entry/5843abb1a22b9d007a97854c>
 
@@ -76,7 +102,7 @@ vue.runtime.js:593 [Vue warn]: Avoid mutating a prop directly since the value wi
 
 
 
-### 4. 引入cdn资源
+### 5. 引入cdn资源
 
 https://segmentfault.com/a/1190000015709430
 减小打包体积，将公用的依赖放到cdn上，缓存一次就可以。
@@ -128,7 +154,7 @@ import VueRouter from 'vue-router'
 
 
 
-### 5. computed和watch的区别
+### 6. computed和watch的区别
 
 - computed：计算属性，由data/props中的已知值，计算得到的一个新值。依赖其他数据的变化。
 
@@ -145,6 +171,14 @@ import VueRouter from 'vue-router'
 computed：一个数据受多个数据影响
 
 watch：一个数据影响多个数据
+
+### 7. Vue.nextTick
+
+在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。
+
+[Vue API-nextTick](https://cn.vuejs.org/v2/api/index.html#Vue-nextTick)
+
+
 
 
 

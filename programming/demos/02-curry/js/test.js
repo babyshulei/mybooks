@@ -72,3 +72,24 @@ console.log(a, b, c)
 // var c = addCurry(1, 2, 3);
 
 // console.log(a, b, c)
+
+var curry = (fn) => {
+    return function judge(...args) {
+        args.length === fn.length
+            ? fn.call(this, args)
+            : (...arg) => judge.apply(this, ...args, ...arg);
+    }
+}
+
+
+
+function add(a, b, c) {
+    return a + b + c;
+}
+
+var addCurry = curry(add);
+var a = addCurry(12)(3, 4);
+var b = addCurry(2)(3)(4);
+var c = addCurry(1, 2, 3);
+
+console.log(a, b, c);
