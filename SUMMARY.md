@@ -36,6 +36,8 @@
     * [用户鉴权](front-end/07-engineering/02-user-auth/README.md)
         * [CAS登录](front-end/07-engineering/02-user-auth/01-cas.md)
         * [权限管理](front-end/07-engineering/02-user-auth/02-role-control.md)
+    * [日志监控](front-end/07-engineering/04-logger/README.md)
+        * [ES APM](front-end/07-engineering/04-logger/02-elastic-apm.md)
 * [面试](front-end/08-question/README.md)
     * [HTML](front-end/08-question/01-html.md)
     * [CSS](front-end/08-question/02-css.md)

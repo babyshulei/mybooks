@@ -6,6 +6,10 @@ ELK 是 ElasticSearch + Logstash + Kibana 这套组合工具的简称，是一�
 - Logstash：是一款开源的日志收集工具，它可以对日志进行收集、分析、过滤，并将其存储（例如：ElasticSearch）起来供以后使用。
 - Kibana：是一款开源的可视化工具，可以为 ElasticSearch 提供的日志分析友好的 Web 界面，可以汇总、分析和搜索重要的数据日志。
 
+## 流程图
+
+![elk](../images/elk.png)
+
 
 
 ## 参考链接

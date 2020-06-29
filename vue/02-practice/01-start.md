@@ -652,7 +652,7 @@ new Vue({
 
 ### 5. 添加stylelint
 
-1. 安装 stylelint相关包
+1、安装 stylelint相关包
 
 ```shell
 npm i -D stylelint stylelint-config-standard
@@ -660,7 +660,7 @@ npm i -D stylelint stylelint-config-standard
 
 后者 `stylelint-config-stand` 不是必需的，也可以自己根据文档从零开始配置规则，或者用第三方如 github 的规则 `stylelint-config-primer` 。
 
-2. package.json添加npm scripts
+2、package.json添加npm scripts
 
 ```json
 {
@@ -673,7 +673,7 @@ npm i -D stylelint stylelint-config-standard
 }
 ```
 
-3. 根目录下添加stylelint.config.js
+3、根目录下添加stylelint.config.js
 
 ```js
 // https://stylelint.io/user-guide/configuration/
@@ -694,22 +694,61 @@ module.exports = {
 };
 ```
 
+#### 忽略stylelint
+
+忽略整个文件：
+
+在 `.stylelintignore` 文件中添加对应文件。
+
+忽略一段样式：
+
+```css
+/* stylelint-disable */
+a {}
+/* stylelint-enable */
+
+/* stylelint-disable selector-no-id, declaration-no-important */
+#id {
+  color: pink !important;
+}
+/* stylelint-enable selector-no-id, declaration-no-important */
+```
+
+忽略单行：
+
+```css
+#id { /* stylelint-disable-line */
+  color: pink !important; /* stylelint-disable-line declaration-no-important */
+}
+```
+
+忽略下一行：
+
+```css
+#id {
+  /* stylelint-disable-next-line declaration-no-important */
+  color: pink !important;
+}
+```
+
+
+
 ### 6. 添加eslint
 
-1. 全局安装最新的eslint
+1、全局安装最新的eslint
 
 ```shell
 npm i -g eslint@latest
 eslint --init
 ```
 
-2. 本地安装eslint
+2、本地安装eslint
 
 ```shell
 npm i -D eslint
 ```
 
-3. `.eslintrc.js`文件添加配置，下面是参考，采用airbnb规范。
+3、`.eslintrc.js`文件添加配置，下面是参考，采用airbnb规范。
 
 ```javascript
 module.exports = {
@@ -770,13 +809,13 @@ module.exports = {
 };
 ```
 
-4. 安装相关依赖
+4、安装相关依赖
 
 ```shell
 npm i eslint-plugin-vue babel-eslint @vue/cli-service @vue/cli-plugin-eslint @vue/eslint-config-airbnb -D
 ```
 
-5. package.json 添加 scripts
+5、package.json 添加 scripts
 
 ```json
 {
