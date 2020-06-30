@@ -161,6 +161,7 @@ var trans = apm.startTransaction(name, type, subtype, action, options);
 callback((err) => {
     // 配置transaction的一些属性
     trans.result = err ? 'error' : 'success';
+    trans.addLabels({name: value});
 });
 
 // 结束这个transaction，如果这个transaction已经结束，则无事发生
@@ -188,6 +189,8 @@ rum端（前端）：
 var span = apm.startSpan(name, type, subtype, action, options);
 
 // ...
+// 给span添加一些标签
+span.addLabels({name: value});
 
 // 结束span
 if (span) span.end();
@@ -258,4 +261,8 @@ rum端（前端）：
 [You know, for search--带你认识Elasticsearch](https://zhuanlan.zhihu.com/p/96076150)
 
 [APM系统SkyWalking介绍](https://juejin.im/post/5d2bd2dfe51d45773f2e8ff3)
+
+[分布式追踪系统概述及主流开源系统对比- 知乎](https://zhuanlan.zhihu.com/p/71024024)
+
+[elastic APM 介绍-codefun](http://codefun007.xyz/a/article_detail/248.htm)
 
