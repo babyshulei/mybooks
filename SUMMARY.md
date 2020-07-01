@@ -3,6 +3,7 @@
 * [Introduction](README.md)
 
 ## 前端
+
 * [浏览器内核](front-end/01-browser-kernel/README.md)
     * [webkit](front-end/01-browser-kernel/01-webkit.md)
     * [blink](front-end/01-browser-kernel/02-blink.md)
@@ -49,6 +50,7 @@
     * [算法](front-end/08-question/06-alg.md)
     * [工程化](front-end/08-question/07-engineering.md)
 
+
 ## JavaScript
 
 - [基本概念](javascript/00-basic/README.md)
@@ -78,7 +80,9 @@
 * [实例](javascript/16-cases/README.md)
     * [监听元素变化](javascript/16-cases/01-resize-observer.md)
 
+
 ## Vue
+
 * [数据侦测](vue/01-base/01-data-detect/README.md)
     * [对象数据侦测](vue/01-base/01-data-detect/01-object-watch.md)
 * [虚拟Dom](vue/01-base/02-virtual-dom/README.md)
@@ -94,30 +98,16 @@
 
 
 ## 编程
+
 * [编程思想](programming/01-thinking/README.md)
     * [节流防抖](programming/01-thinking/01-throttle-debounce.md)
     * [函数柯里化](programming/01-thinking/02-curry.md)
 * [设计模式](programming/02-design/README.md)
     * [MV*模式](programming/02-design/01-mvvm.md)
 * [数据结构与算法](programming/03-algorithm/README.md)
-    * [简介](programming/03-algorithm/04-geek-time/01-start.md)
-    * [二维数组的查找](programming/03-algorithm/01-for-offer/01-2d-matrix-search.md)
-    * [替换空格](programming/03-algorithm/01-for-offer/02-replace-space.md)
-    * [从尾到头打印链表](programming/03-algorithm/01-for-offer/03-linked-list.md)
-    * [重建二叉树](programming/03-algorithm/01-for-offer/04-build-tree.md)
-    * [用两个栈实现队列](programming/03-algorithm/01-for-offer/05-stack-queue.md)
-    * [数组中重复的数据](programming/03-algorithm/01-for-offer/06-duplicates-in-array.md)
-    * [旋转数组的最小数字](programming/03-algorithm/01-for-offer/07-find-minimum.md)
-    * [裴波那契数列](programming/03-algorithm/01-for-offer/08-fibonacci-number.md)
-    * [二进制中1的个数](programming/03-algorithm/01-for-offer/09-number-of-1-bits.md)
-    * [数值的整数次方](programming/03-algorithm/01-for-offer/10-pow-x-n.md)
-    * [调整数组顺序使奇数位于偶数前面](programming/03-algorithm/01-for-offer/11-adjust-odd-even.md)
-    * [无重复字符的最长字符串](programming/03-algorithm/02-byte-dance/01-max-string.md)
-    * [最长公共前缀](programming/03-algorithm/02-byte-dance/02-max-pre.md)
-    * [三数之和](programming/03-algorithm/02-byte-dance/03-three-sum.md)
-    * [搜索旋转排序数组](programming/03-algorithm/02-byte-dance/04-search-rotated-array.md)
-    * [有效的括号](programming/03-algorithm/05-leetcode/01-valid-parentheses.md)
-    * [合并两个有序链表](programming/03-algorithm/05-leetcode/02-merge-sorted-lists.md)
+    * [简介](programming/03-data-algorithm/README.md)
+    * [树](programming/03-data-algorithm/02-tree/README.md)
+    * [练习](programming/04-practice/README.md)
 
 ## 语言
 
@@ -129,17 +119,15 @@
     * [文件处理](language/02-nodejs/02-api/01-files.md)
 
 
-
 ## 计算机
 
-* [数据结构](computer/data-structure/README.md)
-    * [树](computer/data-structure/tree.md)
 * [数据库](computer/database/README.md)
     * [数据类型](computer/database/datatype.md)
     * [HDFS](computer/database/hdfs.md)
     * [Sequelize](computer/database/sequelize.md)
 
 ## HTTP
+
 * [第一章 了解Web及网络基础](http/01-understand-web/README.md)
 * [第二章 简单的HTTP协议](http/02-easy-http/README.md)
     * [post请求方法](http/02-easy-http/01-post.md)
