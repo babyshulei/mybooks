@@ -453,6 +453,38 @@
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.5.6.1" data-path="../../front-end/05-network/06-url-webpage/01-browser-relative.html">
+            
+                <a href="../../front-end/05-network/06-url-webpage/01-browser-relative.html">
+            
+                    
+                    浏览器相关工作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.6.2" data-path="../../front-end/05-network/06-url-webpage/02-page-life.html">
+            
+                <a href="../../front-end/05-network/06-url-webpage/02-page-life.html">
+            
+                    
+                    页面生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="2.5.7" data-path="../../front-end/05-network/07-cache-control/01-http-cache.html">
@@ -591,6 +623,38 @@
             
                     
                     权限管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.3" data-path="../../front-end/07-engineering/04-logger/">
+            
+                <a href="../../front-end/07-engineering/04-logger/">
+            
+                    
+                    日志监控
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.7.3.1" data-path="../../front-end/07-engineering/04-logger/02-elastic-apm.html">
+            
+                <a href="../../front-end/07-engineering/04-logger/02-elastic-apm.html">
+            
+                    
+                    ES APM
             
                 </a>
             
@@ -3589,15 +3653,11 @@ Vue.use(Vuex);
 });
 </code></pre>
 <h3 id="5-&#x6DFB;&#x52A0;stylelint"><a name="5-&#x6DFB;&#x52A0;stylelint" class="anchor-navigation-ex-anchor" href="#5-&#x6DFB;&#x52A0;stylelint"><i class="fa fa-link" aria-hidden="true"></i></a>5. &#x6DFB;&#x52A0;stylelint</h3>
-<ol>
-<li>&#x5B89;&#x88C5; stylelint&#x76F8;&#x5173;&#x5305;</li>
-</ol>
+<p>1&#x3001;&#x5B89;&#x88C5; stylelint&#x76F8;&#x5173;&#x5305;</p>
 <pre><code class="lang-shell">npm i -D stylelint stylelint-config-standard
 </code></pre>
 <p>&#x540E;&#x8005; <code>stylelint-config-stand</code> &#x4E0D;&#x662F;&#x5FC5;&#x9700;&#x7684;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x6839;&#x636E;&#x6587;&#x6863;&#x4ECE;&#x96F6;&#x5F00;&#x59CB;&#x914D;&#x7F6E;&#x89C4;&#x5219;&#xFF0C;&#x6216;&#x8005;&#x7528;&#x7B2C;&#x4E09;&#x65B9;&#x5982; github &#x7684;&#x89C4;&#x5219; <code>stylelint-config-primer</code> &#x3002;</p>
-<ol>
-<li>package.json&#x6DFB;&#x52A0;npm scripts</li>
-</ol>
+<p>2&#x3001;package.json&#x6DFB;&#x52A0;npm scripts</p>
 <pre><code class="lang-json">{
     <span class="hljs-comment">// ...</span>
     <span class="hljs-string">&quot;scripts&quot;</span>: {
@@ -3607,9 +3667,7 @@ Vue.use(Vuex);
     },
 }
 </code></pre>
-<ol>
-<li>&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x6DFB;&#x52A0;stylelint.config.js</li>
-</ol>
+<p>3&#x3001;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x6DFB;&#x52A0;stylelint.config.js</p>
 <pre><code class="lang-js"><span class="hljs-comment">// https://stylelint.io/user-guide/configuration/</span>
 <span class="hljs-comment">// https://github.com/stylelint/stylelint-config-standard</span>
 
@@ -3627,21 +3685,40 @@ Vue.use(Vuex);
     },
 };
 </code></pre>
+<h4 id="&#x5FFD;&#x7565;stylelint"><a name="&#x5FFD;&#x7565;stylelint" class="anchor-navigation-ex-anchor" href="#&#x5FFD;&#x7565;stylelint"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5FFD;&#x7565;stylelint</h4>
+<p>&#x5FFD;&#x7565;&#x6574;&#x4E2A;&#x6587;&#x4EF6;&#xFF1A;</p>
+<p>&#x5728; <code>.stylelintignore</code> &#x6587;&#x4EF6;&#x4E2D;&#x6DFB;&#x52A0;&#x5BF9;&#x5E94;&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x5FFD;&#x7565;&#x4E00;&#x6BB5;&#x6837;&#x5F0F;&#xFF1A;</p>
+<pre><code class="lang-css"><span class="hljs-comment">/* stylelint-disable */</span>
+<span class="hljs-selector-tag">a</span> {}
+<span class="hljs-comment">/* stylelint-enable */</span>
+
+<span class="hljs-comment">/* stylelint-disable selector-no-id, declaration-no-important */</span>
+<span class="hljs-selector-id">#id</span> {
+  <span class="hljs-attribute">color</span>: pink <span class="hljs-meta">!important</span>;
+}
+<span class="hljs-comment">/* stylelint-enable selector-no-id, declaration-no-important */</span>
+</code></pre>
+<p>&#x5FFD;&#x7565;&#x5355;&#x884C;&#xFF1A;</p>
+<pre><code class="lang-css"><span class="hljs-selector-id">#id</span> { <span class="hljs-comment">/* stylelint-disable-line */</span>
+  <span class="hljs-attribute">color</span>: pink <span class="hljs-meta">!important</span>; <span class="hljs-comment">/* stylelint-disable-line declaration-no-important */</span>
+}
+</code></pre>
+<p>&#x5FFD;&#x7565;&#x4E0B;&#x4E00;&#x884C;&#xFF1A;</p>
+<pre><code class="lang-css"><span class="hljs-selector-id">#id</span> {
+  <span class="hljs-comment">/* stylelint-disable-next-line declaration-no-important */</span>
+  <span class="hljs-attribute">color</span>: pink <span class="hljs-meta">!important</span>;
+}
+</code></pre>
 <h3 id="6-&#x6DFB;&#x52A0;eslint"><a name="6-&#x6DFB;&#x52A0;eslint" class="anchor-navigation-ex-anchor" href="#6-&#x6DFB;&#x52A0;eslint"><i class="fa fa-link" aria-hidden="true"></i></a>6. &#x6DFB;&#x52A0;eslint</h3>
-<ol>
-<li>&#x5168;&#x5C40;&#x5B89;&#x88C5;&#x6700;&#x65B0;&#x7684;eslint</li>
-</ol>
+<p>1&#x3001;&#x5168;&#x5C40;&#x5B89;&#x88C5;&#x6700;&#x65B0;&#x7684;eslint</p>
 <pre><code class="lang-shell">npm i -g eslint@latest
 eslint --init
 </code></pre>
-<ol>
-<li>&#x672C;&#x5730;&#x5B89;&#x88C5;eslint</li>
-</ol>
+<p>2&#x3001;&#x672C;&#x5730;&#x5B89;&#x88C5;eslint</p>
 <pre><code class="lang-shell">npm i -D eslint
 </code></pre>
-<ol>
-<li><code>.eslintrc.js</code>&#x6587;&#x4EF6;&#x6DFB;&#x52A0;&#x914D;&#x7F6E;&#xFF0C;&#x4E0B;&#x9762;&#x662F;&#x53C2;&#x8003;&#xFF0C;&#x91C7;&#x7528;airbnb&#x89C4;&#x8303;&#x3002;</li>
-</ol>
+<p>3&#x3001;<code>.eslintrc.js</code>&#x6587;&#x4EF6;&#x6DFB;&#x52A0;&#x914D;&#x7F6E;&#xFF0C;&#x4E0B;&#x9762;&#x662F;&#x53C2;&#x8003;&#xFF0C;&#x91C7;&#x7528;airbnb&#x89C4;&#x8303;&#x3002;</p>
 <pre><code class="lang-javascript"><span class="hljs-built_in">module</span>.exports = {
     root: <span class="hljs-literal">true</span>,
     parserOptions: {
@@ -3699,14 +3776,10 @@ eslint --init
     },
 };
 </code></pre>
-<ol>
-<li>&#x5B89;&#x88C5;&#x76F8;&#x5173;&#x4F9D;&#x8D56;</li>
-</ol>
+<p>4&#x3001;&#x5B89;&#x88C5;&#x76F8;&#x5173;&#x4F9D;&#x8D56;</p>
 <pre><code class="lang-shell">npm i eslint-plugin-vue babel-eslint @vue/cli-service @vue/cli-plugin-eslint @vue/eslint-config-airbnb -D
 </code></pre>
-<ol>
-<li>package.json &#x6DFB;&#x52A0; scripts</li>
-</ol>
+<p>5&#x3001;package.json &#x6DFB;&#x52A0; scripts</p>
 <pre><code class="lang-json">{
     <span class="hljs-comment">// ...</span>
     <span class="hljs-string">&quot;scripts&quot;</span>: {
@@ -4051,7 +4124,7 @@ plugins: [
 <p><a href="https://juejin.im/post/5cade280f265da035d0c63fb" target="_blank">&#x8BB0;&#x4E00;&#x6B21;gitHook&#x5E26;&#x6765;&#x7684;&#x601D;&#x8003;&#x1F914; - &#x6398;&#x91D1;</a></p>
 <p><a href="https://juejin.im/post/5dfa36f9f265da33c90b47ef" target="_blank">Webpack &#x8BBE;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x7684;&#x8BEF;&#x533A;- &#x6398;&#x91D1;</a></p>
 <p><a href="https://www.npmjs.com/package/cross-env" target="_blank">cross-env</a></p>
-<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2020-06-09 17:17:23</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2020-03-16 19:42:24</span></div></div>
+<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2020-06-29 20:19:10</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2020-03-16 19:42:24</span></div></div>
                                 
                                 </section>
                             
@@ -4094,7 +4167,7 @@ plugins: [
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"项目搭建","level":"4.5","depth":1,"next":{"title":"Vue 3.0","level":"4.6","depth":1,"path":"vue/03-vue3/README.md","ref":"vue/03-vue3/README.md","articles":[]},"previous":{"title":"整体流程","level":"4.4","depth":1,"path":"vue/01-base/04-overview/README.md","ref":"vue/01-base/04-overview/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"vue/02-practice/01-start.md","mtime":"2020-06-09T09:17:36.934Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-24T02:45:12.202Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"项目搭建","level":"4.5","depth":1,"next":{"title":"Vue 3.0","level":"4.6","depth":1,"path":"vue/03-vue3/README.md","ref":"vue/03-vue3/README.md","articles":[]},"previous":{"title":"整体流程","level":"4.4","depth":1,"path":"vue/01-base/04-overview/README.md","ref":"vue/01-base/04-overview/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"vue/02-practice/01-start.md","mtime":"2020-07-01T02:44:26.317Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-01T02:44:31.596Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
