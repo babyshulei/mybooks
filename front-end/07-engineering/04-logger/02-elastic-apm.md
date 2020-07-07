@@ -266,3 +266,11 @@ rum端（前端）：
 
 [elastic APM 介绍-codefun](http://codefun007.xyz/a/article_detail/248.htm)
 
+[性能为何至关重要 | Web Fundamentals | Google Developers](https://developers.google.com/web/fundamentals/performance/why-performance-matters?hl=zh-cn)
+
+<https://ppt.infoq.cn/slide/show?cid=42&pid=2408>
+
+[蚂蚁金服如何把前端性能监控做到极致?](https://www.infoq.cn/article/Dxa8aM44oz*Lukk5Ufhy)
+
+[7 天打造前端性能监控系统](https://fex.baidu.com/blog/2014/05/build-performance-monitor-in-7-days/)
+

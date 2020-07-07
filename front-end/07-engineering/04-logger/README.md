@@ -131,22 +131,6 @@ SkyWalking是观察性分析平台和应用性能管理系统。提供分布式�
 
 开源应用程序性能监测，分布式跟踪
 
-#### 和SkyWalking的对比
-
-| Elastic APM               | SkyWalking                                                   |                                                              |
-| :------------------------ | :----------------------------------------------------------- | ------------------------------------------------------------ |
-| 支持语言                  | Java, .NET, NodeJS, Python, Ruby, Javascript, Go             | Java, .NET Core, NodeJS, PHP and Go                          |
-| 是否支持tracing           | 是                                                           | 是                                                           |
-| 支持存储                  | Elasticsearch                                                | ElasticSearch, H2 or MySQL                                   |
-| UI丰富度                  | 高。相比后者能在UI中进行复杂的查询和过滤                     | 高。相比前者有服务间的拓扑图                                 |
-| Agent易用性（代码侵入性） | Java, .NET Core、Node.js 部分开源库无需侵入代码自动装配（instrument），Python, Ruby, Javascript, Go 部分开源库提供SDK手动装配。而对于不支持的库/框架，也能通过Public API采集。 | Java, .NET Core, NodeJS 部分开源库无需侵入代码自动装配，不支持的无法使用；Go和PHP提供SDK手动装配。 |
-| 查询能力                  | 能在Kibana APM UI对任意APM信息进行查询或过滤                 | 仅支持TraceId、endpoint name查询                             |
-| 告警                      | 支持                                                         | 支持                                                         |
-| JVM 监控                  | 支持                                                         | 支持                                                         |
-| Go Runtime监控            | 支持                                                         | 不支持                                                       |
-| 收集错误和异常            | 支持                                                         | 不支持                                                       |
-| 实现全面可观察性          | 支持。在Elastic Stack中你已经可以拥有日志及指标的完备解决方案，再结合APM，就可以实现全面的可观察性系统。 | 不支持                                                       |
-
 
 
 ### egg日志
