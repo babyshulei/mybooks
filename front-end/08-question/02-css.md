@@ -4,7 +4,19 @@
 
 ### 1. HTML引入CSS的方式有哪些？
 
-HTML element的style属性，HTML内部style标签引入，HTML外部link标签引入，CSS代码import引入。
+- 内联样式：HTML element的style属性中添加CSS
+- 嵌入样式：HTML内部style标签内写入CSS代码
+- 链接样式：HTML外部link标签引入外部CSS文件
+- 导入样式：CSS规则@import引入外部CSS文件
+
+#### link和@import的区别
+
+- 从属关系：link是HTML标签，@import是CSS规则；link除了加载CSS，还可以定义RSS，定义rel连接属性等，@import就只能加载CSS；
+- 下载顺序：link在页面加载时同时加载，@import引用的CSS会等页面加载完成后再加载；
+- 兼容性：link没有兼容性问题，@import不兼容IE5以下；
+- DOM可控性：link可以通过js操作DOM动态引入样式表改变样式，而@import不可以。
+
+可参考：<https://www.cnblogs.com/my--sunshine/p/6872224.html>
 
 
 
