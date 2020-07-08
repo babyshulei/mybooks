@@ -22,3 +22,5 @@ JavaScript Number 采用的是 IEEE 754 定义的 64 位双精度浮点型来表
 
 [JavaScript 浮点数陷阱及解法· Issue #9 · camsong/blog · GitHub](https://github.com/camsong/blog/issues/9)
 
+[了解JavaScript 的Number 类型- 前端- 掘金](https://juejin.im/entry/587d8b4861ff4b006509784f)
+

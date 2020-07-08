@@ -53,8 +53,8 @@
 
 ## JavaScript
 
-- [基本概念](javascript/00-basic/README.md)
-
+* [基本概念](javascript/00-basic/README.md)
+    * [数据类型](javascript/00-basic/01-data-type.md)
 * [作用域](javascript/01-scope/README.md)
     * [块级作用域](javascript/01-scope/01-block-scope.md)
     * [词法作用域](javascript/01-scope/02-lexical-scope.md)
