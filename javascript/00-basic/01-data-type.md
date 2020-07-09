@@ -1,6 +1,6 @@
 # 数据类型
 
-[TOC]
+<!-- toc -->
 
 ## Undefined 类型
 
@@ -213,6 +213,25 @@ JS有原始类型和对象类型，一些运算符可能会触发js的隐式类�
 1、该对象为Date类型，则PreferredType被设置为String
 
 2、否则，PreferredType被设置为Number
+
+##### 显式指定toPrimitive行为
+
+ES6 之后，允许对象通过显式指定 toPrimitive Symbol 来覆盖原有的行为。
+
+```js
+var o = {
+    valueOf : () => {console.log("valueOf"); return {}},
+    toString : () => {console.log("toString"); return {}}
+}
+
+o[Symbol.toPrimitive] = () => {console.log("toPrimitive"); return "hello"}
+
+console.log(o + "")
+// toPrimitive
+// hello
+```
+
+
 
 #### `==`运算符
 

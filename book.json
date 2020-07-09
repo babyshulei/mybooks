@@ -2,12 +2,13 @@
     "plugins": [
         "chapter-fold",
         "splitter",
-        "anchor-navigation-ex",
+        "toc2",
         "git-author"
     ],
     "pluginsConfig": {
-        "anchor-navigation-ex": {
-            "showLevel": false
+        "toc2": {
+            "addClass": true,
+            "className": "toc"
         },
         "git-author": {
             "modifyTpl": "<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>",
