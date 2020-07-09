@@ -3,17 +3,21 @@
     "version": "1.0.0",
     "description": "Study Notes",
     "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "gitbook build && gh-pages -d _book"
+    },
     "dependencies": {
         "gh-pages": "^2.2.0",
         "gitbook-plugin-anchor-navigation-ex": "^1.0.14",
         "gitbook-plugin-chapter-fold": "0.0.4",
         "gitbook-plugin-git-author": "^1.1.2",
+        "gitbook-plugin-page-treeview": "^3.0.1",
         "gitbook-plugin-splitter": "^0.0.8"
     },
     "devDependencies": {},
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "gitbook build && gh-pages -d _book"
+    "engines": {
+        "gitbook": "*"
     },
     "repository": {
         "type": "git",
