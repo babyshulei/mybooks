@@ -16,9 +16,6 @@
         "gitbook-plugin-splitter": "^0.0.8"
     },
     "devDependencies": {},
-    "engines": {
-        "gitbook": "*"
-    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/babyshulei/mybooks.git"
