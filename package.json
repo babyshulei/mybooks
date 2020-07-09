@@ -12,7 +12,6 @@
         "gitbook-plugin-anchor-navigation-ex": "^1.0.14",
         "gitbook-plugin-chapter-fold": "0.0.4",
         "gitbook-plugin-git-author": "^1.1.2",
-        "gitbook-plugin-gtoc": "^0.2.0",
         "gitbook-plugin-splitter": "^0.0.8"
     },
     "devDependencies": {},
