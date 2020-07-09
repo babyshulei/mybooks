@@ -73,7 +73,7 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../01-scope/" />
+    <link rel="next" href="01-data-type.html" />
     
     
     <link rel="prev" href="../../front-end/08-question/07-engineering.html" />
@@ -799,6 +799,25 @@
                 </a>
             
 
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="01-data-type.html">
+            
+                <a href="01-data-type.html">
+            
+                    
+                    数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -2922,7 +2941,8 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x57FA;&#x672C;&#x6982;&#x5FF5;"><b></b>&#x57FA;&#x672C;&#x6982;&#x5FF5;</a></li><ul><li><span class="title-icon "></span><a href="#&#x8BED;&#x6CD5;"><b></b>&#x8BED;&#x6CD5;</a></li><li><span class="title-icon "></span><a href="#&#x6570;&#x636E;&#x7C7B;&#x578B;"><b></b>&#x6570;&#x636E;&#x7C7B;&#x578B;</a></li><ul><li><span class="title-icon "></span><a href="#&#x9690;&#x5F0F;&#x7C7B;&#x578B;&#x8F6C;&#x6362;"><b></b>&#x9690;&#x5F0F;&#x7C7B;&#x578B;&#x8F6C;&#x6362;</a></li></ul><li><span class="title-icon "></span><a href="#&#x64CD;&#x4F5C;&#x7B26;"><b></b>&#x64CD;&#x4F5C;&#x7B26;</a></li><li><span class="title-icon "></span><a href="#&#x8BED;&#x53E5;"><b></b>&#x8BED;&#x53E5;</a></li><li><span class="title-icon "></span><a href="#&#x51FD;&#x6570;"><b></b>&#x51FD;&#x6570;</a></li><li><span class="title-icon "></span><a href="#&#x53C2;&#x8003;&#x94FE;&#x63A5;"><b></b>&#x53C2;&#x8003;&#x94FE;&#x63A5;</a></li></ul></ul></div><a href="#&#x57FA;&#x672C;&#x6982;&#x5FF5;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x57FA;&#x672C;&#x6982;&#x5FF5;"><a name="&#x57FA;&#x672C;&#x6982;&#x5FF5;" class="anchor-navigation-ex-anchor" href="#&#x57FA;&#x672C;&#x6982;&#x5FF5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x57FA;&#x672C;&#x6982;&#x5FF5;</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x57FA;&#x672C;&#x6982;&#x5FF5;"><b></b>&#x57FA;&#x672C;&#x6982;&#x5FF5;</a></li><ul><li><span class="title-icon "></span><a href="#&#x8BED;&#x6CD5;"><b></b>&#x8BED;&#x6CD5;</a></li><li><span class="title-icon "></span><a href="#&#x6570;&#x636E;&#x7C7B;&#x578B;"><b></b>&#x6570;&#x636E;&#x7C7B;&#x578B;</a></li><li><span class="title-icon "></span><a href="#&#x64CD;&#x4F5C;&#x7B26;"><b></b>&#x64CD;&#x4F5C;&#x7B26;</a></li><li><span class="title-icon "></span><a href="#&#x8BED;&#x53E5;"><b></b>&#x8BED;&#x53E5;</a></li><li><span class="title-icon "></span><a href="#&#x51FD;&#x6570;"><b></b>&#x51FD;&#x6570;</a></li></ul></ul></div><a href="#&#x57FA;&#x672C;&#x6982;&#x5FF5;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x57FA;&#x672C;&#x6982;&#x5FF5;"><a name="&#x57FA;&#x672C;&#x6982;&#x5FF5;" class="anchor-navigation-ex-anchor" href="#&#x57FA;&#x672C;&#x6982;&#x5FF5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x57FA;&#x672C;&#x6982;&#x5FF5;</h1>
+<p>[TOC]</p>
 <h2 id="&#x8BED;&#x6CD5;"><a name="&#x8BED;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#&#x8BED;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8BED;&#x6CD5;</h2>
 <ul>
 <li>&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;</li>
@@ -2935,7 +2955,6 @@
 <p>&#x53D8;&#x91CF;</p>
 <h2 id="&#x6570;&#x636E;&#x7C7B;&#x578B;"><a name="&#x6570;&#x636E;&#x7C7B;&#x578B;" class="anchor-navigation-ex-anchor" href="#&#x6570;&#x636E;&#x7C7B;&#x578B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6570;&#x636E;&#x7C7B;&#x578B;</h2>
 <ul>
-<li>typeof</li>
 <li>Undefined</li>
 <li>Null</li>
 <li>Boolean</li>
@@ -2945,59 +2964,6 @@
 <li>BigInt</li>
 <li>Object</li>
 </ul>
-<h3 id="&#x9690;&#x5F0F;&#x7C7B;&#x578B;&#x8F6C;&#x6362;"><a name="&#x9690;&#x5F0F;&#x7C7B;&#x578B;&#x8F6C;&#x6362;" class="anchor-navigation-ex-anchor" href="#&#x9690;&#x5F0F;&#x7C7B;&#x578B;&#x8F6C;&#x6362;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9690;&#x5F0F;&#x7C7B;&#x578B;&#x8F6C;&#x6362;</h3>
-<p>JS&#x6709;&#x539F;&#x59CB;&#x7C7B;&#x578B;&#x548C;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;&#xFF0C;&#x4E00;&#x4E9B;&#x8FD0;&#x7B97;&#x7B26;&#x53EF;&#x80FD;&#x4F1A;&#x89E6;&#x53D1;js&#x7684;&#x9690;&#x5F0F;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x3002;</p>
-<ul>
-<li><code>+, ==</code> &#x8FD0;&#x7B97;&#x7B26;&#xFF0C;&#x5B58;&#x5728;js&#x7684;&#x9690;&#x5F0F;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#xFF0C;&#x8F6C;&#x6362;&#x4E3A;&#x539F;&#x59CB;&#x503C;&#x3002;</li>
-<li><code>-, *, /</code> &#x8FD0;&#x7B97;&#x7B26;&#xFF0C;&#x7528;&#x4E8E;&#x6570;&#x5B66;&#x8BA1;&#x7B97;&#xFF0C;&#x5B58;&#x5728;js&#x7684;&#x9690;&#x5F0F;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#xFF0C;&#x8F6C;&#x6362;&#x4E3A;Number&#x7C7B;&#x578B;&#x3002;</li>
-</ul>
-<h4 id="toprimitiveinput-preferredtype"><a name="toprimitiveinput-preferredtype" class="anchor-navigation-ex-anchor" href="#toprimitiveinput-preferredtype"><i class="fa fa-link" aria-hidden="true"></i></a>ToPrimitive(input, PreferredType?)</h4>
-<p>&#x9690;&#x5F0F;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x6D89;&#x53CA;&#x7684;JS&#x5F15;&#x64CE;&#x5185;&#x90E8;&#x64CD;&#x4F5C;&#xFF1A; ToPrimitive(input, PreferredType?)</p>
-<h5 id="1-preferredtype&#x4E3A;number"><a name="1-preferredtype&#x4E3A;number" class="anchor-navigation-ex-anchor" href="#1-preferredtype&#x4E3A;number"><i class="fa fa-link" aria-hidden="true"></i></a>1. PreferredType&#x4E3A;Number</h5>
-<p>1&#x3001;&#x5982;&#x679C;&#x8F93;&#x5165;&#x7684;&#x503C;&#x5DF2;&#x7ECF;&#x662F;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x503C;&#xFF0C;&#x5219;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x5B83;</p>
-<p>2&#x3001;&#x5426;&#x5219;&#xFF0C;&#x5982;&#x679C;&#x8F93;&#x5165;&#x7684;&#x503C;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x5219;&#x8C03;&#x7528;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;valueOf()&#x65B9;&#x6CD5;&#xFF0C;&#x5982;&#x679C;valueOf()&#x65B9;&#x6CD5;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x662F;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x503C;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;&#x8FD9;&#x4E2A;&#x539F;&#x59CB;&#x503C;&#x3002;</p>
-<p>3&#x3001;&#x5426;&#x5219;&#xFF0C;&#x8C03;&#x7528;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;toString()&#x65B9;&#x6CD5;&#xFF0C;&#x5982;&#x679C;toString()&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x503C;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;&#x8FD9;&#x4E2A;&#x539F;&#x59CB;&#x503C;&#x3002;</p>
-<p>4&#x3001;&#x5426;&#x5219;&#xFF0C;&#x629B;&#x51FA;TypeError&#x5F02;&#x5E38;&#x3002;</p>
-<h5 id="2-preferredtype&#x4E3A;string"><a name="2-preferredtype&#x4E3A;string" class="anchor-navigation-ex-anchor" href="#2-preferredtype&#x4E3A;string"><i class="fa fa-link" aria-hidden="true"></i></a>2. PreferredType&#x4E3A;String</h5>
-<p>1&#x3001;&#x5982;&#x679C;&#x8F93;&#x5165;&#x7684;&#x503C;&#x5DF2;&#x7ECF;&#x662F;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x503C;&#xFF0C;&#x5219;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x5B83;</p>
-<p>2&#x3001;&#x5426;&#x5219;&#xFF0C;&#x8C03;&#x7528;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;toString()&#x65B9;&#x6CD5;&#xFF0C;&#x5982;&#x679C;toString()&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x503C;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;&#x8FD9;&#x4E2A;&#x539F;&#x59CB;&#x503C;&#x3002;</p>
-<p>3&#x3001;&#x5426;&#x5219;&#xFF0C;&#x5982;&#x679C;&#x8F93;&#x5165;&#x7684;&#x503C;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x5219;&#x8C03;&#x7528;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;valueOf()&#x65B9;&#x6CD5;&#xFF0C;&#x5982;&#x679C;valueOf()&#x65B9;&#x6CD5;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x662F;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x503C;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;&#x8FD9;&#x4E2A;&#x539F;&#x59CB;&#x503C;&#x3002;</p>
-<p>4&#x3001;&#x5426;&#x5219;&#xFF0C;&#x629B;&#x51FA;TypeError&#x5F02;&#x5E38;&#x3002;</p>
-<h5 id="3-&#x672A;&#x4F20;&#x5165;preferredtype&#x65F6;"><a name="3-&#x672A;&#x4F20;&#x5165;preferredtype&#x65F6;" class="anchor-navigation-ex-anchor" href="#3-&#x672A;&#x4F20;&#x5165;preferredtype&#x65F6;"><i class="fa fa-link" aria-hidden="true"></i></a>3. &#x672A;&#x4F20;&#x5165;PreferredType&#x65F6;</h5>
-<p>1&#x3001;&#x8BE5;&#x5BF9;&#x8C61;&#x4E3A;Date&#x7C7B;&#x578B;&#xFF0C;&#x5219;PreferredType&#x88AB;&#x8BBE;&#x7F6E;&#x4E3A;String</p>
-<p>2&#x3001;&#x5426;&#x5219;&#xFF0C;PreferredType&#x88AB;&#x8BBE;&#x7F6E;&#x4E3A;Number</p>
-<h4 id="&#x8FD0;&#x7B97;&#x7B26;"><a name="&#x8FD0;&#x7B97;&#x7B26;" class="anchor-navigation-ex-anchor" href="#&#x8FD0;&#x7B97;&#x7B26;"><i class="fa fa-link" aria-hidden="true"></i></a><code>==</code>&#x8FD0;&#x7B97;&#x7B26;</h4>
-<pre><code>&#x6BD4;&#x8F83;&#x8FD0;&#x7B97; x==y, &#x5176;&#x4E2D; x &#x548C; y &#x662F;&#x503C;&#xFF0C;&#x8FD4;&#x56DE; true &#x6216;&#x8005; false&#x3002;&#x8FD9;&#x6837;&#x7684;&#x6BD4;&#x8F83;&#x6309;&#x5982;&#x4E0B;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#xFF1A;
-
-1&#x3001;&#x82E5; Type(x) &#x4E0E; Type(y) &#x76F8;&#x540C;&#xFF0C; &#x5219;
-    1* &#x82E5; Type(x) &#x4E3A; Undefined&#xFF0C; &#x8FD4;&#x56DE; true&#x3002;
-    2* &#x82E5; Type(x) &#x4E3A; Null&#xFF0C; &#x8FD4;&#x56DE; true&#x3002;
-    3* &#x82E5; Type(x) &#x4E3A; Number&#xFF0C; &#x5219;
-        (1)&#x3001;&#x82E5; x &#x4E3A; NaN&#xFF0C; &#x8FD4;&#x56DE; false&#x3002;
-        (2)&#x3001;&#x82E5; y &#x4E3A; NaN&#xFF0C; &#x8FD4;&#x56DE; false&#x3002;
-        (3)&#x3001;&#x82E5; x &#x4E0E; y &#x4E3A;&#x76F8;&#x7B49;&#x6570;&#x503C;&#xFF0C; &#x8FD4;&#x56DE; true&#x3002;
-        (4)&#x3001;&#x82E5; x &#x4E3A; +0 &#x4E14; y &#x4E3A; &#x2212;0&#xFF0C; &#x8FD4;&#x56DE; true&#x3002;
-        (5)&#x3001;&#x82E5; x &#x4E3A; &#x2212;0 &#x4E14; y &#x4E3A; +0&#xFF0C; &#x8FD4;&#x56DE; true&#x3002;
-        (6)&#x3001;&#x8FD4;&#x56DE; false&#x3002;
-    4* &#x82E5; Type(x) &#x4E3A; String, &#x5219;&#x5F53; x &#x548C; y &#x4E3A;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#x7684;&#x5B57;&#x7B26;&#x5E8F;&#x5217;&#xFF08;&#x957F;&#x5EA6;&#x76F8;&#x7B49;&#x4E14;&#x76F8;&#x540C;&#x5B57;&#x7B26;&#x5728;&#x76F8;&#x540C;&#x4F4D;&#x7F6E;&#xFF09;&#x65F6;&#x8FD4;&#x56DE; true&#x3002; &#x5426;&#x5219;&#xFF0C; &#x8FD4;&#x56DE; false&#x3002;
-    5* &#x82E5; Type(x) &#x4E3A; Boolean, &#x5F53; x &#x548C; y &#x4E3A;&#x540C;&#x4E3A; true &#x6216;&#x8005;&#x540C;&#x4E3A; false &#x65F6;&#x8FD4;&#x56DE; true&#x3002; &#x5426;&#x5219;&#xFF0C; &#x8FD4;&#x56DE; false&#x3002;
-    6*  &#x5F53; x &#x548C; y &#x4E3A;&#x5F15;&#x7528;&#x540C;&#x4E00;&#x5BF9;&#x8C61;&#x65F6;&#x8FD4;&#x56DE; true&#x3002;&#x5426;&#x5219;&#xFF0C;&#x8FD4;&#x56DE; false&#x3002;  
-2&#x3001;&#x82E5; x &#x4E3A; null &#x4E14; y &#x4E3A; undefined&#xFF0C; &#x8FD4;&#x56DE; true&#x3002;
-3&#x3001;&#x82E5; x &#x4E3A; undefined &#x4E14; y &#x4E3A; null&#xFF0C; &#x8FD4;&#x56DE; true&#x3002;
-4&#x3001;&#x82E5; Type(x) &#x4E3A; Number &#x4E14; Type(y) &#x4E3A; String&#xFF0C;&#x8FD4;&#x56DE;&#x6BD4;&#x8F83; x == ToNumber(y) &#x7684;&#x7ED3;&#x679C;&#x3002;
-5&#x3001;&#x82E5; Type(x) &#x4E3A; String &#x4E14; Type(y) &#x4E3A; Number&#xFF0C;&#x8FD4;&#x56DE;&#x6BD4;&#x8F83; ToNumber(x) == y &#x7684;&#x7ED3;&#x679C;&#x3002;
-6&#x3001;&#x82E5; Type(x) &#x4E3A; Boolean&#xFF0C; &#x8FD4;&#x56DE;&#x6BD4;&#x8F83; ToNumber(x) == y &#x7684;&#x7ED3;&#x679C;&#x3002;
-7&#x3001;&#x82E5; Type(y) &#x4E3A; Boolean&#xFF0C; &#x8FD4;&#x56DE;&#x6BD4;&#x8F83; x == ToNumber(y) &#x7684;&#x7ED3;&#x679C;&#x3002;
-8&#x3001;&#x82E5; Type(x) &#x4E3A; String &#x6216; Number&#xFF0C;&#x4E14; Type(y) &#x4E3A; Object&#xFF0C;&#x8FD4;&#x56DE;&#x6BD4;&#x8F83; x == ToPrimitive(y) &#x7684;&#x7ED3;&#x679C;&#x3002;
-9&#x3001;&#x82E5; Type(x) &#x4E3A; Object &#x4E14; Type(y) &#x4E3A; String &#x6216; Number&#xFF0C; &#x8FD4;&#x56DE;&#x6BD4;&#x8F83; ToPrimitive(x) == y &#x7684;&#x7ED3;&#x679C;&#x3002;
-10&#x3001;&#x8FD4;&#x56DE; false&#x3002;
-</code></pre><p>&#x4E3B;&#x8981;&#x5206;&#x4E3A;&#x4E24;&#x7C7B;&#xFF0C;x&#x3001;y&#x7C7B;&#x578B;&#x76F8;&#x540C;&#x65F6;&#xFF0C;&#x548C;&#x7C7B;&#x578B;&#x4E0D;&#x76F8;&#x540C;&#x65F6;&#x3002;</p>
-<p>&#x7C7B;&#x578B;&#x76F8;&#x540C;&#x65F6;&#xFF0C;&#x6CA1;&#x6709;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#xFF0C;&#x4E3B;&#x8981;&#x6CE8;&#x610F;NaN&#x4E0D;&#x4E0E;&#x4EFB;&#x4F55;&#x503C;&#x76F8;&#x7B49;&#xFF0C;&#x5305;&#x62EC;&#x5B83;&#x81EA;&#x5DF1;&#xFF0C;&#x5373;NaN !== NaN&#x3002;</p>
-<p>&#x7C7B;&#x578B;&#x4E0D;&#x76F8;&#x540C;&#x65F6;&#xFF0C;</p>
-<p>1&#x3001;x,y &#x4E3A;null&#x3001;undefined&#x4E24;&#x8005;&#x4E2D;&#x4E00;&#x4E2A;   // &#x8FD4;&#x56DE;true</p>
-<p>2&#x3001;x&#x3001;y&#x4E3A;Number&#x548C;String&#x7C7B;&#x578B;&#x65F6;&#xFF0C;&#x5219;&#x8F6C;&#x6362;&#x4E3A;Number&#x7C7B;&#x578B;&#x6BD4;&#x8F83;&#x3002;</p>
-<p>3&#x3001;&#x6709;Boolean&#x7C7B;&#x578B;&#x65F6;&#xFF0C;Boolean&#x8F6C;&#x5316;&#x4E3A;Number&#x7C7B;&#x578B;&#x6BD4;&#x8F83;&#x3002;</p>
-<p>4&#x3001;&#x4E00;&#x4E2A;Object&#x7C7B;&#x578B;&#xFF0C;&#x4E00;&#x4E2A;String&#x6216;Number&#x7C7B;&#x578B;&#xFF0C;&#x5C06;Object&#x7C7B;&#x578B;&#x8FDB;&#x884C;&#x539F;&#x59CB;&#x8F6C;&#x6362;&#x540E;&#xFF0C;&#x6309;&#x4E0A;&#x9762;&#x6D41;&#x7A0B;&#x8FDB;&#x884C;&#x539F;&#x59CB;&#x503C;&#x6BD4;&#x8F83;&#x3002;</p>
 <h2 id="&#x64CD;&#x4F5C;&#x7B26;"><a name="&#x64CD;&#x4F5C;&#x7B26;" class="anchor-navigation-ex-anchor" href="#&#x64CD;&#x4F5C;&#x7B26;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x64CD;&#x4F5C;&#x7B26;</h2>
 <ul>
 <li>&#x4E00;&#x5143;&#x64CD;&#x4F5C;&#x7B26;</li>
@@ -3022,9 +2988,7 @@
 <li>&#x53C2;&#x6570;</li>
 <li>&#x6CA1;&#x6709;&#x91CD;&#x8F7D;</li>
 </ul>
-<h2 id="&#x53C2;&#x8003;&#x94FE;&#x63A5;"><a name="&#x53C2;&#x8003;&#x94FE;&#x63A5;" class="anchor-navigation-ex-anchor" href="#&#x53C2;&#x8003;&#x94FE;&#x63A5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x53C2;&#x8003;&#x94FE;&#x63A5;</h2>
-<p><a href="https://juejin.im/post/5a7172d9f265da3e3245cbca" target="_blank">&#x4F60;&#x6240;&#x5FFD;&#x7565;&#x7684;js&#x9690;&#x5F0F;&#x8F6C;&#x6362;- &#x6398;&#x91D1;</a></p>
-<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2020-05-25 09:02:31</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2020-05-25 09:02:31</span></div></div>
+<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2020-07-08 19:06:07</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2020-05-25 09:02:31</span></div></div>
                                 
                                 </section>
                             
@@ -3056,7 +3020,7 @@
                 </a>
                 
                 
-                <a href="../01-scope/" class="navigation navigation-next " aria-label="Next page: 作用域">
+                <a href="01-data-type.html" class="navigation navigation-next " aria-label="Next page: 数据类型">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -3067,7 +3031,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"基本概念","level":"3.1","depth":1,"next":{"title":"作用域","level":"3.2","depth":1,"path":"javascript/01-scope/README.md","ref":"javascript/01-scope/README.md","articles":[{"title":"块级作用域","level":"3.2.1","depth":2,"path":"javascript/01-scope/01-block-scope.md","ref":"javascript/01-scope/01-block-scope.md","articles":[]},{"title":"词法作用域","level":"3.2.2","depth":2,"path":"javascript/01-scope/02-lexical-scope.md","ref":"javascript/01-scope/02-lexical-scope.md","articles":[]}]},"previous":{"title":"工程化","level":"2.8.7","depth":2,"path":"front-end/08-question/07-engineering.md","ref":"front-end/08-question/07-engineering.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"javascript/00-basic/README.md","mtime":"2020-05-25T03:40:37.738Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-07T09:35:18.710Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"基本概念","level":"3.1","depth":1,"next":{"title":"数据类型","level":"3.1.1","depth":2,"path":"javascript/00-basic/01-data-type.md","ref":"javascript/00-basic/01-data-type.md","articles":[]},"previous":{"title":"工程化","level":"2.8.7","depth":2,"path":"front-end/08-question/07-engineering.md","ref":"front-end/08-question/07-engineering.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"javascript/00-basic/README.md","mtime":"2020-07-09T03:02:52.132Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-09T03:03:08.952Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
