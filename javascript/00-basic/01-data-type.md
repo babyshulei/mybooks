@@ -1,7 +1,5 @@
 # 数据类型
 
-<!-- toc -->
-
 ## Undefined 类型
 
 表示未定义。有一个值，为undefined。
