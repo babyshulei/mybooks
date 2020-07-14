@@ -2,21 +2,84 @@
 
 > 2020-03-05 @wsl
 
-## 前言
+## 项目搭建（vue-cli）
 
-技术栈：
+1、全局安装vue-cli脚手架
 
-webpack4 工程化编译
+```bash
+npm install -g @vue/cli
+```
 
-babel7 代码编译
-
-vue 开发框架
-
-vue-router 路由跳转
+可以通过  `vue --version` 检查脚手架版本。
 
 
 
-## 项目搭建
+2、使用 preset 初始化项目
+
+```shell
+git clone git@git.n.xiaomi.com:f2f/vue-cli-preset.git
+vue create --preset ./vue-cli-preset new-project && cd new-project
+```
+
+参考：<https://cli.vuejs.org/zh/guide/creating-a-project.html>
+
+
+
+3、安装项目依赖
+
+```shell
+npm i --save es6-promise@4.1.1 vue@2.6.11 vue-router@3.1.5 axios@0.18.0 normalize.css @f2f/stats.o2o @elastic/apm-rum-vue && npm i --save-dev stylelint-config-standard postcss-px2rem vue-template-compiler@2.6.11
+```
+
+
+
+4、修改配置相关文件
+
+1）修改 .browserslistrc，添加浏览器限制
+
+2）修改 .editorconfig，修改编辑配置，**注意**，为了保证项目缩进等规范，一定要在开始进行此项配置！
+
+3）修改 .eslint.js 文件，修改eslint相关配置
+
+4）添加 stylelint.config.js 文件，添加stylint配置。
+
+5）添加 vue.config.js 文件，webpack相关配置，个性化 devServer、外部资源引入。
+
+6）修改 package.json文件，添加脚本，用于项目开发、打包等，添加gitHooks用于lint检测。
+
+
+
+5、修改public/index.html
+
+添加 CDN 资源，包括 es6-promise、axios、vue、vue-router。
+
+
+
+6、配置环境变量
+
+添加 `.env.production`、`.env.development` 文件。如果需要个性化配置本地环境，可以添加 .env.local 文件，该文件不会上传到git。
+
+
+
+7、引入css格式化样式
+
+src/assets添加相关css文件，src/main.js引入css。
+
+
+
+8、添加apm监控相关代码
+
+9、添加 yml 文件，自动化部署
+
+10、更新README.md
+
+11、添加常用文件夹（可选）
+
+添加 src/api、src/utils、src/containers 文件夹及README.md。
+
+
+
+## 项目搭建（自主搭建）
 
 ### 1、初始化项目
 
