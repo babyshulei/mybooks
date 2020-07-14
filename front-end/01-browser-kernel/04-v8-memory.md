@@ -44,8 +44,6 @@ JavaScript引擎的内存空间主要分为栈和堆。
 
 随着程序的运行，堆中的数据会越来越多；栈由系统自动管理，所以需要一个机制来管理堆空间，这就是垃圾回收机制。
 
-
-
 ### Minor GC（Scavenger）
 
 清道夫GC，主要管理新生代空间，保证新生代空间的紧凑和干净。新生代空间是最新产生的数据存活的地方，这些数据往往都是短暂的。新生代空间相对较小，大约在1M~8M，可以通过V8标志如 --max_semi_space_size 或 --min_semi_space_size 来控制新生代空间大小。
@@ -105,6 +103,144 @@ V8的老生代使用标记清除和标记整理结合的方式。主要采用标
 
 V8后续还引入了增量式整理（Incremental Compaction），以及并行标记和并行清理，通过并行利用多核CPU来提升垃圾回收的性能。
 
+## 内存泄漏
+
+虽然JavaScript会自动垃圾收集，但是如果我们的代码写法不当，会让变量一直处于“进入环境”的状态，无法被回收。下面列一下内存泄漏常见的几种情况。
+
+### 常见 JavaScript 内存泄漏
+
+#### 意外的全局变量
+
+```js
+function foo(arg) {
+    bar = "this is a hidden global variable";
+}
+```
+
+bar 未声明，会变成一个全局变量，在页面关闭之前不会被释放。
+
+另一种意外的全局变量可能由 `this` 创建：
+
+```js
+function foo() {
+    this.variable = "potential accidental global";
+}
+// foo 调用自己，this 指向了全局对象（window）
+foo();
+```
+
+在 JavaScript 文件头部加上 'use strict'，可以避免此类错误发生。启用严格模式解析 JavaScript ，避免意外的全局变量。
+
+> 明确声明的全局变量，也是定义为不可回收的（除非定义为空或重新分配）。当全局变量用于临时存储和处理大量信息时，要多加小心，确保用完后将它设置为 null 或重新定义。
+
+#### 被意外的计时器或回调函数
+
+```js
+var someResource = getData();
+setInterval(function() {
+    var node = document.getElementById('Node');
+    if(node) {
+        // 处理 node 和 someResource
+        node.innerHTML = JSON.stringify(someResource));
+    }
+}, 1000);
+```
+
+这样的代码很常见，如果id为Node的元素从DOM中移除，该定时器仍会存在，同时，因为回调函数中包含对someResource的引用，定时器外面的someResource也不会被释放。
+
+对于观察者的例子，一旦它们不再需要（或者关联的对象变成不可达），明确地移除它们非常重要。老的 IE 6 是无法处理循环引用的。如今，即使没有明确移除它们，一旦观察者对象变成不可达，大部分浏览器是可以回收观察者处理函数的。
+
+```js
+var element = document.getElementById('button');
+function onClick(event) {
+    element.innerHTML = 'text';
+}
+element.addEventListener('click', onClick);
+```
+
+老版本的 IE 是无法检测 DOM 节点与 JavaScript 代码之间的循环引用，会导致内存泄漏。如今，现代的浏览器（包括 IE 和 Microsoft Edge）使用了更先进的垃圾回收算法，已经可以正确检测和处理循环引用了。换言之，回收节点内存时，不必非要调用 `removeEventListener` 了。
+
+#### 闭包
+
+闭包是 JavaScript 开发的一个关键方面：匿名函数可以访问父级作用域的变量。
+
+```js
+var theThing = null;
+var replaceThing = function () {
+  var originalThing = theThing;
+  var unused = function () {
+    if (originalThing)
+      console.log("hi");
+  };
+  theThing = {
+    longStr: new Array(1000000).join('*'),
+    someMethod: function () {
+      console.log(someMessage);
+    }
+  };
+};
+setInterval(replaceThing, 1000);
+```
+
+在这段代码中：每次调用`replaceThing`，`theThing`得到一个包含大数组和一个新闭包（`someMethod`）的新对象。同时，变量 `unused` 是一个引用 `originalThing` 的闭包。
+
+闭包的作用域一旦创建，它们有同样的父级作用域，作用域是共享的。`someMethod` 可以通过 `theThing` 使用，`someMethod` 与 `unused` 分享闭包作用域，尽管 `unused` 从未使用，它引用的 `originalThing` 迫使它保留在内存中（防止被回收）。
+
+当这段代码反复运行，就会看到内存占用不断上升，垃圾回收器（GC）并无法降低内存占用。本质上，闭包的链表已经创建，每一个闭包作用域携带一个指向大数组的间接的引用，造成严重的内存泄漏。
+
+[Meteor 的博文](https://blog.meteor.com/an-interesting-kind-of-javascript-memory-leak-8b47d2e7f156) 解释了如何修复此种问题。在 `replaceThing` 的最后添加 `originalThing = null` 。
+
+#### 没有清理的DOM元素引用
+
+有时，保存 DOM 节点内部数据结构很有用。假如你想快速更新表格的几行内容，把每一行 DOM 存成字典（JSON 键值对）或者数组很有意义。此时，同样的 DOM 元素存在两个引用：一个在 DOM 树中，另一个在字典中。将来你决定删除这些行时，需要把两个引用都清除。
+
+```js
+var elements = {
+    button: document.getElementById('button'),
+    image: document.getElementById('image'),
+    text: document.getElementById('text')
+};
+function doStuff() {
+    image.src = 'http://some.url/image';
+    button.click();
+    console.log(text.innerHTML);
+    // 更多逻辑
+}
+function removeButton() {
+    // 按钮是 body 的后代元素
+    document.body.removeChild(document.getElementById('button'));
+    // 此时，仍旧存在一个全局的 #button 的引用
+    // elements 字典。button 元素仍旧在内存中，不能被 GC 回收。
+}
+```
+
+此外还要考虑 DOM 树内部或子节点的引用问题。假如你的 JavaScript 代码中保存了表格某一个 `<td>` 的引用。将来决定删除整个表格的时候，直觉认为 GC 会回收除了已保存的 `<td>` 以外的其它节点。实际情况并非如此：此 `<td>` 是表格的子节点，子元素与父元素是引用关系。由于代码保留了 `<td>` 的引用，导致整个表格仍待在内存中。保存 DOM 元素引用的时候，要小心谨慎。
+
+### Chrome 内存剖析工具
+
+#### Performance
+
+可以通过chrome 的 Performance 工具查看内存占用：
+
+![1594717100230](.\images\js-heap.png)
+
+步骤：
+
+- 打开开发者工具 Performance
+- 勾选 Screenshots 和 memory
+- 左上角小圆点开始录制(record)
+- 停止录制
+
+图中 Heap 对应的部分就可以看到内存在周期性的回落，和垃圾回收相关。如果垃圾回收之后的最低值 min基本平稳，接近水平，就说明不存在内存泄漏。如果 min 在不断上涨，那么肯定是有较为严重的内存泄漏问题。
+
+避免内存泄漏的一些方式：
+
+- 减少不必要的全局变量，或者生命周期较长的对象，及时对无用的数据进行垃圾回收
+- 注意程序逻辑，避免“死循环”之类的
+- 避免创建过多的对象
+
+总而言之需要遵循一条**原则：不用了的东西要及时归还**。
+
 
 
 ## 参考链接
@@ -114,4 +250,8 @@ V8后续还引入了增量式整理（Incremental Compaction），以及并行�
 [V8垃圾回收？看这篇就够了！- Go 语言中文网](https://studygolang.com/articles/26423)
 
 [浅谈V8引擎中的垃圾回收机制](https://segmentfault.com/a/1190000000440270)
+
+[JavaScript中的垃圾回收和内存泄漏](https://github.com/ljianshu/Blog/issues/65)
+
+[4类JavaScript 内存泄漏及如何避免| Alon's Blog](https://jinlong.github.io/2016/05/01/4-Types-of-Memory-Leaks-in-JavaScript-and-How-to-Get-Rid-Of-Them/)
 
