@@ -43,10 +43,87 @@
 
 - 不能随机访问
 - 没有扩容问题
-- 插入删除，时间复杂度O(1)，一般还需要加上查找的时间
+- 插入删除，时间复杂度O(1)
 - 需要存储指针，相比数组会占用更多存储空间
 
 
+
+## 数据结构的基本操作
+
+对于任何数据结构，其基本操作无非遍历 + 访问，再具体一点就是：增删查改。
+
+**数据结构种类很多，但它们存在的目的都是在不同的应用场景，尽可能高效地增删查改**。
+
+如何遍历 + 访问？我们仍然从最高层来看，各种数据结构的遍历 + 访问无非两种形式：线性的和非线性的。
+
+线性就是 for/while 迭代为代表，非线性就是递归为代表。再具体一步，无非以下几种框架：
+
+数组遍历框架，典型的线性迭代结构：
+
+```js
+function traverse(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        // 迭代访问 arr[i]
+    }
+}
+```
+
+链表遍历框架，兼具迭代和递归结构：
+
+```js
+/* function ListNode(x) {
+	this.val = x;
+	this.next = null;
+} */
+
+function traverse(node) {
+    for (let p = node; p !== null; p = p.next) {
+        // 迭代访问 p.val
+    }
+}
+
+function traverse(node) {
+    // 递归访问 node.val
+    traverse(node.next);
+}
+```
+
+二叉树遍历框架，典型的非线性递归遍历结构：
+
+```js
+/* function TreeNode(x) {
+	this.val = x;
+	this.left = null;
+	this.right = null;
+} */
+
+function traverse(node) {
+    // 递归访问 node.val
+    traverse(node.left);
+    traverse(node.right);
+}
+```
+
+可以看到二叉树的递归遍历和单链表的递归遍历非常类似，举一反三，N叉树也能遍历。
+
+二叉树框架可以扩展为 N 叉树的遍历框架：
+
+```js
+/* function TreeNode(x) {
+	this.val = x;
+	this.children = [];
+} */
+
+function traverse(node) {
+    for (let i = 0; i < node.childen.length; i++) {
+        traverse(node.children[i]);
+    }
+}
+```
+
+N 叉树的遍历又可以扩展为图的遍历，因为图就是好几 N 叉棵树的结合体。你说图是可能出现环的？这个很好办，用个布尔数组 visited 做标记就行了，这里就不写代码了。
+
+**所谓框架，就是套路。不管增删查改，这些代码都是永远无法脱离的结构，你可以把这个结构作为大纲，根据具体问题在框架上添加代码就行了**。
 
 
 
@@ -57,3 +134,6 @@
 [OI-Wiki](https://oi-wiki.org/)
 
 [labuladong的算法小抄](https://labuladong.gitbook.io/algo/)
+
+[《算法4》](https://book.douban.com/subject/19952400/)
+
