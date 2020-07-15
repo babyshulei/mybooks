@@ -111,6 +111,7 @@
 
 ## 语言
 
+* [前言](language/README.md)
 * [脚本语言](language/01-script/README.md)
     * [bash](language/01-script/01-bash.md)
 * [Node.js](language/02-nodejs/01-overview/README.md)
