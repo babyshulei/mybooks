@@ -8,7 +8,7 @@ JavaScript学习。
 
 - 《 [你不知道的 JavaScript](https://book.douban.com/series/40642) 》 @Kyle Simpson
 
-  github: [You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS)
+  github: [You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS/tree/1ed-zh-CN)
 
 - 《[ECMAScript 6 入门](https://es6.ruanyifeng.com/)》 @阮一峰
 
