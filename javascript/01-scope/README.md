@@ -119,6 +119,12 @@ foo();
 
 
 
+## 参考链接
+
+[第一章：什么是作用域？- You Dont Know JS](https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/scope %26 closures/ch1.md)
+
+
+
 ## 附录
 
 - 测试1答案：
@@ -128,10 +134,4 @@ LHS查询： c = .. 、a = 2 （隐式变量分配）、b = ..
 场景一：会报错，ReferenceError: b is not defined
   场景二：不会报错，输出4
 场景三：会报错，TypeError: Cannot read property '0' of undefined
-
-
-
-## 参考链接
-
-[第一章：什么是作用域？- You Dont Know JS](https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/scope %26 closures/ch1.md)
 
