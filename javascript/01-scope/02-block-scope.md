@@ -273,7 +273,41 @@ if (true) {
 
 ## 附录
 
+### 测试答案
+
 - 测试1答案：
   场景一：1
   场景二：3
+
+### 块级作用域的替代方案
+
+ES6 引入了 let，其作用域为块级作用域；如何向后兼容 ES5 语法？
+
+可以利用 try/catch 语句中，catch 语句具有块级作用域的特性，将其作为 ES6 之前的环境中块级作用域的替代品。
+
+例如：
+
+```js
+{
+    let a = 2;
+    console.log(a);
+}
+console.log(a); // ReferenceError
+```
+
+转换成：
+
+```js
+{
+    try {
+        throw undefined;
+    } catch (a) {
+        a = 2;
+        console.log(a);
+    }
+}
+console.log(a);
+```
+
+可以使用 [Traceur](https://github.com/google/traceur-compiler)、[Babel](https://www.babeljs.cn/docs/) 来完成 JavaScript 的语法兼容。
 
