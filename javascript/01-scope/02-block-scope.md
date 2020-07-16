@@ -57,8 +57,6 @@ console.log(err); // ReferenceError: err not found
 
   var声明的变量存在变量提升（Hoisting）机制。作用域为函数作用域。
 
-
-
 - let声明
 
   用法与var相同。let声明不会被提升。作用域为块级作用域。
@@ -101,18 +99,80 @@ btn.addEventListener( "click", function click(evt) {
 
 
 
+## 提升
+
+JS引擎在程序运行前会进行编译，编译阶段会进行声明查找，关联对应作用域的工作。期间 var声明的变量和函数声明都会被“移动”到当前作用域的最顶端，这个过程就叫做提升。
+
+每个作用域都会进行提升操作。函数声明会被提升，但是函数表达式不会被提升。即使是具名的函数表达式，名称标识符在赋值之前也无法在所在作用域中使用：
+
+```js
+foo(); // TypeError
+bar(); // ReferenceError
+var foo = function bar() {};
+```
+
+代码经过提升后，实际会变为：
+
+```js
+var foo;
+foo(); // TypeError
+bar(); // ReferenceError
+foo = function bar() {
+	var bar = ...self...
+};
+```
+
+函数声明和变量声明都会被提升，而函数声明会被提升到普通变量之前。
+
+重复的var声明会被忽略掉，但出现在后面的函数声明是可以覆盖前面的函数声明的。
+
+一个普通块内部的函数声明通常会被提升到所在作用域的顶部，例如：
+
+```js
+foo(); // TypeError: foo is not a function
+var a = true;
+if (a) {
+    function foo() { console.log('a') };
+} else {
+    function foo() { console.log('b') };
+}
+```
+
+注意这个行为并不可靠，在JavaScript未来的版本中有可能发生改变，因此应该尽可能避免在块内部声明函数。
+
+测试1：
+
+考虑下面场景的输出是什么。
+
+```js
+// 场景一
+foo();
+var foo;
+function foo() { console.log(1) }
+foo = function() { console.log(2) }
+// 场景二
+foo();
+function foo() { console.log(1) }
+var foo = function() { console.log(2) }
+function foo() { console.log(3) }
+```
+
+
+
 ## 临时死区（Temporal Dead Zone）
 
-由于let 和 const 声明的变量不会被提升，会有“临时死区”的场景出现。 
+JS引擎在扫描代码发现变量声明时，var声明会提升到作用域顶部，let/const声明会放到TDZ中。访问TDZ变量会触发运行时错误。只有执行过变量声明语句后，变量才会从TDZ中移出，然后方可正常访问。
 
- ```js
+```js
 let value = 10;
 
 if (true) {
-    console.log(value); // 报错
-    let value = 'blue';
+    console.log(value);
+    let value = 'blue'; // Uncaught ReferenceError: Cannot access 'value' before initialization
 }
- ```
+```
+
+由于let 和 const 声明的变量不会被提升，如果在声明之前访问这些变量，会触发引用错误，即“临时死区”的场景出现。
 
 
 
@@ -200,4 +260,18 @@ if (true) {
 当 var 被用于全局作用域时，它会创建一个新的全局变量作为全局对象（window）的属性。
 
 当在全局作用域中使用 let 和 const 时，会在全局作用域下创建一个新的绑定，但该绑定不会添加为全局对象的属性。
+
+
+
+## 参考链接
+
+[第三章：函数与块儿作用域](https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/scope %26 closures/ch3.md)
+
+
+
+## 附录
+
+- 测试1答案：
+  场景一：1
+  场景二：3
 
