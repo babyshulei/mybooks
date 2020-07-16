@@ -267,6 +267,8 @@ if (true) {
 
 [第三章：函数与块儿作用域](https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/scope %26 closures/ch3.md)
 
+[第四章：提升](https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/scope %26 closures/ch4.md)
+
 
 
 ## 附录
