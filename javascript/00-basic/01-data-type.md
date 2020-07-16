@@ -8,6 +8,8 @@
 
 JavaScript中，undefined是一个变量，为了避免无意中被篡改，常用void 0 来获取undefined 值。
 
+在现代浏览器（JavaScript 1.8.5/Firefox 4+），自ECMAscript5标准以来undefined是一个不能被配置（non-configurable），不能被重写（non-writable）的属性。即便事实并非如此，也要避免去重写它。
+
 
 
 ## Null 类型
@@ -285,6 +287,8 @@ console.log(o + "")
 ## 参考链接
 
 [JavaScript类型：关于类型，有哪些你不知道的细节？| 极客时间](https://time.geekbang.org/column/article/78884)
+
+[undefined - JavaScript - MDN Web Docs - Mozilla](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 
 [String - JavaScript - MDN - Mozilla](https://developer.mozilla.org/cn/docs/Web/JavaScript/Reference/Global_Objects/String)
 
