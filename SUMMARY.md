@@ -126,10 +126,9 @@
 ## 计算机
 
 * [数据库](computer/01-database/README.md)
-    * [数据类型](computer/01-database/01-datatype.md)
-    * [HDFS](computer/01-database/02-hdfs.md)
-    * [索引](computer/01-database/02-hdfs.md)
-    * [Sequelize](computer/01-database/04-sequelize.md)
+    * [数据类型](computer/01-database/01-base/01-datatype.md)
+    * [HDFS](computer/01-database/01-base/02-hdfs.md)
+    * [Sequelize](computer/01-database/01-base/04-sequelize.md)
 
 ## HTTP
 
