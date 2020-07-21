@@ -108,6 +108,8 @@
 * [设计模式](programming/02-design/README.md)
     * [MV*模式](programming/02-design/01-mvvm.md)
 * [数据结构与算法](programming/03-data-algorithm/README.md)
+    * [数组](programming/03-data-algorithm/01-linear-list/01-array/README.md)
+    * [栈](programming/03-data-algorithm/01-linear-list/03-stack/README.md)
     * [树](programming/03-data-algorithm/02-tree/README.md)
     * [练习](programming/04-algorithm-practice/README.md)
 
