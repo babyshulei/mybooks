@@ -320,3 +320,5 @@ Super的所有引用都通过[[HomeObject]]属性来确定后续的运行过程�
 
 [Standard ECMA-262](https://www.ecma-international.org/publications/standards/Ecma-262.htm)
 
+[Object.create()、new Object()和{}的区别- 掘金](https://juejin.im/post/5d578bacf265da03ee6a548a)
+
