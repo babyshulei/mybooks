@@ -130,7 +130,8 @@
 * [数据库](computer/01-database/README.md)
     * [数据类型](computer/01-database/01-base/01-datatype.md)
     * [HDFS](computer/01-database/01-base/02-hdfs.md)
-    * [Sequelize](computer/01-database/01-base/04-sequelize.md)
+    * [Sequelize](computer/01-database/01-base/03-sequelize.md)
+    * [索引](computer/01-database/02-mysql/01-index.md)
 
 ## HTTP
 
