@@ -16,7 +16,7 @@
 
 ## this 绑定过程
 
-this 绑定和函数的调用位置、调用方式直接相关。
+this 绑定对象和函数的调用位置、调用方式直接相关。
 
 调用位置：函数在代码中被调用的位置。需要分析调用栈，调用位置就在当前正在执行的函数的前一个调用中。
 
@@ -242,3 +242,10 @@ ES6 定义了一种特殊函数类型：箭头函数。箭头函数不使用 thi
 [第二章: *this* 豁然开朗!](https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/this %26 object prototypes/ch2.md)
 
 [Object.create()、new Object()和{}的区别- 掘金](https://juejin.im/post/5d578bacf265da03ee6a548a)
+
+[Function.prototype.apply() - JavaScript - MDN Web Docs](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)
+
+[Function.prototype.call() - JavaScript - MDN Web Docs - Mozilla](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call)
+
+[Function.prototype.bind() - JavaScript - MDN Web Docs - Mozilla](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
+

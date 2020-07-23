@@ -1,324 +1,242 @@
-# 扩展对象的功能性
+# 对象
 
-> 2019.12.14 @wsl
+## 语法
 
-## 1. 对象类别
+对象可以通过两种形式定义：声明（文字）形式和构造形式。
 
-ECMAScript 6 规范清晰定义了每一个类别的对象。对象的类别如下：
-
-- 普通（Ordinary）对象：具有JavaScript对象所有的默认内部行为。
-- 特异（Exotic）对象：具有某些与默认行为不符的内部行为。
-- 标准（Standard）对象：规范中定义的对象，如 Array、Date等。标准对象既可以是普通对象，也可以是特异对象。
-- 内建（Build-in）对象：脚本开始执行时存在与JavaScript执行环境中的对象，所有标准对象都是内建对象。
-
-## 2. 对象字面量语法扩展
-
-### 属性初始值的简写
-
-ES6新增了属性初始化的简写语法，可以消除属性名称与局部变量之间的重复书写。
-
-当一个对象的属性与本地变量同名时，不必再写冒号和值，简单地只写属性名即可。
-
-```javascript
-function createPerson(name, age) {
-    return {
-        name,
-        age,
-    };
-}
-
-// 等价于ES5中的
-function createPerson(name, age) {
-    return {
-        name: name,
-        age: age,
-    };
-}
-```
-
-当对象字面量里只有一个属性的名称时，JavaScript引擎会在可访问的作用域中查找其同名变量；如果找到，则该变量的值被赋给对象字面量里的同名属性；如果未找到，会报错（经测试）。
-
-### 对象方法的简写
-
-ES6也改进了对象字面量定义方法的语法。
-
-在ES5中，为对象添加方法，需要指定名称并完整定义函数来实现。
-
-在ES6中，语法更简洁，消除了冒号和function关键字。定义的方法属性被赋值为一个匿名函数表达式，拥有ES5中定义的对象方法所具有的全部特性。二者的唯一区别是，简写方法可以使用super关键字。
-
-```javascript
-// ES5
-var person = {
-    name: 'John',
-    sayName: function() {
-        console.log(this.name);
-    }
-};
-
-// ES6
-const person = {
-    name: 'John',
-    sayName() {
-        console.log(this.name);
-    }
-};
-```
-
-> 通过对象方法简写语法创建的方法有一个name属性，其值为小括号前的名称，如上面的person.sayName()方法的name属性为sayName。
-
-### 可计算属性名（Computed Property Name）
-
-在ES5及早期版本的对象实例中，如果想要通过计算得到属性名，就需要使用方括号代替点记法。
-
-但是，如果属性名称被包含在一个变量中，或者需要计算才能得到，那么在ES5中是无法为一个对象字面量定义该属性的。
-
-在ES6中，可在对象字面量中使用可计算属性名称，其语法与引用对象实例的可计算属性名称相同，也是使用方括号。同样，也可以使用表达式作为属性的可计算名称。
-
-```javascript
-// ES5中
-var last = 'lastname';
-var person1 = {
-    firstname: 'John',
-};
-person1[last] = 'N';
-
-// ES6中使用可计算属性
-var person2 = {
-    firstname: 'Alice',
-    [last]: 'M',
-};
-
-// ES6中可计算属性使用表达式
-var suffix = 'name';
-var person3 = {
-    ['first' + suffix]: 'Amy',
-    ['last' + suffix]: 'W',
-};
-```
-
-## 3. 新增方法
-
-ES6在全局Object对象上引入了一些新方法。
-
-### Object.is()方法
-
-用全等运算符（===）比较JavaScript中的两个值时，有时返回的值并不准确。ES6引入Object.is()方法来弥补全等运算符的不准确运算。
-
-全等运算符的不准确体现在：
-
-- +0 === -0 为true。
-- NaN === NaN 为false。需要使用isNaN()方法才能正确检测NaN。
-
-Object.is() 接受两个参数，如果这两个参数类型相同且具有相同的值，则返回true。
-
-```javascript
-console.log(+0 == -0); // true
-console.log(+0 === -0); // true
-console.log(Object.is(+0, -0)); // false
-
-console.log(NaN == NaN); // false
-console.log(NaN === NaN); // false
-console.log(Object.is(NaN, NaN)); // true
-
-console.log(5 == 5); // true
-console.log(5 === 5); // true
-console.log(Object.is(5, 5)); // true
-
-console.log(5 == '5'); // true
-console.log(5 === '5'); // false
-console.log(Object.is(5, '5')); // false
-```
-
-对于Object.is() 方法来说，其运行结果在大部分情况中与===运算符相同，唯一的区别在于+0和-0被识别为不相等，NaN与NaN等价。
-
-### Object.assign()方法
-
-ES6添加了Object.assign()方法，该方法接受一个接收对象和任意数量的源对象，最终返回接收对象。
-
-Object.assign()方法可以接受任意数量的源对象，并按指定顺序将属性复制到接收对象中。所以如果多个源对象具有同名属性，则排位靠后的源对象会覆盖排位靠前的。
-
-```javascript
-var receiver = {};
-Object.assign(receiver, {
-    type: 'js',
-    name: 'file.js',
-}, {
-    type: 'css',
-});
-
-console.log(receiver); // {type: "css", name: "file.js"}
-```
-
-注意，Object.assign()方法不能讲提供者的访问器属性复制到接收对象中。由于Object.assign()方法执行了赋值操作，因此提供者的访问器属性最终会转变为接收对象中的一个数据属性。
-
-```javascript
-var rece = {},
-    supplier = {
-        get name() {
-            return 'file.js';
-        }
-    };
-Object.assign(rece, supplier);
-console.log(rece, supplier);
-```
-
-console结果：
-
-![1576558280066](.\images\object-assign.png)
-
-## 4. 重复的对象字面量属性
-
-ES5严格模式中加入了对象字面量重复属性的校验，当同时存在多个同名属性时会抛出错误。
-
-ES6中重复属性检查被移除了，严格和未严格模式下，代码都不再检查重复属性，对于每一组重复属性，都会选取最后一个取值。
-
-```javascript
-// ES5
-'use strict';
-var person = {
-    name: 'aaa',
-    name: 'bbb' // 报语法错误
-};
-
-// ES6
-'use strict';
-var person = {
-    name: 'aaa',
-    name: 'bbb'
-};
-console.log(person); // {name: "bbb"}
-```
-
-## 5. 自有属性枚举顺序
-
-ES5中未定义对象属性的枚举顺序，由JavaScript引擎厂商自行决定。
-
-ES6则严格规定了对象的自有属性被枚举时的返回顺序，这会影响到Object.getOwnPropertyNames() 方法及 Reflect.ownKeys 返回属性的方式，Object.assign()方法处理属性的顺序也将随之改变。
-
-自有属性枚举顺序的基本规则是：
-
-1. 所有数字键按升序排序
-2. 所有字符串键按照它们被加入对象的顺序排序。
-3. 所有symbol键按照它们被加入对象的顺序排序。
-
-```javascript
+```js
+// 文字形式
 var obj = {
-    a: 1,
-    0: 1,
-    c: 1,
-    2: 1,
-    b: 1,
-    1: 1
+    key: value,
+    // ...
 };
-obj.d = 1;
-console.log(Object.getOwnPropertyNames(obj).join('')); // 012acbd
+
+// 构造形式
+var newObj = new Object();
+newObj.key = value;
 ```
 
-> 对于for-in循环，仍未指定一个明确的枚举顺序；而Object.keys()方法和JSON.stringify()方法都指明与for-in使用相同的枚举顺序，因此它们的枚举顺序目前也不明晰。
+构造形式和文字形式生成的对象是一样的。区别是，文字声明中可以添加多个键值对，但是构造形式中必须构造后逐个添加属性。
 
-## 6. 增强对象原型
+## 类型
 
-### 改变对象原型
+JavaScript中一共有八种主要类型（语言类型）：
 
-ES5中，正常情况下，通过构造函数或Object.create()方法创建对象，其原型是在对象被创建时指定的。对象原型在实例化之后保持不变。可以通过Object.getPrototypeOf()方法来返回指定对象的原型。
+- string
+- number
+- boolean
+- null
+- undefined
+- symbol
+- bigint
+- object
 
-ES6中，添加了Object.setPrototypeOf()方法，通过这个方法可以改变任意指定对象的原型，它接受两个参数：被改变原型的对象及替代第一个参数原型的对象。
+即7个简单基本类型和1个复杂基本类型。简单基本类型本身并不是对象。null 有时会被当作一种对象类型，这其实只是语言本身的一个bug，即 typeof null 会返回"object"。实际上，null 本身是基本类型。
 
-### 简化原型访问的Super引用
+### 内建对象
 
-ES6中引入了Super引用的特性，使用它可以更便捷地访问对象原型。
+内建对象是在JS脚本开始执行时，存在于JavaScript执行环境中的对象，所有标准对象都是内建对象。标准对象在 ES 规范中定义。
 
-Super引用相当于指向对象原型的指针，就是Object.getPrototypeOf(this)的值。
+内建对象主要有：
 
-```javascript
-let person = {
-    getGreeting() {
-        return "John";
-    }
-};
+- 基本对象：Object、Function、Boolean、Symbol
+- 错误对象：Error、...
+- 数字和日期对象：Number、BigInt、Math、Date
+- 字符串：String、RegExp
+- 可索引的集合对象：Array、...
+- 使用键的集合对象：Map、Set、WeakMap、WeakSet
+- 结构化数据：ArrayBuffer、JSON、...
+- 控制抽象对象：Promise、Generator、...
+- 反射：Reflect、Proxy
+- ...
 
-let dog = {
-    getGreeting() {
-        return "Woof";
-    }
-};
+这些内置对象实际上是内置函数，这些内置函数可以当作构造函数来使用，从而可以构造一个对应子类型的新对象。
 
-let friend = {
-    getGreeting() {
-        // 等同于 Object.getPrototypeOf(this).getGreeting().call(this)
-        return super.getGreeting() + ", hi!";
-    }
-};
+```js
+var strPrimitive = "I am a string";
+typeof strPrimitive;							// "string"
+strPrimitive instanceof String;					// false
 
-Object.setPrototypeOf(friend, person);
-console.log(friend.getGreeting()); // John, hi!
+var strObject = new String( "I am a string" );
+typeof strObject; 								// "object"
+strObject instanceof String;					// true
 
-Object.setPrototypeOf(friend, dog);
-console.log(friend.getGreeting()); // Woof, hi!
+// 考察 object 子类型
+Object.prototype.toString.call( strObject );	// [object String]
 ```
 
-注意，必须要在使用简写方法的对象中使用Super引用，如果在其他方法声明中使用会导致语法错误：
+原始值，如字符串、数字、布尔值并不是对象，只是一个字面量，如果想在这个字面量上执行一些操作，如获取长度、访问某个字符等，需要将其转换为对应的String/Number/Boolean对象。
 
-```javascript
-let friend = {
-    getGreeting: function() {
-        // 语法错误
-        return super.getGreeting() + ", hi!";
-    }
-};
+JS引擎会进行自动”装箱“，可以自动把字面量转换成对应对象，所以可以访问属性和方法。
+
+```js
+var str = 'a string';
+console.log(str.length); // 8
+console.log(str.charAt(3)); // t
+var num = 42.3445;
+console.log(num.toFixed(2)); // 42.34
 ```
 
-Super引用在多重继承的情况下非常有用，因为这种情况下，使用Object.getPrototypeOf()方法将会出问题。
+null 和 undefined 没有对应的构造形式，它们只有文字形式。相反，Date 只有构造，没有文字形式。
 
-Super引用不是动态变化的，它总是指向正确的对象。
+## 内容
 
-```javascript
-let person = {
-    getGreeting() {
-        return "John";
-    }
-};
+对象的内容是由一些存储在特定命名位置的（任意类型的）值组成的，我们称之为属性。
 
-let friend = {
-    getGreeting() {
-        return Object.getPrototypeOf(this).getGreeting().call(this) + ", hi!";
-        // return super.getGreeting() + ", hi!";
-    }
-};
+访问对象的内容需要使用`.`操作符或者`[]`操作符。`.xx`语法通常被称为“属性访问”，`[xx]`语法通常被称为“键访问”。
 
-// 原型是friend
-let relative = Object.create(friend);
+这两种语法的主要区别在于`.`操作符要求属性名满足标识符的命名规范，而`[".."]`语法可以接受任意 UTF-8/Unicode 字符串作为属性名。
 
-Object.setPrototypeOf(friend, person);
-console.log(friend.getGreeting()); // John, hi!
-console.log(relative.getGreeting()); // 会进入递归调用直到触发栈溢出报错，如果使用super则会正确输出 John, hi!
+**在对象中，属性名永远都是字符串**。如果使用 string 以外的其他值作为属性名，那它首先会被转换为一个字符串。
+
+```js
+var myObject = { };
+
+myObject[true] = "foo";
+myObject[3] = "bar";
+myObject[myObject] = "baz";
+
+myObject["true"];				// "foo"
+myObject["3"];					// "bar"
+myObject["[object Object]"];	// "baz"
 ```
 
-### 正式的方法定义
+如果访问的对象属性是一个函数，这时属性通常被称为“方法”。
 
-ES6之前，没有正式定义过“方法”，方法仅仅是一个具有功能而非数据的对象属性。
+### 可计算属性名
 
-ES6中正式将方法定义为一个函数，它有一个内部的[[HomeObject]]属性来容纳这个方法从属的对象。
+可以通过 `[..]`来访问表达式计算得到的属性。如 `obj[prefix + name]`。
 
-普通的函数是没有明确定义的[[HomeObject]]属性的。
+ES6 增加了可计算属性名，可以在文字形式中使用`[]`包裹一个表达式来当做属性名：
 
-Super的所有引用都通过[[HomeObject]]属性来确定后续的运行过程。
+```js
+var prefix = "foo";
 
-第一步，在[[HomeObject]]属性上调用Object.getPrototypeOf()方法来检索原型的引用。
+var myObject = {
+	[prefix + "bar"]: "hello",
+	[prefix + "baz"]: "world",
+    // 可对象属性名常用于Well-known Symbol属性，用于定义一些对象的内部操作
+    [Symbol.Something]: "hello world",
+};
 
-然后，搜寻原型找到同名函数。
+myObject["foobar"]; // hello
+myObject["foobaz"]; // world
+```
 
-最后，设置this绑定并且调用相应的方法。
+### 数组
 
-参见之前的Super引用例子。friend.getGreeting()方法的[HomeObject]]属性 --> friend --的原型是--> person，所以super.getGreeting() 等价于 person.getGreeting().call(this)
+数组支持`[]`访问形式，数组也是对象，可以给数组添加属性。如果添加了命名属性，数组的length 值是不会发生变化的；如果添加的命名属性“看起来”像一个数字，那它会变成一个数值下标，因此会修改数组的内容而不是添加一个属性。
+
+```js
+var myArray = [ "foo", 42, "bar" ];
+myArray["3"] = "baz";
+myArray.length;	// 4
+myArray[3];		// "baz"
+```
+
+### 复制对象
+
+复制对象可以分为浅复制和深复制，即浅拷贝、深拷贝。
+
+- 浅拷贝
+  复制对象的属性，其值是基本类型时，复制值；其值是对象类型时，复制对象的引用。
+  实现方案：Object.assign(target, origin)、展开运算符`...`、Array.prototype.slice()、Array.prototype.concat()
+- 深拷贝
+  复制对象的属性，其值是基本类型时，复制值；其值是对象类型时，复制整个对象。
+  实现方案：JSON.parse(JSON.stringify(obj))、lodash.cloneDeep()、递归实现等
+
+> Object.assign() 是使用`=`操作符来赋值，所以源对象属性的一些特性（比如writable）不会被复制到目标对象。
+>
+> JSON.parse(JSON.stringify(obj))方法深拷贝对象需要是JSON安全的对象。像拷贝循环引用、重复引用、包含正则等等的对象就会有问题。
+
+### 属性描述符
+
+ ES5之前，JavaScript语言本身没有提供可以直接检测属性特性的方法，ES5开始，所有的属性都具备了属性描述符。
+
+属性描述符包括 configurable、enumerable、value、writable、get、set。
+
+在创建普通属性时属性描述符会使用默认值，也可以使用 Object.defineProperty(...) 来添加一个新属性或者修改一个已有属性（如果它是configurable）并对特性进行设置。
+
+```js
+var myObject = {};
+
+Object.defineProperty( myObject, "a", {
+	value: 2,
+	writable: true,
+	configurable: true,
+	enumerable: true
+} );
+
+myObject.a; // 2
+```
+
+- writable
+  是否可以修改属性的值。
+  如果 writable 为 false，但修改属性的值，非严格模式下会静默失败（silently failed）；严格模式下，会抛出一个 TypeError 错误。
+- configurable
+  属性是否可配置。属性可配置，可以使用 defineProperty() 方法来修改属性标识符。
+  如果 configurable 为 false，修改属性标识符会抛出一个 TypeError 错误。注意，有一个例外，configurable 为 false 时也可以将 writable 的状态由 true 改为 false，但是无法由 false 改为 true。
+- enumerable
+  是否可枚举。当为 true 时，该属性才会出现在对象的枚举属性中。
+
+### 不变性
+
+有时会希望属性或对象是不可改变的，ES5中可以通过很多方法来实现。
+
+注意，所有的方法创建的都是浅不变性，即它们只会影响目标对象和它的直接属性。如果目标对象引用了其他对象，其他对象的内容不受影响，仍然是可变的。
+
+#### 1. 对象常量
+
+设置标识符 writable: false、configurable: false 就可以创建一个真正的常量属性。
+
+```js
+var myObject = {};
+
+Object.defineProperty( myObject, "FAVORITE_NUMBER", {
+	value: 42,
+	writable: false,
+	configurable: false
+} );
+```
+
+#### 2. 禁止扩展
+
+使用 Object.preventExtensions() 来禁止有个对象添加新属性并且保留已有属性。
+
+```js
+var myObject = {
+	a: 2
+};
+
+Object.preventExtensions( myObject );
+
+myObject.b = 3;
+myObject.b; // undefined
+```
+
+非严格模式下，创建属性b会静默失败；严格模式下，会抛出 TypeError 错误。
+
+#### 3.密封
+
+使用 Object.seal() 创建一个“密封”对象，这个方法实际上会在一个现有对象上调用 Objec.preventExtensions() 并把所有现有属性标记为 configurable: false。
+
+因此，密封后不能添加新属性，也不能配置或删除现有属性，但是可以修改属性的值（如果对象的writable为true）。
+
+#### 4. 冻结
+
+使用 Object.freeze() 会创建一个冻结对象，这个方法实际上会在一个现有对象上调用 Object.seal() 并把所有“数据访问”属性标记为 writable:false，这样就无法修改它们的值。
+
+这个方法是可以应用在对象上的级别最高的不可变性，它会禁止对于对象本身以及任意直接属性的修改，不过，这个对象引用的其他对象是不受影响的。
+
+你可以“深度冻结”一个对象，即递归调用 Object.freeze() 冻结对象的对象属性。不过，要注意是否会有副作用，很有可能会在无意中冻结其他（共享）对象。
 
 
 
 ## 参考链接
 
-[MDN|JavaScript资源](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Language_Resources)
+[第三章: 对象](https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/this %26 object prototypes/ch3.md)
 
-[Standard ECMA-262](https://www.ecma-international.org/publications/standards/Ecma-262.htm)
+[JavaScript 标准内置对象- JavaScript | MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects)
 
-[Object.create()、new Object()和{}的区别- 掘金](https://juejin.im/post/5d578bacf265da03ee6a548a)
+[Object.defineProperty() - JavaScript - MDN Web Docs - Mozilla](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
 
