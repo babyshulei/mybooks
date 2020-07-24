@@ -155,6 +155,12 @@ myArray[3];		// "baz"
 
 属性描述符包括 configurable、enumerable、value、writable、get、set。
 
+数据描述符可拥有的键值： configurable、enumerable、value、writable。
+
+访问描述符可拥有的键值：configurable、enumerable、get、set。
+
+如果一个描述符不具有 value、writable、get 和 set 中的任意一个键，那么它将被认为是一个数据描述符。如果一个描述符同时拥有 value 或 writable 和 get 或 set 键，则会产生一个异常。
+
 在创建普通属性时属性描述符会使用默认值，也可以使用 Object.defineProperty(...) 来添加一个新属性或者修改一个已有属性（如果它是configurable）并对特性进行设置。
 
 ```js
@@ -229,6 +235,106 @@ myObject.b; // undefined
 这个方法是可以应用在对象上的级别最高的不可变性，它会禁止对于对象本身以及任意直接属性的修改，不过，这个对象引用的其他对象是不受影响的。
 
 你可以“深度冻结”一个对象，即递归调用 Object.freeze() 冻结对象的对象属性。不过，要注意是否会有副作用，很有可能会在无意中冻结其他（共享）对象。
+
+### [[Get]] 和 [[Put]]
+
+#### [[Get]]
+
+当我们进行对象属性的取值时，实际上是调用了对象默认的内置 [[Get]] 操作。[[Get]] 操作首先在对象中查找是否有名称相同的属性，如果找到就会返回这个属性的值。
+
+如果没有找到名称相同的属性，[[Get]] 操作会遍历可能存在的原型链，查找是否有名称相同的属性，找到就返回。
+
+如果最后没有找到名称相同的属性，[[Get]] 操作会返回值 undefined。
+
+#### [[Put]]
+
+你可能会认为给对象属性的赋值时，会触发[[Put]]来设置或创建这个属性。但实际不完全是这样。
+
+[[Put]] 被触发时，实际的行为取决于许多因素，最重要的因素是对象中是否已经存在这个属性。如果已经存在这个属性，[[Put]]算法大致会检查下面这些内容：
+
+1. 属性是否是访问描述符？如果是并且存在setter就调用setter。
+2. 属性的数据描述符中 writable 是否是 false？如果是，非严格模式下静默失败，在严格模式下抛出 TypeError 异常。
+3. 如果都不是，将该值设置为属性的值。
+
+如果对象中不存在这个属性，[[Put]] 操作会更加复杂。可以参考原型链部分。
+
+### Getter 和 Setter
+
+ES5 中可以使用 getter 和 setter 部分改写默认操作，但是只能应用在单个属性上，无法应用在整个对象上。getter 是一个隐藏函数，会在获取属性值时调用。setter 也是一个隐藏函数，会在设置属性时调用。
+
+属性描述符包括 configurable、enumerable、value、writable、get、set。
+
+当你给一个属性定义 getter、setter 或者两者都有时，这个属性会被定义为“访问描述符”（和“数据描述符”相对）。对于访问描述符，JS 会忽略它们的 value 和 writable特性，关注的是 set、get、configurable、enumerable特性。
+
+可以通过 Object.defineProperty() 定义单个属性的 getter 和 setter。它们会覆盖属性默认的取值、赋值操作。通常 getter 和 setter 是成对出现的（只定义一个通常会产生意料之外的行为）。
+
+```js
+var myObject = {
+	// 为 `a` 定义 getter
+	get a() {
+		return this._a_;
+	},
+	// 为 `a` 定义 setter
+	set a(val) {
+		this._a_ = val * 2;
+	}
+};
+
+myObject.a = 2;
+myObject.a; // 4
+```
+
+### 存在性
+
+- `in` 操作符
+  检查属性是否在对象及其原型链中，返回一个布尔值。
+- `Object.prototype.hasOwnProperty(key)`
+  检查属性是否在对象中，返回一个布尔值，不会检查原型链。
+- `for..in`循环
+  遍历对象的可枚举属性列表，包括原型链。
+- `Object.prototype.propertyIsEnumerable(key)`
+  检查给定的属性名是否直接存在于对象中并且满足 enumerable:true，返回一个布尔值，不会检查原型链。
+- `Object.keys(obj)`
+  返回一个数组，包含对象所有可枚举的属性，不会查找原型链。
+- `Object.getOwnPropertyNames(obj)`
+  返回一个数组，包含对象的所有属性，无论它们是否可枚举，不会查找原型链。
+
+```js
+function SuperObj() {
+	return { ss: 24 };
+}
+
+var myObject = {};
+myObject.__proto__ = new SuperObj();
+
+Object.defineProperty(myObject, "a",
+	// 使 `a` 可枚举，如一般情况
+	{ enumerable: true, value: 2 }
+);
+
+Object.defineProperty(myObject, "b",
+	// 使 `b` 不可枚举
+	{ enumerable: false, value: 3 }
+);
+
+console.log('myObject.b', myObject.b); // 3
+console.log('"b" in myObject', "b" in myObject); // true
+console.log('myObject.hasOwnProperty("b") -- ', myObject.hasOwnProperty("b")); // true
+
+
+for (var k in myObject) {
+	console.log( k, myObject[k] );
+}
+// "a" 2
+// "ss" 24
+
+console.log(myObject.propertyIsEnumerable("a"), myObject.propertyIsEnumerable("b")); // true false
+
+console.log("Object.keys -- ", Object.keys(myObject)); // ["a"]
+console.log("Object.getOwnPropertyNames -- ", Object.getOwnPropertyNames(myObject)); // [a", "b"]
+```
+
+目前并没有内置的方法可以获取 `in` 操作符使用的属性列表，不过可以递归遍历对象的整条原型链并保存每一层中的 Object.getOwnPropertyNames() 数组。
 
 
 
