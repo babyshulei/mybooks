@@ -145,3 +145,73 @@ const divs = document.getElementsByTagName('div');
 for(let div of divs) {
     console.log(div.id);
 }
+
+// 展开运算符
+const arr1 = [1, 2, 3];
+const arr2 = [3, 6, 9];
+const arr3 = [5, ...arr1, ...arr2];
+
+console.log(arr3);
+
+function *createIterator() {
+    let first = yield 1;
+    let second;
+
+    try {
+        second = yield first + 2;
+    } catch (e) {
+        second = 7;
+    }
+    yield second + 5;
+}
+
+const ite = createIterator();
+
+console.log(ite.next());
+console.log(ite.next(2));
+console.log(ite.throw(new Error('boom!')));
+console.log(ite.next());
+
+/* 异步任务迭代器 */
+function run(taskDef) {
+    // 创建任务迭代器
+    let task = new taskDef();
+    // 开始执行任务
+    let result = task.next();
+
+    // 开始迭代执行
+    step();
+
+    function step() {
+        // 如果任务未完成，继续执行
+        if (!result.done) {
+            if (typeof result.value === 'function') {
+                result.value((err, data) => {
+                    if (err) {
+                        result = task.throw(err);
+                        return;
+                    }
+
+                    result = task.next(data);
+                    step();
+                });
+            } else {
+                result = task.next(result.value);
+                step();
+            }
+        }
+    }
+}
+
+let fs = require('fs');
+function readFile(filename) {
+    return function(callback) {
+        fs.readFile(filename, callback);
+    };
+}
+
+run(function*() {
+    let contents = yield readFile('xxx.json');
+    doSomething(contents);
+    console.log('Done');
+});

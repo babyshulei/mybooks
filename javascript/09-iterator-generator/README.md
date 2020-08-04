@@ -1,6 +1,6 @@
 # 迭代器(Iterator)和生成器(Generator)
 
-> 2020.03.17 @wsl
+> 2020.03.17@wsl
 
 ## 什么是迭代器
 
@@ -286,5 +286,206 @@ const divs = document.getElementsByTagName('div');
 for(let div of divs) {
     console.log(div.id);
 }
+```
+
+## 展开运算符与非数组可迭代对象
+
+展开运算符可以操作所有可迭代对象，并根据默认迭代器来选取要引用的值，从迭代器读取所有值。
+
+在数组字面量中可以多次使用展开运算符，将可迭代对象中的多个元素依次插入新数组中，替换原先展开运算符所在的位置。
+
+```js
+const arr1 = [1, 2, 3];
+const arr2 = [3, 6, 9];
+const arr3 = [5, ...arr1, ...arr2];
+
+console.log(arr3); // [5, 1, 2, 3, 3, 6, 9]
+```
+
+其中，原始数组中的值只是被复制到allNumbers中，它们本身并未改变。
+
+## 高级迭代器功能
+
+### 给迭代器传递参数
+
+可以给迭代器的 next() 方法传递参数，这个参数的值会替代生成器内部上一条 yield 语句的返回值。
+
+```js
+function *createIterator() {
+    let first = yield 1;
+    let second = yield first + 2;
+    yield second + 3;
+}
+
+let iterator = createIterator();
+console.log(iterator.next()); // {value: 1, done: false}
+console.log(iterator.next(4)); // {value: 6, done: false}
+console.log(iterator.next(5)); // {value: 8, done: false}
+console.log(iterator.next()); // {value: undefined, done: true}
+```
+
+有一个特例，第一次调用 next() 方法时无论传入什么参数都会被丢弃。
+
+> 由于传给 next() 方法的参数会代替上一次 yield 的返回值，而在第一次调用 next() 方法前不会执行任何 yield 语句，因此在第一次调用 next() 方法时传递参数是无意义的。
+
+### 在迭代器中抛出错误
+
+可以给迭代器传递参数，还可以给它传递错误条件。通过 throw() 方法，当迭代器恢复执行时可令其抛出一个错误。并且，可以在生成器内部通过 try-catch 来捕获这些错误。
+
+```js
+function *createIterator() {
+    let first = yield 1;
+    let second;
+
+    try {
+        second = yield first + 2;
+    } catch (e) {
+        second = 7;
+    }
+    yield second + 5;
+}
+
+const ite = createIterator();
+
+console.log(ite.next()); // {value: 1, done: false}
+console.log(ite.next(2)); // {value: 4, done: false}
+console.log(ite.throw(new Error('boom!'))); // {value: 12, done: false}
+console.log(ite.next()); // {value: undefined, done: true}
+```
+
+可以看到，调用 throw() 方法后也会像调用 next() 方法一样返回一个结果对象，它会命令迭代器继续执行，但同时也抛出一个错误，在此之后的执行过程取决于生成器内部的代码。
+
+在迭代器内部，如果使用了 yield 语句，则可以通过 next() 方法和 throw() 方法控制执行过程。
+
+### 生成器返回语句
+
+由于生成器也是函数，因此可以通过 return 语句提前退出函数执行。在生成器中，return 表示所有操作已经完成，属性 done 被设置为 true；如果指定了返回值，则属性 value 会被设置为这个值。
+
+通过return 语句指定的返回值，只会在返回对象中出现一次，在后续调用返回的对象中，value 属性会被重置为 undefined。
+
+```js
+function *createIte() {
+    yield 2;
+    yield 5;
+    return 8;
+    yield 12;
+}
+
+const ite = createIte();
+console.log(ite.next()); // {value: 2, done: false}
+console.log(ite.next()); // {value: 5, done: false}
+console.log(ite.next()); // {value: 8, done: true}
+console.log(ite.next()); // {value: undefined, done: true}
+```
+
+### 委托生成器
+
+有些情况需要将生成器合起来用，此时可以使用 `yield *` 语句，将生成数据的过程委托给其他迭代器。
+
+```js
+function *createIte1() {
+    yield 2;
+    yield 5;
+}
+
+function *createIte2() {
+    yield 8;
+    yield 12;
+}
+
+function *createIte() {
+    yield *createIte1();
+    yield *createIte2();
+}
+
+const ite = createIte();
+console.log(ite.next()); // {value: 2, done: false}
+console.log(ite.next()); // {value: 5, done: false}
+console.log(ite.next()); // {value: 8, done: false}
+console.log(ite.next()); // {value: 12, done: false}
+console.log(ite.next()); // {value: undefined, done: true}
+```
+
+使用 return 语句生成的返回值只存在于迭代器内部，不会出现在迭代器委托调用 next() 方法得到的迭代对象中。如果想输出，需要额外添加 yield 语句。
+
+```js
+function *createIte1() {
+    yield 2;
+    yield 5;
+    return 3;
+}
+
+function *createIte2(count) {
+    for (let i = 0; i < count; i++) {
+        yield 'repeat';
+    }
+}
+
+function *createIte() {
+    const result = yield *createIte1();
+    yield *createIte2(result);
+}
+
+const ite = createIte();
+console.log(ite.next()); // {value: 2, done: false}
+console.log(ite.next()); // {value: 5, done: false}
+console.log(ite.next()); // {value: "repeat", done: false}
+console.log(ite.next()); // {value: "repeat", done: false}
+console.log(ite.next()); // {value: "repeat", done: false}
+console.log(ite.next()); // {value: undefined, done: true}
+```
+
+> `yield *`也可直接应用于字符串，例如 `yield * 'hello'`，此时将使用字符串的默认迭代器。
+
+## 异步任务执行
+
+由于 yield 语句会暂停当前函数执行过程并等待下一次调用 next 方法，因此可以创建一个函数，在函数中调用生成器生成相应的迭代器，实现一个异步任务执行器。
+
+```js
+/* 异步任务迭代器 */
+function run(taskDef) {
+    // 创建任务迭代器
+    let task = new taskDef();
+    // 开始执行任务
+    let result = task.next();
+
+    // 开始迭代执行
+    step();
+
+    function step() {
+        // 如果任务未完成，继续执行
+        if (!result.done) {
+            if (typeof result.value === 'function') {
+                result.value((err, data) => {
+                    if (err) {
+                        result = task.throw(err);
+                        return;
+                    }
+
+                    result = task.next(data);
+                    step();
+                });
+            } else {
+                result = task.next(result.value);
+                step();
+            }
+        }
+    }
+}
+
+/* 异步任务：读取文件 */
+let fs = require('fs');
+function readFile(filename) {
+    return function(callback) {
+        fs.readFile(filename, callback);
+    };
+}
+
+// 同步代码风格，执行异步任务
+run(function*() {
+    let contents = yield readFile('xxx.json');
+    doSomething(contents);
+    console.log('Done');
+});
 ```
 
