@@ -17,6 +17,7 @@
     * [HTML标签](front-end/03-html/01-tags.md)
     * [H5的History](front-end/03-html/02-history.md)
     * [HTML5新特性](front-end/03-html/03-html5.md)
+    * [video](front-end/03-html/04-video.md)
 * [工具](front-end/04-tools/README.md)
     * [webpack](front-end/04-tools/01-webpack/README.md)
 * [网络](front-end/05-network/README.md)
@@ -36,7 +37,7 @@
     * [Koa](front-end/06-framework/02-koa/README.md)
     * [Egg](front-end/06-framework/03-egg/01-base.md)
 * [工程化](front-end/07-engineering/README.md)
-    * [图片优化](front-end/07-engineering/01-image-opt/README.md)
+    * [图片优化](front-end/07-engineering/01-image-handler/README.md)
     * [用户鉴权](front-end/07-engineering/02-user-auth/README.md)
         * [CAS登录](front-end/07-engineering/02-user-auth/01-cas.md)
         * [权限管理](front-end/07-engineering/02-user-auth/02-role-control.md)
@@ -81,8 +82,10 @@
     * [模块的演进](javascript/14-module/01-module-history.md)
 * [事件](javascript/15-event/README.md)
     * [Event Loop](javascript/15-event/01-event-loop.md)
-* [实例](javascript/16-cases/README.md)
+* [应用](javascript/16-cases/README.md)
     * [监听元素变化](javascript/16-cases/01-resize-observer.md)
+    * [复制到剪切板](javascript/16-cases/02-copy.md)
+    * [deeplink调起](javascript/16-cases/03-deeplink.md)
 
 
 ## Vue
