@@ -86,7 +86,8 @@
 * [应用](javascript/16-cases/README.md)
     * [监听元素变化](javascript/16-cases/01-resize-observer.md)
     * [复制到剪切板](javascript/16-cases/02-copy.md)
-    * [deeplink调起](javascript/16-cases/03-deeplink.md)
+    * [Deeplink调起](javascript/16-cases/03-deeplink.md)
+    * [XML文件解析](javascript/16-cases/04-xml-parser.md)
 
 
 ## Vue
