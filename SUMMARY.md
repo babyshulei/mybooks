@@ -5,6 +5,7 @@
 ## 前端
 
 * [Web APIs](front-end/01-web-apis/README.md)
+    * [Fullscreen API](front-end/01-web-apis/01-fullscreen.md)
 * [CSS/CSS3](front-end/02-css/README.md)
     * [Flex布局](front-end/02-css/01-flex/README.md)
     * [盒子模型](front-end/02-css/02-box/README.md)
