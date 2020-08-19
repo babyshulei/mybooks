@@ -55,10 +55,6 @@ window.onorientationchange = () => {
 
 
 
-
-
-
-
 ## 参考链接
 
 [`<video>`  | MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
@@ -70,4 +66,14 @@ window.onorientationchange = () => {
 [orientationchange - Web API 接口参考| MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/orientationchange_event)
 
 [Source: lib/polyfill/fullscreen.js](https://shaka-player-demo.appspot.com/docs/api/lib_polyfill_fullscreen.js.html)
+
+[【译】使用Fullscreen API 全屏展示内容· Issue #17 · JChehe ...](https://github.com/JChehe/blog/issues/17)
+
+[screenfull.js](https://github.com/sindresorhus/screenfull.js)
+
+[Screen.orientation|MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Screen/orientation)
+
+[Fullscreen API, fullscreenchange.js](https://gist.github.com/robnyman/1705516)
+
+[探讨判断横竖屏的最佳实现](https://aotu.io/notes/2017/01/31/detect-orientation/index.html)
 

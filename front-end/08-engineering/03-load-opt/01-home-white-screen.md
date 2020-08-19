@@ -29,3 +29,4 @@
 
 [一种自动化生成骨架屏的方案](https://github.com/Jocs/jocs.github.io/issues/22)
 
+[百度APP-Android H5首屏优化实践](https://juejin.im/post/5eddfaebe51d45789e0d9b8c)
