@@ -136,6 +136,25 @@
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../01-web-apis/01-fullscreen.html">
+            
+                <a href="../01-web-apis/01-fullscreen.html">
+            
+                    
+                    Fullscreen API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="2.2" data-path="../02-css/">
@@ -3155,56 +3174,11 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#video"><b></b><video></video></a></li><ul><li><span class="title-icon "></span><a href="#&#x5C5E;&#x6027;"><b></b>&#x5C5E;&#x6027;</a></li><li><span class="title-icon "></span><a href="#&#x4E8B;&#x4EF6;"><b></b>&#x4E8B;&#x4EF6;</a></li><ul><li><span class="title-icon "></span><a href="#&#x8FDB;&#x5165;&#x9000;&#x51FA;&#x5168;&#x5C4F;"><b></b>&#x8FDB;&#x5165;/&#x9000;&#x51FA;&#x5168;&#x5C4F;</a></li><li><span class="title-icon "></span><a href="#&#x76D1;&#x542C;&#x5C4F;&#x5E55;&#x65CB;&#x8F6C;"><b></b>&#x76D1;&#x542C;&#x5C4F;&#x5E55;&#x65CB;&#x8F6C;</a></li></ul><li><span class="title-icon "></span><a href="#&#x53C2;&#x8003;&#x94FE;&#x63A5;"><b></b>&#x53C2;&#x8003;&#x94FE;&#x63A5;</a></li></ul></ul></div><a href="#video" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="video"><a name="video" class="anchor-navigation-ex-anchor" href="#video"><i class="fa fa-link" aria-hidden="true"></i></a><code>&lt;video&gt;</code></h1>
-<h2 id="&#x5C5E;&#x6027;"><a name="&#x5C5E;&#x6027;" class="anchor-navigation-ex-anchor" href="#&#x5C5E;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5C5E;&#x6027;</h2>
-<h2 id="&#x4E8B;&#x4EF6;"><a name="&#x4E8B;&#x4EF6;" class="anchor-navigation-ex-anchor" href="#&#x4E8B;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E8B;&#x4EF6;</h2>
-<h3 id="&#x8FDB;&#x5165;&#x9000;&#x51FA;&#x5168;&#x5C4F;"><a name="&#x8FDB;&#x5165;&#x9000;&#x51FA;&#x5168;&#x5C4F;" class="anchor-navigation-ex-anchor" href="#&#x8FDB;&#x5165;&#x9000;&#x51FA;&#x5168;&#x5C4F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8FDB;&#x5165;/&#x9000;&#x51FA;&#x5168;&#x5C4F;</h3>
-<p>W3C&#x6807;&#x51C6;&#xFF1A;</p>
-<p>&#x8FDB;&#x5165;&#x5168;&#x5C4F;&#xFF1A;<code>Element.requestFullscreen</code></p>
-<p>&#x9000;&#x51FA;&#x5168;&#x5C4F;&#xFF1A;<code>document.exitFullscreen</code></p>
-<p>&#x6D4F;&#x89C8;&#x5668;&#x517C;&#x5BB9;&#xFF1A;</p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">requestFullscreen</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">const</span> $video = <span class="hljs-keyword">this</span>.$refs.video;
-    <span class="hljs-keyword">if</span> ($video.requestFullscreen) {
-        $video.requestFullscreen();
-    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ($video.webkitRequestFullScreen) {
-        $video.webkitRequestFullScreen();
-    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ($video.mozRequestFullScreen) {
-        $video.mozRequestFullScreen();
-    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ($video.msRequestFullscreen) {
-        $video.msRequestFullscreen();
-    }
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">exitFullscreen</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.exitFullscreen) {
-        <span class="hljs-built_in">document</span>.exitFullscreen();
-    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.webkitExitFullscreen) {
-        <span class="hljs-built_in">document</span>.webkitExitFullscreen();
-    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.mozCancelFullScreen) {
-        <span class="hljs-built_in">document</span>.mozCancelFullScreen();
-    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.msExitFullscreen) {
-        <span class="hljs-built_in">document</span>.msExitFullscreen();
-    }
-}
-</code></pre>
-<h3 id="&#x76D1;&#x542C;&#x5C4F;&#x5E55;&#x65CB;&#x8F6C;"><a name="&#x76D1;&#x542C;&#x5C4F;&#x5E55;&#x65CB;&#x8F6C;" class="anchor-navigation-ex-anchor" href="#&#x76D1;&#x542C;&#x5C4F;&#x5E55;&#x65CB;&#x8F6C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x76D1;&#x542C;&#x5C4F;&#x5E55;&#x65CB;&#x8F6C;</h3>
-<pre><code class="lang-js"><span class="hljs-built_in">window</span>.onorientationchange = () =&gt; {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`the orientation of the device is now <span class="hljs-subst">${window.screen.orientation.angle}</span>`</span>);
-};
-</code></pre>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#video"><b></b><video></video></a></li><ul><li><span class="title-icon "></span><a href="#&#x53C2;&#x8003;&#x94FE;&#x63A5;"><b></b>&#x53C2;&#x8003;&#x94FE;&#x63A5;</a></li></ul></ul></div><a href="#video" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="video"><a name="video" class="anchor-navigation-ex-anchor" href="#video"><i class="fa fa-link" aria-hidden="true"></i></a><code>&lt;video&gt;</code></h1>
 <h2 id="&#x53C2;&#x8003;&#x94FE;&#x63A5;"><a name="&#x53C2;&#x8003;&#x94FE;&#x63A5;" class="anchor-navigation-ex-anchor" href="#&#x53C2;&#x8003;&#x94FE;&#x63A5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x53C2;&#x8003;&#x94FE;&#x63A5;</h2>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video" target="_blank"><code>&lt;video&gt;</code>  | MDN</a></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/requestFullScreen" target="_blank">Element.requestFullscreen() | MDN</a></p>
-<p><a href="https://stackoverflow.com/questions/36672561/how-to-exit-fullscreen-onclick-using-javascript" target="_blank">How to exit fullscreen onclick using Javascript? - Stack Overflow</a></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/orientationchange_event" target="_blank">orientationchange - Web API &#x63A5;&#x53E3;&#x53C2;&#x8003;| MDN</a></p>
-<p><a href="https://shaka-player-demo.appspot.com/docs/api/lib_polyfill_fullscreen.js.html" target="_blank">Source: lib/polyfill/fullscreen.js</a></p>
-<p><a href="https://github.com/JChehe/blog/issues/17" target="_blank">&#x3010;&#x8BD1;&#x3011;&#x4F7F;&#x7528;Fullscreen API &#x5168;&#x5C4F;&#x5C55;&#x793A;&#x5185;&#x5BB9;&#xB7; Issue #17 &#xB7; JChehe ...</a></p>
-<p><a href="https://github.com/sindresorhus/screenfull.js" target="_blank">screenfull.js</a></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Screen/orientation" target="_blank">Screen.orientation|MDN</a></p>
-<p><a href="https://gist.github.com/robnyman/1705516" target="_blank">Fullscreen API, fullscreenchange.js</a></p>
-<p><a href="https://aotu.io/notes/2017/01/31/detect-orientation/index.html" target="_blank">&#x63A2;&#x8BA8;&#x5224;&#x65AD;&#x6A2A;&#x7AD6;&#x5C4F;&#x7684;&#x6700;&#x4F73;&#x5B9E;&#x73B0;</a></p>
-<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2020-08-19 17:17:07</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2020-08-11 17:30:27</span></div></div>
+<p><a href="https://developer.apple.com/documentation/webkitjs/htmlvideoelement" target="_blank">HTMLVideoElement | Apple Developer</a></p>
+<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2020-08-19 19:48:59</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2020-08-11 17:30:27</span></div></div>
                                 
                                 </section>
                             
@@ -3247,7 +3221,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"video","level":"2.3.4","depth":2,"next":{"title":"浏览器内核","level":"2.4","depth":1,"path":"front-end/04-browser-kernel/README.md","ref":"front-end/04-browser-kernel/README.md","articles":[{"title":"webkit","level":"2.4.1","depth":2,"path":"front-end/04-browser-kernel/01-webkit.md","ref":"front-end/04-browser-kernel/01-webkit.md","articles":[]},{"title":"blink","level":"2.4.2","depth":2,"path":"front-end/04-browser-kernel/02-blink.md","ref":"front-end/04-browser-kernel/02-blink.md","articles":[]},{"title":"多进程架构","level":"2.4.3","depth":2,"path":"front-end/04-browser-kernel/03-process.md","ref":"front-end/04-browser-kernel/03-process.md","articles":[]},{"title":"V8内存管理","level":"2.4.4","depth":2,"path":"front-end/04-browser-kernel/04-v8-memory.md","ref":"front-end/04-browser-kernel/04-v8-memory.md","articles":[]}]},"previous":{"title":"HTML5新特性","level":"2.3.3","depth":2,"path":"front-end/03-html/03-html5.md","ref":"front-end/03-html/03-html5.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"showLevel":false,"associatedWithSummary":true,"mode":"float","showGoTop":true,"printLog":false,"multipleH1":true,"float":{"floatIcon":"fa fa-navicon","showLevelIcon":false,"level1Icon":"","level2Icon":"","level3Icon":""},"pageTop":{"showLevelIcon":false,"level1Icon":"","level2Icon":"","level3Icon":""}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"front-end/03-html/04-video.md","mtime":"2020-08-19T09:17:35.661Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-19T09:17:45.736Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"video","level":"2.3.4","depth":2,"next":{"title":"浏览器内核","level":"2.4","depth":1,"path":"front-end/04-browser-kernel/README.md","ref":"front-end/04-browser-kernel/README.md","articles":[{"title":"webkit","level":"2.4.1","depth":2,"path":"front-end/04-browser-kernel/01-webkit.md","ref":"front-end/04-browser-kernel/01-webkit.md","articles":[]},{"title":"blink","level":"2.4.2","depth":2,"path":"front-end/04-browser-kernel/02-blink.md","ref":"front-end/04-browser-kernel/02-blink.md","articles":[]},{"title":"多进程架构","level":"2.4.3","depth":2,"path":"front-end/04-browser-kernel/03-process.md","ref":"front-end/04-browser-kernel/03-process.md","articles":[]},{"title":"V8内存管理","level":"2.4.4","depth":2,"path":"front-end/04-browser-kernel/04-v8-memory.md","ref":"front-end/04-browser-kernel/04-v8-memory.md","articles":[]}]},"previous":{"title":"HTML5新特性","level":"2.3.3","depth":2,"path":"front-end/03-html/03-html5.md","ref":"front-end/03-html/03-html5.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"showLevel":false,"associatedWithSummary":true,"mode":"float","showGoTop":true,"printLog":false,"multipleH1":true,"float":{"floatIcon":"fa fa-navicon","showLevelIcon":false,"level1Icon":"","level2Icon":"","level3Icon":""},"pageTop":{"showLevelIcon":false,"level1Icon":"","level2Icon":"","level3Icon":""}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"front-end/03-html/04-video.md","mtime":"2020-08-20T01:34:31.033Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-20T01:34:38.740Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
