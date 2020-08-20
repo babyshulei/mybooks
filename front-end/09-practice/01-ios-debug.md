@@ -8,7 +8,7 @@ Windows 系统首先要安装 iTunes ，打开 Apple 官网下载 iTunes 并完�
 
 ## 2. Safari 设置权限
 
-连接ios手机到pc电脑，设置 Safari 高级 web检查器、JavaScript
+连接ios手机到pc电脑，设置 - Safari - 高级 - web检查器、JavaScript
 
 
 
@@ -38,7 +38,7 @@ set-executionpolicy unrestricted -s cu
 **2、下载安装scoop**
 
 ```powershell
-set-executionpolicy unrestricted -s cu
+iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
 ```
 
 成功提示
@@ -100,7 +100,7 @@ Connected :9222 to 瀹惰鐨?iPhone (ejdifheufhudsuhdfidhfshfdosfd)
 
 **2、打开Chrome进行调试**
 
-此时在浏览器中输入http://localhost:9221/可以看到当前连接的设备。
+此时在浏览器中输入 http://localhost:9221/ 可以看到当前连接的设备。
 
 在 `chrome://inspect/#devices` 添加设备端口，点击`port  forwarding`按钮，添加端口号`localhost:9222`，如果有新的设备累加。
 
@@ -128,7 +128,7 @@ remotedebug_ios_webkit_adapter --port=9000
 
 **3、打开Chrome进行调试**
 
-谷歌浏览器打开 chrome://inspect/#devices -> Configure -> 配置上一步指定的端口  localhost:9000 -> Done
+谷歌浏览器打开 chrome://inspect/#devices - Configure - 配置上一步指定的端口  localhost:9000 - Done
 
 现在可以控制台调试了，亲测 console.log() 失效，有 console.error()、console.info() 的结果，但是打印内容有问题。
 
@@ -141,17 +141,23 @@ onConsoleMessageAdded(msg){
         let message = msg.params.message;
         let type;
         let method = "Runtime.consoleAPICalled";
-        if(message.type === "log") {
-            switch(message.level) {
-                    case "log": type = "log"; break;
-                    case "info": type = "info"; break;
-                    case "error": type = "error"; break;
-                    default: type = "log";
+        if (message.type === 'log') {
+            switch (message.level) {
+                case 'log':
+                    type = 'log';
+                    break;
+                case 'info':
+                    type = 'info';
+                    break;
+                case 'error':
+                    type = 'error';
+                    break;
+                default: type = 'log';
             }
-        } else {
+        }
+        else {
             type = message.type;
         }
-
         const consoleMessage = {
             source: message.source,
             level: type,
@@ -163,14 +169,18 @@ onConsoleMessageAdded(msg){
                 callFrames: message.stackTrace
             } : undefined,
             args:message.parameters,
-            networkRequestId: message.networkRequestId,
+            networkRequestId: message.networkRequestId
         };
-        if(type == "error"){
-            method = "Log.entryAdded"; 
-            this._target.fireEventToTools(method, {entry:consoleMessage});
-        }else
-            this._target.fireEventToTools(method, consoleMessage);
-        
+
+        if(type == "error") {
+            method = "Log.entryAdded";
+            this._target.fireEventToTools(method, {
+	            entry: consoleMessage
+	        });
+        } else {
+        	this._target.fireEventToTools(method, consoleMessage);
+        }
+
         return Promise.resolve(null);
 }
 ```
