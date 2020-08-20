@@ -48,7 +48,7 @@
     * [日志监控](front-end/08-engineering/04-logger/README.md)
         * [ES APM](front-end/08-engineering/04-logger/02-elastic-apm.md)
 * [实战](front-end/09-practice/README.md)
-    * [windows调试IOS](front-end/09-practice/README.md)
+    * [Chrome调试Safari](front-end/09-practice/01-ios-debug.md)
 * [Question](front-end/10-question/README.md)
     * [HTML](front-end/10-question/01-html.md)
     * [CSS](front-end/10-question/02-css.md)
