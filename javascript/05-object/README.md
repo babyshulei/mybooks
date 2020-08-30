@@ -291,7 +291,7 @@ myObject.a; // 4
 - `Object.prototype.hasOwnProperty(key)`
   检查属性是否在对象中，返回一个布尔值，不会检查原型链。
 - `for..in`循环
-  遍历对象的可枚举属性列表，包括原型链。
+  遍历对象除Symbol以外的可枚举属性列表，包括原型链。
 - `Object.prototype.propertyIsEnumerable(key)`
   检查给定的属性名是否直接存在于对象中并且满足 enumerable:true，返回一个布尔值，不会检查原型链。
 - `Object.keys(obj)`
@@ -335,6 +335,57 @@ console.log("Object.getOwnPropertyNames -- ", Object.getOwnPropertyNames(myObjec
 ```
 
 目前并没有内置的方法可以获取 `in` 操作符使用的属性列表，不过可以递归遍历对象的整条原型链并保存每一层中的 Object.getOwnPropertyNames() 数组。
+
+## 遍历
+
+`for...in` 循环可以遍历对象的可枚举属性列表，但是如何遍历属性的值？
+
+ES5中增加了一些数组的辅助迭代器，包括 forEach()、every()和some()。每种辅助迭代器都可以接受一个回调函数并把它应用到数组的每个元素上，区别是他们对于回调函数返回值的处理方式不同。
+
+`forEach(..)` 将会迭代数组中所有的值并忽略回调的返回值；`every(..)` 会一直运行直到回调返回 `false`（或“假”值）； `some(..)` 会一直运行直到回调返回一个 `true`（或“真”值）。
+
+ES6新增了 `for..of` 循环语法，可以用来遍历可迭代对象。
+
+`for..of` 循环会首先向被访问对象请求一个迭代器对象，然后通过调用迭代器对象的 next() 方法来遍历所有返回值。
+
+```js
+var myObject = {
+	a: 2,
+	b: 3
+};
+
+Object.defineProperty( myObject, Symbol.iterator, {
+	enumerable: false,
+	writable: false,
+	configurable: true,
+	value: function() {
+		var o = this;
+		var idx = 0;
+		var ks = Object.keys( o );
+		return {
+			next: function() {
+				return {
+					value: o[ks[idx++]],
+					done: (idx > ks.length)
+				};
+			}
+		};
+	}
+} );
+
+// 手动迭代 `myObject`
+var it = myObject[Symbol.iterator]();
+it.next(); // { value:2, done:false }
+it.next(); // { value:3, done:false }
+it.next(); // { value:undefined, done:true }
+
+// 用 `for..of` 迭代 `myObject`
+for (var v of myObject) {
+	console.log( v );
+}
+// 2
+// 3
+```
 
 
 
