@@ -68,3 +68,5 @@ Evan展示了他如何尝试使用 Time Slicing，将 JS 的执行分解为几�
 
 [Vue.js 3.0 新特性预览](https://www.html.cn/archives/10052)
 
+[Vue 3.0 官网](https://v3.vuejs.org/)
+

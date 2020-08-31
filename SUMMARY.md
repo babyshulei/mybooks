@@ -106,6 +106,7 @@
 * [整体流程](vue/01-base/04-overview/README.md)
 * [项目搭建](vue/02-practice/01-start.md)
 * [Vue 3.0](vue/03-vue3/README.md)
+    * [CSS变量](vue/03-vue3/01-css-vars.md)
 * [Vue-router](vue/04-vue-router/01-base.md)
     * [实例](vue/04-vue-router/02-demos.md)
 * [Vuex](vue/05-vuex/README.md)
