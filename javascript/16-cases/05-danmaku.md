@@ -282,11 +282,25 @@ export function render(stage, cmt) {
 
 /internal/allocate.js
 
+allocate(cmt)
 
+- 获取弹幕 mode 对应的轨道空间 crs
+- 设置上一条弹幕索引`last=0`，当前弹幕索引`curr=0`，遍历 crs
+  - 获取当前遍历的轨道弹幕 `cr=crs[i]`，弹幕`requiredRange`为弹幕高度`cmt.height`，如果是top/bottom mode，requireRange 加上 `cr.height`。
+  - 如果当前遍历的轨道 - 上一条弹幕的范围 > requiredRange，即这之间的范围可以放下当前弹幕，设置`curr=i`，直接跳出循环
+    `cr.range - cr.height- crs[last].range > requiredRange` 
+  - 如果 i 和 弹幕会碰撞，设置 `last = i`，继续循环
+- 获取弹幕轨道 `channel=crs[last].range`，设置弹幕相关数据 `{range, time, width, height}`
+- 添加弹幕数据到上一条的后面，同时删除掉过期弹幕。`crs.splice(last + 1, curr - last - 1, crObj)`
+- 返回弹幕 y 值。
 
+弹幕碰撞的计算`willCollide(cr, cmt)`：
 
-
-
+- top/bottom mode的，直接判断是否 视频当前时间 - cr弹幕时间 < 弹幕存活时间，返回
+- 计算 cr 总宽度，cr 已出现的宽度
+- 如果 cr 的宽度 > cr 已出现的宽度，说明还有一部分cr没出现，当前轨道会碰撞，返回
+- 计算 cr 的尾巴移动到舞台边缘的时间，cmt 的头移动到舞台边缘的时间
+- cmt 能在舞台内追上 cr 的话，就会碰撞，返回
 
 
 
