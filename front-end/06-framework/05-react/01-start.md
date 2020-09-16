@@ -456,7 +456,233 @@ key 会传递信息给 React ，但**不会传递给组件**（`props`）。如�
 
 两者结合起来，使 React 的 state 成为“唯一数据源”。渲染表单的 React 组件还控制着用户输入过程中表单发生的操作。被 React 以这种方式控制取值的表单输入元素就叫做“受控组件”。
 
+示例：
 
+```react
+class NameForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value})
+  }
+
+  handleSubmit(event) {
+    alert(`提交的名字：${this.state.value}`);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          名字：
+          <input type="text" value={this.state.value} onChange={this.handleChange}/>
+        </label>
+        <input type="submit" value="提交" />
+      </form>
+    );
+  }
+}
+```
+
+#### textarea标签
+
+HTML 中, `<textarea>` 元素通过其子元素定义其文本。
+
+```html
+<textarea>文本内容</textarea>
+```
+
+而在 React 中，`<textarea>` 使用 `value` 属性代替。这样可以和input的使用方法类似。
+
+#### select标签
+
+HTML中，`<select>` 创建下拉列表标签。子节点为`<option>`，上面的属性 `selected` 表示选项被选中。
+
+```html
+<select>
+  <option value="grapefruit">葡萄柚</option>
+  <option value="lime">酸橙</option>
+  <option selected value="coconut">椰子</option>
+</select>
+```
+
+而在 React 中，不会使用 `selected` 属性，而是在根 `<select>` 标签上使用 `value` 属性。
+
+```react
+class FruitForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 'apple',
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleChange(event) {
+    this.setState({value: event.target.value})
+  }
+  handleSubmit(event) {
+    alert(`喜欢的水果：${this.state.value}`);
+    event.preventDefault();
+  }
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          选择你喜欢的风味：
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="orange">橘子</option>
+            <option value="apple">苹果</option>
+            <option value="banana">香蕉</option>
+          </select>
+        </label>
+        <input type="submit" value="提交"/>
+      </form>
+    );
+  }
+}
+```
+
+value属性传入一个数组，可以支持标签多选：
+
+```react
+<select multiple={true} value={['B', 'C']}>
+```
+
+#### 文件 input 标签
+
+在 HTML 中，`<input type="file">` 允许用户从存储设备中选择一个或多个文件，将其上传到服务器，或通过使用 JavaScript 的 [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) 进行控制。
+
+```react
+<input type="file" />
+```
+
+因为它的 value 只读，所以它是 React 中的一个**非受控**组件。
+
+#### 处理多个输入
+
+当需要处理多个 `input` 元素时，我们可以给每个元素添加 `name` 属性，并让处理函数根据 `event.target.name` 的值选择要执行的操作。
+
+```js
+handleInputChange(event) {
+    const target = event.target;
+    const value = target.name === 'isGoing' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+}
+```
+
+#### 受控输入空值
+
+在[受控组件](https://react.docschina.org/docs/forms.html#controlled-components)上指定 value 的 prop 会阻止用户更改输入。如果你指定了 `value`，但输入仍可编辑，则可能是你意外地将`value` 设置为 `undefined` 或 `null`。
+
+```react
+ReactDOM.render(<input value="hi" />, mountNode); // 不可编辑
+
+setTimeout(function() {
+  ReactDOM.render(<input value={null} />, mountNode); // 变为可编辑
+}, 1000);
+```
+
+### 组合 vs 继承
+
+推荐使用组合而非继承来实现组件间的代码重用。
+
+#### 包含关系
+
+有些组件无法提前知晓它们子组件的具体内容。React 建议这些组件使用一个特殊的 `children` prop 来将他们的子组件传递到渲染结果中：
+
+```react
+function FancyBorder(props) {
+  return (
+    <div className={'FancyBorder FancyBorder-' + props.color}>
+      {props.children}
+    </div>
+  );
+}
+```
+
+这使得别的组件可以通过 JSX 嵌套，将任意组件作为子组件传递给它们。
+
+```react
+function WelcomeDialog() {
+  return (
+    <FancyBorder color="blue">
+      <h1 className="Dialog-title">
+        Welcome
+      </h1>
+      <p className="Dialog-message">
+        Thank you for visiting our spacecraft!
+      </p>
+    </FancyBorder>
+  );
+}
+```
+
+如果需要传入多个组件，可以不使用 `children`，而是自行约定，示例：
+
+```react
+function SplitPane(props) {
+  return (
+    <div className="SplitPane">
+      <div className="SplitPane-left">
+        {props.left}
+      </div>
+      <div className="SplitPane-right">
+        {props.right}
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <SplitPane
+      left={
+        <Contacts />
+      }
+      right={
+        <Chat />
+      } />
+  );
+}
+```
+
+#### 特例关系
+
+有些时候，我们会把一些组件看作是其他组件的特殊实例。“特殊”组件可以通过 props 定制并渲染“一般”组件：
+
+```react
+function Dialog(props) {
+  return (
+    <FancyBorder color="blue">
+      <h1 className="Dialog-title">
+        {props.title}
+      </h1>
+      <p className="Dialog-message">
+        {props.message}
+      </p>
+    </FancyBorder>
+  );
+}
+
+function WelcomeDialog() {
+  return (
+    <Dialog
+      title="Welcome"
+      message="Thank you for visiting our spacecraft!" />
+  );
+}
+```
 
 ## 开发
 
