@@ -99,6 +99,7 @@
     * [Deeplink调起](javascript/16-cases/03-deeplink.md)
     * [XML文件解析](javascript/16-cases/04-xml-parser.md)
     * [弹幕功能](javascript/16-cases/05-danmaku.md)
+    * [弹幕库-CCL](javascript/16-cases/06-ccl.md)
 
 
 ## Vue
