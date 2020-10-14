@@ -17,12 +17,12 @@
     "devDependencies": {},
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/babyshulei/mybooks.git"
+        "url": "git+https://github.com/wsl-fe/mybooks.git"
     },
     "author": "Shulei",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/babyshulei/mybooks/issues"
+        "url": "https://github.com/wsl-fe/mybooks/issues"
     },
-    "homepage": "https://github.com/babyshulei/mybooks#readme"
+    "homepage": "https://github.com/wsl-fe/mybooks#readme"
 }
