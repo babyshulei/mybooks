@@ -56,7 +56,7 @@
 - key-index索引表
 - 循环遍历
 
-[笔记](https://babyshulei.github.io/mybooks/vue/01-base/02-virtual-dom/)
+参见笔记：Vue-虚拟Dom
 
 ### 3. 组件通信
 

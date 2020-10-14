@@ -4,7 +4,7 @@
 
 ### 1. 写出你了解的 HTML 标签，并把他们分一下类。
 
-详见笔记：[HTML标签](https://babyshulei.github.io/mybooks/front-end/03-html/01-tags.html)
+详见笔记：前端-HTML-HTML标签
 
 
 
@@ -60,7 +60,7 @@ HTML5提供的`<DOCTYPE html>`是标准模式，向后兼容的, 等同于开启
 - xhr2
 - websockets
 
-[参见笔记](https://babyshulei.github.io/mybooks/front-end/03-html/03-html5.html)
+参见笔记：前端-HTML-HTML5新特性
 
 
 

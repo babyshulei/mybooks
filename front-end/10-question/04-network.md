@@ -18,7 +18,7 @@ AJAX中根据async的值不同分为同步（async = false）和异步（async =
 
 **ajax请求过程，简单实现一个Ajax请求**
 
-参见：[笔记-AJAX](https://babyshulei.github.io/mybooks/front-end/05-network/04-ajax/)、<https://segmentfault.com/a/1190000015580896>
+参见笔记：前端-网络-Ajax
 
 
 
@@ -60,7 +60,7 @@ ajax默认无法跨域，xhr2新增的CORS让ajax也可以跨域，需要输出h
 
     利用img标签的src属性发送请求，上报打点相关的数据。
 
-参见：[笔记-AJAX](https://babyshulei.github.io/mybooks/front-end/05-network/04-ajax/)、[笔记-跨域问题](https://babyshulei.github.io/mybooks/front-end/05-network/05-cross-domain/)
+参见笔记：前端-网络-Ajax、前端-网络-浏览器跨域
 
 
 
@@ -68,7 +68,7 @@ ajax默认无法跨域，xhr2新增的CORS让ajax也可以跨域，需要输出h
 
 ### 1. tcp三次握手，四次挥手
 
-参见：[笔记-TCP](https://babyshulei.github.io/mybooks/front-end/05-network/01-tcp/)
+参见笔记：前端-网络-TCP
 
 
 
@@ -83,7 +83,7 @@ ajax默认无法跨域，xhr2新增的CORS让ajax也可以跨域，需要输出h
 - 浏览器解析渲染页面
 - 连接结束
 
-参见：[笔记-URL->PAGE](https://babyshulei.github.io/mybooks/front-end/05-network/06-url-webpage/)
+参见笔记：前端-网络-URL->网页
 
 
 
@@ -91,7 +91,7 @@ ajax默认无法跨域，xhr2新增的CORS让ajax也可以跨域，需要输出h
 
 #### HTTP缓存机制
 
-参见：[笔记-HTTP缓存](https://babyshulei.github.io/mybooks/front-end/05-network/07-cache-control/01-http-cache.html)
+参见笔记：前端-网络-HTTP缓存
 
 
 
@@ -112,19 +112,19 @@ ajax默认无法跨域，xhr2新增的CORS让ajax也可以跨域，需要输出h
 
 第一次访问缓存manifest文件里列的文件，之后访问先加载缓存，在后台加载manifest文件按字节对比看是否有变化，如果没变化则说明缓存未失效，否则在后台按列表更新缓存，在下一次刷新页面的时候使用新的资源。
 
-参见：参见：[笔记-应用缓存](https://babyshulei.github.io/mybooks/front-end/05-network/07-cache-control/01-app-cache.html)
+参见笔记：前端-网络-应用缓存
 
 
 
 ### 5. 正向代理，反向代理都是什么？如何实现？
 
-参见：[笔记-正向代理、反向代理](https://babyshulei.github.io/mybooks/front-end/05-network/02-proxy/)
+参见笔记：前端-网络-正向代理、反向代理
 
 
 
 ### 6. 7层网络协议
 
-[参见笔记](https://babyshulei.github.io/mybooks/front-end/05-network/)
+参见笔记：前端-网络
 
 
 

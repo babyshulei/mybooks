@@ -37,5 +37,5 @@ CMD：异步加载模块。依赖就近，延迟执行，需要时再引用，�
 
 
 
-[参见笔记：模块](https://babyshulei.github.io/mybooks/javascript/14-module/)
+参见笔记：JavaScript-模块
 

@@ -80,8 +80,7 @@ var b = new B();
 
 b.b在b自己的属性上找，b.a自己的属性里没找到则去b的原型即b，`__proto__`也就是B.prototype里找，一层一层往上找，到null为止，`b.__proto__.__proto__`是Object.prototype，`b.__proto__.__proto__.__proto__`为null。
 
-[笔记](https://babyshulei.github.io/mybooks/javascript/05-object/02-prototype.html)
-
+参见笔记：JavaScript-对象-原型、原型链
 
 
 ### 3. 数组去重方法
@@ -144,7 +143,7 @@ b.b在b自己的属性上找，b.a自己的属性里没找到则去b的原型即
 
 3. 函数库lodash
 
-[参考笔记](https://babyshulei.github.io/mybooks/javascript/05-object/01-copy.html)
+参考笔记：JavaScript-对象-浅拷贝、深拷贝
 
 ### 5. 设计一个数据结构，使 `a==1 && a==2 && a==3` 为 true
 
@@ -154,7 +153,7 @@ b.b在b自己的属性上找，b.a自己的属性里没找到则去b的原型即
 
 Object.defineProperty
 
-[参考笔记](<https://babyshulei.github.io/mybooks/javascript/00-basic/>)
+参考笔记：JavaScript-基本概念
 
 <https://blog.csdn.net/Bule_daze/article/details/103470176>
 
@@ -247,7 +246,7 @@ call和apply都是调用一个函数，并指定this和参数，call和apply第�
 
 ### 2. 箭头函数
 
-[参见笔记](https://babyshulei.github.io/mybooks/javascript/04-function/)
+参见笔记：JavaScript-函数
 
 #### 箭头函数与function函数有哪些不同？
 
@@ -272,7 +271,7 @@ call和apply都是调用一个函数，并指定this和参数，call和apply第�
 
 ### 3. 实现一个函数，使 add(1)(2)(3), add(1)(2, 3), add(1, 2, 3) 都返回 6
 
-函数柯里化，[参见笔记](https://babyshulei.github.io/mybooks/programming/01-thinking/02-curry.html)
+函数柯里化，参见笔记：编程-编程思想-函数柯里化
 
 
 
@@ -318,7 +317,7 @@ click事件有300ms的延迟。点击蒙层上的关闭按钮，蒙层消失后�
 
 ### 6. 详述js异步机制Event Loop，MacroTask和MicroTask
 
-[参考笔记](https://babyshulei.github.io/mybooks/javascript/15-event/01-event-loop.html)
+参考笔记：JavaScript-事件-Event Loop
 
 1个主线程+n个任务队列，浏览器异步处理后推入队列，循环处理，一个macroTask后跟全部microtask
 
@@ -362,5 +361,5 @@ console.log(5);
 - AMD：异步，就近依赖
 - ES6 module：import，export；动态import
 
-[笔记](https://babyshulei.github.io/mybooks/javascript/14-module/01-module-history.html)
+参见笔记：JavaScript-模块-模块的演进
 
