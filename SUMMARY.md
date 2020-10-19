@@ -52,6 +52,7 @@
     * [加载优化](front-end/08-engineering/03-load-opt/README.md)
     * [日志监控](front-end/08-engineering/04-logger/README.md)
         * [ES APM](front-end/08-engineering/04-logger/02-elastic-apm.md)
+    * [重构](front-end/08-engineering/05-refactor/README.md)
 * [实战](front-end/09-practice/README.md)
     * [Chrome调试Safari](front-end/09-practice/01-ios-debug.md)
     * [自动化测试](front-end/09-practice/02-auto-test.md)
