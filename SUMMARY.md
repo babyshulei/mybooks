@@ -27,6 +27,7 @@
     * [正向代理、反向代理](front-end/05-network/02-proxy/README.md)
     * [Nginx](front-end/05-network/03-nginx/README.md)
     * [Ajax](front-end/05-network/04-ajax/README.md)
+        * [Axios](front-end/05-network/04-ajax/01-axios.md)
     * [浏览器跨域](front-end/05-network/05-cross-domain/README.md)
     * [URL->网页](front-end/05-network/06-url-webpage/README.md)
         * [浏览器相关工作](front-end/05-network/06-url-webpage/01-browser-relative.md)
