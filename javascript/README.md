@@ -12,3 +12,11 @@ JavaScript学习。
 
 - 《[ECMAScript 6 入门](https://es6.ruanyifeng.com/)》 @阮一峰
 
+- [tc39 | GitHub](https://github.com/tc39)
+
+- <https://kangax.github.io/compat-table>
+
+- [现代javascript教程](https://zh.javascript.info/)
+
+- [practical-modern-javascript 深入理解JS特性 | GitHub](https://github.com/mjavascript/practical-modern-javascript)
+
