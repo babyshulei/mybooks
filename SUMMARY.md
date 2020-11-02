@@ -58,6 +58,7 @@
 * [实战](front-end/09-practice/README.md)
     * [Chrome调试Safari](front-end/09-practice/01-ios-debug.md)
     * [自动化测试](front-end/09-practice/02-auto-test.md)
+    * [页面时长统计](front-end/09-practice/04-page-view.md)
 * [Question](front-end/10-question/README.md)
     * [HTML](front-end/10-question/01-html.md)
     * [CSS](front-end/10-question/02-css.md)
