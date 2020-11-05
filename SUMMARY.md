@@ -136,6 +136,9 @@
     * [栈](programming/03-data-algorithm/01-linear-list/03-stack/README.md)
     * [树](programming/03-data-algorithm/02-tree/README.md)
     * [练习](programming/04-algorithm-practice/README.md)
+* [算法思想](programming/04-algorithm-thought/README.md)
+    * [动态规划](programming/04-algorithm-thought/01-dynamic-programming.md)
+    * [回溯算法](programming/04-algorithm-thought/02-back-track.md)
 
 ## 语言
 
