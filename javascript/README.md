@@ -1,5 +1,3 @@
-# 前言
-
 JavaScript学习。
 
 参考：
@@ -19,4 +17,6 @@ JavaScript学习。
 - [现代javascript教程](https://zh.javascript.info/)
 
 - [practical-modern-javascript 深入理解JS特性 | GitHub](https://github.com/mjavascript/practical-modern-javascript)
+
+- JS API polyfill：https://cdn.polyfill.io/v3/
 
