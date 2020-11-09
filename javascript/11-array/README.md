@@ -398,7 +398,62 @@ console.log(arr1.BYTES_PER_ELEMENT, arr2.BYTES_PER_ELEMENT, arr3.BYTES_PER_ELEME
 
 定型数组包括许多在功能上与普通数组等效的方法：
 
-copyWithin()、findIndex()、lastIndexOf()、slice()、entries()、forEach()、map()、some()、fill()、indexOf()、reduce()、sort()、filter()、join()、reduceRight()、values()、find()、keys()、reverse()
+- [copyWithin(target, start, end)](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin)：浅复制数组的一部分到同一数组中的另一个位置，并返回数组，而不改变大小length，但是**改变了数组**
+
+- [entries()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/entries)：**返回一个新的**可迭代数组对象包含了数组中的每项的键值对，在next()调用时返回一个双项数组（每项的键&值）
+
+- [fill(value, start, end)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill)：用特定值填充数组中的一个或多个元素, **返回一个新的数组**
+
+- [filter(callback(element, index, array), thisArg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)：用通过筛选全部元素，**返回一个新的数组**           箭头函数写法：words.filter(word => word.length > 6)
+
+- [find(callback(element, index, array), thisArg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)：查找满足特定条件的数组元素，返回匹配值。遇到第一个匹配的值就暂停返回。
+  array.find((item) => item>10)
+
+- [findIndex(callback(element, index, array), thisArg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex)：查找满足特定条件的数组元素，返回匹配值的索引位置。遇到第一个匹配的值就暂停返回。
+
+- [forEach(callback(curr, index, array))](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)：数组遍历
+
+- [indexOf(searchElement, fromIndex)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf)：查找元素，返回该元素的索引位置，遇到第一个就暂停返回
+  ~str.indexOf(seachFor) 为true包含在字符串中
+
+- [join(separator)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)：创建并返回一个有数组中元素组成的字符串，通过逗号指定符号分隔
+
+- [keys()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/keys)：返回一个包含数组中每个索引键的Array Interator对象。索引迭代器会包含哪些没有对应元素的索引
+
+- [lastIndexOf()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf)：返回指定元素在数组中的最后一个的索引，如果不存在则返回 -1
+  array.lastIndexOf(searchElement, fromIndex)
+  fromIndex默认array.length-1, lastIndexOf使用严格相等
+
+- [map()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map)：**创建一个新数组**，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果
+  array.map(callback(curr, index, array), thisArg)
+  ​从来没被赋过值或者使用 delete 删除的索引则不会被调用
+  map处理的数组，callback第一次调用时确定，执行过程的修改不影响遍历过程
+
+- [reduce()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)：对数组中的每个元素执行一个提供的reducer函数（升序执行），将其结果汇总为单个返回值
+  array.reduce(callback(acc, curr, currIndex, array), initialValue)
+  不包括数组中被删除或从未被赋值的元素
+
+- - 数组里所有值的和
+  - 累加对象数组里的值
+  - 将二维数组转化为一维
+  - 计算数组中每个元素出现的次数
+  - 按属性对object分类
+  - 数组去重
+  - 按顺序运行Promise（**后续再看**）
+  - 功能型函数管道（**后续再看**）
+
+- [reduceRight()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceright)：接受一个函数作为累加器（accumulator）和数组的每个值（从右到左）将其减少为单个值
+  array.reduceRight(callback(prev, curr, index, array), initialValue)
+
+- [reverse()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse)：将数组中元素的位置颠倒，**会改变数组**
+
+- [slice()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)：**返回一个新的数组对象，**有一个由 begin和 end（**不包括end**）决定的原数组的**浅拷贝**。
+
+- some()
+
+- sort()
+
+- values()
 
 尽管这些方法和Array.prototype中的很像，但并非完全一致，定型数组中的方法会额外检查数值类型是否安全，也会通过 Symbol.species 确认方法的返回值是定型数组而非普通数组。
 
