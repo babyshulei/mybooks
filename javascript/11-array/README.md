@@ -8,7 +8,7 @@ ES6 之前，创建数组有两种方法，一种是调用 Array 构造函数，
 
 ### Array.of()
 
-Array.of() 方法时为了规避通过 Array 构造函数创建数组时的怪异行为。Array 构造函数传入数值类型的参数、非数值类型的参数、多个参数的表现各不相同，无法保证创建的数组符合预期。
+[Array.of()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/of) 方法时为了规避通过 Array 构造函数创建数组时的怪异行为。Array 构造函数传入数值类型的参数、非数值类型的参数、多个参数的表现各不相同，无法保证创建的数组符合预期。
 
 Array.of() 方法创建数组，只需传入数组的参数即可，参数的类型和数量不会影响生成数组的行为，Array.of() 方法总会创建一个包含所有参数的数组。
 
@@ -60,7 +60,7 @@ function makeArray2(arrayLike) {
 
 这两种方案要编写函数且语义不够清晰，ES6 新增了 `Array.from()` 方法来将对象转化为数组。
 
-`Array.from()` 方法从一个类数组或可迭代对象上，创建一个新的，浅拷贝的数组实例。
+[`Array.from()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/from)方法从一个类数组或可迭代对象上，创建一个新的，浅拷贝的数组实例。
 
 #### 语法
 
@@ -120,11 +120,11 @@ console.log(num3); // [ 1, 3, 5 ]
 
 ### find() 和 findIndex()
 
-ES5 添加了 indexOf() 和 lastIndexOf() 方法，用于在数组中查找特定的值。
+ES5 添加了 [indexOf()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf) 和 [lastIndexOf()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf) 方法，用于在数组中查找特定的值。
 
 ES6 添加了 find() 和 findIndex() 方法，用于在数组中根据某个条件查找匹配元素，补充了数组中查找元素的场景。
 
-find() 和 findIndex() 方法两个方法接收的参数一致，区别在于 find() 方法返回查找到的值，findIndex() 方法返回查找到值的索引。
+[find()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/find) 和 [findIndex()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex) 方法两个方法接收的参数一致，区别在于 find() 方法返回查找到的值，findIndex() 方法返回查找到值的索引。
 
 #### 语法
 
@@ -153,7 +153,7 @@ console.log(arr.findIndex(v => v > 5)); // 3
 
 ### fill()
 
-`fill()` 方法用一个固定值填充一个数组中从起始索引到终止索引内的全部元素。不包括终止索引。
+[`fill()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/fill) 方法用一个固定值填充一个数组中从起始索引到终止索引内的全部元素。不包括终止索引。
 
 #### 语法
 
@@ -186,7 +186,7 @@ console.log(array); // [3, 2, 2, 3, 3]
 
 ### copyWithin()
 
-`copyWithin()` 方法浅复制数组的一部分到同一数组中的另一个位置，并返回数组，不会改变原数组的长度。
+[`copyWithin()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin) 方法浅复制数组的一部分到同一数组中的另一个位置，并返回数组，不会改变原数组的长度。
 
 #### 语法
 
@@ -214,23 +214,238 @@ carr.copyWithin(2, 0, 3);
 console.log(carr); // [1, 2, 1, 2, 3, 6, 7]
 ```
 
+## 定型数组
+
+定型数组是一种用于处理数值类型数据的专用数组。
+
+定型数组支持存储和操作以下8种不同的数值类型：
+
+- int8
+- uint8
+- int16
+- uint16
+- int32
+- uint32
+- float32
+- float64
+
+在使用定型数组前，需要创建一个数组缓冲区存储这些数据。
+
+### 数组缓冲区
+
+数组缓冲区是一段可以包含特定数量字节的内存地址。可以通过 [ArrayBuffer](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) 构造函数来创建数组缓冲区。创建完成后，可以通过 byteLength 属性查看缓冲区中的字节数量。
+
+可以通过 [slice()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer/slice) 方法分割已有数组缓冲区来创建一个新的，这个方法和数组的 slice() 方法很像。
+
+语法：
+
+```js
+new ArrayBuffer(length) // length：要创建的 ArrayBuffer 的大小，单位为字节
+arrayBuffer.slice(begin[, end]) // 切片索引范围：[begin, end)
+```
+
+示例：
+
+```js
+let buffer = new ArrayBuffer(10);
+console.log(buffer.byteLength); // 10
+let sbuff = buffer.slice(2, 5);
+console.log(sbuff.byteLength); // 3
+```
+
+> 注意：数组缓冲区包含的实际字节在创建时就已确定，可以修改缓冲区内的数据，但不能改变缓冲区的尺寸大小。
+
+### 视图
+
+数组缓冲区是内存中的一段地址，视图是用来操作内存的接口。
+
+视图可以操作数组缓冲区或缓冲区字节的子集，并按照其中一种数值型数据类型来读取和写入数据。
+
+#### DataView
+
+[DataView](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/DataView) 类型是一种通用的数组缓冲区视图，其支持所有8种数值型数据类型。
+
+DataView 需要通过 ArrayBuffer 实例来创建，语法如下：
+
+```js
+new DataView(buffer [, byteOffset [, byteLength]])
+```
+
+参数：
+
+- buffer
+  一个 已经存在的[`ArrayBuffer`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) 或 [`SharedArrayBuffer`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer)  对象，`DataView` 对象的数据源。
+- byteOffset
+  可选参数。DataView 对象的第一个字节在 buffer 中的字节偏移。默认是 0。
+- byteLength
+  可选参数。DataView 对象的字节长度。默认是 buffer 的长度。
+
+示例：
+
+```js
+let buffer = new ArrayBuffer(10);
+let view1 = new DataView(buffer);
+let view2 = new DataView(buffer, 2);
+console.log(view1.buffer === view2.buffer); // true
+console.log(view1.byteOffset, view2.byteOffset); // 0 2
+console.log(view1.byteLength, view2.byteLength); // 10 8
+```
+
+#### 读取和写入数据
+
+JavaScript 有 8 种数值型数据类型，每一种都能在DataView的原型上找到相应的在数组缓冲区中写入数据和读取数据的方法。写入数据以 set 开头，读取数据以 get 开头。
+
+get 方法接受两个参数：读取数据时偏移的字节数量；一个可选的布尔值，表示是否按照小端序进行读取。
+
+set 方法接受三个参数：写入数据时偏移的字节数量；写入的值；一个可选的布尔值，表示是否按照小端序格式存储。
+
+- getInt8(byteOffset, littleEndian)
+- setInt8(byteOffset, value, littleEndian)
+- getFloat32(byteOffset, littleEndian)
+- setFloat32(byteOffset, value, littleEndian)
+- ......
+
+视图是独立的，无论数据之前是通过何种方式存储的，都可在任意时刻读取或写入任意格式的数据。
+
+举例：
+
+```js
+let buff = new ArrayBuffer(10);
+let view = new DataView(buff);
+
+view.setInt8(0, 3);
+view.setInt8(1, -5);
+
+console.log(view.getInt8(0), view.getInt8(1)); // 3 -5
+console.log(view.getInt16(0)); // 1019
+```
+
+当混合使用不同的数据类型时，DataView 是合适的选择；如果只使用某个特定的数据类型，那么特定类型的视图是更好的选择。
+
+#### 定型数组是视图
+
+ES6 [定型数组](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)实际上是用于数组缓冲区的特定类型的视图。ES 规范的特定类型视图如下：
+
+- [`Int8Array`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Int8Array) 1
+- [`Uint8Array`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) 1
+- [`Uint8ClampedArray`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray) 1
+- [`Int16Array`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Int16Array) 2
+- [`Uint16Array`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array) 2
+- [`Int32Array`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Int32Array) 4
+- [`Uint32Array`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array) 4
+- [`Float32Array`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Float32Array) 4
+- [`Float64Array`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Float64Array) 8
+- [`BigInt64Array`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/BigInt64Array) 8
+- [`BigUint64Array`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/BigUint64Array) 8
+
+其中 uint8 的值有两个选择，Uint8ClampedArray 和 Uint8Array，这两个大致相同，唯一的区别在于数组缓冲区的值如果小于 0 或者大于 255，UintClampedArray 会分别将其转换为 0 或 255。
+
+定型数组操作只能在特定的数据类型上进行。例如，所有 Int8Array 的操作都是用 int8 类型的值。
+
+创建定型数组语法：
+
+```js
+// 方式一
+new TypedArray();
+new TypedArray(length);
+// 方式二
+new TypedArray(typedArray);
+new TypedArray(object);
+// 方式三
+new TypedArray(buffer [, byteOffset [, length]]);
+```
+
+- **方式一：**
+  传入一个数字，这个数字表示分配给数组的元素数量。如果不传参数，会按照传入0来处理，这样缓冲区没有分配到任何比特，创建的定型数组不能用来保存数据。
+- **方式二：**
+  传入一个对象，对象类型可以为：定型数组、可迭代对象、数组、类数组对象。
+- **方式三：**
+  传入DataView可接受的参数，分别为：数组缓冲区、可选的比特偏移量、可选的长度值。
+
+每个定型数组由多个元素组成，元素大小指的是每个元素表示的字节数。该值存储在每个构造函数和每个实例的 `BYTES_PER_ELEMENT` 属性中。
+
+可以通过length属性来访问数组中的元素数量。通过 buffer 属性访问创建的数组缓冲区。
+
+示例：
+
+```js
+// 方式一
+let arr1 = new Int8Array(2);
+console.log(arr1.length, arr1.byteLength, arr1.byteOffset); // 2 2 0
+
+// 方式二
+let arr2 = new Int16Array([13, 20]);
+let arr16 = new Int32Array(arr2);
+console.log(arr2.buffer === arr16.buffer); // false
+console.log(arr2.length, arr2.byteLength, arr2[0], arr2[1]); // 2 4 13 20
+console.log(arr16.length, arr16.byteLength, arr16[0], arr16[1]); // 2 8 13 20
+
+// 方式三
+let bf = new ArrayBuffer(20);
+let arr3 = new Int32Array(bf, 4, 2);
+console.log(arr3.length, arr3.byteLength, arr3.byteOffset); // 2 8 4
+
+console.log(arr1.BYTES_PER_ELEMENT, arr2.BYTES_PER_ELEMENT, arr3.BYTES_PER_ELEMENT); // 1 2 4
+```
+
+## 定型数组与普通数组
+
+### 相似之处
+
+定型数组和普通数组有很多相似之处，如 length 属性，通过索引访问元素等。
+
+#### 通用方法
+
+定型数组包括许多在功能上与普通数组等效的方法：
+
+copyWithin()、findIndex()、lastIndexOf()、slice()、entries()、forEach()、map()、some()、fill()、indexOf()、reduce()、sort()、filter()、join()、reduceRight()、values()、find()、keys()、reverse()
+
+尽管这些方法和Array.prototype中的很像，但并非完全一致，定型数组中的方法会额外检查数值类型是否安全，也会通过 Symbol.species 确认方法的返回值是定型数组而非普通数组。
+
+#### 相同的迭代器
+
+定型数组与普通数组由3个相同的迭代器，分别是 entries()、keys()、values()方法，定型数组可以和普通数组一样使用展开运算符、for-of循环。
+
+#### of() 方法和 from() 方法
+
+所有定型数组都含有静态of() 方法和 from() 方法，运行效果类似 Array.of() 方法和 Array.from() 方法，当然，返回的定型数组。
+
+### 差别
+
+定型数组和普通数组最重要的差别：定型数组不是普通数组。它不继承自Array，通过 Array.isArray() 方法检查定型数组返回的是 false。
+
+#### 行为差异
+
+普通数组的值可以是不同类型的；其长度可以变化。而定型数组的值需要是符合要求的，非法值会进行错误更正；定型数组的长度是固定的。
+
+#### 缺失的方法
+
+定型数组相对于普通数组，缺失了如下方法：
+
+concat()、shift()、pop()、splice()、push()、ushift()
+
+这是由于定型数组的尺寸不可更改。
+
+#### 附加方法
+
+定型数组相较于普通数组，增加了如下方法：
+
+- set(array[, offset])
+  将其他数组复制到已有的定型数组
+  array：拷贝数据的源数组，定型数组和普通数组都可以
+  offset：可选参数，偏移量，表示开始插入数据的位置
+- subarray([begin[, end]])
+  提取已有的定型数组的一部分作为一个新的定型数组，索引范围：[begin, end)
+
 
 
 ## 参考链接
 
-[Array.of() - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/of)
+[Array - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array)
 
-[Array.from() - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/from)
+[ArrayBuffer - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 
-[Array.prototype.indexOf() - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf)
+[DataView - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/DataView)
 
-[Array.prototype.lastIndexOf() - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf)
-
-[Array.prototype.find() - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
-
-[Array.prototype.findIndex() - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex)
-
-[Array.prototype.fill() - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/fill)
-
-[Array.prototype.copyWithin() - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin)
+[TypedArray](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)
 

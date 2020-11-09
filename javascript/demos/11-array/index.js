@@ -75,3 +75,55 @@ console.log(array); // [3, 2, 2, 3, 3]
 let carr = [1, 2, 3, 4, 5, 6, 7];
 carr.copyWithin(2, 0, 3);
 console.log(carr); // [1, 2, 1, 2, 3, 6, 7]
+
+
+/**
+ * ArrayBuffer
+ */
+let buffer = new ArrayBuffer(10);
+console.log(buffer.byteLength); // 10
+let sbuff = buffer.slice(2, 5);
+console.log(sbuff.byteLength); // 3
+
+/**
+ * DataView
+ */
+let view1 = new DataView(buffer);
+let view2 = new DataView(buffer, 2);
+console.log(view1.buffer === view2.buffer); // true
+console.log(view1.byteOffset, view2.byteOffset); // 0 2
+console.log(view1.byteLength, view2.byteLength); // 10 8
+
+/**
+ * DataView
+ * get/set
+ */
+let buff = new ArrayBuffer(10);
+let view = new DataView(buff);
+
+view.setInt8(0, 3);
+view.setInt8(1, -5);
+
+console.log(view.getInt8(0), view.getInt8(1)); // 3 -5
+console.log(view.getInt16(0)); // 1019
+
+/**
+ * TypedArray
+ */
+// 方式一
+let arr1 = new Int8Array(2);
+console.log(arr1.length, arr1.byteLength, arr1.byteOffset); // 2 2 0
+
+// 方式二
+let arr2 = new Int16Array([13, 20]);
+let arr16 = new Int32Array(arr2);
+console.log(arr2.buffer === arr16.buffer); // false
+console.log(arr2.length, arr2.byteLength, arr2[0], arr2[1]); // 2 4 13 20
+console.log(arr16.length, arr16.byteLength, arr16[0], arr16[1]); // 2 8 13 20
+
+// 方式三
+let bf = new ArrayBuffer(20);
+let arr3 = new Int32Array(bf, 4, 2);
+console.log(arr3.length, arr3.byteLength, arr3.byteOffset); // 2 8 4
+
+console.log(arr1.BYTES_PER_ELEMENT, arr2.BYTES_PER_ELEMENT, arr3.BYTES_PER_ELEMENT); // 1 2 4
