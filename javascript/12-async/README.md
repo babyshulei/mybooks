@@ -198,6 +198,101 @@ promise.then((res) => {
 
 每个执行器之内并没有显式的try-catch，错误就被捕捉并传递给了拒绝处理函数。
 
+### 全局的Promise拒绝处理
+
+Promise 被拒绝时若缺少拒绝处理函数，就会静默失败。
+
+Promise的特性决定了很难检测一个Promise是否被处理过。
+
+#### Node.js的拒绝处理
+
+在 Node.js 中，处理Promise拒绝时会触发 process 对象上的两个事件：
+
+- unhandledRejection
+  在一个**事件循环中**，当 Promise 被拒绝，并且**没有提供拒绝处理程序**时，触发该事件。
+  事件处理函数接受两个参数：错误对象、被拒绝的Promise
+- rejectionHandled
+  在一个**事件循环后**，当 Promise 被拒绝时，若**拒绝处理程序被调用**，触发该事件。
+  事件处理函数接受一个参数：被拒绝的Promise
+
+示例：
+
+```js
+let rejected;
+
+process.on('unhandledRejection', (reason, promise) => {
+    console.log('unhandled', reason.message);
+    console.log(rejected === promise);
+});
+
+process.on('rejectionHandled', (promise) => {
+    console.log('handled', rejected === promise);
+});
+
+rejected = Promise.reject(new Error('Node test'));
+
+setTimeout(() => {
+    rejected.catch(() => {
+        console.log('reject handler');
+    });
+}, 3000);
+// unhandled Node test
+// true
+/*** 3000ms后 ***/
+// reject handler
+// handled true
+```
+
+利用这两个事件编写的简单的未处理拒绝跟踪器：
+
+```js
+let possiblyUnhandledRejections = new Map();
+
+// 未处理的被拒绝Promise加入列表
+process.on('unhandledRejection', (reason, promise) => {
+    possiblyUnhandledRejections.set(promise, reason);
+});
+
+// 已处理的被拒绝Promise移出列表
+process.on('rejectionHandled', (promise) => {
+    possiblyUnhandledRejections.delete(promise);
+});
+
+setInterval(() => {
+    possiblyUnhandledRejections.forEach((reason, promise) => {
+        console.log(reason.message ? reason.message : reason);
+        // 处理未处理的被拒绝Promise
+        handleRejection(promise, reason);
+    });
+    possiblyUnhandledRejections.clear();
+}, 60000);
+```
+
+#### 浏览器环境的拒绝处理
+
+浏览器也是通过触发两个事件来识别未处理的拒绝的，和 Node.js 等效，但是在 window 对象上触发的。
+
+- [unhandledrejection](https://developer.mozilla.org/zh-CN/docs/Web/Events/unhandledrejection)
+  在一个**事件循环中**，当 Promise 被拒绝，并且**没有提供拒绝处理程序**时，触发该事件。
+- [rejectionhandled](https://developer.mozilla.org/en-US/docs/Web/API/Window/rejectionhandled_event)
+  在一个**事件循环后**，当 Promise 被拒绝时，若**拒绝处理程序被调用**，触发该事件。
+
+浏览器中，事件处理函数接受一个事件对象，这两个事件的事件对象上有如下属性：
+
+- type：事件名称（unhandledrejection、rejectionhandled）
+- promise：被拒绝的Promise对象
+- reason：来着Promise的拒绝值
+
+
+
+
+
+
+
+
+
+
+
 ## Async/Await
 
 ### Async/Await 简介

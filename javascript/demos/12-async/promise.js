@@ -96,7 +96,7 @@ pro2
 // bbb
 //     .then((r) => console.log('bsucc', r))
 //     .catch((e) => console.log('berr', e));
-	// 已完成
+// 已完成
 let thenable = {
     then: function(resovle, reject) {
         console.log('hi');
@@ -119,3 +119,76 @@ let p2 = Promise.resolve(thenable2);
 p2.catch(function(value) {
     console.log(value);
 });
+
+/**
+ * node unhandledRejection, rejectionHandled
+ */
+let rejected;
+
+process.on('unhandledRejection', (reason, promise) => {
+    console.log('unhandled', reason.message);
+    console.log(rejected === promise);
+});
+
+process.on('rejectionHandled', (promise) => {
+    console.log('handled', rejected === promise);
+});
+
+rejected = Promise.reject(new Error('Node test'));
+
+setTimeout(() => {
+    rejected.catch(() => {
+        console.log('reject handler');
+    });
+}, 3000);
+
+/**
+ * 未处理拒绝跟踪器
+ */
+/*
+let possiblyUnhandledRejections = new Map();
+
+// 未处理的被拒绝Promise加入列表
+process.on('unhandledRejection', (reason, promise) => {
+    possiblyUnhandledRejections.set(promise, reason);
+});
+
+// 已处理的被拒绝Promise移出列表
+process.on('rejectionHandled', (promise) => {
+    possiblyUnhandledRejections.delete(promise);
+});
+
+setInterval(() => {
+    possiblyUnhandledRejections.forEach((reason, promise) => {
+        console.log(reason.message ? reason.message : reason);
+        // 处理未处理的被拒绝Promise
+        // handleRejection(promise, reason);
+    });
+    possiblyUnhandledRejections.clear();
+}, 60000);
+*/
+/*
+let rejected;
+
+// window.onunhandledrejection = function(event) {
+//     console.log(event.type, event.reason.message, rejected === event.promise);
+// };
+
+window.addEventListener('unhandledrejection', function(event) {
+    console.log(event.type, event.reason.message, rejected === event.promise);
+});
+
+window.onrejectionhandled = function(event) {
+    console.log(event.type, event.reason.message, rejected === event.promise);
+};
+
+rejected = Promise.reject(new Error('chrome test'));
+
+setTimeout(() => {
+    rejected.catch(() => {
+        console.log('reject handler');
+    });
+}, 3000);
+// unhandledRejection chrome test true
+// rejectionHandled chrome test true
+*/
