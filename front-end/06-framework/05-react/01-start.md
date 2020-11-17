@@ -694,6 +694,8 @@ cd my-app
 npm start
 ```
 
+参见：[Create React App 中文文档](https://www.html.cn/create-react-app/docs/getting-started/)
+
 ### 开发者工具
 
 在 [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) 或者 [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) 中安装扩展 React Devtools 可以让你在浏览器开发者工具中查看 React 的组件树。
