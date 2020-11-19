@@ -186,11 +186,34 @@ promise.then((res) => {
 // success 42
 ```
 
-其他：
+#### Promise.prototype.finally()
 
-- Promise.prototype.finally()
-- Promise.all()
-- Promise.race()
+finally() 方法返回一个Promise。在Promise结束时，无论结果是fulfilled或者是rejected，都会执行指定的回调函数。
+
+#### Promise.all()
+
+[Promise.all()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) 方法接受一个参数并返回一个 Promise，常用于等待多个异步并发任务完成。
+
+语法：
+
+```js
+Promise.all(iterable);
+```
+
+参数：
+
+- iterable
+  含有多个Promise的可迭代对象。
+
+当 iterable 参数内所有的 Promise 都被完成（resolved） 时，返回的Promise才会被完成，返回的Promise传入的结果是一个包含每个解决值的数组，按照传入参数数组中的Promise顺序存储。
+
+iterable 参数中只要有一个 Promise 被拒绝（rejected），那么返回的Promise会立即被拒绝，失败的原因是第一个失败 Promise 的结果。
+
+#### Promise.race()
+
+[Promise.race()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/race) 方法接受一个迭代器参数并返回一个 Promise，一旦迭代器中的某个Promise被解决或拒绝，返回的 promise就会被解决或拒绝。
+
+实际上，传给 Promise.race() 方法的 Promise 会进行竞选，以决出哪一个先被解决，如果先解决的是已完成的Promise，则返回已完成的Promise；如果先解决的是已拒绝的Promise，则返回已拒绝的Promise。
 
 ### 执行器错误
 
@@ -283,13 +306,37 @@ setInterval(() => {
 - promise：被拒绝的Promise对象
 - reason：来着Promise的拒绝值
 
+### 串联Promise
 
+每次调用 then() 方法或 catch() 方法时实际上创建并返回了另一个 Promise，只有当第一个 Promise 完成或被拒绝后，第二个才会被解决。
 
+Promise链可以用来捕获前一个Promise的完成或拒绝处理程序中发生的错误。
 
+Promise链可以给下游的Promise传递数据，如果在处理程序中返回一个值，这个值会被传递。如果返回的是 Promise 对象，会根据这个Promise的处理来确定后续的程序执行。
 
+示例：
 
+```js
+let pp1 = new Promise((resolve, reject) => {
+    resolve(22);
+});
 
+let pp2 = new Promise((resolve, reject) => {
+    reject(new Error('rejected!'));
+});
 
+pp1.then((val) => {
+    console.log(1, val);
+    return pp2;
+}).then((v) => {
+    console.log(2, v);
+}).catch((e) => {
+    console.log(3, e.message);
+});
+
+// 1 22
+// 3 rejected!
+```
 
 
 

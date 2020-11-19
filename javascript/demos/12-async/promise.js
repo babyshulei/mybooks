@@ -63,6 +63,7 @@ console.log('Hello!');
 /**
  * Promise.resolve(), reject()
  */
+/*
 let pro1 = Promise.resolve(233);
 let pro2 = Promise.reject(7);
 pro1
@@ -73,6 +74,7 @@ pro2
     .catch((e) => console.log('err', e));
 // succ 233
 // err 7
+*/
 
 /**
  * Thenable
@@ -97,6 +99,7 @@ pro2
 //     .then((r) => console.log('bsucc', r))
 //     .catch((e) => console.log('berr', e));
 // 已完成
+/*
 let thenable = {
     then: function(resovle, reject) {
         console.log('hi');
@@ -119,10 +122,12 @@ let p2 = Promise.resolve(thenable2);
 p2.catch(function(value) {
     console.log(value);
 });
+*/
 
 /**
  * node unhandledRejection, rejectionHandled
  */
+/*
 let rejected;
 
 process.on('unhandledRejection', (reason, promise) => {
@@ -141,6 +146,7 @@ setTimeout(() => {
         console.log('reject handler');
     });
 }, 3000);
+*/
 
 /**
  * 未处理拒绝跟踪器
@@ -192,3 +198,26 @@ setTimeout(() => {
 // unhandledRejection chrome test true
 // rejectionHandled chrome test true
 */
+
+/**
+ * Promise 链
+ */
+let pp1 = new Promise((resolve, reject) => {
+    resolve(22);
+});
+
+let pp2 = new Promise((resolve, reject) => {
+    reject(new Error('rejected!'));
+});
+
+pp1.then((val) => {
+    console.log(1, val);
+    return pp2;
+}).then((v) => {
+    console.log(2, v);
+}).catch((e) => {
+    console.log(3, e.message);
+});
+
+// 1 22
+// 3 rejected!
