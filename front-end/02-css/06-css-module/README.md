@@ -115,3 +115,5 @@ CSS Modules 支持使用变量，不过需要安装相关插件。
 
 [CSS Modules 用法教程- 阮一峰](http://www.ruanyifeng.com/blog/2016/06/css_modules.html)
 
+[在 Create React App 中使用 CSS Modules](https://juejin.cn/post/6844903760867786759)
+
