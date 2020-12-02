@@ -1,4 +1,4 @@
-# 开发
+# 开发实战
 
 ## 搭建环境
 
@@ -61,6 +61,20 @@ npm start
 ### webpack 配置
 
 create-react-app 将 webpack 的配置隐藏起来了，没办法直接修改这个 webpack，可以使用 react-app-rewired + customized-cra 修改 react 中的配置。
+
+
+
+### 使用PropTypes类型检查
+
+应用程序不断增长，有必要添加类型检查捕获错误。
+
+方案一，可以使用 Flow、TypeScript等对整个应用程序进行类型检查；方案二，React内置了一些类型检查的功能，例如 prop-types。
+
+使用 PropTypes 声明 props 上的属性和类型等规约，开发模式下会进行检查。
+
+详细参见：[使用 PropTypes 类型检查 - React官方文档](https://zh-hans.reactjs.org/docs/typechecking-with-proptypes.html)
+
+
 
 ## 开发者工具
 
