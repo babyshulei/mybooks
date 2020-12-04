@@ -24,13 +24,28 @@
 | apply                    | 调用一个函数                                                 | Reflect.apply()                    |
 | construct                | 用new调用一个函数                                            | Reflect.construct()                |
 
-## 创建一个简单的代理
+每个陷阱覆写JavaScript对象的一些内建特性，可以用它们拦截并修改这些特性。如果仍需使用内建特性，可以使用相应的反射方法。
 
-用Proxy构造函数创建代理需要传入两个参数：目标 target 和处理程序 handler。
+## 创建代理
 
-处理程序是定义一个或多个陷阱的对象，在代理中，除了专门为操作定义的陷阱外，其余操作均使用默认特性。
+使用[Proxy构造函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy)创建代理。
 
-不使用任何陷阱的处理程序等价于简单的转发代理，例如：
+语法：
+
+```js
+const proxy = new Proxy(target, handler)
+```
+
+参数：
+
+- target
+  要使用 Proxy 包装的目标对象
+- handler
+  处理程序，一个或多个陷阱的对象。在代理中，除了专门为操作定义的陷阱外，其余操作均使用默认特性。
+
+### 简单的转发代理
+
+不使用任何陷阱的处理程序等价于简单的转发代理，示例：
 
 ```js
 let target = {};
@@ -44,4 +59,41 @@ console.log(proxy.name, target.name); // john john
 ```
 
 上面的代理将所有的操作直接转发到目标，代理只是简单地将操作转发给目标，不会存储对应属性。因此 proxy.name 和 target.name 引用的都是 target.name。
+
+### 使用set陷阱验证属性
+
+可以定义一个[set陷阱](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/set)来覆写设置值的默认特性。
+
+语法：
+
+```js
+const p = new Proxy(target, {
+    set: function(trapTarget, key, value, receiver) {}
+});
+```
+
+参数：
+
+- trapTarget
+  目标对象
+- key
+  要写入的属性键（string或symbol类型）
+- value
+  被写入的属性值
+- receiver
+  操作发生的对象（通常是代理）
+
+示例：
+
+
+
+
+
+
+
+
+
+## 参考链接
+
+[Proxy - MDN Web Docs - Mozilla](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 
