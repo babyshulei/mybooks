@@ -37,4 +37,40 @@ console.log(proxy.str, proxy.count); // skrrrr 120
 proxy.str = 'miaowu';
 console.log(proxy.str, proxy.count); // miaowu 120
 
- 
+/**
+ * get 陷阱
+ */
+let tar = {};
+let p = new Proxy(tar, {
+  get(trapTarget, key, receiver) {
+    if (!(key in receiver)) {
+      throw new Error(`属性${key}不存在！`);
+    }
+    return Reflect.get(trapTarget, key, receiver);
+  }
+});
+
+p.test = 'get';
+
+console.log(p.test, tar.test); // get get
+// console.log(p.hello); // throw Error
+
+/**
+ * has 陷阱
+ */
+let tt = {
+  name: 'target',
+  val: 'hide',
+};
+
+let pp = new Proxy(tt, {
+  has(trapTarget, key) {
+    if (key === 'val') {
+      return false;
+    } else {
+      return Reflect.has(trapTarget, key);
+    }
+  }
+});
+
+console.log('name' in pp, 'val' in pp, 'test' in pp); // true false false

@@ -75,7 +75,7 @@ const p = new Proxy(target, {
 参数：
 
 - trapTarget
-  目标对象
+  用于接收属性的对象（代理的目标对象）
 - key
   要写入的属性键（string或symbol类型）
 - value
@@ -83,13 +83,116 @@ const p = new Proxy(target, {
 - receiver
   操作发生的对象（通常是代理）
 
+示例，新增属性必须是数字：
+
+```js
+let target = {};
+let proxy = new Proxy(target, {
+  set(trapTarget, key, value, receiver) {
+    if (!trapTarget.hasOwnProperty(key)) {
+      if (isNaN(value)) {
+        throw('属性值必须是数字！');
+      }
+    }
+
+    return Reflect.set(trapTarget, key, value, receiver);
+  }
+});
+
+target.str = 'skrrrr';
+
+proxy.count = 120;
+console.log(proxy.str, proxy.count); // skrrrr 120
+
+proxy.str = 'miaowu';
+console.log(proxy.str, proxy.count); // miaowu 120
+
+proxy.test = 'aha'; // throw Error
+```
+
+set 代理陷阱可以拦截写入属性的操作，get 代理陷阱可以拦截读取属性的操作。
+
+### 使用get陷阱验证对象结构（Object Shape）
+
+通过[get陷阱](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_O)来拦截读取对象属性的操作。
+
+语法：
+
+```js
+var p = new Proxy(target, {
+  get: function(tarpTarget, key, receiver) {}
+});
+```
+
+参数：
+
+- trapTarget
+  被读取属性的源对象（代理的目标对象）
+- key
+  要读取的属性键（字符串或symbol）
+- receiver
+  操作发生的对象（通常是代理）
+
+示例，读取属性不存在时，抛出错误：
+
+```js
+let tar = {};
+let p = new Proxy(tar, {
+  get(trapTarget, key, receiver) {
+    if (!(key in receiver)) {
+      throw new Error(`属性${key}不存在！`);
+    }
+    return Reflect.get(trapTarget, key, receiver);
+  }
+});
+
+p.test = 'get';
+
+console.log(p.test, tar.test); // get get
+console.log(p.hello); // throw Error
+```
+
+注意：这里用in操作符检查receiver而不检查trapTarget，是为了防止receiver代理含有has陷阱。如果检查trapTarget可能会忽略掉has陷阱，从而得到错误结果。
+
+### 使用has陷阱隐藏已有属性
+
+使用[has陷阱](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/has)可以拦截in操作。
+
+语法：
+
+```js
+var p = new Proxy(target, {
+  has: function(trapTarget, key) {}
+});
+```
+
+参数：
+
+- trapTarget
+  读取属性的对象（代理的目标对象）
+- key
+  要检查的属性键（字符串或Symbol）
+
 示例：
 
+```js
+let tt = {
+  name: 'target',
+  val: 'hide',
+};
 
+let pp = new Proxy(tt, {
+  has(trapTarget, key) {
+    if (key === 'val') {
+      return false;
+    } else {
+      return Reflect.has(trapTarget, key);
+    }
+  }
+});
 
-
-
-
+console.log('name' in pp, 'val' in pp, 'test' in pp); // true false false
+```
 
 
 
