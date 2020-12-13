@@ -186,17 +186,159 @@ promise.then((res) => {
 // success 42
 ```
 
-其他：
+#### Promise.prototype.finally()
 
-- Promise.prototype.finally()
-- Promise.all()
-- Promise.race()
+finally() 方法返回一个Promise。在Promise结束时，无论结果是fulfilled或者是rejected，都会执行指定的回调函数。
+
+#### Promise.all()
+
+[Promise.all()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) 方法接受一个参数并返回一个 Promise，常用于等待多个异步并发任务完成。
+
+语法：
+
+```js
+Promise.all(iterable);
+```
+
+参数：
+
+- iterable
+  含有多个Promise的可迭代对象。
+
+当 iterable 参数内所有的 Promise 都被完成（resolved） 时，返回的Promise才会被完成，返回的Promise传入的结果是一个包含每个解决值的数组，按照传入参数数组中的Promise顺序存储。
+
+iterable 参数中只要有一个 Promise 被拒绝（rejected），那么返回的Promise会立即被拒绝，失败的原因是第一个失败 Promise 的结果。
+
+#### Promise.race()
+
+[Promise.race()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/race) 方法接受一个迭代器参数并返回一个 Promise，一旦迭代器中的某个Promise被解决或拒绝，返回的 promise就会被解决或拒绝。
+
+实际上，传给 Promise.race() 方法的 Promise 会进行竞选，以决出哪一个先被解决，如果先解决的是已完成的Promise，则返回已完成的Promise；如果先解决的是已拒绝的Promise，则返回已拒绝的Promise。
 
 ### 执行器错误
 
 在执行器内部抛出了错误，Promise的拒绝处理函数就会被调用。
 
 每个执行器之内并没有显式的try-catch，错误就被捕捉并传递给了拒绝处理函数。
+
+### 全局的Promise拒绝处理
+
+Promise 被拒绝时若缺少拒绝处理函数，就会静默失败。
+
+Promise的特性决定了很难检测一个Promise是否被处理过。
+
+#### Node.js的拒绝处理
+
+在 Node.js 中，处理Promise拒绝时会触发 process 对象上的两个事件：
+
+- unhandledRejection
+  在一个**事件循环中**，当 Promise 被拒绝，并且**没有提供拒绝处理程序**时，触发该事件。
+  事件处理函数接受两个参数：错误对象、被拒绝的Promise
+- rejectionHandled
+  在一个**事件循环后**，当 Promise 被拒绝时，若**拒绝处理程序被调用**，触发该事件。
+  事件处理函数接受一个参数：被拒绝的Promise
+
+示例：
+
+```js
+let rejected;
+
+process.on('unhandledRejection', (reason, promise) => {
+    console.log('unhandled', reason.message);
+    console.log(rejected === promise);
+});
+
+process.on('rejectionHandled', (promise) => {
+    console.log('handled', rejected === promise);
+});
+
+rejected = Promise.reject(new Error('Node test'));
+
+setTimeout(() => {
+    rejected.catch(() => {
+        console.log('reject handler');
+    });
+}, 3000);
+// unhandled Node test
+// true
+/*** 3000ms后 ***/
+// reject handler
+// handled true
+```
+
+利用这两个事件编写的简单的未处理拒绝跟踪器：
+
+```js
+let possiblyUnhandledRejections = new Map();
+
+// 未处理的被拒绝Promise加入列表
+process.on('unhandledRejection', (reason, promise) => {
+    possiblyUnhandledRejections.set(promise, reason);
+});
+
+// 已处理的被拒绝Promise移出列表
+process.on('rejectionHandled', (promise) => {
+    possiblyUnhandledRejections.delete(promise);
+});
+
+setInterval(() => {
+    possiblyUnhandledRejections.forEach((reason, promise) => {
+        console.log(reason.message ? reason.message : reason);
+        // 处理未处理的被拒绝Promise
+        handleRejection(promise, reason);
+    });
+    possiblyUnhandledRejections.clear();
+}, 60000);
+```
+
+#### 浏览器环境的拒绝处理
+
+浏览器也是通过触发两个事件来识别未处理的拒绝的，和 Node.js 等效，但是在 window 对象上触发的。
+
+- [unhandledrejection](https://developer.mozilla.org/zh-CN/docs/Web/Events/unhandledrejection)
+  在一个**事件循环中**，当 Promise 被拒绝，并且**没有提供拒绝处理程序**时，触发该事件。
+- [rejectionhandled](https://developer.mozilla.org/en-US/docs/Web/API/Window/rejectionhandled_event)
+  在一个**事件循环后**，当 Promise 被拒绝时，若**拒绝处理程序被调用**，触发该事件。
+
+浏览器中，事件处理函数接受一个事件对象，这两个事件的事件对象上有如下属性：
+
+- type：事件名称（unhandledrejection、rejectionhandled）
+- promise：被拒绝的Promise对象
+- reason：来着Promise的拒绝值
+
+### 串联Promise
+
+每次调用 then() 方法或 catch() 方法时实际上创建并返回了另一个 Promise，只有当第一个 Promise 完成或被拒绝后，第二个才会被解决。
+
+Promise链可以用来捕获前一个Promise的完成或拒绝处理程序中发生的错误。
+
+Promise链可以给下游的Promise传递数据，如果在处理程序中返回一个值，这个值会被传递。如果返回的是 Promise 对象，会根据这个Promise的处理来确定后续的程序执行。
+
+示例：
+
+```js
+let pp1 = new Promise((resolve, reject) => {
+    resolve(22);
+});
+
+let pp2 = new Promise((resolve, reject) => {
+    reject(new Error('rejected!'));
+});
+
+pp1.then((val) => {
+    console.log(1, val);
+    return pp2;
+}).then((v) => {
+    console.log(2, v);
+}).catch((e) => {
+    console.log(3, e.message);
+});
+
+// 1 22
+// 3 rejected!
+```
+
+
 
 ## Async/Await
 
