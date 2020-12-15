@@ -73,6 +73,16 @@ class EventBus {
 }
 ```
 
+## 路由传参
+
+[vue路由传参的三种基本方式_流年的樱花逝- SegmentFault 思否](https://segmentfault.com/a/1190000012393587)
+
+[vue路由配置、跳转、传参- 简书](https://www.jianshu.com/p/cf8fcfce8629)
+
+
+
+
+
 
 
 ## 参考链接

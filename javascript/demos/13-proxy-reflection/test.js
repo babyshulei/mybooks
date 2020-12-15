@@ -74,3 +74,24 @@ let pp = new Proxy(tt, {
 });
 
 console.log('name' in pp, 'val' in pp, 'test' in pp); // true false false
+
+/**
+ * delete 操作符
+ */
+let obj = {
+  name: 'example',
+  value: 33,
+};
+
+Object.defineProperty(obj, 'name', { configurable: false});
+
+console.log('value' in obj); // true
+
+let result1 = delete obj.value;
+
+console.log(result1, 'value' in obj); // true false
+
+// 严格模式下，下行会抛出一个错误
+let result2 = delete obj.name;
+
+console.log(result2, 'name' in obj); // false true
