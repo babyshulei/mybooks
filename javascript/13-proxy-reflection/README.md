@@ -194,6 +194,150 @@ let pp = new Proxy(tt, {
 console.log('name' in pp, 'val' in pp, 'test' in pp); // true false false
 ```
 
+### 使用 deleteProperty 陷阱防止删除属性
+
+[deleteProperty陷阱](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/deleteProperty)用于拦截对对象属性的 [delete](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/delete) 操作。
+
+语法：
+
+```js
+var p = new Proxy(target, {
+  deleteProperty: function(trapTarget, key) {}
+});
+```
+
+参数：
+
+- trapTarget
+  要删除属性的对象（代理的目标）
+- key
+  要删除的属性键（字符串或Symbol）
+
+示例：
+
+```js
+let tar = {
+  able: 11,
+  unable: 22,
+};
+let pro = new Proxy(tar, {
+  deleteProperty(trapTarget, key) {
+    if (key === 'unable') {
+      return false;
+    } else {
+      return Reflect.deleteProperty(trapTarget, key);
+    }
+  }
+});
+
+console.log('able' in pro, 'unable' in pro); // true true
+
+let res1 = delete pro.able;
+let res2 = delete pro.unable;
+
+console.log(res1, res2); // true false
+console.log('able' in pro, 'unable' in pro); // false true
+```
+
+### 原型代理陷阱
+
+#### getPrototypeOf 陷阱
+
+代理中的 [getPrototypeOf 陷阱](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/getPrototypeOf)可以拦截读取对象原型的操作。
+
+语法：
+
+```js
+const p = new Proxy(obj, {
+  getPrototypeOf(trapTarget) {}
+});
+```
+
+参数：
+
+- trapTarget
+  读取原型的对象（代理的目标）
+
+getPrototypeOf 陷阱的返回值必须是一个对象或null，其他返回值会抛出异常。
+
+在 JavaScript 中，下面这五种操作（方法/属性/运算符）可以触发 JS 引擎读取一个对象的原型，也就是可以触发 getPrototypeOf() 代理方法的运行：
+
+- [`Object.getPrototypeOf()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf)
+- [`Reflect.getPrototypeOf()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/getPrototypeOf)
+- [`__proto__`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/proto)
+- [`Object.prototype.isPrototypeOf()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf)
+- [`instanceof`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof)
+
+
+
+#### setPrototypeOf 陷阱
+
+代理中的 [setPrototypeOf 陷阱](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/setPrototypeOf)可以拦截设置对象原型的操作 Object.setPrototypeOf()。
+
+语法：
+
+```js
+var p = new Proxy(target, {
+  setPrototypeOf(trapTarget, prototype) {}
+});
+```
+
+参数：
+
+- trapTarget
+  接受原型设置的对象（代理的目标）
+- prototype
+  对象新原型对象或null
+
+setPrototypeOf 陷阱中，如果操作失败则返回的一定是false，此时会 Object.setPrototypeOf() 会抛出错误，如果陷阱返回了任何不是false的值，那么 Object.setPropertyOf() 便假设操作成功。
+
+陷阱可以拦截的操作：
+
+- [`Object.setPrototypeOf()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf)
+- [`Reflect.setPrototypeOf()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/setPrototypeOf)
+
+
+
+> Object.getPrototypeOf()、Object.setPrototypeOf() 和 Reflect.getPrototypeOf()、Reflect.setPrototypeOf() 方法的区别：
+>
+> Reflect.getPrototypeOf()、Reflect.setPrototypeOf() 方法是底层操作，赋予开发者可以访问之前只在内部操作的[[GetPrototypeOf]]和[[SetPrototypeOf]]的权限，其为这两个内部操作的包裹器（包含一些输入验证）。
+>
+> Object.getPrototypeOf()、Object.setPrototypeOf() 方法是高级操作，目的是给开发者使用的，在调用内部[[GetPrototypeOf]]和[[SetPrototypeOf]]操作前，会执行一些额外步骤，并通过返回值来决定下一步的操作。
+>
+> 如果传入的参数不是对象，则 Reflect.getPrototypeOf() 方法会抛出错误，而 Object.getPrototypeOf() 方法则会在操作执行前先将参数强制转换为一个对象。
+> Reflect.setPrototypeOf() 方法会返回一个布尔值，表示是否原型已经成功设置；而 Object.setPrototypeOf() 方法返回的是设置原型的对象（即传入的第一个参数）。
+
+示例：
+
+```js
+let target = {
+  name: 'example',
+  value: 42,
+}
+
+// 通过原型代理陷阱隐藏代理的原型
+let proxy = new Proxy(target, {
+  getPrototypeOf(trapTarget) {
+    return null;
+  },
+  setPrototypeOf(trapTarget, prototype) {
+    return false;
+  }
+});
+
+console.log(target.__proto__ === Object.prototype, proxy.__proto__ === Object.prototype); // true false
+// 成功
+Object.setPrototypeOf(target, {});
+// 抛出错误
+Object.setPrototypeOf(proxy, {});
+
+let res1 = Object.getPrototypeOf(1);
+console.log(res1 === Number.prototype); // true
+
+// 抛出错误
+let res2 = Reflect.getPrototypeOf(1);
+```
+
 
 
 ## 参考链接

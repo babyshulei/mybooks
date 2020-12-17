@@ -61,7 +61,7 @@
 
 [delete操作符](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/delete)，删除一个对象的属性或者一个数组中某一个键值。
 
-通常情况下返回true，表示移除成功；当尝试删除一个不可配置的属性时，严格模式下会抛出TypeError错误，非严格模式下会返回false。
+通常情况下返回true，表示删除成功；当尝试删除一个不可配置的属性时，严格模式下会抛出TypeError错误，非严格模式下会返回false。
 
 示例：
 
