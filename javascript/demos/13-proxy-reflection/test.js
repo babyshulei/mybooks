@@ -1,7 +1,5 @@
-/**
- * 简单的转发代理
- */
 /*
+// 简单的转发代理
 let target = {};
 let proxy = new Proxy(target, {});
 
@@ -10,12 +8,8 @@ console.log(proxy.name, target.name);
 
 target.name = 'tt';
 console.log(proxy.name, target.name);
-*/
 
-
-/**
- * set 陷阱
- */
+// set 陷阱
 let target = {};
 let proxy = new Proxy(target, {
   set(trapTarget, key, value, receiver) {
@@ -37,9 +31,7 @@ console.log(proxy.str, proxy.count); // skrrrr 120
 proxy.str = 'miaowu';
 console.log(proxy.str, proxy.count); // miaowu 120
 
-/**
- * get 陷阱
- */
+// get 陷阱
 let tar = {};
 let p = new Proxy(tar, {
   get(trapTarget, key, receiver) {
@@ -55,9 +47,7 @@ p.test = 'get';
 console.log(p.test, tar.test); // get get
 // console.log(p.hello); // throw Error
 
-/**
- * has 陷阱
- */
+// has 陷阱
 let tt = {
   name: 'target',
   val: 'hide',
@@ -74,3 +64,77 @@ let pp = new Proxy(tt, {
 });
 
 console.log('name' in pp, 'val' in pp, 'test' in pp); // true false false
+
+// delete 操作符
+let obj = {
+  name: 'example',
+  value: 33,
+};
+
+Object.defineProperty(obj, 'name', { configurable: false});
+
+console.log('value' in obj); // true
+
+let result1 = delete obj.value;
+
+console.log(result1, 'value' in obj); // true false
+
+// 严格模式下，下行会抛出一个错误
+let result2 = delete obj.name;
+
+console.log(result2, 'name' in obj); // false true
+
+// deleteProperty 陷阱
+console.log('================deleteProperty=================')
+let tar = {
+  able: 11,
+  unable: 22,
+};
+let pro = new Proxy(tar, {
+  deleteProperty(trapTarget, key) {
+    if (key === 'unable') {
+      return false;
+    } else {
+      return Reflect.deleteProperty(trapTarget, key);
+    }
+  }
+});
+
+console.log('able' in pro, 'unable' in pro); // true true
+
+let res1 = delete pro.able;
+let res2 = delete pro.unable;
+
+console.log(res1, res2); // true false
+console.log('able' in pro, 'unable' in pro); // false true
+*/
+
+
+// 原型代理陷阱
+console.log('============原型代理陷阱============');
+let target = {
+  name: 'example',
+  value: 42,
+}
+
+// 通过原型代理陷阱隐藏代理的原型
+let proxy = new Proxy(target, {
+  getPrototypeOf(trapTarget) {
+    return null;
+  },
+  setPrototypeOf(trapTarget, prototype) {
+    return false;
+  }
+});
+
+console.log(target.__proto__ === Object.prototype, proxy.__proto__ === Object.prototype); // true false
+// 成功
+Object.setPrototypeOf(target, {});
+// 抛出错误
+// Object.setPrototypeOf(proxy, {});
+
+let res1 = Object.getPrototypeOf(1);
+console.log(res1 === Number.prototype); // true
+
+// 抛出错误
+let res2 = Reflect.getPrototypeOf(1);
