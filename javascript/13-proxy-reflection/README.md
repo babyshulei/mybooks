@@ -296,8 +296,6 @@ setPrototypeOf 陷阱中，如果操作失败则返回的一定是false，此时
 - [`Object.setPrototypeOf()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf)
 - [`Reflect.setPrototypeOf()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/setPrototypeOf)
 
-
-
 > Object.getPrototypeOf()、Object.setPrototypeOf() 和 Reflect.getPrototypeOf()、Reflect.setPrototypeOf() 方法的区别：
 >
 > Reflect.getPrototypeOf()、Reflect.setPrototypeOf() 方法是底层操作，赋予开发者可以访问之前只在内部操作的[[GetPrototypeOf]]和[[SetPrototypeOf]]的权限，其为这两个内部操作的包裹器（包含一些输入验证）。
@@ -337,6 +335,79 @@ console.log(res1 === Number.prototype); // true
 // 抛出错误
 let res2 = Reflect.getPrototypeOf(1);
 ```
+
+### 对象可扩展性陷阱
+
+#### isExtensible 陷阱
+
+[isExtensible 陷阱](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/isExtensible)用于拦截对象的Object.isExtensible()方法。
+
+语法：
+
+```js
+var p = new Proxy(target, {
+  isExtensible: function(trapTarget) {}
+});
+```
+
+参数：
+
+- trapTarget：目标对象
+
+isExtensible 陷阱返回的一定是个布尔值，表示对象是否可扩展。
+
+
+
+#### preventExtensions 陷阱
+
+[preventExtensions 陷阱](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/preventExtensions)用于拦截对象的Object.preventExtensions()方法。
+
+语法：
+
+```js
+var p = new Proxy(target, {
+  preventExtensions: function(trapTarget) {}
+});
+```
+
+参数：
+
+- trapTarget：目标对象
+
+preventExtensions 陷阱返回的一定是个布尔值，表示操作是否成功。
+
+示例，让Objec.preventExtensions()对代理失效：
+
+```js
+let target = {
+  name: 'example',
+  value: 33,
+};
+
+let proxy = new Proxy(target, {
+  isExtensible(trapTarget) {
+    return Reflect.isExtensible(trapTarget);
+  },
+  preventExtensions(trapTarget) {
+    return false;
+  },
+});
+
+console.log(Object.isExtensible(target), Object.isExtensible(proxy)); // true true
+
+// 抛出异常
+Object.preventExtensions(proxy);
+
+console.log(Object.isExtensible(target), Object.isExtensible(proxy)); // true true
+```
+
+
+
+> Object.isExtensible()、Object.preventExtensions()和Reflect.isExtensible()、Reflect.preventExtensions()方法的异同：
+>
+> Object.isExtensible()和Reflect.isExtensible()方法非常相似，只有当传入非对象时，Object.isExtensible()返回false，而Reflect.isExtensible()则抛出一个错误。
+>
+> Object.preventExtensions()和Reflect.preventExtensions()非常相似，区别是无论Object.preventExtensions()方法的参数是否为一个对象，它总是返回该参数；而Reflect.preventExtensions()方法传入非对象参数会抛出错误，传入对象时，操作成功返回true，失败返回false。
 
 
 
