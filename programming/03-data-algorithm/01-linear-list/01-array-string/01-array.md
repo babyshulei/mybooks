@@ -4,6 +4,8 @@
 
 数组（Array）是一种线性表数据结构。它用一组连续的内存空间，来存储一组具有相同类型的数据。
 
+> 注：不同语言的数组实现方式具有一定差别，如在C++ 和 Java 中，数组中的元素类型必须保持一致，而 Python 中则可以不同。
+
 ## 随机访问
 
 由于数组的这些特性，数组可以实现随机访问。通过索引，可以直接获取值，时间复杂度为O(1)。
@@ -32,7 +34,21 @@ a[k]_address = base_address + k * type_size
 
 
 
+## JavaScript数组
+
+在 JavaScript 中，数组是哈希映射。它可以通过多种数据结构实现，其中一种是链表。
+
+JavaScript 引擎会进行优化，为同种数据类型的数组分配连续的存储空间。
+
+ JavaScript 中引入类型化数组，使用ArrayBuffer、TypeArray，改进了数组的性能。
+
+
+
 ## 参考链接
 
 [05 | 数组：为什么很多编程语言中数组都从0开始编号？](https://time.geekbang.org/column/article/40961)
+
+[深究 JavaScript 数组 —— 演进&性能](https://juejin.cn/post/6844903494189580302)
+
+[Diving deep into JavaScript array - evolution & performance](http://link.zhihu.com/?target=http%3A//voidcanvas.com/javascript-array-evolution-performance/)
 
