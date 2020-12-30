@@ -24,5 +24,7 @@
 
 [react-dnd 用法详解 - 掘金](https://juejin.im/post/6844903801120358407)
 
-[用 React Hooks 的方式使用 react-dnd](https://juejin.cn/post/6844903933463265293)
+[用 React Hooks 的方式使用 react-dnd - 掘金](https://juejin.cn/post/6844903933463265293)
+
+[HTML 拖放 API](https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_Drag_and_Drop_API)
 
