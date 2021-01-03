@@ -1,7 +1,5 @@
 # Event Loop
 
-> 2020-03-16 @wsl
-
 ## 定义
 
 ### event loop

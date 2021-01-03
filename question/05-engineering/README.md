@@ -35,6 +35,8 @@ AMD：异步加载模块，define定义模块，require加载模块。依赖前�
 
 CMD：异步加载模块。依赖就近，延迟执行，需要时再引用，用到哪个依赖时加载哪个模块。
 
+ES6 module：import，export；动态import。
+
 
 
 参见笔记：JavaScript-模块
