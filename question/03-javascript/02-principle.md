@@ -2,9 +2,28 @@
 
 ## EventLoop
 
-### 1. 详述js异步机制Event Loop，MacroTask和MicroTask
+### 1. JavaScript代码的执行机制？
 
-参考笔记：JavaScript-事件-Event Loop
+参考笔记：JavaScript-异步
+
+JavaScript是单线程的，同一时刻只能执行一段代码。代码顺序执行。
+
+#### 单线程的优缺点？解决方案？为什么不设计成多线程？
+
+优点：实现相对简单、执行环境相对单纯。缺点：任务耗时很长时，会出现页面卡死。
+
+解决方案：异步。
+
+为了避免多线程处理状态不同步的问题。单线程可以保证（DOM）状态的可靠性。
+
+#### 如何实现异步？
+
+回调、事件监听、发布/订阅、Promise、async/await
+
+
+### 2. 详述js异步机制Event Loop，MacroTask和MicroTask
+
+参考笔记：JavaScript-异步-Event Loop
 
 1个主线程+n个任务队列，浏览器异步处理后推入队列，循环处理，一个macroTask后跟全部microtask
 
@@ -62,4 +81,10 @@ Object.defineProperty
 参考笔记：JavaScript-基本概念
 
 <https://blog.csdn.net/Bule_daze/article/details/103470176>
+
+
+
+## 参考链接
+
+[JavaScript 异步 - jsliang](https://github.com/LiangJunrong/document-library/blob/master/系列-面试资料/JavaScript/异步系列/README.md#chapter-three)
 
