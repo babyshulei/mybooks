@@ -9,6 +9,7 @@ console.log(proxy.name, target.name);
 target.name = 'tt';
 console.log(proxy.name, target.name);
 
+
 // set 陷阱
 let target = {};
 let proxy = new Proxy(target, {
@@ -31,6 +32,7 @@ console.log(proxy.str, proxy.count); // skrrrr 120
 proxy.str = 'miaowu';
 console.log(proxy.str, proxy.count); // miaowu 120
 
+
 // get 陷阱
 let tar = {};
 let p = new Proxy(tar, {
@@ -46,6 +48,7 @@ p.test = 'get';
 
 console.log(p.test, tar.test); // get get
 // console.log(p.hello); // throw Error
+
 
 // has 陷阱
 let tt = {
@@ -65,6 +68,7 @@ let pp = new Proxy(tt, {
 
 console.log('name' in pp, 'val' in pp, 'test' in pp); // true false false
 
+
 // delete 操作符
 let obj = {
   name: 'example',
@@ -83,6 +87,7 @@ console.log(result1, 'value' in obj); // true false
 let result2 = delete obj.name;
 
 console.log(result2, 'name' in obj); // false true
+
 
 // deleteProperty 陷阱
 console.log('================deleteProperty=================')
@@ -107,7 +112,6 @@ let res2 = delete pro.unable;
 
 console.log(res1, res2); // true false
 console.log('able' in pro, 'unable' in pro); // false true
-*/
 
 
 // 原型代理陷阱
@@ -138,3 +142,27 @@ console.log(res1 === Number.prototype); // true
 
 // 抛出错误
 let res2 = Reflect.getPrototypeOf(1);
+
+
+// 对象可扩展陷阱
+let target = {
+  name: 'example',
+  value: 33,
+};
+
+let proxy = new Proxy(target, {
+  isExtensible(trapTarget) {
+    return Reflect.isExtensible(trapTarget);
+  },
+  preventExtensions(trapTarget) {
+    return false;
+  },
+});
+
+console.log(Object.isExtensible(target), Object.isExtensible(proxy)); // true true
+
+// 抛出异常
+Object.preventExtensions(proxy);
+
+console.log(Object.isExtensible(target), Object.isExtensible(proxy)); // true true
+*/
