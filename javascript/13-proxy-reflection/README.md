@@ -18,6 +18,8 @@
 | deleteProperty           | delete操作符                                                 | Reflect.deleteProperty()           |
 | getPrototypeOf           | Object.getPrototypeOf()                                      | Reflect.getPrototypeOf()           |
 | setPrototypeOf           | Object.setPrototypeOf()                                      | Reflect.setPrototypeOf()           |
+| isExtensible             | Object.isExtensible()                                        | Reflect.isExtensible()             |
+| preventExtensions        | Object.preventExtensions()                                   | Reflect.preventExtensions()        |
 | getOwnPropertyDescriptor | Object.getOwnPropertyDescriptor()                            | Reflect.getOwnPropertyDescriptor() |
 | defineProperty           | Object.defineProperty()                                      | Reflect.delfineProperty()          |
 | ownKeys                  | Object.keys()<br />Object.getOwnPropertyNames()<br />Object.getOwnPropertySymbols() | Reflect.ownKeys()                  |
@@ -356,8 +358,6 @@ var p = new Proxy(target, {
 
 isExtensible 陷阱返回的一定是个布尔值，表示对象是否可扩展。
 
-
-
 #### preventExtensions 陷阱
 
 [preventExtensions 陷阱](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/preventExtensions)用于拦截对象的Object.preventExtensions()方法。
@@ -407,7 +407,107 @@ console.log(Object.isExtensible(target), Object.isExtensible(proxy)); // true tr
 >
 > Object.isExtensible()和Reflect.isExtensible()方法非常相似，只有当传入非对象时，Object.isExtensible()返回false，而Reflect.isExtensible()则抛出一个错误。
 >
-> Object.preventExtensions()和Reflect.preventExtensions()非常相似，区别是无论Object.preventExtensions()方法的参数是否为一个对象，它总是返回该参数；而Reflect.preventExtensions()方法传入非对象参数会抛出错误，传入对象时，操作成功返回true，失败返回false。
+> Object.preventExtensions()和Reflect.preventExtensions()非常相似，区别是无论Object.preventExtensions()方法的参数是否为一个对象，它总是返回该参数；而Reflect.preventExtensions()方法传入非对象参数会抛出错误，传入对象时，操作成功返回true，否则返回false。
+
+
+
+### 属性描述符陷阱
+
+#### defineProperty 陷阱
+
+[defineProperty 陷阱](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/defineProperty)用于拦截对对象的 [Object.defineProperty()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 操作。
+
+**语法**：
+
+```js
+var p = new Proxy(target, {
+  defineProperty: function(trapTarget, key, descriptor) {
+  }
+});
+```
+
+**属性**：
+
+- trapTarget
+  要定义属性的对象（代理的目标）
+- key
+  属性的键（字符串或Symbol）
+- descriptor
+  属性的描述符对象
+
+**返回值**：
+
+操作成功后返回true，否则返回false。
+
+**描述符对象限制**：
+
+为确保和 Object.defineProperty() 方法的行为一致，传入陷阱的描述符对象已规范化。无论什么对象作为第三个参数传给 Object.defineProperty() 方法，传递给陷阱的对象都只有属性 enumerable、configurable、value、writable、get 和 set。
+
+示例，通过defineProperty陷阱限制Object.defineProperty()方法定义的属性类型：
+
+```js
+// 限制定义的属性类型不为symbol
+let target = {};
+let proxy = new Proxy(target, {
+  defineProperty(trapTarget, key, descriptor) {
+    if (typeof key === 'symbol') {
+      return false;
+    }
+    return Reflect.deleteProperty(trapTarget, key, descriptor);
+  }
+});
+
+Object.defineProperty(proxy, 'aaa', {
+  value: 'test',
+});
+
+let sym = Symbol('another');
+// 抛出错误
+Object.defineProperty(proxy, sym, {
+  value: 'asymbol',
+});
+
+```
+
+> 如果让陷阱返回 true 并且不调用 Reflect.defineProperty() 方法，则可以让 Object.defineProperty() 方法静默失效，这既消除了错误又不会真正定义属性。
+
+#### getOwnPropertyDescriptor 陷阱
+
+[getOwnPropertyDescriptor 陷阱](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/getOwnPropertyDescriptor)用于拦截对对象的[Object.getOwnPropertyDescriptor()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor) 操作。
+
+**语法**：
+
+```js
+var p = new Proxy(target, {
+  getOwnPropertyDescriptor: function(trapTarget, key) {
+  }
+});
+```
+
+**参数**：
+
+- trapTarget
+  要获取属性描述符的对象（代理的目标）
+- key
+  属性的键
+
+**返回值**：
+
+返回描述符。
+
+**描述符对象限制**：
+
+为确保 Object.getOwnPropertyDescriptor() 方法的可靠性，getOwnPropertyDescriptor 陷阱返回的描述符对象值必须是 null、undefined或一个对象。如果返回对象，属性只能是enumerable、configurable、value、writable、get 和 set，如果返回对象出现了不被允许的属性，会抛出一个错误。
+
+
+
+
+
+
+
+
+
+
 
 
 

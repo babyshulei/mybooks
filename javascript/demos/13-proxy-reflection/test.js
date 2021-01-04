@@ -166,3 +166,30 @@ Object.preventExtensions(proxy);
 
 console.log(Object.isExtensible(target), Object.isExtensible(proxy)); // true true
 */
+
+/**
+ * 限制添加属性名类型
+ */
+/*
+let target = {};
+let proxy = new Proxy(target, {
+  defineProperty(trapTarget, key, descriptor) {
+    if (typeof key === 'symbol') {
+      return false;
+    }
+    return Reflect.deleteProperty(trapTarget, key, descriptor);
+  }
+});
+
+Object.defineProperty(proxy, 'aaa', {
+  value: 'test',
+});
+
+let sym = Symbol('another');
+// 抛出错误
+Object.defineProperty(proxy, sym, {
+  value: 'asymbol',
+});
+*/
+
+
