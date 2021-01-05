@@ -260,7 +260,9 @@ const p = new Proxy(obj, {
 - trapTarget
   读取原型的对象（代理的目标）
 
-getPrototypeOf 陷阱的返回值必须是一个对象或null，其他返回值会抛出异常。
+返回值：
+
+- 必须是一个对象或null，其他返回值会抛出异常。
 
 在 JavaScript 中，下面这五种操作（方法/属性/运算符）可以触发 JS 引擎读取一个对象的原型，也就是可以触发 getPrototypeOf() 代理方法的运行：
 
@@ -356,7 +358,9 @@ var p = new Proxy(target, {
 
 - trapTarget：目标对象
 
-isExtensible 陷阱返回的一定是个布尔值，表示对象是否可扩展。
+返回值：
+
+- 一定是个布尔值，表示对象是否可扩展。
 
 #### preventExtensions 陷阱
 
@@ -437,7 +441,7 @@ var p = new Proxy(target, {
 
 **返回值**：
 
-操作成功后返回true，否则返回false。
+- 操作成功后返回true，否则返回false。
 
 **描述符对象限制**：
 
@@ -493,21 +497,71 @@ var p = new Proxy(target, {
 
 **返回值**：
 
-返回描述符。
+- 返回描述符。
 
 **描述符对象限制**：
 
 为确保 Object.getOwnPropertyDescriptor() 方法的可靠性，getOwnPropertyDescriptor 陷阱返回的描述符对象值必须是 null、undefined或一个对象。如果返回对象，属性只能是enumerable、configurable、value、writable、get 和 set，如果返回对象出现了不被允许的属性，会抛出一个错误。
 
+> Object.defineProperty()、Object.getOwnPropertyDescriptor()和Reflect.defineProperty()、Reflect.getOwnPropertyDescriptor()方法的异同：
+>
+> Object.defineProperty() 和 Reflect.defineProperty() 方法只有返回值的不同：Object.defineProperty() 返回第一个参数，Reflect.defineProperty() 返回一个布尔值，表示操作成功或失败。
+>
+> Object.getOwnPropertyDescriptor() 和 Reflect.getOwnPropertyDescriptor()方法类似，区别是Object.getOwnPropertyDescriptor() 第一个参数为原始值时，内部会强制转换为一个对象； Reflect.getOwnPropertyDescriptor() 第一个参数为原始值时，则会抛出一个错误。
 
+### ownKeys 陷阱
 
+[ownKeys 陷阱](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/ownKeys)可以拦截内部方法[[OwnPropertyKeys]]。通过 [Reflect.ownKeys()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/ownKeys) 方法实现默认的行为，返回的数组中包含所有自有属性的键名，字符串类型和Symbol类型都包含在内。
 
+影响的相关操作：
 
+- [Object.keys()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)：返回对象自身可枚举字符串属性的数组，不包括Symbol类型的属性名。
+- [Object.getOwnPropertyNames()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames)：返回对象自身所有字符串属性的数组，不包括Symbol类型的属性名。
+- [Object.getOwnPropertySymbols()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols)：返回对象自身所有Symbol属性的数组，不包括字符串类型的属性名。
+- [Object.assign()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)：拷贝源对象自身可枚举属性到目标对象，包括字符串类型和Symbol类型的属性。
+- [for...in](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...in)：遍历对象非Symbol类型的可枚举属性，在确定循环键时会调用陷阱。
 
+语法：
 
+```js
+var p = new Proxy(target, {
+  ownKeys: function(trapTarget) {}
+});
+```
 
+参数：
 
+- trapTarget
+  目标对象
 
+返回值：
+
+- 必须是一个数组或类数组对象，否则就抛出错误。
+
+应用：
+
+可以用 ownKeys 陷阱来过滤掉不想使用的属性键。
+
+```js
+let target = {};
+let proxy = new Proxy(target, {
+  // 过滤掉 '_' 开头的字符串类型属性键
+  ownKeys(trapTarget) {
+    return Reflect.ownKeys(trapTarget).filter((key) => {
+      return typeof key !== 'string' || key[0] !== '_';
+    });
+  }
+});
+
+let sym = Symbol('test');
+proxy.name = 'outer';
+proxy._name = 'inner';
+proxy[sym] = 'atest';
+
+console.log(proxy); // { name: 'outer', _name: 'inner', [Symbol(test)]: 'atest' }
+console.log(Object.getOwnPropertyNames(proxy)); // ['name']
+console.log( Object.getOwnPropertySymbols(proxy)); // [Symbol(test)]
+```
 
 
 

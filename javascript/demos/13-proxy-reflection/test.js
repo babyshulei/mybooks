@@ -192,4 +192,27 @@ Object.defineProperty(proxy, sym, {
 });
 */
 
+/**
+ * 利用 ownKeys 陷阱来过滤掉不想使用的属性键
+ */
+/*
+let target = {};
+let proxy = new Proxy(target, {
+  ownKeys(trapTarget) {
+    return Reflect.ownKeys(trapTarget).filter((key) => {
+      return typeof key !== 'string' || key[0] !== '_';
+    });
+  }
+});
+
+let sym = Symbol('test');
+proxy.name = 'outer';
+proxy._name = 'inner';
+proxy[sym] = 'atest';
+
+console.log(proxy);
+console.log(Object.getOwnPropertyNames(proxy));
+console.log( Object.getOwnPropertySymbols(proxy));
+*/
+
 

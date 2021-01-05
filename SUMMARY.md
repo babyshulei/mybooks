@@ -65,15 +65,13 @@
 
 
 ## Question
-
-* [Question](question/README.md)
-    * [HTML](question/01-html/README.md)
-    * [CSS](question/02-css/README.md)
-    * [JavaScript](question/03-javascript/README.md)
-    * [框架](question/04-framework/README.md)
-    * [工程化](question/05-engineering/README.md)
-    * [网络](question/08-network/README.md)
-    * [算法](question/09-algorithm/README.md)
+* [HTML](question/01-html/README.md)
+* [CSS](question/02-css/README.md)
+* [JavaScript](question/03-javascript/README.md)
+* [框架](question/04-framework/README.md)
+* [工程化](question/05-engineering/README.md)
+* [网络](question/08-network/README.md)
+* [算法](question/09-algorithm/README.md)
 
 
 ## JavaScript
