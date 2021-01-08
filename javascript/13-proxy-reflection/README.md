@@ -45,6 +45,47 @@ const proxy = new Proxy(target, handler)
 - handler
   处理程序，一个或多个陷阱的对象。在代理中，除了专门为操作定义的陷阱外，其余操作均使用默认特性。
 
+返回值：
+
+- 代理对象
+
+### 创建可撤销代理
+
+[Proxy.revocable()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/revocable) 方法可以用来创建一个可撤销代理。
+
+语法：
+
+```js
+Proxy.revocable(target, handler);
+```
+
+参数：和Proxy相同，传入目标对象和代理处理程序。
+
+返回值是具有以下属性的对象：
+
+- proxy
+  可被撤销的代理对象
+- revoke
+  撤销代理要调用的函数
+
+调用 revoke() 函数后，不能通过proxy执行进一步的操作。任何与代理对象的交互都会抛出错误。
+
+示例：
+
+```js
+let target = {
+  name: 'tata',
+};
+
+let { proxy, revoke } = Proxy.revocable(target, {});
+
+console.log(proxy.name); // tata
+
+revoke();
+
+console.log(proxy.name); // 报错
+```
+
 ### 简单的转发代理
 
 不使用任何陷阱的处理程序等价于简单的转发代理，示例：
@@ -70,7 +111,9 @@ console.log(proxy.name, target.name); // john john
 
 ```js
 const p = new Proxy(target, {
-    set: function(trapTarget, key, value, receiver) {}
+    set: function(trapTarget, key, value, receiver) {
+        return Reflect.set(trapTarget, key, value, receiver);
+    }
 });
 ```
 
@@ -122,7 +165,9 @@ set 代理陷阱可以拦截写入属性的操作，get 代理陷阱可以拦截
 
 ```js
 var p = new Proxy(target, {
-  get: function(tarpTarget, key, receiver) {}
+  get: function(trapTarget, key, receiver) {
+    return Reflect.get(trapTarget, key, receiver);
+  }
 });
 ```
 
@@ -164,7 +209,9 @@ console.log(p.hello); // throw Error
 
 ```js
 var p = new Proxy(target, {
-  has: function(trapTarget, key) {}
+  has: function(trapTarget, key) {
+    return Reflect.has(trapTarget, key);
+  }
 });
 ```
 
@@ -204,7 +251,9 @@ console.log('name' in pp, 'val' in pp, 'test' in pp); // true false false
 
 ```js
 var p = new Proxy(target, {
-  deleteProperty: function(trapTarget, key) {}
+  deleteProperty: function(trapTarget, key) {
+    return Reflect.deleteProperty(trapTarget, key);
+  }
 });
 ```
 
@@ -251,7 +300,9 @@ console.log('able' in pro, 'unable' in pro); // false true
 
 ```js
 const p = new Proxy(obj, {
-  getPrototypeOf(trapTarget) {}
+  getPrototypeOf(trapTarget) {
+    return Reflect.getPrototypeOf(trapTarget);
+  }
 });
 ```
 
@@ -282,7 +333,9 @@ const p = new Proxy(obj, {
 
 ```js
 var p = new Proxy(target, {
-  setPrototypeOf(trapTarget, prototype) {}
+  setPrototypeOf(trapTarget, prototype) {
+    return Reflect.setPrototypeOf(trapTarget, prototype);
+  }
 });
 ```
 
@@ -350,7 +403,9 @@ let res2 = Reflect.getPrototypeOf(1);
 
 ```js
 var p = new Proxy(target, {
-  isExtensible: function(trapTarget) {}
+  isExtensible: function(trapTarget) {
+    return Reflect.isExtensible(trapTarget);
+  }
 });
 ```
 
@@ -370,7 +425,9 @@ var p = new Proxy(target, {
 
 ```js
 var p = new Proxy(target, {
-  preventExtensions: function(trapTarget) {}
+  preventExtensions: function(trapTarget) {
+    return Reflect.preventExtensions(trapTarget);
+  }
 });
 ```
 
@@ -426,6 +483,7 @@ console.log(Object.isExtensible(target), Object.isExtensible(proxy)); // true tr
 ```js
 var p = new Proxy(target, {
   defineProperty: function(trapTarget, key, descriptor) {
+    return Refelect.defineProperty(trapTarget, key, descriptor);
   }
 });
 ```
@@ -457,7 +515,7 @@ let proxy = new Proxy(target, {
     if (typeof key === 'symbol') {
       return false;
     }
-    return Reflect.deleteProperty(trapTarget, key, descriptor);
+    return Reflect.defineProperty(trapTarget, key, descriptor);
   }
 });
 
@@ -484,6 +542,7 @@ Object.defineProperty(proxy, sym, {
 ```js
 var p = new Proxy(target, {
   getOwnPropertyDescriptor: function(trapTarget, key) {
+    return Reflect.getOwnPropertyDescriptor(trapTarget, key);
   }
 });
 ```
@@ -525,7 +584,9 @@ var p = new Proxy(target, {
 
 ```js
 var p = new Proxy(target, {
-  ownKeys: function(trapTarget) {}
+  ownKeys: function(trapTarget) {
+    return Reflect.ownKeys(trapTarget);
+  }
 });
 ```
 
@@ -562,6 +623,107 @@ console.log(proxy); // { name: 'outer', _name: 'inner', [Symbol(test)]: 'atest' 
 console.log(Object.getOwnPropertyNames(proxy)); // ['name']
 console.log( Object.getOwnPropertySymbols(proxy)); // [Symbol(test)]
 ```
+
+### 函数代理陷阱
+
+所有代理陷阱中，只有 apply 和 construct 的代理目标是一个函数。函数有两个内部方法 [[Call]] 和 [[Construct]]，apply 陷阱和 construct 陷阱可以覆写这些内部方法。
+
+使用 new 操作符调用函数，执行 [[Construct]] 方法，对应 construct 陷阱；其他函数调用，执行 [[Call]] 方法，对应 apply 陷阱。
+
+#### apply 陷阱
+
+[apply 陷阱](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/apply)用于拦截函数的调用。
+
+语法：
+
+```js
+var p = new Proxy(target, {
+  apply: function(trapTarget, thisArg, argumentsList) {
+    return Reflect.apply(trapTarget, thisArg, argumentsList);
+  }
+});
+```
+
+参数：
+
+- trapTarget
+  被执行的函数（代理的目标）
+- thisArg
+  函数被调用时内部this的值
+- argumentsList
+  传递给函数的参数数组
+
+返回值：
+
+- 无限制
+
+#### construct 陷阱
+
+[consturct 陷阱](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/construct)用于拦截 new 操作符。
+
+语法：
+
+```js
+var p = new Proxy(target, {
+  construct: function(trapTarget, argumentsList, newTarget) {
+    return Reflect.construct(trapTarget, argumentsList, newTarget);
+  }
+});
+```
+
+参数：
+
+- trapTarget
+  被执行的函数（代理的目标）
+- argumentsList
+  传递给函数的参数数组
+- newTarget
+  最初被调用的构造函数，可选，传入 Reflect.construct 用于指定函数内部 new.target 的值
+
+返回值：
+
+- 必须返回一个对象
+
+应用：
+
+验证函数参数、不用 new 调用构造函数、覆写抽象基类构造函数、创建可调用的类构造函数等。
+
+验证函数参数示例：
+
+```js
+/** 
+* 函数参数验证：确保传入参数均为数字
+* 函数调用方式验证：确保函数不会被 new 调用
+*/
+function sum(...values) {
+  return values.reduce((pre, curr) => pre + curr, 0);
+}
+
+let sumProxy = new Proxy(sum, {
+  construct(trapTarget, argumentsList) {
+    throw new Error('该函数不可通过 new 来调用！');
+  },
+  apply(trapTarget, thisArg, argumentsList) {
+    argumentsList.forEach((val) => {
+      if (typeof val !== 'number') {
+        throw new Error('所有参数必须是数字！');
+      }
+    });
+
+    return Reflect.apply(trapTarget, thisArg, argumentsList);
+  }
+});
+
+console.log(sumProxy(1, 4, 10)); // 15
+
+console.log(sumProxy(1, 's', 10)); // Error：所有参数必须是数字！
+
+let result = new sumProxy(); // Error: 该函数不可通过 new 来调用！
+```
+
+
+
+
 
 
 
