@@ -64,7 +64,7 @@ event loop里只有一个microtask 队列。
 **HTML Standard**没有具体指明哪些是microtask任务源，通常认为是microtask任务源有：
 
 - process.nextTick
-- promises
+- promise
 - Object.observe
 - MutationObserver
 
@@ -183,9 +183,34 @@ javaScript是单线程，也就是说只有一个主线程，主线程有一个�
 
 
 
-### 更新渲染
+### 更新渲染（Update the rendering）
+
+规范允许浏览器自己选择是否更新视图。也就是说可能不是每轮事件循环都去更新视图，只在有必要的时候才更新视图。
+
+渲染的基本流程：
+
+1. 处理 HTML 标记并构建 DOM 树。
+2. 处理 CSS 标记并构建 CSSOM 树， 将 DOM 与 CSSOM 合并成一个渲染树。
+3. 根据渲染树来布局，以计算每个节点的几何信息。
+4. 将各个节点绘制到屏幕上。
+
+**Note: 可以看到渲染树的一个重要组成部分是CSSOM树，绘制会等待css样式全部加载完成才进行，所以css样式加载的快慢是首屏呈现快慢的关键点。**
+
+- 在一轮event loop中多次修改同一dom，只有最后一次会进行绘制。
+- 渲染更新（Update the rendering）会在event loop中的tasks和microtasks完成后进行，但并不是每轮event loop都会更新渲染，这取决于是否修改了dom和浏览器觉得是否有必要在此时立即将新状态呈现给用户。如果在一帧的时间内（时间并不确定，因为浏览器每秒的帧数总在波动，16.7ms只是估算并不准确）修改了多处dom，浏览器可能将变动积攒起来，只进行一次绘制，这是合理的。
+- 如果希望在每轮event loop都即时呈现变动，可以使用requestAnimationFrame。
 
 
+
+## requestAnimationFrame
+
+**window.requestAnimationFrame()** 告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行。
+
+
+
+## Web Worker
+
+Web Worker为Web内容在后台线程中运行脚本提供了一种简单的方法。线程可以执行任务而不干扰用户界面。
 
 
 
@@ -194,6 +219,10 @@ javaScript是单线程，也就是说只有一个主线程，主线程有一个�
 [HTML5规范-Event loops](https://html.spec.whatwg.org/multipage/webappapis.html#event-loops)
 
 [并发模型与事件循环- JavaScript | MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop)
+
+[window.requestAnimationFrame - MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame)
+
+[使用Web Workers - MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Workers_API/Using_web_workers)
 
 [带你彻底弄懂Event Loop - 掘金](https://juejin.im/post/5b8f76675188255c7c653811)
 
