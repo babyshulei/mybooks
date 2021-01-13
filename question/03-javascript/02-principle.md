@@ -285,9 +285,409 @@ console.log(13);
 1 5 11 13 6 12 7 8 9 10 2 3
 ```
 
+#### 3.7
+
+```js
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => {
+    console.log(i);
+  }, 0);
+}
+```
+
+打印：
+
+```
+3 3 3
+```
+
+分析：
+
+1. 走同步任务，`var i` 遍历走完，`i = 3`（`var` 变量污染）。
+2. `for()` 遍历的同时，将 3 个 `setTimeout` 塞进了宏任务中。
+3. `script` 这个宏任务执行完毕。
+4. 依次执行 3 个 `setTimeout`，因为此时 `i` 为 `3`，所以会依次输出 3 个 3。
+
 ## Promise
 
+### 1. 请输出下面代码打印情况
 
+#### 1.1
+
+```js
+const promise1 = new Promise((resolve, reject) => {
+  console.log('promise1');
+  resolve('resolve1');
+})
+
+const promise2 = promise1.then((res) => {
+  console.log(res);
+});
+
+console.log('1', promise1);
+console.log('2', promise2);
+```
+
+打印：
+
+```
+promise1
+1 Promise {<fullfilled>: "resolve1"}
+2 Promise {<pending>}
+resolve1
+```
+
+分析：
+
+1. 碰到 new Promise，输出 promise1
+2. 碰到 resolve，改变 Promise 状态，并保存结果
+3. 碰到 promise1.then，放进微任务队列
+4. promise2 是一个新的状态为 pending 的 Promise
+5. 输出 1 和 promise1，当前 promise1 的状态`[[PromiseState]]`为 fullfilled，结果`[[PromiseResult]]`为 resolve1
+6. 输出 2 和 promise2，当前 promise2 的状态为 peding
+7. 宏任务走完，执行微任务，输出 resolve1
+
+#### 1.2
+
+```js
+console.log('start');
+
+setTimeout(() => {
+  console.log('time');
+});
+
+Promise.resolve().then(() => {
+  console.log('resolve');
+});
+
+console.log('end');
+```
+
+打印：
+
+```
+start
+end
+resolve
+time
+```
+
+分析：
+
+  1. 首先执行 script
+  2. 输出 'start'
+  3. 碰到 setTimeout，丢进宏任务队列
+  4. 碰到 Promise，然后 Promise 变成 resolve() 状态后，执行了 .then()，所以丢进微任务队列
+  5. 输出 'end'
+  6. 遍历本次的微任务队列，输出步骤 4 的内容，即 'resolve'
+  7. 步骤 6 走完，执行下一个宏任务队列，输出 'time'
+
+#### 1.3
+
+```js
+const promise = new Promise((resolve, reject) => {
+  console.log(1);
+  
+  setTimeout(() => {
+    console.log('timerStart');
+    resolve('success');
+    console.log('timerEnd');
+  }, 0);
+
+  console.log(2);
+});
+
+promise.then((res) => {
+  console.log(res);
+});
+
+console.log(4);
+```
+
+打印：
+
+```
+1
+2
+4
+timerStart
+timerEnd
+success
+```
+
+分析：
+
+1. 首先执行 script 这个宏任务
+2. 碰到 new Promise，输出 1
+3. 碰到 setTimeout，放进宏任务队列
+4. 输出 2
+5. 碰到 .then()，但是没有钥匙（resolve），跳过
+6. 输出 4
+7. 当前没有微任务，执行下一个宏任务 setTimeout
+8. 输出 'timerStart'
+9. Promise 碰到 resolve，改变状态，表明 .then() 可以放进微任务了
+10. 输出 'timerEnd'
+11. 执行宏任务 setTimeout 下的微任务，即 Promise.then()
+12. 输出 'success'
+
+#### 1.4
+
+```js
+Promise.resolve().then(() => {
+  console.log('promise1');
+  const timer2 = setTimeout(() => {
+    console.log('timer2');
+  }, 0);
+});
+
+const timer1 = setTimeout(() => {
+  console.log('timer1');
+  Promise.resolve().then(() => {
+    console.log('promise2');
+  });
+}, 0);
+
+console.log('start');
+```
+
+打印：
+
+```
+start
+promise1
+timer1
+promise2
+timer2
+```
+
+分析：
+
+1. 首先执行 script 这个宏任务
+3. 碰到 Promise.then()，将其推进微任务队列，注意不会执行里面内容
+4. 碰到 timer1，将其推进宏任务队列
+5. 输出 'start'
+6. 查看 script 中的微任务队列，发现 Promise.then()，将其推出执行
+7. 输出 'promise1'
+8. 碰到 timer2，将其推进宏任务队列
+9. script 没有剩余的微任务，所以继续遍历宏任务
+10. 发现队列 [timer1, timer2]，根据队列先进先出原则，推出 timer1
+11. 输出 'timer1'，发现微任务 Promise.then()，将其推进 timer1 的微任务队列
+12. 输出 'promise2'
+13. 继续执行宏任务队列，出队 timer2，输出 'timer2'
+
+#### 1.5
+
+```js
+const promise1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('success');
+  }, 0);
+});
+
+const promise2 = promise1.then(() => {
+  throw new Error('error!');
+});
+
+console.log('promise1-1', promise1);
+console.log('promise2-1', promise2);
+
+setTimeout(() => {
+  console.log('promise1-2', promise1);
+  console.log('promise2-2', promise2);
+}, 0);
+```
+
+打印：
+
+```
+promise1-1 Promise { <pending> }
+promise2-1 Promise { <pending> }
+promise1-2 Promise { <fullfilled>: 'success' }
+promise2-2 Promise { <rejected>: Error: error! }
+```
+
+> 注意：在 Node v10.16.0 上运行结果不太相同
+
+分析：
+
+1. 首先执行 script 这个宏任务
+3. 碰到 promise1 这边，执行 new Promise 里面内容，将带 resolve 的 setTimeout 推入宏任务队列
+4. 碰到 promise2，因为还没有进入 resolve 状态，所以这里不理会
+5. 连续两行输出，因为 promise1 和 promise2 都尚未处理，所以是 pending 状态
+6. 碰到第二个 setTimeout，将其推入宏任务队列
+7. 查看宏任务队列，推出第一个 setTimeout，将 Promise 状态改为 resolve
+8. 执行 promise2，改变 promise2 的状态为 reject
+9. 第一个 setTimeout 执行完毕，执行第二个 setTimeout
+10. 输出步骤 8 和 步骤 9 中的 Promise 状态
+
+#### 1.6
+
+```js
+const promise = new Promise((resolve, reject) => {
+  resolve('success1');
+  reject('error');
+  resolve('success2');
+});
+
+promise.then((res) => {
+  console.log('then1: ', res);
+}).then((res) => {
+  console.log('then2: ', res);
+}).catch((error) => {
+  console.log('catch: ', error);
+});
+```
+
+打印：
+
+```
+then1: success1
+then2: undefined
+```
+
+分析：
+
+1. 执行了 resolve('success1') 后，改变了状态为 resolve，不再理会 new Promise 后面的
+2. 将第 1 个 .then() 添加到微任务
+3. 执行第 1 个 .then()，将第 2 个 .then() 推进微任务
+
+#### 1.7
+
+```js
+const promise = new Promise((resolve, reject) => {
+  reject('error');
+  resolve('success2');
+});
+
+promise.then((res) => {
+  console.log('then1: ', res);
+}).then((res) => {
+  console.log('then2: ' ,res);
+}).catch((error) => {
+  console.log('catch: ', error);
+}).then((res) => {
+  console.log('then3: ', res);
+})
+
+/**
+  执行顺序和分析：
+  顺序：
+    * 'catch:  error'
+    * 'then3:  undefined'
+  分析：
+    1. 碰到 new Promise()，将 reject('error') 执行，改变 Promise 的状态
+    2. 碰到 .catch()，将其推进微任务
+    3. 执行 .catch() 里面内容，输出 'catch: error'，然后 return Promise {<pending>}
+    4. 执行下一个微任务 .then()，输出 then3: undefined
+*/
+```
+
+#### 1.8
+
+```js
+Promise
+.reject(1)
+.then((res) => {
+  console.log(res);
+  return 2;
+}).catch((err) => {
+  console.log(err);
+  return 3;
+}).then((res) => {
+  console.log(res);
+});
+
+/**
+  执行顺序和分析：
+  顺序：
+    * 1
+    * 3
+  分析：
+    1. reject(1) 会走 .catch，所以先输出 1
+    2. return 3 会被包装成 resolve(3)
+    3. 所以继续走第 2 个 .then，输出 3
+*/
+```
+
+#### 1.9
+
+```js
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    console.log('timer');
+    resolve('success');
+  }, 0);
+});
+
+const start = Date.now();
+
+promise.then((res) => {
+  console.log(res, Date.now() - start);
+});
+
+promise.then((res) => {
+  console.log(res, Date.now() - start);
+});
+
+/**
+  执行顺序和分析：
+  顺序：
+    * 'timer'
+    * 'success 4'
+    * 'success 4'
+  注释：也有 3/4 或者 4/5 的情况
+  分析：
+    1. new Promise 将 setTimeout 添加进宏任务
+    2. 执行完宏任务 script，然后就执行 setTimeout
+    3. 输出 'timer'
+    4. 标记 Promise 状态为 resolve
+    5. 将第一个 .then() 放进微任务
+    6. 将第二个 .then() 放进微任务
+    7. 因为步骤 5 和步骤 6 的时候，这两者都是相同 resolve 值，所以都是 'success'
+    8. 输出 success 4
+    9. 输出 success 4
+    10. 如果执行比较慢，那么这两个输出的值会不一致。例如 3、4
+*/
+```
+
+#### 1.10
+
+```js
+const promise = Promise.resolve().then(() => {
+  return promise;
+});
+
+promise.catch((err) => {
+  console.log(err);
+});
+
+/**
+  执行顺序和分析：
+  顺序：
+    * TypeError: Chaining cycle detected for promise #<Promise>
+  分析：
+    不能返回 promise 本身，会造成死循环
+*/
+```
+
+#### 1.11
+
+```js
+Promise
+.resolve(1)
+.then(2)
+.then(Promise.resolve(3))
+.then(console.log);
+
+/**
+  执行顺序和分析：
+  顺序：
+    * 1
+  分析：
+    1. .then 和 .catch 的参数希望是函数，传入非函数会发生值透传
+    2. 值透传导致第 1 个 then 和第 2 个 then 传入的都不是函数，导致它传到最后的 1 个 then 里面
+*/
+```
 
 
 
@@ -295,11 +695,11 @@ console.log(13);
 
 ## 隐式类型转换
 
-### 设计一个数据结构，使 `a==1 && a==2 && a==3` 为 true
+### 1. 设计一个数据结构，使 `a==1 && a==2 && a==3` 为 true
 
 隐式类型转换
 
-### 使`a===1 && a===2 && a===3` 为 true
+#### 使`a===1 && a===2 && a===3` 为 true
 
 Object.defineProperty
 
