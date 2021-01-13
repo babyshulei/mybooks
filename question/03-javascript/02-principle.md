@@ -105,11 +105,185 @@ setTimeout
 - 再次调用微任务，将 `promise2` 输出。
 - 最后调用宏任务 `setTimeout`，输出 `setTimeout`。
 
+#### 3.3
 
+```js
+setTimeout(function() {
+  console.log(4);
+}, 0);
 
+const promise = new Promise((resolve) => {
+  console.log(1);
+  for (var i = 0; i < 10000; i++) {
+    i == 9999 && resolve();
+  }
+  console.log(2);
+}).then(function() {
+  console.log(5);
+});
 
+console.log(3);
+```
 
+打印：
 
+```
+1 2 3 5 4
+```
+
+分析：
+
+`script` 下：
+
+- 同步任务：`console.log(1)`、`console.log(2)`、`console.log(3)`。
+- 微任务：`Promise.then()`（等到 9999 再添加进来）
+- 宏任务 `setTimeout`
+
+所以先走同步任务，注意当我们 `new Promsie()` 的时候，内部的代码会执行的，跟同步任务一样的，而 `.then()` 在 `resolve()` 的情况下才会添加到微任务。
+
+因此先输出 `1 -> 2 -> 3`。
+
+然后推出微任务 `Promise.then()`，所以输出 5。
+
+最后推出宏任务 `setTimeout`，输出 4。
+
+#### 3.4
+
+```js
+setTimeout(function () {
+  console.log('timeout1');
+}, 1000);
+
+console.log('start');
+
+Promise.resolve().then(function () {
+  console.log('promise1');
+  Promise.resolve().then(function () {
+    console.log('promise2');
+  });
+  setTimeout(function () {
+    Promise.resolve().then(function () {
+      console.log('promise3');
+    });
+    console.log('timeout2')
+  }, 0);
+});
+
+console.log('done');
+```
+
+打印：
+
+```
+start
+done
+promise1
+promise2
+timeout2
+promise3
+timeout1
+```
+
+#### 3.5
+
+```js
+console.log("script start");
+
+setTimeout(function() {
+  console.log("setTimeout---0");
+}, 0);
+
+setTimeout(function() {
+  console.log("setTimeout---200");
+  setTimeout(function() {
+    console.log("inner-setTimeout---0");
+  });
+  Promise.resolve().then(function() {
+    console.log("promise5");
+  });
+}, 200);
+
+Promise.resolve()
+.then(function() {
+  console.log("promise1");
+})
+.then(function() {
+  console.log("promise2");
+});
+
+Promise.resolve().then(function() {
+  console.log("promise3");
+});
+
+console.log("script end");
+```
+
+打印：
+
+```
+script start
+script end
+promise1
+promise3
+promise2
+setTimeout---0
+setTimeout---200
+promise5
+inner-setTimeout---0
+```
+
+#### 3.6
+
+```js
+console.log(1);
+
+setTimeout(() => {
+  console.log(2);
+
+  new Promise((resolve) => {
+    console.log(3);
+  }).then(() => {
+    console.log(4);
+  });
+}, 200);
+
+new Promise((resolve) => {
+  console.log(5);
+  resolve();
+}).then(() => {
+  console.log(6);
+});
+
+setTimeout(() => {
+  console.log(7);
+}, 0);
+
+setTimeout(() => {
+  console.log(8);
+
+  new Promise(function (resolve) {
+    console.log(9);
+    resolve();
+  }).then(() => {
+    console.log(10);
+  });
+}, 100);
+
+new Promise(function (resolve) {
+  console.log(11);
+  resolve();
+}).then(() => {
+  console.log(12);
+});
+
+console.log(13);
+```
+
+打印：
+
+```
+1 5 11 13 6 12 7 8 9 10 2 3
+```
 
 ## Promise
 
