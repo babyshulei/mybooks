@@ -37,7 +37,7 @@ Event Loop 执行过程：
 
 ### 3. 请输出下面代码打印情况
 
-#### 3.1 
+#### 3.1 promise + setTimeout
 
 ```javascript
 setTimeout(function(){
@@ -70,7 +70,7 @@ console.log(5);
 - 由于在第一步中已经执行完了第一个 macrotask ,  所以接下来会顺序执行所有的 microtask, 也就是 promise.then 的回调函数，从而打印出4
 - microtask 队列中的任务已经执行完毕，继续执行剩下的  macrotask 队列中的任务，也就是 setTimeout, 所以打印出 1
 
-#### 3.2
+#### 3.2 promise + setTimeout
 
 ```js
 console.log('script start');
@@ -105,7 +105,7 @@ setTimeout
 - 再次调用微任务，将 `promise2` 输出。
 - 最后调用宏任务 `setTimeout`，输出 `setTimeout`。
 
-#### 3.3
+#### 3.3 promise + setTimeout
 
 ```js
 setTimeout(function() {
@@ -147,7 +147,7 @@ console.log(3);
 
 最后推出宏任务 `setTimeout`，输出 4。
 
-#### 3.4
+#### 3.4 promise + setTimeout
 
 ```js
 setTimeout(function () {
@@ -184,7 +184,7 @@ promise3
 timeout1
 ```
 
-#### 3.5
+#### 3.5 promise + setTimeout
 
 ```js
 console.log("script start");
@@ -232,7 +232,7 @@ promise5
 inner-setTimeout---0
 ```
 
-#### 3.6
+#### 3.6 promise + setTimeout
 
 ```js
 console.log(1);
@@ -285,7 +285,7 @@ console.log(13);
 1 5 11 13 6 12 7 8 9 10 2 3
 ```
 
-#### 3.7
+#### 3.7 for + setTimeout
 
 ```js
 for (var i = 0; i < 3; i++) {
@@ -312,7 +312,7 @@ for (var i = 0; i < 3; i++) {
 
 ### 1. 请输出下面代码打印情况
 
-#### 1.1
+#### 1.1 promise
 
 ```js
 const promise1 = new Promise((resolve, reject) => {
@@ -347,7 +347,7 @@ resolve1
 6. 输出 2 和 promise2，当前 promise2 的状态为 peding
 7. 宏任务走完，执行微任务，输出 resolve1
 
-#### 1.2
+#### 1.2 promise+setTimeout
 
 ```js
 console.log('start');
@@ -382,7 +382,7 @@ time
   6. 遍历本次的微任务队列，输出步骤 4 的内容，即 'resolve'
   7. 步骤 6 走完，执行下一个宏任务队列，输出 'time'
 
-#### 1.3
+#### 1.3 promise+setTimeout
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -430,7 +430,7 @@ success
 11. 执行宏任务 setTimeout 下的微任务，即 Promise.then()
 12. 输出 'success'
 
-#### 1.4
+#### 1.4 promise+setTimeout
 
 ```js
 Promise.resolve().then(() => {
@@ -475,7 +475,7 @@ timer2
 12. 输出 'promise2'
 13. 继续执行宏任务队列，出队 timer2，输出 'timer2'
 
-#### 1.5
+#### 1.5 promise+setTimeout
 
 ```js
 const promise1 = new Promise((resolve, reject) => {
@@ -520,7 +520,7 @@ promise2-2 Promise { <rejected>: Error: error! }
 9. 第一个 setTimeout 执行完毕，执行第二个 setTimeout
 10. 输出步骤 8 和 步骤 9 中的 Promise 状态
 
-#### 1.6
+#### 1.6 promise链
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -551,7 +551,7 @@ then2: undefined
 2. 将第 1 个 .then() 添加到微任务
 3. 执行第 1 个 .then()，将第 2 个 .then() 推进微任务
 
-#### 1.7
+#### 1.7 promise链
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -582,7 +582,7 @@ promise.then((res) => {
 */
 ```
 
-#### 1.8
+#### 1.8 promise链
 
 ```js
 Promise
@@ -609,7 +609,7 @@ Promise
 */
 ```
 
-#### 1.9
+#### 1.9 promise.then 多个
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -650,7 +650,7 @@ promise.then((res) => {
 */
 ```
 
-#### 1.10
+#### 1.10 return promise
 
 ```js
 const promise = Promise.resolve().then(() => {
@@ -670,7 +670,7 @@ promise.catch((err) => {
 */
 ```
 
-#### 1.11
+#### 1.11 promise 链
 
 ```js
 Promise
@@ -689,7 +689,584 @@ Promise
 */
 ```
 
+#### 1.12 promise链
 
+```js
+Promise
+.reject('err')
+.then((res) => {
+  console.log('success: ', res);
+}, (err) => {
+  console.log('error: ', err);
+}).catch((err) => {
+  console.log('catch: ', err);
+})
+
+/**
+  执行顺序和分析：
+  顺序：
+    * 'error:  err'
+  分析：
+    reject('err') 会进入 Promise.then 的第二个参数，所以输出 'error: err'
+*/
+```
+
+如果本题中的 `.then()` 中的第 2 个参数去掉了，那么就会进入 `.catch()` 函数中。
+
+#### 1.12 promise链
+
+```js
+romise
+.resolve()
+.then((res) => {
+  throw new Error('error!');
+}, (err) => {
+  console.log('error: ', err);
+}).catch((err) => {
+  console.log('catch: ', err);
+})
+
+/**
+  执行顺序和分析：
+  顺序：
+    * catch:  Error: error!
+  分析：
+    因为是 .resolve()，所以会执行 .then 第 1 个参数，然后 return 的值到 .catch 中
+    而不是返回第 2 个参数上
+*/
+```
+
+#### 1.13 .finally
+
+```js
+Promise
+.resolve('1')
+.then((res) => {
+  console.log(res);
+}).finally(() => {
+  console.log('finally1');
+});
+
+Promise
+.resolve('2')
+.finally(() => {
+  console.log('finally2');
+  return '这里是 finally2';
+}).then((res) => {
+  console.log('finally2 后面的 then 函数', res);
+})
+```
+
+打印：
+
+```
+1
+finally2
+finally1
+finally2 后面的 then 函数 2
+```
+
+#### 1.14 .finally
+
+```js
+Promise
+.resolve('1')
+.finally(() => {
+  console.log('finally1');
+  return new Error('我是 finally1 中抛出的异常');
+}).then((res) => {
+  console.log('finally 后面的 then 函数: ', res);
+}).catch((err) => {
+  console.log('捕获错误: ', err);
+})
+
+/**
+  执行顺序和分析：
+  顺序：
+    * 'finally1'
+    * finally 后面的 then 函数: 1
+*/
+```
+
+#### 1.15 Promise.all, Promise.race
+
+```js
+const one = new Promise((resolve) => {
+  setTimeout(() => {
+    console.log('one');
+    resolve('one resolve');
+  }, 1000);
+}) 
+const two = new Promise((resolve) => {
+  setTimeout(() => {
+    console.log('two');
+    resolve('two resolve');
+  }, 3000);
+}) 
+const three = new Promise((resolve) => {
+  setTimeout(() => {
+    console.log('three');
+    resolve('three resolve');
+  }, 2000);
+}) 
+
+Promise.all([one, two, three]).then((res) => {
+  console.log(res);
+});
+
+Promise.race([one, two, three]).then((res) => {
+  console.log(res); // 'one'
+});
+
+/*
+ 先输出 one
+ 再输出：one resolve
+ 最后依序输出：
+ * three
+ * two
+ * ["one resolve", "two resolve", "three resolve"]
+*/
+```
+
+#### 1.16 Promise.all
+
+```js
+function runAsync(x) {
+  const p = new Promise((resolved, reject) => {
+    if (x % 2 === 0) {
+      return setTimeout(() => {
+        console.log(x);
+        resolved(x);
+      }, 2000);
+    }
+    return setTimeout(() => {
+      console.log(x);
+      resolved(x);  
+    }, 1000);
+  });
+  return p;
+}
+
+Promise.all([
+  runAsync(1),
+  runAsync(2),
+  runAsync(3)
+]).then((res) => {
+  console.log(res);
+})
+
+/**
+  执行顺序和分析：
+  顺序：
+    * 1
+    * 3
+    * 2
+    * [1, 2, 3]
+  分析：
+    1. Promise.all 将 3 个 runAsync 按顺序添加进方法中
+    2. 在 script 这个宏任务中，依次添加 3 个 setTimeout
+    3. 根据时间对宏任务队列中的 setTimeout 进行重新排序
+    4. 1、2、3 对应的秒数为 1s、2s、1s，所以排序为 1 -> 3 -> 2
+    5. 等待一秒后，分别输出 1、3
+    6. 等待两秒后，输出 2
+    7. 执行 .then()，依照 .all() 中数组的排序输出对应的数组结果（怎么进来怎么出去）
+  适用场景：
+    需要预先加载多种图片、静态文件等，可以通过 Promise.all() 进行处理
+*/
+```
+
+#### 1.17 Promise.all
+
+```js
+function runAsync (x) {
+  const p = new Promise((res, rej) => {
+    if (x === 3) {
+      return setTimeout(() => {
+        rej(x, console.log(x));
+      }, 500);
+    }
+    return setTimeout(() => {
+     res(x, console.log(x)); 
+    }, 1000);
+  });
+  return p;
+}
+
+function runReject (x) {
+  const p = new Promise((res, rej) => {
+    return setTimeout(() => {
+      rej(x, console.log(x));
+    }, 1000 * x);
+  });
+  return p;
+}
+
+Promise.all([
+  runAsync(1),
+  runReject(4),
+  runAsync(3),
+  runReject(2),
+]).then((res) => {
+  console.log('then: ', res);
+}, (err) => {
+  console.log('err: ', err);
+}).catch((err) => {
+  console.log('catch: ', err);
+})
+
+/**
+  执行顺序和分析：
+  顺序：
+    * 3
+    * err: 3
+    * 1
+    * 2
+    * 4
+  分析：
+    1. 首先，我们当 .all() 是一个队列，先进先出
+    2. 此时宏任务依次添加 setTimeout(1)、setTimeout(4)、setTimeout(3)、setTimeout(2)
+    3. OK，我们在前面说过，相同 setTimeout 会被排序，所以顺序变为 3 -> 1 -> 2 -> 4
+    4. 这时候的 setTimeout 对应的时间为 500ms、1s、2s、4s
+    5. 然后，需要记住一点新特性：.catch 只能捕获 .all 里面最先的那个异常，并且只执行一次
+    6. 所以，先执行 3 的时候，会依次输出 3 -> err: 3
+    7. 后面的 2 和 4 的异常不再抛出，依次输出 1 -> 2 -> 4
+*/
+```
+
+#### 1.18 Promise.race
+
+```js
+function runAsync(x) {
+  const p = new Promise((resolved, reject) => {
+    if (x % 2 === 0) {
+      return setTimeout(() => {
+        console.log(x);
+        resolved(x);
+      }, 2000);
+    }
+    return setTimeout(() => {
+      console.log(x);
+      resolved(x);  
+    }, 1000);
+  });
+  return p;
+}
+
+Promise.race([
+  runAsync(2),
+  runAsync(1),
+  runAsync(3)
+]).then((res) => {
+  console.log('res: ', res);
+})
+
+/**
+  执行顺序和分析：
+  顺序：
+    * 1
+    * 'res: 1'
+    * 3
+    * 2
+  注意：
+    Node v10.16.0 的答案略有不同
+  分析：
+    1. Promise.race() 将 3 个 runAsync 按顺序添加进方法中
+    2. 在 script 这个宏任务中，依次添加 3 个 setTimeout 宏任务：2 -> 1 -> 3
+    3. 根据时间对宏任务队列中的 setTimeout 进行重新排序
+    4. 1、2、3 对应的秒数为 1s、2s、1s，所以排序为 1 -> 3 -> 2
+    5. 等待一秒后，输出 1
+    6. 此时 .race() 迫不及待得想告诉你结果，跟着输出 res: 1
+    7. 紧接着输出 3
+    8. 等待两秒后，输出 2
+  适用场景：
+    用 race 给某个异步请求设置超时时间，并且在超时后执行相应的操作
+*/
+```
+
+#### 1.19 async
+
+```js
+async function async1() {
+  console.log(1);
+  await async2();
+  console.log(2);
+}
+
+async function async2() {
+  console.log(3);
+}
+
+async1();
+
+console.log(4);
+
+/**
+  执行顺序和分析：
+  顺序：
+    * 1
+    * 3
+    * 4
+    * 2
+  分析：
+    1. 首先，我们执行 script 这个宏任务
+    2. 碰到 async1()，执行里面代码，输出 1
+    3. 碰到 await async2()，阻塞了，所以需要先执行 async2()
+    4. 执行 async2()，输出 3
+    5. 碰到 console.log(4)，输出 4
+    6. 阻塞部分走完了，script 这个宏任务也走完了，接着走 async1() 后面的
+    7. 输出 2
+*/
+```
+
+#### 1.20 async, setTimeout, promise
+
+```js
+async function async1() {
+  console.log('async1 start');
+  setTimeout(() => {
+    console.log('timer1 start');
+  }, 0);
+  Promise.resolve().then((res) => {
+    console.log('promise1');
+  })
+  await async2();
+  setTimeout(() => {
+    console.log('timer1 end');
+  }, 0);
+  console.log('async1 end');
+}
+
+async function async2() {
+  setTimeout(() => {
+    console.log('timer2');
+  }, 0);
+  Promise.resolve().then((res) => {
+    console.log('promise2');
+  })
+  console.log('async2');
+}
+
+async1();
+
+console.log('start');
+
+/**
+  执行顺序和分析：
+  顺序：
+    * 'async1 start'
+    * 'async2'
+    * 'start'
+    * 'promise1'
+    * 'promise2'
+    * 'async1 end'
+    * 'timer1 start'
+    * 'timer2'
+    * 'timer1 end'
+  分析：
+    1. 首先，我们理顺一个事实：在 await 后面的，会等当前宏任务里面所有微任务执行完毕，方且执行
+    2. 碰到 async1()，开始执行里面内容
+    3. 输出 'async1 start'
+    4. 将 'timer1 start' 丢进宏任务队列，标记为宏 1
+    5. 将 'promise1' 丢进微任务队列，标记为微 1
+    6. 碰到 await async2()，先执行 async2，阻塞下面的代码，标记后面代码为马后炮 1
+    7. 执行 async2，碰到 'timer2'，将其丢进宏任务队列，标记为宏 2
+    8. 碰到 'promise2'，将其丢进微任务队列，标记为微 2
+    9. 输出 'async2'
+    10. async2 走完，继续往下走，输出 start
+    11. 当前有 3 个部分我们没走，分别是微 1、微 2 和马后炮 1
+    12. 【死记】，碰到不走 11 这种情况，我们需要记住先执行当前微任务，再马后炮
+    13. 执行微任务，输出 'promise1'、'promise2'
+    14. 执行马后炮，将 'timer1 end' 丢进宏任务队列，即为宏 3
+    15. 输出 'async1 end'
+    16. 依次执行宏 1、宏 2 和 宏 3，输出 'timer1 start' -> 'timer2' -> 'timer1 end'
+  灵魂提升：
+    如果 'timer1 start' -> 'timer2' -> 'timer1 end' 对应的时间分别为 500ms、1000ms、500ms，请问输出啥？
+*/
+```
+
+#### 1.21 async
+
+```js
+async function fn() {
+  return 123;
+}
+
+fn().then((res) => {
+  console.log(res);
+})
+
+/**
+  执行顺序和分析：
+  顺序：
+    * 123
+  分析：
+    正常情况下， async 中的 await 命令是一个 Promise 对象，返回该对象的结果
+    但如果不是 Promise 对象的话，就会直接返回对应的值，相当于 Promise.resolve();
+*/
+```
+
+#### 1.22 async, promise
+
+```js
+async function async1() {
+  console.log('async1 start');
+  await new Promise((resolve) => {
+    console.log('promise1');
+  })
+  console.log('async1 success');
+  return 'async1 end';
+}
+
+console.log('script start');
+
+async1().then((res) => {
+  console.log('res: ', res);
+})
+
+console.log('script end');
+
+/**
+  执行顺序和分析：
+  顺序：
+    * 'script start'
+    * 'async1 start'
+    * 'promise1'
+    * 'script end'
+  分析：
+    1. 特殊题
+    2. 在 await 后面的 Promise 是没有返回值的，所以 await 会一直等待
+    3. 这样子的话，async1 success 这些后面的内容都不会执行了
+  思考：
+    如果在 'promise1' 后面添加一行 resolve('123'); 结果会怎样？
+*/
+```
+
+#### 1.23 async, promise, setTimeout
+
+```js
+async function async1() {
+  console.log('async1 start');
+  await async2();
+  console.log('async1 end');
+}
+
+async function async2() {
+  console.log('async2');
+}
+
+console.log('script start');
+
+setTimeout(() => {
+  console.log('settimeout');
+}, 0);
+
+async1();
+
+new Promise((resolve) => {
+  console.log('promise1');
+  resolve();
+}).then((res) => {
+  console.log('promise2');
+})
+
+console.log('script end');
+```
+
+打印：
+
+```
+'script start'
+'async1 start'
+'async2'
+'promise1'
+'script end'
+'async1 end'
+'promise2'
+'settimeout'
+```
+
+#### 1.24 async, promise
+
+```js
+async function testSomething() {
+  console.log('test something');
+  return 'test something';
+}
+
+async function testAsync() {
+  console.log('test async');
+  return Promise.resolve('hello test async');
+}
+
+async function test() {
+  console.log('test start');
+
+  const v1 = await testSomething();
+  console.log('v1: ', v1);
+
+  const v2 = await testAsync();
+  console.log('v2: ', v2);
+
+  console.log(v1, v2);
+}
+
+test();
+
+const promise = new Promise((resolve) => {
+  console.log('promise start');
+  resolve('promise');
+})
+
+promise.then((val) => {
+  console.log(val);
+})
+
+console.log('test end');
+
+/**
+  执行顺序和分析：
+  顺序：
+    * 'test start'
+    * 'test something'
+    * 'promise start'
+    * 'test end'
+    * 'v1: test something'
+    * 'test async'
+    * 'promise'
+    * 'v2: hello test async'
+    * 'test something' 'hello test async'
+*/
+```
+
+#### 1.25 async, promise
+
+```js
+async function async1() {
+  await async2();
+  console.log('async1');
+  return 'async1 success';
+}
+
+async function async2() {
+  return new Promise((resolve, reject) => {
+    console.log('async2');
+    reject('error');
+  })
+}
+
+async1().then((res) => {
+  console.log('res: ', res);
+})
+
+/**
+  执行顺序和分析：
+  顺序：
+    * 'async2'
+    * Promise {<rejected>: "error"}
+  分析：
+    如果在 async 函数中抛出了错误，则终止错误结果，不会继续向下执行。throw new Error 也是如此。
+*/
+```
 
 
 

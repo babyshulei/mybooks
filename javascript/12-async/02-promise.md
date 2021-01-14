@@ -171,7 +171,11 @@ promise.then((res) => {
 
 #### Promise.prototype.finally()
 
-finally() 方法返回一个Promise。在Promise结束时，无论结果是fulfilled或者是rejected，都会执行指定的回调函数。
+[finally() 方法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally)返回一个Promise。在Promise结束时，无论结果是fulfilled或者是rejected，都会执行指定的回调函数。
+
+finally() 方法的回调函数不接受任何的参数，也就是说在 finally() 函数中是没法知道 Promise 最终的状态是 resolved 还是 rejected 的。
+
+它最终返回的默认会是一个上一次的 Promise 对象值。
 
 #### Promise.all()
 
@@ -194,9 +198,9 @@ iterable 参数中只要有一个 Promise 被拒绝（rejected），那么返回
 
 #### Promise.race()
 
-[Promise.race()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/race) 方法接受一个迭代器参数并返回一个 Promise，一旦迭代器中的某个Promise被解决或拒绝，返回的 promise就会被解决或拒绝。
+[Promise.race()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/race) 方法接受一个迭代器参数并返回一个 Promise，一旦迭代器中的某个Promise被解决或拒绝，返回的 promise 就会被解决或拒绝。
 
-实际上，传给 Promise.race() 方法的 Promise 会进行竞选，以决出哪一个先被解决，如果先解决的是已完成的Promise，则返回已完成的Promise；如果先解决的是已拒绝的Promise，则返回已拒绝的Promise。
+实际上，传给 Promise.race() 方法的 Promise 会进行竞选，以决出哪一个先被解决，如果先解决的是已完成的 Promise，则返回已完成的 Promise；如果先解决的是已拒绝的 Promise，则返回已拒绝的 Promise。
 
 ### 执行器错误
 
@@ -334,9 +338,24 @@ pp1.then((val) => {
 
 ### Async/Await 语法
 
-- 使用await，函数必须用async标识
+- 使用[await](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/await)，函数必须用[async](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function)标识
 - await后面跟的是一个Promise实例
+- 在 function() 里面碰到 await 直接走里面内容。如果 function() 里的 await 后面还有其他代码，将其当做 Promise.then() 一样，视为微任务。
 - 需要安装babel-polyfill，安装后记得引入 `npm i --save-dev babel-polyfill`
+
+语法：
+
+```js
+async function 函数名() {
+  [返回值] = await 表达式;
+}
+```
+
+参数：
+- 表达式
+一个 Promise 对象或者任何要等待的值。
+- 返回值
+返回 Promise 对象的处理结果。如果等待的不是 Promise 对象，则返回该值本身。
 
 ```js
 function loadImg(src) {
