@@ -165,12 +165,9 @@ console.log(Object.isExtensible(target), Object.isExtensible(proxy)); // true tr
 Object.preventExtensions(proxy);
 
 console.log(Object.isExtensible(target), Object.isExtensible(proxy)); // true true
-*/
 
-/**
- * 限制添加属性名类型
- */
-/*
+
+// 限制添加属性名类型
 let target = {};
 let proxy = new Proxy(target, {
   defineProperty(trapTarget, key, descriptor) {
@@ -190,12 +187,9 @@ let sym = Symbol('another');
 Object.defineProperty(proxy, sym, {
   value: 'asymbol',
 });
-*/
 
-/**
- * 利用 ownKeys 陷阱来过滤掉不想使用的属性键
- */
-/*
+
+// 利用 ownKeys 陷阱来过滤掉不想使用的属性键
 let target = {};
 let proxy = new Proxy(target, {
   ownKeys(trapTarget) {
@@ -213,6 +207,44 @@ proxy[sym] = 'atest';
 console.log(proxy);
 console.log(Object.getOwnPropertyNames(proxy));
 console.log( Object.getOwnPropertySymbols(proxy));
+
+
+// 验证函数参数
+function sum(...values) {
+  return values.reduce((pre, curr) => pre + curr, 0);
+}
+
+let sumProxy = new Proxy(sum, {
+  construct(trapTarget, argumentsList) {
+    throw new Error('该函数不可通过 new 来调用！');
+  },
+  apply(trapTarget, thisArg, argumentsList) {
+    argumentsList.forEach((val) => {
+      if (typeof val !== 'number') {
+        throw new Error('所有参数必须是数字！');
+      }
+    });
+
+    return Reflect.apply(trapTarget, thisArg, argumentsList);
+  }
+});
+
+console.log(sumProxy(1, 4, 10)); // 15
+
+console.log(sumProxy(1, 's', 10)); // Error：所有参数必须是数字！
+
+let result = new sumProxy(); // Error: 该函数不可通过 new 来调用！
 */
 
+// 可撤销代理
+let target = {
+  name: 'tata',
+};
 
+let { proxy, revoke } = Proxy.revocable(target, {});
+
+console.log(proxy.name); // tata
+
+revoke();
+
+console.log(proxy.name); // 报错
