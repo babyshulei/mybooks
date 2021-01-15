@@ -128,9 +128,9 @@ p.then(onFulfilled[, onRejected]);
 参数：
 
 - onFulfilled
-  可选参数，Promise 成功时的回调函数
+  可选参数，Promise 成功时的回调函数。该函数有一个参数，即接受的最终结果（the fulfillment  value）。如果该参数不是函数，则会在内部被替换为 (x) => x，即原样返回 promise 最终结果的函数。
 - onRejected
-  可选参数，Promise 被拒绝时的回调函数
+  可选参数，Promise 被拒绝时的回调函数。该函数有一个参数，即拒绝的原因（rejection reason）。如果该参数不是函数，则会在内部被替换为一个 "Thrower" 函数 (it throws an error it received as argument)。
 
 > 如果一个对象实现了上述的 then() 方法，那这个对象就被称为 thenable 对象。
 
