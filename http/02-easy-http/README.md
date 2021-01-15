@@ -28,11 +28,11 @@ HTTP/1.1虽然是无状态协议，但为了实现保持状态的功能，引入
 
 ### HTTP/0.9
 
-HTTP最早大规模使用的版本，现已过时。在这个版本中 只有`GET`一种请求方法，在HTTP通讯也没有指定版本号，也不支持请求头信息。服务端发送完毕，就关闭TCP连接。
+HTTP最早大规模使用的版本，现已过时。传输体积很小的文件，在这个版本中只有`GET`一种请求方法，在HTTP通讯也没有指定版本号，也不支持请求头信息。服务端发送完毕，就关闭TCP连接。
 
 ### HTTP/1.0
 
-一个在HTTP通讯中指定版本号的协议版本。支持：`GET`、`POST`、`HEAD`三种HTTP请求方法。
+支持多种类型的文件下载。在HTTP通信中指定版本号。支持：`GET`、`POST`、`HEAD`三种HTTP请求方法。
 
 - 增加了新的请求方法，POST, HEAD
 - 增加了status code、header
@@ -44,10 +44,11 @@ HTTP最早大规模使用的版本，现已过时。在这个版本中 只有`GE
 
 - 持久连接（keep alive）
 - 管道化（pipeline）
-- host和其他一些请求方法。
+- host
+- 一些请求方法
 - 缓存处理
 
-目前使用最广泛的版本。该版本默认采用持久连接，并能很好地配合代理服务器工作。还支持以管道方式同时发送多个请求，以便降低线路负载，提高传输速度。HTTP/1.1新增了：`OPTIONS`、`PUT`、`DELETE`、`TRACE`、`CONNECT`五种HTTP请求方法。
+默认采用持久连接，并能很好地配合代理服务器工作。还支持以管道方式同时发送多个请求，以便降低线路负载，提高传输速度。HTTP/1.1新增了：`OPTIONS`、`PUT`、`DELETE`、`TRACE`、`CONNECT`五种HTTP请求方法。
 
 在 HTTP1.0 中主要使用 header 里的If-Modified-Since, Expires来做为缓存判断的标准，HTTP1.1 则引入了更多的缓存控制策略例如 If-Unmodified-Since, Cache-Control, Etag, If-Match, If-None-Match 等更多可供选择的缓存头来控制缓存策略。
 
