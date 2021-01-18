@@ -30,13 +30,51 @@ HTTP/1.1虽然是无状态协议，但为了实现保持状态的功能，引入
 
 HTTP最早大规模使用的版本，现已过时。传输体积很小的文件，在这个版本中只有`GET`一种请求方法，在HTTP通讯也没有指定版本号，也不支持请求头信息。服务端发送完毕，就关闭TCP连接。
 
+请求：由单行指令构成，以唯一可用方法`GET`开头，其后跟目标资源的路径
+
+```http
+GET /index.html
+```
+
+响应：只包含响应文档本身
+
+```html
+<HTML>
+这是一个非常简单的HTML页面
+</HTML>
+```
+
+
+
 ### HTTP/1.0
 
 支持多种类型的文件下载。在HTTP通信中指定版本号。支持：`GET`、`POST`、`HEAD`三种HTTP请求方法。
 
 - 增加了新的请求方法，POST, HEAD
 - 增加了status code、header
-- 增加多字符集支持、多部分发送、authorization（权限）、cache（缓存）等
+- 增加多类型文件支持（Content-type）、多部分发送（multi-part type）、权限（Authorization:Basic、401）、缓存（Expires、If-Modified-Since/Last-Modified、304）等
+
+请求：
+
+```http
+GET /mypage.html HTTP/1.0
+User-Agent: NCSA_Mosaic/2.0 (Windows 3.1)
+```
+
+响应：
+
+```http
+200 OK
+Date: Tue, 15 Nov 1994 08:12:31 GMT
+Server: CERN/3.0 libwww/2.17
+Content-Type: text/html
+<HTML>
+一个包含图片的页面
+  <IMG SRC="/myimage.gif">
+</HTML>
+```
+
+
 
 ### HTTP/1.1
 
@@ -45,14 +83,12 @@ HTTP最早大规模使用的版本，现已过时。传输体积很小的文件�
 - 持久连接（keep alive）
 - 管道化（pipeline）
 - host
-- 一些请求方法
-- 缓存处理
+- 一些请求方法（OPTIONS、PUT、DELETE、TRACE、CONNECT）
+- 缓存处理（Cache-Control、Etag/If-None-Match）
 
 默认采用持久连接，并能很好地配合代理服务器工作。还支持以管道方式同时发送多个请求，以便降低线路负载，提高传输速度。HTTP/1.1新增了：`OPTIONS`、`PUT`、`DELETE`、`TRACE`、`CONNECT`五种HTTP请求方法。
 
 在 HTTP1.0 中主要使用 header 里的If-Modified-Since, Expires来做为缓存判断的标准，HTTP1.1 则引入了更多的缓存控制策略例如 If-Unmodified-Since, Cache-Control, Etag, If-Match, If-None-Match 等更多可供选择的缓存头来控制缓存策略。
-
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 在HTTP/1.1标准制定之后，又陆续扩展了一些方法。其中使用中较多的是 `PATCH` 方法，它在2010年的[RFC 5789](http://tools.ietf.org/html/rfc5789)标准中被定义。`PATCH`请求与`PUT`请求类似，同样用于资源的更新。二者有以下两点不同：
 
@@ -71,7 +107,9 @@ HTTP最早大规模使用的版本，现已过时。传输体积很小的文件�
 | TRACE   | 追踪路径，回显服务器之前收到的请求，主要用于测试或诊断。     |
 | PATCH   | 用来对资源进行局部更新，是对 PUT 方法的补充。                |
 
- ### SPDY
+
+
+### SPDY
 
 优势：
 
@@ -200,7 +238,11 @@ Cookie技术通过在请求和响应报文中写入Cookie信息来控制客户�
 
 [RFC 5789, section 2: Patch method](https://tools.ietf.org/html/rfc5789#section-2)
 
+[HTTP基本认证 - 维基百科](https://zh.wikipedia.org/wiki/HTTP基本认证)
+
 [HTTP/3原理与实践](https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&mid=2651236564&idx=1&sn=4cfbf59ed50cc45d889613e5b19292bd)
+
+[HTTP的发展- HTTP | MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP)
 
 [Http协议的发展历史](https://www.imooc.com/article/266160)
 
