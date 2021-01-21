@@ -1793,6 +1793,77 @@ addTack(400, '4');
 // 输出：2 3 1 4
 ```
 
+
+
+### 8. 手写Promise
+
+```js
+// 简版
+const PENDING = 'pending';
+const FULLFILLED = 'fullfilled';
+const REJECTED = 'rejected';
+
+function MyPromise(fn) {
+  const that = this;
+  that.status = PENDING;
+  that.value = null;
+  that.reason = null;
+
+  that.resolveCbs = [];
+  that.rejectCbs = [];
+
+  function resolve(value) {
+    if (that.status === PENDING) {
+      that.status = FULLFILLED;
+      that.value = value;
+      that.resolveCbs.map(cb => cb(value));
+    }
+  }
+
+  function reject(reason) {
+    if (that.status === PENDING) {
+      that.status = REJECTED;
+      that.reason = reason;
+      that.rejectCbs.map(cb => cb(reason));
+    }
+  }
+
+  try {
+    fn(resolve, reject);
+  } catch (e) {
+    reject(e);
+  }
+}
+
+MyPromise.prototype.then = function(onFullFilled, onRejected) {
+  const that = this;
+  if (that.status === PENDING) {
+    that.resolveCbs.push(onFullFilled);
+    that.rejectCbs.push(onRejected);
+  }
+  if (that.status === FULLFILLED) {
+    onFullFilled(that.value);
+  }
+  if (that.status === REJECTED) {
+    onRejected(that.reason);
+  }
+  return that;
+}
+
+MyPromise.prototype.catch = function(onRejected) {
+  const that = this;
+  if (that.status === PENDING) {
+    that.rejectCbs.push(onRejected);
+  }
+  if (that.status === REJECTED) {
+    onRejected(that.reason);
+  }
+  return that;
+}
+```
+
+
+
 ## 隐式类型转换
 
 ### 1. 设计一个数据结构，使 `a==1 && a==2 && a==3` 为 true
