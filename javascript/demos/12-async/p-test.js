@@ -169,6 +169,7 @@ function mergePromise2() {
 
 // mergePromise1();
 
+// 下载图片
 function loadImg(url) {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -182,3 +183,86 @@ function loadImg(url) {
     img.src = url;
   });
 }
+
+// 限制异步操作并发数并尽可能快地完成
+const urls = [
+  "https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting1.png",
+  "https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting2.png",
+  "https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting3.png",
+  "https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting4.png",
+  "https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting5.png",
+  "https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/bpmn6.png",
+  "https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/bpmn7.png",
+  "https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/bpmn8.png",
+];
+
+function limitLoad(urls, handler, limit) {
+  const limitUrls = urls.slice(0, limit);
+  const leftUrls = urls.slice(limit);
+
+  limitUrls.forEach((url, index) => {
+    singleLoad(url, index);
+  })
+
+  function singleLoad(url, index) {
+    handler(url).finally(() => {
+      if (leftUrls.length) {
+        const nextUrl = leftUrls.pop();
+        singleLoad(nextUrl, index);
+      }
+    });
+  }
+}
+
+// limitLoad(urls, loadImg, 4);
+
+/**
+ * 题目：JS 实现异步调度器
+ * 要求：
+ *  JS 实现一个带并发限制的异步调度器 Scheduler，保证同时运行的任务最多有 2 个
+ *  完善下面代码中的 Scheduler 类，使程序能正确输出
+ */
+class Scheduler {
+  constructor(maxNum = 2) {
+    this.taskList = [];
+    this.count = 0;
+    this.maxNum = maxNum; // 最大并发数
+  }
+  async add(promiseCreator) {
+    if (this.count >= this.maxNum) {
+      // 超过并发数，进入等待队列
+      await new Promise((resolve) => {
+        this.taskList.push(resolve);
+      });
+    }
+    this.count++;
+    const result = await promiseCreator();
+    this.count--;
+    // 等待队列队首出队
+    if (this.taskList.length) {
+      this.taskList.shift()();
+    }
+    return result;
+  }
+}
+
+const timeout = (time) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, time);
+  });
+};
+
+const scheduler = new Scheduler(2);
+const addTack = (time, order) => {
+  return scheduler
+    .add(() => timeout(time))
+    .then(() => console.log(order));
+};
+addTack(1000, '1');
+addTack(500, '2');
+addTack(300, '3');
+addTack(400, '4');
+
+

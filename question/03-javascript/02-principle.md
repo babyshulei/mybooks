@@ -1615,6 +1615,30 @@ function limitLoad(urls, handler, limit) {
 
 题解：
 
+解一：
+
+```js
+function limitLoad(urls, handler, limit) {
+  const limitUrls = urls.slice(0, limit);
+  const leftUrls = urls.slice(limit);
+
+  limitUrls.forEach((url, index) => {
+    singleLoad(url, index);
+  })
+
+  function singleLoad(url, index) {
+    handler(url).finally(() => {
+      if (leftUrls.length) {
+        const nextUrl = leftUrls.pop();
+        singleLoad(nextUrl, index);
+      }
+    });
+  }
+}
+```
+
+解二：
+
 ```js
 function limitLoad(urls, handler, limit) {
   let sequence = [].concat(urls); // 复制urls
@@ -1767,12 +1791,6 @@ addTack(300, '3');
 addTack(400, '4');
 
 // 输出：2 3 1 4
-// 一开始，1、2 两个任务进入队列
-// 500ms 时，完成 2，输出 2，任务 3 进队
-// 800ms 时，完成 3，输出 3，任务 4 进队
-// 1000ms 时，完成 1，输出 1，没有下一个进队的
-// 1200ms 时，完成 4，输出 4，没有下一个进队的
-// 进队完成，输出 2 3 1 4
 ```
 
 ## 隐式类型转换
