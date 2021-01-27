@@ -61,3 +61,47 @@
 3. 函数库lodash
 
 参考笔记：JavaScript-对象-浅拷贝、深拷贝
+
+
+
+## 数字显示千分号
+
+方案一：使用原生方法，支持带小数点的数字，缺点是有些浏览器不支持。
+
+```js
+function formatNumber(num) {
+    return num.toLocaleString();
+}
+```
+
+方案二：使用正则表达式。
+
+```js
+function formatNumber(num) {
+    let parts = num.toString().split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    // parts[0].replace(/(\d)(?=(?:\d{3})+$)/g,'$1,');
+    return parts.join('.');
+}
+```
+
+方案三：将数字转换成字符串数组处理。
+
+```js
+function formatNumber(num) {
+    let parts = num.toString().split('.');
+    let arr = parts[0].split('');
+    for (let i = arr.length - 3; i > 0; i -= 3) {
+        arr.splice(i, 0, ',');
+    }
+	parts[0] = arr.join('');
+    return parts.join('.');
+}
+```
+
+
+
+## 参考链接
+
+[javascript 带千分号显示数字](https://blog.csdn.net/jobschen/article/details/47860239)
+
