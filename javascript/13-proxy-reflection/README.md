@@ -723,10 +723,6 @@ let result = new sumProxy(); // Error: 该函数不可通过 new 来调用！
 
 
 
-
-
-
-
 ## 参考链接
 
 [Proxy - MDN Web Docs - Mozilla](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
