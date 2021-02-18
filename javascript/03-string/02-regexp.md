@@ -119,13 +119,15 @@ document.querySelector('input').addEventListener('keyup', function() {
 | ------ | ---------------------------------------------------- | ------------- |
 | \d     | 匹配任意一个数字                                     | [0-9]         |
 | \D     | 与除了数字以外的任何一个字符匹配                     | [^0-9]        |
-| \w     | 与任意一个英文字母、数字或下划线匹配                 | [a-zA-Z_]     |
+| \w     | 与任意一个英文字母、数字或下划线匹配                 | [0-9a-zA-Z_]  |
 | \W     | 除了字母、数字或下划线外与任何字符匹配               | [^a-zA-Z_]    |
 | \s     | 任意一个空白字符匹配，如空格，制表符`\t`，换行符`\n` | [\n\f\r\t\v]  |
 | \S     | 除了空白符外任意一个字符匹配                         | [^\n\f\r\t\v] |
 | .      | 匹配除换行符外的任意字符                             |               |
 
-匹配所有字符：
+### 匹配所有字符
+
+有以下方式可以匹配所有字符：
 
 - `/[\s\S]+/`
 - `/[\d\D]+/`
@@ -251,7 +253,7 @@ console.log(res, reg.lastIndex);
 
 在一组字符中匹配某个元字符，在正则表达式中通过元字符表来完成，即放到 `[]` 中。
 
-#### 使用语法
+### 使用语法
 
 | 原子表 | 说明                               |
 | ------ | ---------------------------------- |
@@ -281,7 +283,7 @@ console.log(reg.test(date1), reg.test(date2)); // true false
 // 注意：正则表达式中的\1是用了原子组的方式，保证前后两个符号一致
 ```
 
-#### 区间匹配
+### 区间匹配
 
 区间匹配就是`[0-9]`这种，匹配一个范围内的任一字符，注意，必须是升序区间，降序区间会报错。
 
@@ -292,7 +294,7 @@ const str = "e";
 console.log(/[a-f]/.test(str)); //true
 ```
 
-#### 排除匹配
+### 排除匹配
 
 排除匹配是 `[^]` 这种语法，表示匹配除了表中字符的任一字符。
 
@@ -304,16 +306,108 @@ console.log(str.match(/[^\d:\-,]/g)); // ["真", "好", "天", "天"]
 // 注意，此时-字符需要转义，因为这个-可能表示区间，如a-z
 ```
 
+### 字符不解析
+
+注意，原子表中，一些特殊字符并没有特殊含义，而是为字符本身，不需要进行转义。例如，`.`只匹配字符`.`，而不是匹配除换行外所有字符。
+
+示例：
+
+```js
+var str = '(ss).ww.co';
+console.log(str.match(/[().\w]/g)); //  ["(", "s", "s", ")", ".", "w", "w", ".", "c", "o"]
+```
+
+## 原子组
+
+- 如果一次性匹配多个元子，可以使用原子组
+- 将元子字符用`()`包裹，形成一个原子组
+- 原子组和原子表的区别是，原子组一次匹配多个元子，而原子表是匹配任意一个字符
+
+### 基本使用
+
+原子组默认按照左括号位置从左到右组名为1/2/3……，也可以起组的别名。
+
+示例：
+
+```js
+const str = `hola<h1>测试</h1><p></p>`;
+const reg = /<(h[1-6]+)>[\s\S]*<\/(\1)>/i;
+
+console.log(str.match(reg));
+// ["<h1>测试</h1>", "h1", "h1", index: 4, input: "<h1>测试</h1><p></p>", groups: undefined]
+```
+
+使用 `match` 非全局匹配时，会返回一个数组，包含如下内容：
+
+| 变量         | 说明                           |
+| ------------ | ------------------------------ |
+| 索引0        | 匹配到的完整内容               |
+| 索引1、2.... | 匹配到的原子组                 |
+| index        | 匹配的开始位置（在原字符串中） |
+| input        | 原字符串                       |
+| groups       | 命名分组，组别名               |
+
+全局匹配示例：
+
+```js
+const str1 = `hola<h1>测试</h1><p></p><h2>标题二</h2><p>lalala</p>`;
+const reg1 = /<(h[1-6]+)>[\s\S]*<\/(\1)>/ig;
+
+console.log(str1.match(reg1));
+// [ '<h1>测试</h1>', '<h2>标题二</h2>' ]
+```
+
+匹配邮箱示例：
+
+```js
+const regEmail = /^[\w-]+@([\w-]+\.)+(com|org|cn|net)$/i;
+const email = 'sdfkj@aaa.hh.com';
+console.log(regEmail.test(email)); // true
+```
+
+替换文本示例：
+
+```js
+const strRep = `hola<h1>测试</h1>中间内容<h2>标题二</h2>有趣吗`;
+const regRep = /<(h[1-6])>([\s\S]*)<\/\1>/ig;
+// 方案一：传入字符串直接替换
+const result = strRep.replace(regRep, '<p>$2</p>');
+
+// 方案二：也可以使用函数
+// 入参：p0为匹配的字符串，p1,p2...为匹配的原子组
+// offset为匹配到的子串在原字符串中的偏移量，string为原字符串
+const result = strRep.replace(regRep, (p0, p1, p2, offset, string) => `<p>${p2}</p>`);
+
+console.log(result);
+// hola<p>测试</p>中间内容<p>标题二</p>有趣吗
+```
+
+### 不记录组
+
+在原子组的左括号后面添加 `?:`可以不记录组。
+
+示例，匹配网站，获取网站host：
+
+```js
+const webStr = `
+  开始 https://www.test.com
+  http://another.test.cn
+  第三个 https://www.example.com小意思
+`;
+const webReg = /(?:https?):\/\/((?:\w+\.)+(?:com|cn|org))/ig;
+let webArr = [];
+
+while(res = webReg.exec(webStr)) {
+  // host所在原子组实际为第2个，但是前面的原子组不记录，所以对应的原子组为1
+  webArr.push(res[1]);
+}
+console.log(webArr);
+// [ 'www.test.com', 'another.test.cn', 'www.example.com' ]
+```
 
 
->注意，原子表中，有些正则字符不需要转义，直接默认为对应字符。
->
->示例：
->
->```js
->var str = '(ss).ww.co';
->console.log(str.match(/[().\w]/g)); //  ["(", "s", "s", ")", ".", "w", "w", ".", "c", "o"]
->```
+
+
 
 
 
@@ -342,4 +436,6 @@ console.log(str.match(/[^\d:\-,]/g)); // ["真", "好", "天", "天"]
 [正则表达式 - 后盾人](https://houdunren.gitee.io/note/js/14%20正则表达式.html)
 
 [正则表达式 - bilibili](https://www.bilibili.com/video/BV12J41147fC?p=1)
+
+[String.prototype.replace() - JavaScript | MDN - Mozilla](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace)
 
