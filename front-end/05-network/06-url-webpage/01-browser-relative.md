@@ -7,6 +7,9 @@
 在Chrome中，主要的进程有4个：
 
 - 浏览器进程 (Browser Process)：负责浏览器的TAB的前进、后退、地址栏、书签栏的工作和处理浏览器的一些不可见的底层操作，比如网络请求和文件访问。
+  - UI thread：控制浏览器上的按钮及输入框；
+  - network thread：处理网络请求，从网上获取数据；
+  - storage thread：控制文件等的访问；
 - 渲染进程 (Renderer Process)：负责一个Tab内的显示相关的工作，也称渲染引擎。
 - 插件进程 (Plugin Process)：负责控制网页使用到的插件
 - GPU进程 (GPU Process)：负责处理整个应用程序的GPU任务
@@ -56,7 +59,7 @@ tab以外的大部分工作由浏览器进程`Browser Process`负责，针对工
 
 `network thread`接收到服务器的响应后，开始解析HTTP响应报文，然后根据响应头中的`Content-Type`字段来确定响应主体的媒体类型（MIME Type）。
 
-如果媒体类型是一个HTML文件，则将响应数据交给渲染进程（renderer process）来进行下一步的工作，如果是 zip 文件或者其它文件，会把相关数据传输给下载管理器。
+如果媒体类型是一个HTML文件，则将响应数据交给渲染进程（`renderer process`）来进行下一步的工作，如果是 zip 文件或者其它文件，会把相关数据传输给下载管理器。
 
 与此同时，浏览器会进行 Safe Browsing 安全检查，如果域名或者请求内容匹配到已知的恶意站点，network thread 会展示一个警告页。除此之外，网络线程还会做 CORB（Cross Origin Read Blocking）检查来确定那些敏感的跨站数据不会被发送至渲染进程。
 

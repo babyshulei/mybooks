@@ -52,6 +52,16 @@ a[k]_address = base_address + k * type_size
 
 
 
+## 二维数组
+
+二维数组是一种结构较为特殊的数组，只是将数组中的每个元素变成了一维数组。
+
+所以二维数组的本质仍然是一个一维数组，内部的一维数组仍然从索引0开始。
+
+可以看做一个矩阵，用来处理矩阵相关的问题。如矩阵选择、对角线遍历、对子矩阵的操作等。
+
+
+
 ## JavaScript数组
 
 在 JavaScript 中，数组是哈希映射。它可以通过多种数据结构实现，其中一种是链表。
@@ -60,6 +70,8 @@ JavaScript 引擎会进行优化，为同种数据类型的数组分配连续的
 
  JavaScript 中引入类型化数组，使用ArrayBuffer、TypeArray，改进了数组的性能。
 
+
+
 ## 参考链接
 
 [05 | 数组：为什么很多编程语言中数组都从0开始编号？](https://time.geekbang.org/column/article/40961)
@@ -67,4 +79,6 @@ JavaScript 引擎会进行优化，为同种数据类型的数组分配连续的
 [深究 JavaScript 数组 —— 演进&性能](https://juejin.cn/post/6844903494189580302)
 
 [Diving deep into JavaScript array - evolution & performance](http://link.zhihu.com/?target=http%3A//voidcanvas.com/javascript-array-evolution-performance/)
+
+[数组和字符串 - LeetCode](https://leetcode-cn.com/leetbook/detail/array-and-string/)
 
