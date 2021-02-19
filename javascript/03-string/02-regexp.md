@@ -407,7 +407,44 @@ console.log(webArr);
 
 
 
+## 重复匹配
 
+如果要重复匹配一些内容时我们要使用重复匹配修饰符，包括以下几种。
+
+| 符号  | 说明             |
+| ----- | ---------------- |
+| *     | 重复零次或更多次 |
+| +     | 重复一次或更多次 |
+| ?     | 重复零次或一次   |
+| {n}   | 重复n次          |
+| {n,}  | 重复n次或更多次  |
+| {n,m} | 重复n到m次       |
+
+默认情况下，会进行贪婪匹配。
+
+示例，对电话号进行匹配：
+
+```js
+const tel = '010-2938888';
+const reg = /^0\d{2,3}-\d{7,8}$/;
+console.log(reg.test(tel)); // true
+```
+
+### 同时匹配多条正则
+
+可以利用数组的every方法实现。
+
+示例，匹配密码符合数字、字母大小写、5-10位。
+
+```js
+const password1 = 'aaaA345';
+const password2 = 'sdfjdj';
+const regs = [/^[a-z0-9]{5,10}$/i, /[a-z]/, /[A-Z]/, /[0-9]/];
+const res1 = regs.every(r => r.test(password1));
+const res2 = regs.every(r => r.test(password2));
+
+console.log(res1, res2); // true false
+```
 
 
 
