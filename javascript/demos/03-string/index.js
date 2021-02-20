@@ -1,4 +1,3 @@
-const { off } = require('process');
 const readline = require('readline');
 
 // 原子组 match 非全局匹配
@@ -61,3 +60,63 @@ while(res = webReg.exec(webStr)) {
   webArr.push(res[1]);
 }
 console.log(webArr);
+
+// 修改dom元素
+const domStr = `
+  <span>hello</span>
+  <span>world</span>
+  <span>mini</span>
+`;
+const domReg = /<span>([\s\S]+?)<\/span>/ig;
+const newDom = domStr.replace(domReg, (p0, p1) => {
+  return `<h4>h4-${p1}</h4>`;
+});
+
+console.log(newDom);
+
+// 全局匹配
+const allStr = `
+  <span>hello</span>
+  <span>world</span>
+  <span>mini</span>
+`;
+const allReg = /<span>([\s\S]+?)<\/span>/ig;
+const allRes = allStr.matchAll(allReg);
+for(const v of allRes) {
+  console.log(v);
+}
+
+let testStr = 'sdfkjdkssfjds';
+// 旧版浏览器兼容
+// 方案一
+String.prototype.matchAll = function(reg) {
+  const matchs = [];
+  let res;
+  while(res = reg.exec(this)) {
+    matchs.push(res);
+  }
+
+  return matchs;
+};
+
+console.dir(testStr.matchAll(/s/ig));
+
+// 方案二
+String.prototype.matchAll = function(reg) {
+  let res = this.match(reg);
+  if (res) {
+    let str = this.replace(res[0], "^".repeat(res[0].length));
+    let match = str.matchAll(reg) || [];
+    return [res, ...match];
+  }
+};
+
+console.dir(testStr.matchAll(/s/i));
+
+
+// 原子组别名
+const sstr = '(010)99999999';
+const rreg = /\((?<zone>\d{3,4})\)(?<tel>\d{7,8})/;
+
+console.log(sstr.replace(rreg, '$<zone>-$<tel>'));
+console.log(sstr.match(rreg));

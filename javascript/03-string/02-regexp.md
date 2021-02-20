@@ -407,6 +407,35 @@ console.log(webArr);
 
 
 
+### 原子组别名
+
+如果希望返回的组数据更清晰，可以为原子组编号，结果将保存在返回的 `groups`字段中。
+
+组别名使用 `?<>` 形式定义。
+
+示例：
+
+```js
+const sstr = '(010)99999999';
+const rreg = /\((?<zone>\d{3,4})\)(?<tel>\d{7,8})/;
+
+console.log(sstr.replace(rreg, '$<zone>-$<tel>'));
+// 010-99999999
+console.log(sstr.match(rreg));
+//[
+//  '(010)99999999',
+//  '010',
+//  '99999999',
+//  index: 0,
+//  input: '(010)99999999',
+//  groups: { zone: '010', tel: '99999999' }
+//]
+```
+
+使用组别名可以优化代码，便于取到特定含义的值。
+
+
+
 ## 重复匹配
 
 如果要重复匹配一些内容时我们要使用重复匹配修饰符，包括以下几种。
@@ -446,11 +475,302 @@ const res2 = regs.every(r => r.test(password2));
 console.log(res1, res2); // true false
 ```
 
+### 禁止贪婪
+
+正则表达式在进行重复匹配时，默认是贪婪模式；通过`?`进行修饰，可以禁止贪婪匹配。
+
+| 使用   | 说明                            |
+| ------ | ------------------------------- |
+| *?     | 重复任意次，但尽可能少重复      |
+| +?     | 重复1次或更多次，但尽可能少重复 |
+| ??     | 重复0次或1次，但尽可能少重复    |
+| {n,m}? | 重复n到m次，但尽可能少重复      |
+| {n,}?  | 重复n次以上，但尽可能少重复     |
+
+示例，修改DOM元素：
+
+```js
+const domStr = `
+  <span>hello</span>
+  <span>world</span>
+  <span>mini</span>
+`;
+const domReg = /<span>([\s\S]+?)<\/span>/ig;
+const newDom = domStr.replace(domReg, (p0, p1) => {
+  return `<h4>h4-${p1}</h4>`;
+});
+
+console.log(newDom);
+```
 
 
 
+## 全局匹配
+
+String的[match方法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/match)，在常规匹配时，会返回匹配的详细信息，如匹配组、index、input等；在全局匹配时，返回的数组是匹配字符串的数组，缺少详细信息。
+
+新版浏览器支持了String的[matchAll方法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll)，可以在全局匹配时，返回一个包含所有匹配正则表达式的结果及分组捕获组的迭代器。
+
+示例：
+
+```js
+const allStr = `
+  <span>hello</span>
+  <span>world</span>
+  <span>mini</span>
+`;
+const allReg = /<span>([\s\S]+?)<\/span>/ig;
+const allRes = allStr.matchAll(allReg);
+for(const v of allRes) {
+  console.log(v);
+}
+```
+
+定义原型方法matchAll，兼容旧版浏览器：
+
+```js
+let testStr = 'thisisatest';
+// 旧版浏览器兼容
+// 方案一：使用exec()
+String.prototype.matchAll = function(reg) {
+  const ret = [];
+  let res;
+  while(res = reg.exec(this)) {
+    ret.push(res);
+  }
+
+  return ret;
+};
+
+console.dir(testStr.matchAll(/s/ig));
+
+// 方案二：使用replace+递归，注意此时全局匹配不用带g，而且会把目标内容替换。
+String.prototype.matchAll = function(reg) {
+  let res = this.match(reg);
+  if (res) {
+    let str = this.replace(res[0], "^".repeat(res[0].length));
+    let match = str.matchAll(reg) || [];
+    return [res, ...match];
+  }
+};
+
+console.dir(testStr.matchAll(/s/i));
+```
+
+## 字符方法
+
+定义在String.prototype上，正则表达式相关的方法，参见[String](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String)：
+
+- search
+- match
+- matchAll
+- split
+- replace
+
+### search
+
+[search() 方法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/search)用于检索字符串中指定的子字符串，返回值为索引位置。
+
+```
+str.search(regexp)
+```
+
+参数：
+
+- regexp：一个正则表达式对象，
+  如果传入一个非正则表达式对象，则会使用 `new RegExp(regexp)` 隐式地将其转换为正则表达式对象。
+
+示例：
+
+```js
+var str = 'hello world';
+console.log(str.search('o')); // 4
+console.log(str.search(/o/)); // 4
+```
 
 
+
+### match
+
+[match() 方法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/match)检索返回一个字符串匹配正则表达式的结果。
+
+```
+str.match(regexp)
+```
+
+参数同search方法。
+
+示例：
+
+```js
+var str = 'hello world';
+// 传入字符串
+console.log(str.match('o')); // [ 'o', index: 4, input: 'hello world', groups: undefined ]
+// 传入正则
+console.log(str.match(/o/)); // [ 'o', index: 4, input: 'hello world', groups: undefined ]
+// 传入全局匹配的正则
+console.log(str.match(/o/g)); // [ 'o', 'o' ]
+```
+
+
+
+### matchAll
+
+[matchAll() 方法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll)返回一个包含所有匹配正则表达式的结果及分组捕获组的迭代器。
+
+语法、参数类似match方法。
+
+示例：
+
+```js
+var str = 'hello world';
+var res = str.matchAll(/o/g);
+for (const v of res) {
+  console.log(v);
+}
+// [ 'o', index: 4, input: 'hello world', groups: undefined ]
+// [ 'o', index: 7, input: 'hello world', groups: undefined ]
+
+var res2 = [ ...str.matchAll(/o/g) ];
+console.log(res2);
+// [
+//  [ 'o', index: 4, input: 'hello world', groups: undefined ],
+//  [ 'o', index: 7, input: 'hello world', groups: undefined ]
+// ]
+```
+
+
+
+### split
+
+[split() 方法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/split)使用指定的分隔符字符串将一个String对象分割成子字符串数组，以一个指定的分割字串来决定每个拆分的位置。 
+
+语法：
+
+```
+str.split([separator[, limit]])
+```
+
+参数：
+
+- separator：指定表示每个拆分应发生的点的字符串
+  separator可以是一个字符串或正则表达式。
+- limit：一个整数，限定返回的分割片段数量。
+
+示例：
+
+```js
+var date1 = '2001-10-12';
+var date2 = '2021/11/02';
+
+console.log(date1.split('-'), date2.split('-'));
+// [ '2001', '10', '12' ] [ '2021/11/02' ]
+console.log(date1.split(/[-/]/g), date2.split(/[-/]/g));
+// [ '2001', '10', '12' ] [ '2021', '11', '02' ]
+```
+
+
+
+### replace
+
+[replace() 方法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace)返回一个由替换值（replacement）替换部分或所有的模式（pattern）匹配项后的新字符串。
+
+模式可以是一个字符串或正则表达式；替换值可以是一个字符串或者每次匹配都调用的回调函数。
+
+语法：
+
+```
+str.replace(regexp|substr, newSubStr|function)
+```
+
+参数：
+
+- pattern：regexp|substr
+  匹配模式，可以是正则表达式或字符串
+- replacement：newSubstr|function
+  用于替换的值，可以是字符串，或者是回调函数的返回结果。
+
+替换字符串可以插入下面的特殊变量名：
+
+| 变量名    | 代表的值                                                     |
+| --------- | ------------------------------------------------------------ |
+| $$        | 插入一个 "$"。                                               |
+| $&        | 插入匹配的子串。                                             |
+| $`        | 插入当前匹配的子串左边的内容。                               |
+| $'        | 插入当前匹配的子串右边的内容。                               |
+| $n        | 假如第一个参数是 [`RegExp`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/RegExp)对象，并且 n 是个小于100的非负整数，那么插入第 n 个括号匹配的字符串。提示：索引是从1开始。 |
+| `$<Name>` | 这里 Name 是一个分组名称。如果在正则表达式中并不存在分组（或者没有匹配），这个变量将被处理为空字符串。只有在支持命名分组捕获的浏览器中才能使用。 |
+
+示例，使用`$n`：
+
+```js
+var str = '(010)99999999 (020)8888888';
+var newStr = str.replace(/\((\d{3,4})\)(\d{7,8})/g, '$1-$2');
+console.log(newStr);
+// 010-99999999 020-8888888
+```
+
+示例，使用$`, $', $&（分别表示匹配内容左边、右边、本身）：
+
+```js
+var str = '%aaaa=%bbbb';
+var newStr = str.replace(/\w{4}/g, "$` $& $', ");
+console.log(newStr);
+// %% aaaa =%bbbb, =%%aaaa=% bbbb ,
+```
+
+示例，使用回调函数：
+
+```js
+var str = `
+  hola
+  <h1>测试</h1>
+  中间内容
+  <h2>标题二</h2>
+  有趣吗
+`;
+var reg = /<(h[1-6])>(.*?)<\/\1>/ig;
+// 回调函数入参：p0为匹配的字符串，p1,p2...为匹配的原子组
+// offset为匹配到的子串在原字符串中的偏移量，string为原字符串
+var result = str.replace(reg, (v, p1, p2, offset, string) => {
+  return `<span>${p2}</span>`;
+});
+
+console.log(result);
+//  hola
+//  <span>测试</span>
+//  中间内容
+//  <span>标题二</span>
+//  有趣吗
+```
+
+示例，使用`$<name>`：
+
+```js
+const sstr = '(010)99999999';
+const rreg = /\((?<zone>\d{3,4})\)(?<tel>\d{7,8})/;
+
+console.log(sstr.replace(rreg, '$<zone>-$<tel>'));
+// 010-99999999
+console.log(sstr.match(rreg));
+//[
+//  '(010)99999999',
+//  '010',
+//  '99999999',
+//  index: 0,
+//  input: '(010)99999999',
+//  groups: { zone: '010', tel: '99999999' }
+//]
+```
+
+
+
+## 正则方法
+
+定义在RegExp.prototype上的相关方法，参见[RegExp(正则表达式)](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp)：
+
+- test
+- exec
 
 
 
