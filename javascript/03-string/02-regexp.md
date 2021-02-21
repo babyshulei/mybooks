@@ -772,9 +772,59 @@ console.log(sstr.match(rreg));
 - test
 - exec
 
+### test
 
+[test() 方法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test)执行一个检索，用来查看正则表达式与指定的字符串是否匹配。返回 true 或 false。
 
+语法：
 
+```
+regexObj.test(str)
+```
+
+参数：
+
+- str：用来与正则表达式匹配的字符串
+
+示例：
+
+```js
+var str = '021-39489999';
+var reg = /\d{3,4}-\d{7,8}/;
+
+console.log(reg.test(str)); // true
+```
+
+### exec
+
+exec() 方法在一个指定字符串中执行一个搜索匹配。返回一个结果数组或 null。
+
+在设置了 [`global`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/global) 或 [`sticky`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky) 标志位的情况下（如 `/foo/g` or `/foo/y`），JavaScript [`RegExp`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/RegExp) 对象是**有状态**的。他们会将上次成功匹配后的位置记录在 [`lastIndex`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/lastIndex) 属性中。使用此特性，`exec()` 可用来对单个字符串中的多次匹配结果进行逐条的遍历（包括捕获到的匹配），而相比之下， [`String.prototype.match()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/match) 只会返回匹配到的结果。
+
+```
+regexObj.exec(str)
+```
+
+示例：
+
+```js
+var str = '021-39489999 010-88883333';
+var reg = /\d{3,4}-\d{7,8}/;
+var regg = /\d{3,4}-\d{7,8}/g;
+
+console.log('normal:', reg.exec(str));
+// 注意：这种场景下，如果匹配会一直有返回，且匹配到的是第一个满足正则的子字符串
+// normal: [ '021-39489999',
+//   index: 0,
+//   input: '021-39489999 010-88883333',
+//   groups: undefined ]
+
+while(res = regg.exec(str)) {
+    console.log('global:', res[0])
+}
+// global: 021-39489999
+// global: 010-88883333
+```
 
 
 
