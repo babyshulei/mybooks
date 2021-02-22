@@ -94,9 +94,7 @@ var equalSubstring = function(s, t, maxCost) {
 - 时间复杂度： O(n^2)
 - 空间复杂度： O(n)
 
-### 题解二
-
-前缀和 + 二分查找
+### 题解二：前缀和 + 二分查找
 
 假定字符串长度为n，对位置i，字符变化的开销是`|s[i] - t[i]|`。可以得到一个长度为n的数组 diff，`diff[i] =|s[i] - t[i]| `。
 
@@ -146,7 +144,7 @@ var equalSubstring = function(s, t, maxCost) {
 - 时间复杂度： O(nlogn)
 - 空间复杂度： O(n)
 
-### 题解三
+### 题解三：滑动窗口
 
 首先遍历字符串，得到 diff 数组。
 

@@ -1209,12 +1209,25 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.4.1" data-path="../../javascript/03-string/01-string-regexp.html">
+        <li class="chapter " data-level="4.4.1" data-path="../../javascript/03-string/01-es6-string.html">
             
-                <a href="../../javascript/03-string/01-string-regexp.html">
+                <a href="../../javascript/03-string/01-es6-string.html">
             
                     
-                    字符串和正则表达式
+                    ES6 字符串改进
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.2" data-path="../../javascript/03-string/02-regexp.html">
+            
+                <a href="../../javascript/03-string/02-regexp.html">
+            
+                    
+                    正则表达式
             
                 </a>
             
@@ -3535,125 +3548,11 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x6846;&#x67B6;"><b></b>&#x6846;&#x67B6;</a></li><ul><li><span class="title-icon "></span><a href="#vue"><b></b>Vue</a></li><ul><li><span class="title-icon "></span><a href="#1-&#x8BE6;&#x8FF0;vue&#x6570;&#x636E;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#x539F;&#x7406;"><b></b>1. &#x8BE6;&#x8FF0;Vue&#x6570;&#x636E;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#x539F;&#x7406;</a></li><li><span class="title-icon "></span><a href="#2-&#x8BE6;&#x8FF0;vue&#x7684;diff&#x7B97;&#x6CD5;"><b></b>2. &#x8BE6;&#x8FF0;vue&#x7684;diff&#x7B97;&#x6CD5;</a></li><li><span class="title-icon "></span><a href="#3-&#x7EC4;&#x4EF6;&#x901A;&#x4FE1;"><b></b>3. &#x7EC4;&#x4EF6;&#x901A;&#x4FE1;</a></li><li><span class="title-icon "></span><a href="#4-props&#x53CC;&#x5411;&#x7ED1;&#x5B9A;"><b></b>4. props&#x53CC;&#x5411;&#x7ED1;&#x5B9A;</a></li><li><span class="title-icon "></span><a href="#5-&#x5F15;&#x5165;cdn&#x8D44;&#x6E90;"><b></b>5. &#x5F15;&#x5165;cdn&#x8D44;&#x6E90;</a></li><li><span class="title-icon "></span><a href="#6-computed&#x548C;watch&#x7684;&#x533A;&#x522B;"><b></b>6. computed&#x548C;watch&#x7684;&#x533A;&#x522B;</a></li><li><span class="title-icon "></span><a href="#7-vuenexttick"><b></b>7. Vue.nextTick</a></li></ul><li><span class="title-icon "></span><a href="#&#x53C2;&#x8003;&#x94FE;&#x63A5;"><b></b>&#x53C2;&#x8003;&#x94FE;&#x63A5;</a></li></ul></ul></div><a href="#&#x6846;&#x67B6;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x6846;&#x67B6;"><a name="&#x6846;&#x67B6;" class="anchor-navigation-ex-anchor" href="#&#x6846;&#x67B6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6846;&#x67B6;</h1>
-<h2 id="vue"><a name="vue" class="anchor-navigation-ex-anchor" href="#vue"><i class="fa fa-link" aria-hidden="true"></i></a>Vue</h2>
-<h3 id="1-&#x8BE6;&#x8FF0;vue&#x6570;&#x636E;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#x539F;&#x7406;"><a name="1-&#x8BE6;&#x8FF0;vue&#x6570;&#x636E;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#x539F;&#x7406;" class="anchor-navigation-ex-anchor" href="#1-&#x8BE6;&#x8FF0;vue&#x6570;&#x636E;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#x539F;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a>1. &#x8BE6;&#x8FF0;Vue&#x6570;&#x636E;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#x539F;&#x7406;</h3>
-<p>&#x8BED;&#x6CD5;&#x7CD6;&#xFF0C;dom&#x76D1;&#x542C;+&#x6A21;&#x578B;&#x76D1;&#x542C;</p>
-<p>&#x6570;&#x636E;&#x631F;&#x6301;+&#x53D1;&#x5E03;&#x8005;-&#x8BA2;&#x9605;&#x8005;&#x6A21;&#x5F0F;&#x5B9E;&#x73B0;&#x3002;</p>
-<p>&#x6570;&#x636E;&#x631F;&#x6301;&#xFF1A;</p>
-<p>&#x200B;    get&#x65B9;&#x6CD5;&#xFF0C;set&#x65B9;&#x6CD5;&#x3002;</p>
-<p>&#x5BF9;&#x8C61;&#x66F4;&#x65B0;&#xFF1A;</p>
-<p>&#x200B;    &#x91CD;&#x5199;Object.defineProperty() &#x4E2D;&#x7684;get&#x548C;set&#x65B9;&#x6CD5;;</p>
-<p>&#x200B;    &#x5728;get&#x4E2D;&#x6536;&#x96C6;&#x4F9D;&#x8D56;&#xFF0C;&#x5728;set&#x4E2D;&#x89E6;&#x53D1;&#x4F9D;&#x8D56;&#x3002;</p>
-<p>&#x6570;&#x7EC4;&#x66F4;&#x65B0;&#xFF1A;</p>
-<p>&#x200B;    &#x91CD;&#x5199;&#x4E86;&#x4E00;&#x7EC4;&#x89C2;&#x5BDF;&#x6570;&#x7EC4;&#x7684;&#x539F;&#x578B;&#x65B9;&#x6CD5;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;push()&#xFF0C;pop()&#xFF0C;shift()&#x7B49;&#x3002;&#x624B;&#x52A8;&#x8C03;&#x7528;$set&#x66F4;&#x65B0;&#x6570;&#x7EC4;&#x503C;&#x3002;</p>
-<p>&#x200B;    &#x7528;&#x4E00;&#x4E2A;&#x62E6;&#x622A;&#x5668;&#x8986;&#x76D6;Array.prototype&#x3002;&#x5F53;&#x4F7F;&#x7528;Array&#x539F;&#x578B;&#x4E0A;&#x7684;&#x65B9;&#x6CD5;&#x64CD;&#x4F5C;&#x6570;&#x7EC4;&#x65F6;&#xFF0C;&#x6267;&#x884C;&#x7684;&#x662F;&#x62E6;&#x622A;&#x5668;&#x5BF9;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x62E6;&#x622A;&#x5668;&#x8FFD;&#x8E2A;&#x5230;Array&#x7684;&#x53D8;&#x5316;&#x3002;</p>
-<p>&#x200B;    &#x5728;getter&#x4E2D;&#x6536;&#x96C6;&#x4F9D;&#x8D56;&#xFF0C;&#x5728;&#x62E6;&#x622A;&#x5668;&#x4E2D;&#x89E6;&#x53D1;&#x4F9D;&#x8D56;&#x3002;</p>
-<p><a href="https://juejin.im/post/5af665186fb9a07aa83ecde0" target="_blank">&#x8FD9;&#x4E00;&#x6B21;&#x5F7B;&#x5E95;&#x641E;&#x61C2;Vue&#x9488;&#x5BF9;&#x6570;&#x7EC4;&#x548C;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;(MVVM)&#x7684;&#x5904;&#x7406;&#x65B9;&#x5F0F;- &#x6398;&#x91D1;</a></p>
-<p><a href="https://juejin.im/entry/5923973da22b9d005893805a" target="_blank">vue &#x7684;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x73B0;- &#x524D;&#x7AEF;- &#x6398;&#x91D1;</a></p>
-<p><a href="https://segmentfault.com/a/1190000006599500" target="_blank">&#x5256;&#x6790;Vue&#x539F;&#x7406;&amp;&#x5B9E;&#x73B0;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;MVVM - &#x524D;&#x7AEF;&#x8DB3;&#x8FF9;- SegmentFault ...</a></p>
-<h3 id="2-&#x8BE6;&#x8FF0;vue&#x7684;diff&#x7B97;&#x6CD5;"><a name="2-&#x8BE6;&#x8FF0;vue&#x7684;diff&#x7B97;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#2-&#x8BE6;&#x8FF0;vue&#x7684;diff&#x7B97;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>2. &#x8BE6;&#x8FF0;vue&#x7684;diff&#x7B97;&#x6CD5;</h3>
-<ul>
-<li>&#x521B;&#x5EFA;&#x8282;&#x70B9;</li>
-<li>&#x5220;&#x9664;&#x8282;&#x70B9;</li>
-<li>&#x66F4;&#x65B0;&#x8282;&#x70B9;<ul>
-<li>&#x66F4;&#x65B0;&#x5B50;&#x8282;&#x70B9;<ul>
-<li>&#x521B;&#x5EFA;&#x5B50;&#x8282;&#x70B9;</li>
-<li>&#x66F4;&#x65B0;&#x5B50;&#x8282;&#x70B9;</li>
-<li>&#x79FB;&#x52A8;&#x5B50;&#x8282;&#x70B9;</li>
-<li>&#x5220;&#x9664;&#x5B50;&#x8282;&#x70B9;</li>
+                                <ul>
+<li>vue</li>
+<li>react</li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>&#x66F4;&#x65B0;&#x5B50;&#x8282;&#x70B9;&#x904D;&#x5386;&#x7684;&#x4F18;&#x5316;&#x7B56;&#x7565;&#xFF1A;</p>
-<ul>
-<li>&#x65B0;&#x524D;&#x4E0E;&#x65E7;&#x524D;</li>
-<li>&#x65B0;&#x540E;&#x4E0E;&#x65E7;&#x540E;</li>
-<li>&#x65B0;&#x540E;&#x4E0E;&#x65E7;&#x524D;</li>
-<li>&#x65B0;&#x524D;&#x4E0E;&#x65E7;&#x540E;</li>
-<li>key-index&#x7D22;&#x5F15;&#x8868;</li>
-<li>&#x5FAA;&#x73AF;&#x904D;&#x5386;</li>
-</ul>
-<p>&#x53C2;&#x89C1;&#x7B14;&#x8BB0;&#xFF1A;Vue-&#x865A;&#x62DF;Dom</p>
-<h3 id="3-&#x7EC4;&#x4EF6;&#x901A;&#x4FE1;"><a name="3-&#x7EC4;&#x4EF6;&#x901A;&#x4FE1;" class="anchor-navigation-ex-anchor" href="#3-&#x7EC4;&#x4EF6;&#x901A;&#x4FE1;"><i class="fa fa-link" aria-hidden="true"></i></a>3. &#x7EC4;&#x4EF6;&#x901A;&#x4FE1;</h3>
-<h4 id="props-&#x548C;-emit"><a name="props-&#x548C;-emit" class="anchor-navigation-ex-anchor" href="#props-&#x548C;-emit"><i class="fa fa-link" aria-hidden="true"></i></a>props &#x548C; $emit</h4>
-<p>props&#xFF1A;&#x5355;&#x5411;&#x6570;&#x636E;&#x6D41;&#xFF0C;&#x5B8C;&#x6210;&#x7236;&#x5B50;&#x7EC4;&#x4EF6;&#x7684;&#x901A;&#x4FE1;&#x3002;</p>
-<p>&#x5B50;=&gt;&#x7236;&#xFF1A; this.$emit</p>
-<h4 id="attrs-&#x548C;-listeners"><a name="attrs-&#x548C;-listeners" class="anchor-navigation-ex-anchor" href="#attrs-&#x548C;-listeners"><i class="fa fa-link" aria-hidden="true"></i></a><code>$attrs</code> &#x548C; <code>$listeners</code></h4>
-<p>&#x4E0A;&#x9762;&#x8FD9;&#x79CD;&#x7EC4;&#x4EF6;&#x901A;&#x4FE1;&#x7684;&#x65B9;&#x5F0F;&#x53EA;&#x9002;&#x5408;&#x76F4;&#x63A5;&#x7684;&#x7236;&#x5B50;&#x7EC4;&#x4EF6;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5982;&#x679C;&#x7236;&#x7EC4;&#x4EF6;A&#x4E0B;&#x9762;&#x6709;&#x5B50;&#x7EC4;&#x4EF6;B&#xFF0C;&#x7EC4;&#x4EF6;B&#x4E0B;&#x9762;&#x6709;&#x7EC4;&#x4EF6;C&#xFF0C;&#x8FD9;&#x65F6;&#x5982;&#x679C;&#x7EC4;&#x4EF6;A&#x76F4;&#x63A5;&#x60F3;&#x4F20;&#x9012;&#x6570;&#x636E;&#x7ED9;&#x7EC4;&#x4EF6;C&#x90A3;&#x5C31;&#x884C;&#x4E0D;&#x901A;&#x4E86;&#xFF01; &#x53EA;&#x80FD;&#x662F;&#x7EC4;&#x4EF6;A&#x901A;&#x8FC7; props &#x5C06;&#x6570;&#x636E;&#x4F20;&#x7ED9;&#x7EC4;&#x4EF6;B&#xFF0C;&#x7136;&#x540E;&#x7EC4;&#x4EF6;B&#x83B7;&#x53D6;&#x5230;&#x7EC4;&#x4EF6;A &#x4F20;&#x9012;&#x8FC7;&#x6765;&#x7684;&#x6570;&#x636E;&#x540E;&#x518D;&#x901A;&#x8FC7; props &#x5C06;&#x6570;&#x636E;&#x4F20;&#x7ED9;&#x7EC4;&#x4EF6;C&#x3002;&#x5F53;&#x7136;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x662F;&#x975E;&#x5E38;&#x590D;&#x6742;&#x7684;&#xFF0C;&#x65E0;&#x5173;&#x7EC4;&#x4EF6;&#x4E2D;&#x7684;&#x903B;&#x8F91;&#x4E1A;&#x52A1;&#x4E00;&#x79CD;&#x589E;&#x591A;&#x4E86;&#xFF0C;&#x4EE3;&#x7801;&#x7EF4;&#x62A4;&#x4E5F;&#x6CA1;&#x53D8;&#x5F97;&#x56F0;&#x96BE;&#xFF0C;&#x518D;&#x52A0;&#x4E0A;&#x5982;&#x679C;&#x5D4C;&#x5957;&#x7684;&#x5C42;&#x7EA7;&#x8D8A;&#x591A;&#x903B;&#x8F91;&#x4E5F;&#x590D;&#x6742;&#xFF0C;&#x65E0;&#x5173;&#x4EE3;&#x7801;&#x8D8A;&#x591A;&#xFF01;</p>
-<p>&#x9488;&#x5BF9;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;<code>Vue 2.4</code> &#x63D0;&#x4F9B;&#x4E86;<code>$attrs</code> &#x548C; <code>$listeners</code> &#x6765;&#x5B9E;&#x73B0;&#x80FD;&#x591F;&#x76F4;&#x63A5;&#x8BA9;&#x7EC4;&#x4EF6;A&#x4F20;&#x9012;&#x6D88;&#x606F;&#x7ED9;&#x7EC4;&#x4EF6;C&#x3002;</p>
-<h4 id="eventbus"><a name="eventbus" class="anchor-navigation-ex-anchor" href="#eventbus"><i class="fa fa-link" aria-hidden="true"></i></a>eventBus</h4>
-<p>&#x8DE8;&#x7EC4;&#x4EF6;&#xFF1A;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;eventBus&#x3002;</p>
-<h4 id="v-model"><a name="v-model" class="anchor-navigation-ex-anchor" href="#v-model"><i class="fa fa-link" aria-hidden="true"></i></a>v-model</h4>
-<h4 id="parent-&#x548C;-children"><a name="parent-&#x548C;-children" class="anchor-navigation-ex-anchor" href="#parent-&#x548C;-children"><i class="fa fa-link" aria-hidden="true"></i></a>$parent &#x548C; $children</h4>
-<h4 id="vuex-&#x72B6;&#x6001;&#x7BA1;&#x7406;"><a name="vuex-&#x72B6;&#x6001;&#x7BA1;&#x7406;" class="anchor-navigation-ex-anchor" href="#vuex-&#x72B6;&#x6001;&#x7BA1;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a>vuex &#x72B6;&#x6001;&#x7BA1;&#x7406;</h4>
-<p><a href="https://juejin.im/post/5c77c4ae518825407505e262" target="_blank">Vue &#x7EC4;&#x4EF6;&#x901A;&#x4FE1;&#x65B9;&#x5F0F;&#x5168;&#x9762;&#x8BE6;&#x89E3;- &#x6398;&#x91D1;</a></p>
-<h3 id="4-props&#x53CC;&#x5411;&#x7ED1;&#x5B9A;"><a name="4-props&#x53CC;&#x5411;&#x7ED1;&#x5B9A;" class="anchor-navigation-ex-anchor" href="#4-props&#x53CC;&#x5411;&#x7ED1;&#x5B9A;"><i class="fa fa-link" aria-hidden="true"></i></a>4. props&#x53CC;&#x5411;&#x7ED1;&#x5B9A;</h3>
-<p><a href="https://juejin.im/entry/5843abb1a22b9d007a97854c" target="_blank">https://juejin.im/entry/5843abb1a22b9d007a97854c</a></p>
-<p><a href="https://cn.vuejs.org/v2/guide/components-props.html" target="_blank">https://cn.vuejs.org/v2/guide/components-props.html</a></p>
-<p>&#x8D77;&#x56E0;&#xFF1A;&#x9047;&#x5230;&#x62A5;&#x9519;</p>
-<p>vue.runtime.js:593 [Vue warn]: Avoid mutating a prop directly since the value will be overwritten whenever the parent component re-renders. Instead, use a data or computed property based on the prop&apos;s value. Prop being mutated: &quot;curr&quot;</p>
-<p>&#x539F;&#x56E0;&#xFF1A;&#x6240;&#x6709;&#x7684; prop &#x90FD;&#x4F7F;&#x5F97;&#x5176;&#x7236;&#x5B50; prop &#x4E4B;&#x95F4;&#x5F62;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x5355;&#x5411;&#x4E0B;&#x884C;&#x7ED1;&#x5B9A;&#xFF1A;&#x7236;&#x7EA7; prop &#x7684;&#x66F4;&#x65B0;&#x4F1A;&#x5411;&#x4E0B;&#x6D41;&#x52A8;&#x5230;&#x5B50;&#x7EC4;&#x4EF6;&#x4E2D;&#xFF0C;&#x4F46;&#x662F;&#x53CD;&#x8FC7;&#x6765;&#x5219;&#x4E0D;&#x884C;&#x3002;&#x8FD9;&#x6837;&#x4F1A;&#x9632;&#x6B62;&#x4ECE;&#x5B50;&#x7EC4;&#x4EF6;&#x610F;&#x5916;&#x6539;&#x53D8;&#x7236;&#x7EA7;&#x7EC4;&#x4EF6;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x4ECE;&#x800C;&#x5BFC;&#x81F4;&#x4F60;&#x7684;&#x5E94;&#x7528;&#x7684;&#x6570;&#x636E;&#x6D41;&#x5411;&#x96BE;&#x4EE5;&#x7406;&#x89E3;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x4F60;&#x4E0D;&#x5E94;&#x8BE5;&#x5728;&#x4E00;&#x4E2A;&#x5B50;&#x7EC4;&#x4EF6;&#x5185;&#x90E8;&#x6539;&#x53D8; prop&#x3002;</p>
-<h3 id="5-&#x5F15;&#x5165;cdn&#x8D44;&#x6E90;"><a name="5-&#x5F15;&#x5165;cdn&#x8D44;&#x6E90;" class="anchor-navigation-ex-anchor" href="#5-&#x5F15;&#x5165;cdn&#x8D44;&#x6E90;"><i class="fa fa-link" aria-hidden="true"></i></a>5. &#x5F15;&#x5165;cdn&#x8D44;&#x6E90;</h3>
-<p><a href="https://segmentfault.com/a/1190000015709430" target="_blank">https://segmentfault.com/a/1190000015709430</a>
-&#x51CF;&#x5C0F;&#x6253;&#x5305;&#x4F53;&#x79EF;&#xFF0C;&#x5C06;&#x516C;&#x7528;&#x7684;&#x4F9D;&#x8D56;&#x653E;&#x5230;cdn&#x4E0A;&#xFF0C;&#x7F13;&#x5B58;&#x4E00;&#x6B21;&#x5C31;&#x53EF;&#x4EE5;&#x3002;</p>
-<p>webpack&#x914D;&#x7F6E;&#x9879; externals&#xFF1A;<a href="https://webpack.docschina.org/configuration/externals/" target="_blank">https://webpack.docschina.org/configuration/externals/</a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">module</span>.exports = {
-    <span class="hljs-built_in">module</span>: {
-        ...
-    },
-    externals: {
-        <span class="hljs-string">&apos;vue&apos;</span>: <span class="hljs-string">&apos;Vue&apos;</span>,
-        <span class="hljs-string">&apos;vue-router&apos;</span>: <span class="hljs-string">&apos;VueRouter&apos;</span>,
-        <span class="hljs-string">&apos;alias&apos;</span>: <span class="hljs-string">&apos;ObjName&apos;</span>
-    },
-    ....
-}
-</code></pre>
-<p>alias &#x662F;&#x9879;&#x76EE;&#x5185;&#x4F7F;&#x7528;&#x65F6;&#x7684;&#x7EC4;&#x4EF6;&#x540D;&#x79F0;&#xFF0C;ObjName &#x662F;&#x67D0;&#x5916;&#x90E8;&#x7EC4;&#x4EF6;&#x5BF9;&#x5916;&#x66B4;&#x9732;&#x7684;&#x540D;&#x79F0;&#x3002;</p>
-<p><strong>&#x5728;&#x9879;&#x76EE; js &#x4E2D;&#x5F15;&#x5165;</strong></p>
-<pre><code class="lang-js"><span class="hljs-keyword">import</span> VueRouter <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;vue-router&apos;</span>
-</code></pre>
-<p>&#x5728;&#x6A21;&#x7248;&#x6587;&#x4EF6;&#x4E2D;&#x5F15;&#x5165; cdn</p>
-<pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width,initial-scale=1.0&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span> <span class="hljs-attr">htmlWebpackPlugin.options.title</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- &#x6B63;&#x5E38;&#x7684;&#x5F15;&#x5165; cdn &#x8D44;&#x6E90;&#x5373;&#x53EF; --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.bootcss.com/vue/2.5.16/vue.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- built files will be auto injected --&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
-</code></pre>
-<h3 id="6-computed&#x548C;watch&#x7684;&#x533A;&#x522B;"><a name="6-computed&#x548C;watch&#x7684;&#x533A;&#x522B;" class="anchor-navigation-ex-anchor" href="#6-computed&#x548C;watch&#x7684;&#x533A;&#x522B;"><i class="fa fa-link" aria-hidden="true"></i></a>6. computed&#x548C;watch&#x7684;&#x533A;&#x522B;</h3>
-<ul>
-<li><p>computed&#xFF1A;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;&#xFF0C;&#x7531;data/props&#x4E2D;&#x7684;&#x5DF2;&#x77E5;&#x503C;&#xFF0C;&#x8BA1;&#x7B97;&#x5F97;&#x5230;&#x7684;&#x4E00;&#x4E2A;&#x65B0;&#x503C;&#x3002;&#x4F9D;&#x8D56;&#x5176;&#x4ED6;&#x6570;&#x636E;&#x7684;&#x53D8;&#x5316;&#x3002;</p>
-<p>&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x60F0;&#x6027;&#x7684;watcher&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x53D6;&#x503C;&#x64CD;&#x4F5C;(getter&#x89E6;&#x53D1;)&#x65F6;&#x6536;&#x96C6;&#x4F9D;&#x8D56;&#x4E14;&#x8BA1;&#x7B97;&#x503C;
-&#x5F53;&#x6709;&#x4F9D;&#x8D56;&#x53D8;&#x52A8;&#x65F6;&#x4EC5;&#x5C06; dirty &#x7F6E;&#x4E3A; true&#xFF0C;&#x4E0D;&#x505A;&#x8BA1;&#x7B97;&#x64CD;&#x4F5C;
-&#x5F53;&#x6709;&#x53D6;&#x503C;&#x64CD;&#x4F5C;&#x65F6;&#xFF0C;&#x6839;&#x636E;&#x81EA;&#x8EAB;&#x6807;&#x8BB0; dirty &#x5C5E;&#x6027;&#x8FD4;&#x56DE;&#x4E0A;&#x4E00;&#x6B21;&#x8BA1;&#x7B97;&#x7ED3;&#x679C;/&#x91CD;&#x65B0;&#x8BA1;&#x7B97;&#x503C;</p>
-</li>
-<li><p>watch&#xFF1A;&#x76D1;&#x542C;&#x67D0;&#x4E2A;&#x6570;&#x636E;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x652F;&#x6301;&#x6DF1;&#x5EA6;&#x76D1;&#x542C;&#x3002;</p>
-<p>&#x751F;&#x6210;&#x4E00;&#x4E2A;watcher&#x5BF9;&#x8C61;&#xFF0C;&#x5728;&#x76D1;&#x89C6;&#x7684;&#x5C5E;&#x6027;&#x6BCF;&#x6B21;&#x53D8;&#x52A8;&#x65F6;&#x90FD;&#x4F1A;&#x89E6;&#x53D1;&#x56DE;&#x8C03;&#x3002;</p>
-</li>
-</ul>
-<p>&#x9002;&#x7528;&#x573A;&#x666F;&#xFF1A;</p>
-<p>computed&#xFF1A;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x53D7;&#x591A;&#x4E2A;&#x6570;&#x636E;&#x5F71;&#x54CD;</p>
-<p>watch&#xFF1A;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5F71;&#x54CD;&#x591A;&#x4E2A;&#x6570;&#x636E;</p>
-<h3 id="7-vuenexttick"><a name="7-vuenexttick" class="anchor-navigation-ex-anchor" href="#7-vuenexttick"><i class="fa fa-link" aria-hidden="true"></i></a>7. Vue.nextTick</h3>
-<p>&#x5728;&#x4E0B;&#x6B21; DOM &#x66F4;&#x65B0;&#x5FAA;&#x73AF;&#x7ED3;&#x675F;&#x4E4B;&#x540E;&#x6267;&#x884C;&#x5EF6;&#x8FDF;&#x56DE;&#x8C03;&#x3002;&#x5728;&#x4FEE;&#x6539;&#x6570;&#x636E;&#x4E4B;&#x540E;&#x7ACB;&#x5373;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x83B7;&#x53D6;&#x66F4;&#x65B0;&#x540E;&#x7684; DOM&#x3002;</p>
-<p><a href="https://cn.vuejs.org/v2/api/index.html#Vue-nextTick" target="_blank">Vue API-nextTick</a></p>
-<h2 id="&#x53C2;&#x8003;&#x94FE;&#x63A5;"><a name="&#x53C2;&#x8003;&#x94FE;&#x63A5;" class="anchor-navigation-ex-anchor" href="#&#x53C2;&#x8003;&#x94FE;&#x63A5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x53C2;&#x8003;&#x94FE;&#x63A5;</h2>
-<p><a href="https://segmentfault.com/a/1190000015580896" target="_blank">https://segmentfault.com/a/1190000015580896</a></p>
-<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2021-01-03 11:25:31</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2021-01-03 11:25:31</span></div></div>
+<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2021-02-21 22:17:32</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2021-01-03 11:25:31</span></div></div>
                                 
                                 </section>
                             
@@ -3696,7 +3595,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"框架","level":"3.4","depth":1,"next":{"title":"工程化","level":"3.5","depth":1,"path":"question/05-engineering/README.md","ref":"question/05-engineering/README.md","articles":[]},"previous":{"title":"JavaScript","level":"3.3","depth":1,"path":"question/03-javascript/README.md","ref":"question/03-javascript/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"showLevel":false,"associatedWithSummary":true,"mode":"float","showGoTop":true,"printLog":false,"multipleH1":true,"float":{"floatIcon":"fa fa-navicon","showLevelIcon":false,"level1Icon":"","level2Icon":"","level3Icon":""},"pageTop":{"showLevelIcon":false,"level1Icon":"","level2Icon":"","level3Icon":""}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"question/04-framework/README.md","mtime":"2021-01-03T12:50:18.458Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-02-18T10:58:25.181Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"框架","level":"3.4","depth":1,"next":{"title":"工程化","level":"3.5","depth":1,"path":"question/05-engineering/README.md","ref":"question/05-engineering/README.md","articles":[]},"previous":{"title":"JavaScript","level":"3.3","depth":1,"path":"question/03-javascript/README.md","ref":"question/03-javascript/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"showLevel":false,"associatedWithSummary":true,"mode":"float","showGoTop":true,"printLog":false,"multipleH1":true,"float":{"floatIcon":"fa fa-navicon","showLevelIcon":false,"level1Icon":"","level2Icon":"","level3Icon":""},"pageTop":{"showLevelIcon":false,"level1Icon":"","level2Icon":"","level3Icon":""}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"question/04-framework/README.md","mtime":"2021-02-22T06:50:20.539Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-02-22T06:50:43.184Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
