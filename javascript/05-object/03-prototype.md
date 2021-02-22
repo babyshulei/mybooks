@@ -71,6 +71,23 @@ console.log(a); // Nothing {}
 >
 > `__proto__` 是可设置属性，使用ES6方法 `Object.setPrototypeOf()` 可以进行设置。
 
+### 总结
+
+- 实例.`__proto__` === 原型
+- 实例.constructor === 构造函数
+- 原型.constructor === 构造函数
+- 构造函数.prototype === 原型
+
+示例：
+
+```js
+var obj = new Object();
+console.log(obj.__proto__ === Object.prototype); // true
+console.log(obj.constructor === Object); // true
+console.log(Object.prototype.constructor === Object); // true
+console.log(obj.constructor.prototype === Object.prototype); // true
+```
+
 ## 原型链
 
 基本思想：利用原型让一个引用类型继承另一个引用类型的属性和方法。

@@ -45,15 +45,21 @@
 
 ### 3. 什么是盒子模型？
 
-由内到外：content-box、padding-box、border-box、margin-box。
+页面渲染时，dom 元素所采用的 **布局模型**。
 
-标准盒子模型（默认）：width、height是content-box的宽高。
+- 由内到外：content-box、padding-box、border-box、margin-box。
 
-IE怪异模式下：width、height是border-box的宽高。
+- 标准盒子模型（默认）：width、height是content-box的宽高。
 
-#### 如何设置这两种盒模型
+- IE5.X和6怪异模式下：width、height是border-box的宽高。
+  IE8 及更早IE版本不支持设置padding的宽度和border的宽度属性。
+  解决IE8及更早版本不兼容问题可以在HTML页面声明 `<!DOCTYPE html>`即可。
 
-box-sizing: border-box | content-box;
+可通过`box-sizing`进行设置。
+
+- box-sizing: border-box | content-box;
+
+参见笔记：前端-CSS-盒子模型
 
 
 
@@ -103,26 +109,42 @@ inline-block从外面看是inline，里面看是block，可以设置宽度、高
 
 ### 6. 什么是BFC？
 
-BFC（Block Formatting Context）：块级格式化上下文。你可以把它理解成一个独立的区域。
+BFC（Block Formatting Context）：块级格式化上下文。
+
+文档流可分为定位流、浮动流、常规流。其中常规流就是BFC中的FC，即格式化上下文。FC是页面中的一块渲染区域，有一套渲染规则，决定了其子元素如何布局，以及和其他元素之间的关系和作用。常见的FC有BFC、IFC、GFC、FFC。
+
+BFC是块级格式化上下文，适用于布局块级盒子的一块渲染区域。
 
 #### BFC 的原理/BFC的布局规则
 
-BFC 的原理，其实也就是 BFC 的渲染规则（能说出以下四点就够了）。包括：
+BFC 的原理，其实也就是 BFC 的渲染规则。包括：
 
-- BFC **内部的**子元素，在垂直方向，**边距会发生重叠**。
+- BFC **内部的**子元素垂直排列，在垂直方向，**边距会发生重叠**。
 - BFC在页面中是独立的容器，外面的元素不会影响里面的元素，反之亦然。
+- 每个元素的左外边距与包含块的左边界相接触（从左向右），即使浮动元素也是如此。（这说明BFC中子元素不会超出他的包含块，而position为absolute的元素可以超出他的包含块边界）
 - **BFC区域不与旁边的float box区域重叠**。（可以用来清除浮动带来的影响 overflow: hidden）。
 - 计算BFC的高度时，浮动的子元素也参与计算。
 
 #### 如何生成BFC
 
-- 浮动中：float的值不为none
-
+- 根元素：`<html>`
+- 浮动元素：float的值不为none
+- 绝对定位元素：position的值为absolute或fixed
 - overflow的值不为visible
-- display的值为inline-block、table-cell、table-caption、flex、inline-flex
-- 定位中：position的值为absolute或fixed
+- display的值为inline-block、table-cell、table-caption、flex、inline-flex、grid、inline-grid
 
-[02-CSS盒模型及BFC.md](https://github.com/qianguyihao/Web/blob/master/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/02-CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E5%8F%8ABFC.md)
+#### 应用
+
+- 阻止`margin`重叠
+- 可以包含浮动元素 —— 清除内部浮动(清除浮动的原理是两个`div`都位于同一个 BFC 区域之中)
+- 自适应两栏布局
+- 可以阻止元素被浮动元素覆盖
+
+参见：
+
+[块格式化上下文- Web 开发者指南| MDN](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context)
+
+[史上最全面、最透彻的BFC原理剖析 - 掘金](https://juejin.cn/post/6844903496970420237)
 
 
 
