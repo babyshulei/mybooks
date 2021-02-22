@@ -826,6 +826,83 @@ while(res = regg.exec(str)) {
 // global: 010-88883333
 ```
 
+## 断言匹配
+
+[断言](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions/Assertions)写在括号中，不过不是组，不会在匹配结果中保存，可以将断言理解为正则中的条件。
+
+### (?=exp)
+
+**零宽先行断言** `?=exp` 匹配后面为 `exp` 的内容。
+
+示例，将金额格式统一规范为带小数点：
+
+```js
+var lessons = `
+  js： 300元，200次；
+  python：200.00元，100次；
+  java：400元，300次；
+`;
+var reg = /(\d+)(.00)*(?=元)/g;
+
+lessons = lessons.replace(reg, (v, ...args) => {
+  args[1] = args[1] || '.00';
+  return args.slice(0, 2).join('');
+});
+
+console.log(lessons);
+// js： 300.00元，200次；
+// python：200.00元，100次；
+// java：400.00元，300次；
+```
+
+### (?<=exp)
+
+**零宽后行断言** `?<=exp` 匹配前面为 `exp` 的内容。
+
+示例，使用断言模糊电话号：
+
+```js
+var tels = `
+  小红：13039480002
+  小明：18822228889
+`;
+var reg = /(?<=\d{7})\d{4}/g;
+tels = tels.replace(reg, '*'.repeat(4));
+
+console.log(tels);
+// 小红：1303948****
+// 小明：1882222****
+```
+
+### (?!exp)
+
+**零宽负向先行断言**，后面不能出现 `exp` 指定的内容。
+
+示例，断言限制用户名关键词：
+
+```js
+var user1 = 'hello';
+var user2 = 'atesth';
+// 用户名中不能含test，5-6位
+var reg = /^(?!.*test.*)[a-z]{5,6}$/;
+
+console.log(reg.test(user1), reg.test(user2)); // true false
+```
+
+### (?<!exp)
+
+**零宽负向后行断言**，前面不能出现`exp`指定的内容。
+
+示例，匹配前面不是数字的字母：
+
+```js
+var str = 'sdkfjk112kdj';
+var reg = /(?<!\d+)[a-z]+/;
+
+console.log(reg.exec(str));
+// [ 'sdkfjk', index: 0, input: 'sdkfjk112kdj', groups: undefined ]
+```
+
 
 
 ## 参考资料
@@ -833,6 +910,8 @@ while(res = regg.exec(str)) {
 [正则表达式- 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/正则表达式)
 
 [正则表达式- JavaScript | MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions)
+
+[Assertions - JavaScript | MDN - Mozilla](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions/Assertions)
 
 [JavaScript || 正则表达式 - segmentfault](https://segmentfault.com/a/1190000008729041)
 
