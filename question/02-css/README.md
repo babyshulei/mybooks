@@ -125,7 +125,7 @@ BFC 的原理，其实也就是 BFC 的渲染规则。包括：
 - **BFC区域不与旁边的float box区域重叠**。（可以用来清除浮动带来的影响 overflow: hidden）。
 - 计算BFC的高度时，浮动的子元素也参与计算。
 
-#### 如何生成BFC
+#### 如何生成BFC？
 
 - 根元素：`<html>`
 - 浮动元素：float的值不为none
@@ -133,7 +133,7 @@ BFC 的原理，其实也就是 BFC 的渲染规则。包括：
 - overflow的值不为visible
 - display的值为inline-block、table-cell、table-caption、flex、inline-flex、grid、inline-grid
 
-#### 应用
+#### BFC的应用
 
 - 阻止`margin`重叠
 - 可以包含浮动元素 —— 清除内部浮动(清除浮动的原理是两个`div`都位于同一个 BFC 区域之中)
@@ -151,6 +151,44 @@ BFC 的原理，其实也就是 BFC 的渲染规则。包括：
 ### 7. em, rem, px, rpx, vw, vh 的概念。
 
 em相对于自身的字体大小，而rem相对于root element(html)。
+
+
+
+### 8. 什么是层叠上下文？
+
+元素提升为一个比较特殊的图层，在三维空间中 **(z轴)** 高出普通元素一等。
+
+#### 如何生成层叠上下文？
+
+触发条件
+
+- 根层叠上下文(`html`)
+- `position`
+- css3属性
+  - `flex`
+  - `transform`
+  - `opacity`
+  - `filter`
+  - `will-change`
+  - `-webkit-overflow-scrolling`
+
+#### 同一层叠上下文中，层叠等级如何排列？
+
+- 层叠等级：层叠上下文在z轴上的排序
+  - 在同一层叠上下文中，层叠等级才有意义
+  - `z-index`的优先级最高
+
+![img](.\image\z-index.png)
+
+
+
+
+
+参考链接：
+
+[层叠上下文- Web 开发者指南| MDN](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context)
+
+[深入理解CSS中的层叠上下文和层叠顺序« 张鑫旭-鑫空间-鑫生活](https://www.zhangxinxu.com/wordpress/2016/01/understand-css-stacking-context-order-z-index/)
 
 
 
