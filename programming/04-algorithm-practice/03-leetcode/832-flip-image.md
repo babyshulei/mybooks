@@ -100,6 +100,38 @@ var flipAndInvertImage = function(A) {
 };
 ```
 
+#### 改进！
+
+有个小细节，当两个翻转的数不相等时，保留原状即可，不用翻转+反转操作了！
+
+例：[1, 0, ... 1, 0] -> [0, 1, ... 0, 1] -> [1, 0, ... 1, 0]
+
+```js
+var flipAndInvertImage = function(A) {
+    const n = A.length;
+
+    for(let i = 0; i < n; i++) {
+        let left = 0;
+        let right = n - 1;
+
+        while(left < right) {
+            if(A[i][left] === A[i][right]) {
+                A[i][left] ^= 1;
+                A[i][right] ^= 1;
+            }
+            left++;
+            right--;
+        }
+
+        if (left === right) {
+            A[i][left] ^= 1;
+        }
+    }
+
+    return A;
+};
+```
+
 
 
 ## 参考链接
