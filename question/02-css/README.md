@@ -22,6 +22,9 @@
 
 ### 2. 描述一下选择器的优先级
 
+- `!important` > 内联 > `#id` > `.class` > `tag` > * > 继承 > 默认
+- 选择器从右往左解析
+
 先比较选择器里id选择器的个数，如果相同则比较class选择器的个数，如果还相同就比较type(tag)选择器的个数。
 
 内联  > ID选择器  > 类选择器 > 标签选择器
@@ -180,21 +183,47 @@ em相对于自身的字体大小，而rem相对于root element(html)。
 
 ![img](.\image\z-index.png)
 
-
-
-
-
 参考链接：
 
 [层叠上下文- Web 开发者指南| MDN](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context)
 
 [深入理解CSS中的层叠上下文和层叠顺序« 张鑫旭-鑫空间-鑫生活](https://www.zhangxinxu.com/wordpress/2016/01/understand-css-stacking-context-order-z-index/)
 
+### 9. 如何创建一个CSS动画？
+
+- transition：过渡动画
+  - `transition-property`: 属性
+  - `transition-duration`: 间隔
+  - `transition-timing-function`: 曲线
+  - `transition-delay`: 延迟
+  - 常用钩子: `transitionend`
+- animation：关键帧动画
+  - `animation-name`: 动画名称，对应`@keyframes`
+  - `animation-duration`: 间隔
+  - `animation-timing-function`: 曲线
+  - `animation-delay`: 延迟
+  - `animation-iteration-count`: 次数
+    - infinite: 循环动画
+  - `animation-direction`: 方向
+    - alternate: 反向播放
+  - `animation-fill-mode`: 静止模式
+    - forwards: 停止时，保留最后一帧
+    - backwards: 停止时，回到第一帧
+    - both: 同时运用 forwards / backwards
+  - 常用钩子: `animationend`
+- 动画属性：尽量使用动画属性进行动画，能拥有较好的性能表现
+  - translate
+  - scale
+  - rotate
+  - skew
+  - opacity
+  - color
+
 
 
 ## 实践
 
-### 1. font-size 计算题
+### 1. font-size 计算
 
 **说出以下代码里p元素的font-size和line-height的computed value，并解释原因。**
 
@@ -208,25 +237,46 @@ p元素的font-size为20px，line-height为40px，em相对于自身的font-size�
 
 ### 2. float相关
 
-#### 如何清除float？
+#### 如何清除浮动？
 
 > 在非IE浏览器（如Firefox）下，当容器的高度为auto，且容器的内容中有浮动（float为left或right）的元素，在这种情况下，容器的高度不能自动伸长以适应内容的高度，使得内容溢出到容器外面而影响（甚至破坏）布局的现象。这个现象叫浮动溢出，为了防止这个现象的出现而进行的CSS处理，就叫CSS清除浮动。
 
-float的元素不在文档流里，无法撑开容器，clearfix就是为了解决这个问题。可以用overflow:hidden，也可以在容器末尾加一个空div并设置clear:both，还可以用如下代码：
+float的元素不在文档流里，无法撑开容器，clearfix就是为了解决这个问题。有以下几种方案：
+
+- 使用带clear属性的子元素
+  - 如添加空div、伪元素，并设置`clear:both`
+- 创建父级BFC
+  - 如设置overflow:hidden
+- 父级设置高度
+
+示例代码：
 
 ```css
+<div class="clearfix">
+	<div class="floatbox"></div>
+</div>
+
+/* 方案一 */
 .clearfix:after {
     content: '';
     display: block;
     clear: both;
 }
+
+/* 方案二 */
+clearfix {
+    overflow: hidden;
+}
+
+/* 方案三 */
+clearfix {
+    height: 200px;
+}
 ```
 
-- 使用带clear属性的空元素
-- 使用css的overflow属性 hidden, auto
-- 利用伪元素 clearfix
-
 [清除浮动的四种方式及其原理理解- 掘金](https://juejin.im/post/59e7190bf265da4307025d91)
+
+
 
 #### float实例
 
@@ -245,15 +295,25 @@ float的元素不在文档流里，无法撑开容器，clearfix就是为了解�
 
 ### 3. 如何做水平和垂直居中？
 
-方案一，已知宽高，设为absolute，然后left、top都设为50%，根据宽高设置负margin来居中；
+水平居中：
 
-方案二，类似方案一，最后一步用transform: translate(-50%,-50%)；
+- 行内元素：`text-align: center`
+- 块级元素：`margin: 0 auto`
+- `absolute + transform/margin`
+- `flex + justify-content:center`
 
-方案三，绝对定位，top、bottom、left、right都设为0，设好宽高，margin设为auto；
+垂直居中：
 
-方案四，display:table-cell + vertical-align:middle。
+- `line-height: height`
+- `absolute + transform/margin`
+- `flex + align-items:center`
+- `tabel-cell + vertical-align:middle`
 
-方案五，display: flex; justify-content: center; align-items: center;
+水平垂直居中：
+
+- `absolute + top,left: 50% + margin/transform: -50%`
+- `absolute + top,left,bottom,right:0 + margin:auto`
+- `flex + justify-content + align-items`
 
 
 

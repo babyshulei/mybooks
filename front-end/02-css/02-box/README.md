@@ -111,7 +111,7 @@ In CSS 2.1, a box may be laid out according to three positioning schemes:
 
 - [Absolute positioning](https://www.w3.org/TR/CSS2/visuren.html#absolute-positioning). In the absolute positioning model, a box is removed from the normal flow entirely (it has no impact on later siblings) and assigned a position with respect to a containing block. （绝对定位，会脱离常规流）
 
-An element is called ***out of flow*** if it is floated, absolutely positioned, or is the root element. An element is called ***in-flow*** if it is not out-of-flow. The *flow of an element* A is the set consisting of A and all in-flow elements whose nearest out-of-flow ancestor is A.（如果一个元素是浮动的，绝对定位的或者是根元素，它就叫流外（元素）。不是流外元素的叫流内元素。元素A的流 由A和所有最近的流外祖先为A的流内元素组成的）
+An element is called **out of flow** if it is floated, absolutely positioned, or is the root element. An element is called **in-flow** if it is not out-of-flow. The *flow of an element* A is the set consisting of A and all in-flow elements whose nearest out-of-flow ancestor is A.（如果一个元素是浮动的，绝对定位的或者是根元素，它就叫流外（元素）。不是流外元素的叫流内元素。元素A的流 由A和所有最近的流外祖先为A的流内元素组成的）
 
 
 

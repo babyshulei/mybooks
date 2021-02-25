@@ -48,6 +48,15 @@ HTML5提供的`<!DOCTYPE html>`是标准模式，向后兼容的, 等同于开�
 
 
 
+### 5. 如何引入script？
+
+- html 静态`<script>`引入
+- js 动态插入`<script>`
+- `<script defer>`：延迟加载，元素解析完成后执行
+- `<script async>`：异步加载，但执行时会阻塞元素渲染
+
+
+
 ## HTML5
 
 ### 1. h5新特性
