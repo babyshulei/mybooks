@@ -1,4 +1,4 @@
-# 基础
+# 知识点
 
 ## 作用域、闭包
 
@@ -70,9 +70,16 @@ B.prototype = new A();
 
 每个实例对象（ object ）都有一个私有属性（称之为 `__proto__` ）指向它的构造函数的原型对象（**prototype** ）。该原型对象也有一个自己的原型对象( `__proto__` ) ，层层向上直到一个对象的原型对象为 `null`。根据定义，`null` 没有原型，并作为这个**原型链**中的最后一个环节。
 
-上一题的例子
 
 ```javascript
+function A() {
+    this.a = 1;
+}
+  
+function B() {
+    this.b = 2;
+}
+
 var b = new B();
 // b.b == 2
 // b.a == 1
@@ -105,6 +112,18 @@ function getType(param) {
 }
 ```
 
+
+### 2. 设计一个数据结构，使 `a==1 && a==2 && a==3` 为 true
+
+隐式类型转换
+
+#### 使`a===1 && a===2 && a===3` 为 true
+
+Object.defineProperty
+
+参考笔记：JavaScript-基本概念
+
+<https://blog.csdn.net/Bule_daze/article/details/103470176>
 
 
 ## 字符串
@@ -249,3 +268,61 @@ click事件有300ms的延迟。点击蒙层上的关闭按钮，蒙层消失后�
 
     例如加个透明蒙层、pointer-events、下面元素的事件处理器处理等等。
 
+## JavaScript 执行
+
+### 1. JavaScript代码的执行机制？
+
+参考笔记：JavaScript-异步
+
+JavaScript是单线程的，同一时刻只能执行一段代码。代码顺序执行。
+
+#### 单线程的优缺点？解决方案？为什么不设计成多线程？
+
+优点：实现相对简单、执行环境相对单纯。缺点：任务耗时很长时，会出现页面卡死。
+
+解决方案：异步。
+
+为了避免多线程处理状态不同步的问题。单线程可以保证（DOM）状态的可靠性。
+
+#### 如何实现异步？
+
+回调、事件监听、发布/订阅、Promise、async/await
+
+### 2. 详述js异步机制Event Loop
+
+参考笔记：JavaScript-异步-Event Loop
+
+1个主线程+n个任务队列，浏览器异步处理后推入队列，循环处理，一个macroTask后跟全部microtask
+
+Event Loop 执行过程：
+1. 一开始整个脚本 script 作为一个宏任务执行
+2. 执行过程中，同步代码直接执行，宏任务进入宏任务队列，微任务进入微任务队列。
+3. 当前宏任务执行完出队，检查微任务列表，有则依次执行，直到全部执行完毕。
+4. 执行浏览器 UI 线程的渲染工作。
+5. 检查是否有 Web Worker 任务，有则执行。
+6. 执行完本轮的宏任务，回到步骤 2，依次循环，直到宏任务和微任务队列为空。
+
+
+
+## this
+
+### new 运算符的执行过程？
+
+使用 new 调用函数时，会自动执行以下操作：
+
+1. 创建（或者说构造）一个全新的对象。
+2. 这个新对象会被执行 [[Prototype]] 连接。
+3. 这个新对象会绑定到函数调用的 `this`。
+4. 如果函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象。
+
+```js
+// new F();
+var obj = new Object(); // 创建一个空对象
+obj.__proto__ = F.prototype; // obj的__proto__指向构造函数的prototype
+var result = F.call(obj); // 把构造函数的this指向obj，并执行构造函数把结果赋值给result
+if (typeof(result) === 'object') {
+    objB = result; // 构造函数F的执行结果是对象，就把这个引用类型的对象返回给objB
+} else {
+    objB = obj; // 构造函数F的执行结果不是对象，就返回obj这个对象给objB
+}
+```

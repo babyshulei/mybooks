@@ -1,25 +1,24 @@
 JavaScript
 
-- [ ] 基础
+- [ ] 知识点
   - [ ] 作用域、闭包
   - [ ] 原型、原型链
   - [ ] 数据类型
   - [ ] 字符串
   - [ ] 函数
+  - [ ] 代理与反射
   - [ ] 事件
+  - [ ] JavaScript 执行
   - [ ] this
-  - [ ] Proxy和Reflection，proxy的应用
   - [ ] ECMAScript 新特性
-- [ ] 原理&实现
-  - [ ] EventLoop
+- [ ] 手写代码
   - [ ] Promise
-  - [ ] 浮点数存储
-  - [ ] 隐式类型转换
-- [ ] 应用&扩展
-  - [ ] 自定义原生事件
-  - [ ] 防抖、节流
-  - [ ] 数组去重方法
-  - [ ] 字符串处理
-  - [ ] 深拷贝、浅拷贝
-  - [ ] TypeScript
+  - [ ] 应用
+- [ ] 例题
+  - [ ] EventLoop
 
+
+
+参考链接：
+
+[JavaScript 异步 - jsliang](https://github.com/LiangJunrong/document-library/blob/master/系列-面试资料/JavaScript/异步系列/README.md#chapter-three)
