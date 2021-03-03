@@ -82,6 +82,7 @@
     * [词法作用域](javascript/01-scope/01-lexical-scope.md)
     * [块级作用域](javascript/01-scope/02-block-scope.md)
     * [闭包](javascript/01-scope/03-closuer.md)
+    * [执行上下文](javascript/01-scope/04-excution-context.md)
 * [Number](javascript/02-number/README.md)
 * [字符串](javascript/03-string/README.md)
     * [ES6 字符串改进](javascript/03-string/01-es6-string.md)
