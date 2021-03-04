@@ -132,13 +132,19 @@ FunctionExectionContext = { // 函数执行上下文
 
 > 词法环境和变量环境的区别：
 >
-> 在 ES6 中，词法环境和变量环境的区别在于前者用于存储函数声明和变量（ `let` 和 `const` ）绑定，而后者仅用于存储变量（ `var` ）绑定。
+> 在 ES5中，词法环境和变量环境的区别在于前者是会根据代码执行上下文变化，而变量环境主要是用来存储var声明和函数声明的绑定。可以理解为词法环境是动态的，而变量环境是静态的，通常两种环境是相同的，但是某些情况会有差别，如try-catch语句。
 >
-> 词法环境是用于解析代码执行上下文标识符引用的环境标识。如 let、const等声明在这里，会有块级作用域的概念。
+> 在 ES6 中，词法环境和变量环境的区别在于前者用于存储函数声明和变量（ `let` 和 `const` ）绑定，而后者仅用于存储变量（ `var` ）绑定。同样，词法环境是跟随代码动态更新的，变量环境仍然为静态的绑定。
 >
-> 变量环境是执行上下文中保存var声明的绑定的环境标识，其作用域为函数作用域。
+> 词法环境是标识用于解析代码执行上下文标识符引用。如 let、const等声明在这里，会有块级作用域的概念。
 >
-> 参见：[Variable Environment vs lexical environment - stackoverflow](https://stackoverflow.com/questions/23948198/variable-environment-vs-lexical-environment)
+> 变量环境是标识执行上下文中用来存储var声明的绑定，其作用域为函数作用域。
+>
+> 参见：
+>
+> [Variable Environment vs lexical environment - stackoverflow](https://stackoverflow.com/questions/23948198/variable-environment-vs-lexical-environment)
+>
+> [Clarity on the difference between “LexicalEnvironment” and “VariableEnvironment” in ECMAScript/JavaScript - stackoverflow](https://stackoverflow.com/questions/15031667/clarity-on-the-difference-between-lexicalenvironment-and-variableenvironment)
 
 示例：
 

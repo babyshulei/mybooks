@@ -521,14 +521,14 @@ addTack(400, '4');
 
    思想：对于简单类型，直接复制。对于引用类型，递归复制它的每一个属性。
 
-2. JSON.parse(JSON.stringify(obj));
+2. `JSON.parse(JSON.stringify(obj))`
 
    原理就是先将对象转换为字符串，再通过JSON.parse重新建立一个对象。
 
    但是这种方法的局限也很多：
 
-   - 不能复制function、正则、Symbol
-   - 循环引用报错
+   - 不能复制undefined、function、正则、Symbol
+   - 具有循环引用的对象时，报错
    - 相同的引用会被重复复制
 
 3. 函数库lodash
