@@ -174,7 +174,7 @@ console.log(a, b, c, o, p, q, r, s)
 JS有原始类型和对象类型，一些运算符可能会触发js的隐式类型转换。
 
 - `+, ==` 运算符，存在js的隐式类型转换，转换为原始值。
-- `-, *, /` 运算符，用于数学计算，存在js的隐式类型转换，转换为Number类型。
+- `-, *, /, %` 运算符，用于数学计算，存在js的隐式类型转换，转换为Number类型。
 - 隐式转换为布尔值
   - if()语句中的条件判断表达式
   - for(..; ..; ..)语句中的条件判断表达式
@@ -182,37 +182,41 @@ JS有原始类型和对象类型，一些运算符可能会触发js的隐式类�
   - ? : 中的条件判断表达式
   - 逻辑运算符||和&&左边的操作数
 
+隐式类型转换主要涉及以下几种转换：
 
+- 将值转为原始值：[ToPrimitive](https://262.ecma-international.org/5.1/#sec-9.1)
+- 将值转为数字：[ToNumber](https://262.ecma-international.org/5.1/#sec-9.3)
+- 将值转为字符串：[ToString](https://262.ecma-international.org/5.1/#sec-9.8)
+- 将值转为布尔值：[ToBoolean](https://262.ecma-international.org/5.1/#sec-9.2)
 
 #### ToPrimitive(input, PreferredType?)
 
-隐式类型转换涉及的JS引擎内部操作： ToPrimitive(input, PreferredType?)
+隐式类型转换涉及的JS引擎内部操作： `ToPrimitive(input, PreferredType?)`
 
 ##### 1. PreferredType为Number
 
+```
 1、如果输入的值已经是一个原始值，则直接返回它
-
 2、否则，如果输入的值是一个对象，则调用该对象的valueOf()方法，如果valueOf()方法的返回值是一个原始值，则返回这个原始值。
-
 3、否则，调用这个对象的toString()方法，如果toString()方法返回的是一个原始值，则返回这个原始值。
-
 4、否则，抛出TypeError异常。
+```
 
 ##### 2. PreferredType为String
 
+```
 1、如果输入的值已经是一个原始值，则直接返回它
-
 2、否则，调用这个对象的toString()方法，如果toString()方法返回的是一个原始值，则返回这个原始值。
-
 3、否则，如果输入的值是一个对象，则调用该对象的valueOf()方法，如果valueOf()方法的返回值是一个原始值，则返回这个原始值。
-
 4、否则，抛出TypeError异常。
+```
 
 ##### 3. 未传入PreferredType时
 
+```
 1、该对象为Date类型，则PreferredType被设置为String
-
 2、否则，PreferredType被设置为Number
+```
 
 ##### 显式指定toPrimitive行为
 
@@ -231,13 +235,50 @@ console.log(o + "")
 // hello
 ```
 
+### ToNumber
+
+| 参数类型 | 结果                                                         |
+| ------------- | ------------------------------------------------------------ |
+| Undefined     | **NaN**                                                      |
+| Null          | **+0**                                                       |
+| Boolean       | **true** 转为 **1** ；**false**转为 **+0**                   |
+| Number        | 无需转换                                                     |
+| String        | 由字符串解析为数字。如 '35' 转为 35；'abc' 转为 NaN          |
+| Object        | 先通过 ToPrimitive(obj, Number) 转为原始值，再通过 ToNumber 转换为数字 |
 
 
-#### `==`运算符
 
-```
+### ToString
+
+| 参数类型 | 结果                                                       |
+| ------------- | ------------------------------------------------------------ |
+| Undefined     | `"undefined"`                                                |
+| Null          | `"null"`                                                     |
+| Boolean       | **true** 转为 `"true"`； **false** 转为 `"false"`            |
+| Number        | 数字转换为字符串                                             |
+| String        | 无需转换                    |
+| Object        | 先通过 ToPrimitive(obj, String) 转为原始值，再通过 ToString 转换为字符串 |
+
+
+
+### ToBoolean
+
+| 参数类型 | 结果                                                         |
+| ------------- | ------------------------------------------------------------ |
+| Undefined     | **false**                                                    |
+| Null          | **false**                                                    |
+| Boolean       | The result equals the input argument (no conversion).        |
+| Number        | **+0**, **−0**, or **NaN** 转为 **false**; 其他转为**true**. |
+| String        | 空字符串转为 **false** ；其他转为 **true**.                  |
+| Object        | **true**                                                     |
+
+
+
+### `==`运算符
+
 比较运算 x==y, 其中 x 和 y 是值，返回 true 或者 false。这样的比较按如下方式进行：
 
+```js
 1、若 Type(x) 与 Type(y) 相同， 则
     1* 若 Type(x) 为 Undefined， 返回 true。
     2* 若 Type(x) 为 Null， 返回 true。
@@ -264,23 +305,13 @@ console.log(o + "")
 
 主要分为两类，x、y类型相同时，和类型不相同时。
 
-类型相同时，没有类型转换，主要注意NaN不与任何值相等，包括它自己，即NaN !== NaN。
+- 类型相同时，没有类型转换，主要注意NaN不与任何值相等，包括它自己，即NaN !== NaN。
 
-类型不相同时，
-
-1、x,y 为null、undefined两者中一个   // 返回true
-
-2、x、y为Number和String类型时，则转换为Number类型比较。
-
-3、有Boolean类型时，Boolean转化为Number类型比较。
-
-4、一个Object类型，一个String或Number类型，将Object类型进行原始转换后，按上面流程进行原始值比较。
-
-
-
-### 思考题
-
-1、
+- 类型不相同时，
+  - x、y 为null、undefined两者中一个   // 返回true
+  - x、y为Number和String类型时，则转换为Number类型比较。
+  - 有Boolean类型时，Boolean转化为Number类型比较。
+  - 一个Object类型，一个String或Number类型，将Object类型进行原始转换后，按上面流程进行原始值比较。
 
 
 

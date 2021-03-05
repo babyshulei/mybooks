@@ -25,19 +25,26 @@
 
 ### 2. 前端模块化
 
-无模块化 -> CommonJs -> AMD -> CMD -> ES6 module
+模块化演进：无模块化 -> CommonJs -> AMD -> CMD -> ES6 module
 
-伪模块化，通过命名来区分模块，BEM命名规范。export, global+lint检查。
-
-CommonJs：同步加载模块，node.js采用该规范。require('module'); module.exports。因为是同步加载，可能会造成阻塞，服务端可以用，浏览器端不建议。
-
-AMD：异步加载模块，define定义模块，require加载模块。依赖前置，提前执行，提前加载所有的依赖，然后才可以使用。
-
-CMD：异步加载模块。依赖就近，延迟执行，需要时再引用，用到哪个依赖时加载哪个模块。
-
-ES6 module：import，export；动态import。
-
-
+- CommonJs：同步加载模块，node.js采用该规范。require('module'); module.exports。因为是同步加载，可能会造成阻塞，服务端可以用，浏览器端不建议。
+- AMD：异步加载模块，define定义模块，require加载模块。依赖前置，提前执行，提前加载所有的依赖，然后才可以使用。
+- CMD：异步加载模块。依赖就近，延迟执行，需要时再引用，用到哪个依赖时加载哪个模块。
+- ES6 module：import，export；动态import。
+- 伪模块化，通过命名来区分模块，BEM命名规范。export, global+lint检查。
 
 参见笔记：JavaScript-模块
+
+
+
+### 3. 如何提升代码质量？
+
+当代码会重复使用时，就需要考虑代码的复用：
+
+- 继承
+- 函数封装
+- 组件抽离
+- 混入 `mixin`
+
+参考：[JS代码复用模式- SegmentFault 思否](https://segmentfault.com/a/1190000014518349)
 

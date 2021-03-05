@@ -79,7 +79,7 @@ ES标准把一段代码执行所需的所有信息，定义为“执行上下文
 
 ### 1. 如何实现对象的继承？
 
-写出让B原型继承A的代码。
+- 原型链继承：
 
 ```javascript
 function A() {
@@ -89,9 +89,13 @@ function A() {
 function B() {
     this.b = 2;
 }
-```
 
 B.prototype = new A(); 
+```
+
+- 使用ES6的语法糖 `extends`
+
+
 
 ### 2. 什么是原型链(prototype chain)？可举例说明。
 
@@ -116,6 +120,22 @@ b.b在b自己的属性上找，b.a自己的属性里没找到则去b的原型即
 
 参见笔记：JavaScript-对象-原型、原型链
 
+### 3. instanceof 原理是什么？
+
+[instanceof 运算符](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof) 用于检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上。
+
+即查找实例的原型链，如果找到构造函数的原型对象，就返回true：
+
+```js
+instance instanceof constructor
+
+// 实例原型链上是否能找到构造函数的原型对象
+instance.[__proto__...] === constructor.prototype
+
+```
+
+
+
 
 ## 数据类型
 
@@ -139,18 +159,65 @@ function getType(param) {
 }
 ```
 
+### 2. 隐式类型转换
 
-### 2. 设计一个数据结构，使 `a==1 && a==2 && a==3` 为 true
+#### 触发时机
 
-隐式类型转换
+JS有原始类型和对象类型，一些运算符可能会触发js的隐式类型转换。
 
-#### 使`a===1 && a===2 && a===3` 为 true
+- `+, ==` 运算符，存在js的隐式类型转换，转换为原始值。
+- `-, *, /, %` 运算符，用于数学计算，存在js的隐式类型转换，转换为Number类型。
+- 隐式转换为布尔值
+  - if()语句中的条件判断表达式
+  - for(..; ..; ..)语句中的条件判断表达式
+  - while()和do .. while()
+  - ? : 中的条件判断表达式
+  - 逻辑运算符||和&&左边的操作数
 
-Object.defineProperty
+#### 具体过程
 
-参考笔记：JavaScript-基本概念
+隐式类型主要涉及到这几种转换：ToPrimitive、ToBoolean、ToNumber、ToString
+
+ToPrimitive(input, PreferredType)
+
+- PreferredType为Number：原始值 -> valueOf -> toString
+- PreferredType为String：原始值 -> toString -> valueOf
+- PreferredType 未指定：Date对象，PreferredType置为String；其他，PreferredType置为Number
+
+#### 设计一个数据结构，使 `a==1 && a==2 && a==3` 为 true
+
+利用隐式类型转换
+
+```js
+const a = {
+  i: 1,
+  valueOf() {
+    return a.i++;
+  },
+};
+
+console.log(a == 1 && a == 2 && a == 3); // true
+```
+
+#### 设计一个数据结构，使`a===1 && a===2 && a===3` 为 true
+
+利用 Object.defineProperty 和 window：
+
+```js
+var value = 1; // window.value
+Object.defineProperty(window, 'a', {
+  get() {
+    return this.value++;
+  }
+});
+
+console.log(a === 1 && a === 2 && a === 3); // true
+```
+
+参考笔记：JavaScript-基本概念-数据类型
 
 <https://blog.csdn.net/Bule_daze/article/details/103470176>
+
 
 
 ## 字符串
@@ -353,3 +420,4 @@ if (typeof(result) === 'object') {
     objB = obj; // 构造函数F的执行结果不是对象，就返回obj这个对象给objB
 }
 ```
+
