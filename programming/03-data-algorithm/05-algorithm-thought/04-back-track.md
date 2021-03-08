@@ -230,5 +230,5 @@ def backtrack(...):
 
 ## 参考链接
 
-[回溯算法](https://labuladong.gitbook.io/algo/di-ling-zhang-bi-du-xi-lie-qing-an-shun-xu-yue-du/hui-su-suan-fa-xiang-jie-xiu-ding-ban)
+[回溯算法](https://labuladong.gitbook.io/algo/suan-fa-si-wei-xi-lie/hui-su-suan-fa-dfs-suan-fa/hui-su-suan-fa-xiang-jie-xiu-ding-ban)
 
