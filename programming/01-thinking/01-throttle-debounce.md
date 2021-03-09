@@ -9,19 +9,25 @@ Dom 上有些事件会频繁触发，如 mosemove, scroll, resize... 如果不�
 在某段连续时间内，在事件触发后只执行一次。
 
 ```javascript
-function debounce(func, wait) {
-    var timer;
+function debounce(fn, wait, immediate) {
+  let timer = null;
 
-    return function() {
-        var context = this,
-            args = arguments;
+  return function() {
+    const context = this;
+    const args = arguments;
 
-        clearTimeout(timer);
+    if (immediate && !timer) {
+      fn.apply(context, args);
+    }
 
-        timer = setTimeout(function() {
-            func.apply(context, args);
-        }, wait);
-    };
+    if (timer) {
+      clearTimeout(timer);
+    }
+
+    timer = setTimeout(() => {
+      fn.apply(context, args);
+    }, wait);
+  };
 }
 ```
 
@@ -32,27 +38,26 @@ function debounce(func, wait) {
 `throttle`就是设置**固定的函数执行速率**，从而降低频繁事件回调的执行次数。
 
 ```javascript
-function throttle(func, wait) {
-    var lastTime,
-        timer;
+function throttle(fn, wait, immediate) {
+  let timer = null;
+  let callNow = immediate;
 
-    return function() {
-        var now = Date.now(),
-            context = this,
-            args = arguments;
+  return function() {
+    const context = this;
+    const args = arguments;
 
-        if (lastTime && now < lastTime + wait) {
-            clearTimeout(timer);
+    if (callNow) {
+      fn.apply(context, args);
+      callNow = false;
+    }
 
-            timer = setTimeout(function() {
-                lastTime = now;
-                func.apply(context, args);
-            }, wait);
-        } else {
-            lastTime = now;
-            func.apply(context, args);
-        }
-    };
+    if (!timer) {
+      timer = setTimeout(() => {
+        fn.apply(context, args);
+        timer = null;
+      }, wait);
+    }
+  };
 }
 ```
 

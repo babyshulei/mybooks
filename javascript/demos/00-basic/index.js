@@ -47,3 +47,29 @@ Object.defineProperty(window, 'a', {
 
 console.log(a === 1 && a === 2 && a === 3);
 */
+
+
+// 获取数据类型
+function Person(name) {
+  this.name = name;
+}
+
+var per = new Person('Amy');
+var arr = new Array();
+
+console.log(getType(per), getType(arr), getType(null), getType(undefined));
+
+function getType(param) {
+  let type = typeof param;
+
+  if (type === 'object') {
+    type = getObjectType(param);
+  }
+
+  return type;
+
+  function getObjectType(obj) {
+    const str = Object.prototype.toString.call(obj);
+    return str.slice(8, str.length - 1);
+  }
+}

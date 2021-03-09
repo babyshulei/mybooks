@@ -141,6 +141,9 @@ instance.[__proto__...] === constructor.prototype
 
 ### 1. 如何获取一个变量的数据类型？
 
+- `typeof`能识别的：string、number、boolean、undefined、function
+- `typeof`为object：null、其他引用类型（Array、Date、RegExp等）调用`Object.prototype.toString.call(obj)` 可以进一步获取具体数据类型
+
 ```js
 function getType(param) {
     let type = typeof param;
@@ -183,6 +186,21 @@ ToPrimitive(input, PreferredType)
 - PreferredType为Number：原始值 -> valueOf -> toString
 - PreferredType为String：原始值 -> toString -> valueOf
 - PreferredType 未指定：Date对象，PreferredType置为String；其他，PreferredType置为Number
+
+`+`运算符：
+
+- 数字 + 字符串 = 字符串， 运算顺序是从左到右
+- 数字 + 对象， 优先调用对象的`valueOf` -> `toString`
+- 数字 + `boolean/null` -> 数字
+- 数字 + `undefined` -> `NaN`
+
+`==`运算符，以`x==y`为例：
+
+- x、y类型相同，没有类型转换，直接进行比较，注意`NaN != NaN`
+- x、y为null、undefined时，返回true
+- x、y为Number、String类型时，调用ToNumber将String转为Number类型比较
+- x、y其中一个为Boolean类型时，调用ToNumber将Boolean转为Number类型比较
+- x、y其中一个为String或Number，另外一个为Object时，调用ToPrimitive将Object转为原始值比较
 
 #### 设计一个数据结构，使 `a==1 && a==2 && a==3` 为 true
 
