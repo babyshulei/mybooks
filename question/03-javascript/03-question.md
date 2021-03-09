@@ -1,43 +1,10 @@
-# 原理&实现
+# 例题
 
 ## EventLoop
 
-### 1. JavaScript代码的执行机制？
+### 1. 请输出下面代码打印情况
 
-参考笔记：JavaScript-异步
-
-JavaScript是单线程的，同一时刻只能执行一段代码。代码顺序执行。
-
-#### 单线程的优缺点？解决方案？为什么不设计成多线程？
-
-优点：实现相对简单、执行环境相对单纯。缺点：任务耗时很长时，会出现页面卡死。
-
-解决方案：异步。
-
-为了避免多线程处理状态不同步的问题。单线程可以保证（DOM）状态的可靠性。
-
-#### 如何实现异步？
-
-回调、事件监听、发布/订阅、Promise、async/await
-
-
-### 2. 详述js异步机制Event Loop，MacroTask和MicroTask
-
-参考笔记：JavaScript-异步-Event Loop
-
-1个主线程+n个任务队列，浏览器异步处理后推入队列，循环处理，一个macroTask后跟全部microtask
-
-Event Loop 执行过程：
-1. 一开始整个脚本 script 作为一个宏任务执行
-2. 执行过程中，同步代码直接执行，宏任务进入宏任务队列，微任务进入微任务队列。
-3. 当前宏任务执行完出队，检查微任务列表，有则依次执行，直到全部执行完毕。
-4. 执行浏览器 UI 线程的渲染工作。
-5. 检查是否有 Web Worker 任务，有则执行。
-6. 执行完本轮的宏任务，回到步骤 2，依次循环，直到宏任务和微任务队列为空。
-
-### 3. 请输出下面代码打印情况
-
-#### 3.1 promise, setTimeout
+#### 1) promise, setTimeout
 
 ```javascript
 setTimeout(function(){
@@ -70,7 +37,7 @@ console.log(5);
 - 由于在第一步中已经执行完了第一个 macrotask ,  所以接下来会顺序执行所有的 microtask, 也就是 promise.then 的回调函数，从而打印出4
 - microtask 队列中的任务已经执行完毕，继续执行剩下的  macrotask 队列中的任务，也就是 setTimeout, 所以打印出 1
 
-#### 3.2 promise, setTimeout
+#### 2) promise, setTimeout
 
 ```js
 console.log('script start');
@@ -105,7 +72,7 @@ setTimeout
 - 再次调用微任务，将 `promise2` 输出。
 - 最后调用宏任务 `setTimeout`，输出 `setTimeout`。
 
-#### 3.3 promise, setTimeout
+#### 3) promise, setTimeout
 
 ```js
 setTimeout(function() {
@@ -147,7 +114,7 @@ console.log(3);
 
 最后推出宏任务 `setTimeout`，输出 4。
 
-#### 3.4 promise, setTimeout
+#### 4) promise, setTimeout
 
 ```js
 setTimeout(function () {
@@ -184,7 +151,7 @@ promise3
 timeout1
 ```
 
-#### 3.5 promise, setTimeout
+#### 5) promise, setTimeout
 
 ```js
 console.log("script start");
@@ -232,7 +199,7 @@ promise5
 inner-setTimeout---0
 ```
 
-#### 3.6 promise, setTimeout
+#### 6) promise, setTimeout
 
 ```js
 console.log(1);
@@ -285,7 +252,7 @@ console.log(13);
 1 5 11 13 6 12 7 8 9 10 2 3
 ```
 
-#### 3.7 for, setTimeout
+#### 7) for, setTimeout
 
 ```js
 for (var i = 0; i < 3; i++) {
@@ -308,11 +275,10 @@ for (var i = 0; i < 3; i++) {
 3. `script` 这个宏任务执行完毕。
 4. 依次执行 3 个 `setTimeout`，因为此时 `i` 为 `3`，所以会依次输出 3 个 3。
 
-## Promise
 
-### 1. 请输出下面代码打印情况
+### 2. 请输出下面代码打印情况
 
-#### 1.1 promise
+#### 1) promise
 
 ```js
 const promise1 = new Promise((resolve, reject) => {
@@ -347,7 +313,7 @@ resolve1
 6. 输出 2 和 promise2，当前 promise2 的状态为 peding
 7. 宏任务走完，执行微任务，输出 resolve1
 
-#### 1.2 promise, setTimeout
+#### 2) promise, setTimeout
 
 ```js
 console.log('start');
@@ -382,7 +348,7 @@ time
   6. 遍历本次的微任务队列，输出步骤 4 的内容，即 'resolve'
   7. 步骤 6 走完，执行下一个宏任务队列，输出 'time'
 
-#### 1.3 promise, setTimeout
+#### 3) promise, setTimeout
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -430,7 +396,7 @@ success
 11. 执行宏任务 setTimeout 下的微任务，即 Promise.then()
 12. 输出 'success'
 
-#### 1.4 promise, setTimeout
+#### 4) promise, setTimeout
 
 ```js
 Promise.resolve().then(() => {
@@ -475,7 +441,7 @@ timer2
 12. 输出 'promise2'
 13. 继续执行宏任务队列，出队 timer2，输出 'timer2'
 
-#### 1.5 promise, setTimeout
+#### 5) promise, setTimeout
 
 ```js
 const promise1 = new Promise((resolve, reject) => {
@@ -520,7 +486,7 @@ promise2-2 Promise { <rejected>: Error: error! }
 9. 第一个 setTimeout 执行完毕，执行第二个 setTimeout
 10. 输出步骤 8 和 步骤 9 中的 Promise 状态
 
-#### 1.6 promise链
+#### 6) promise链
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -551,7 +517,7 @@ then2: undefined
 2. 将第 1 个 .then() 添加到微任务
 3. 执行第 1 个 .then()，将第 2 个 .then() 推进微任务
 
-#### 1.7 promise链
+#### 7) promise链
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -582,7 +548,7 @@ promise.then((res) => {
 */
 ```
 
-#### 1.8 promise链
+#### 8) promise链
 
 ```js
 Promise
@@ -609,7 +575,7 @@ Promise
 */
 ```
 
-#### 1.9 promise.then 多个
+#### 9) promise.then 多个
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -650,7 +616,7 @@ promise.then((res) => {
 */
 ```
 
-#### 1.10 return promise
+#### 10) return promise
 
 ```js
 const promise = Promise.resolve().then(() => {
@@ -670,7 +636,7 @@ promise.catch((err) => {
 */
 ```
 
-#### 1.11 promise 链
+#### 11) promise 链
 
 ```js
 Promise
@@ -689,7 +655,7 @@ Promise
 */
 ```
 
-#### 1.12 promise链
+#### 12) promise链
 
 ```js
 Promise
@@ -713,7 +679,7 @@ Promise
 
 如果本题中的 `.then()` 中的第 2 个参数去掉了，那么就会进入 `.catch()` 函数中。
 
-#### 1.12 promise链
+#### 13) promise链
 
 ```js
 romise
@@ -736,7 +702,7 @@ romise
 */
 ```
 
-#### 1.13 .finally
+#### 14) .finally
 
 ```js
 Promise
@@ -766,7 +732,7 @@ finally1
 finally2 后面的 then 函数 2
 ```
 
-#### 1.14 .finally
+#### 15) .finally
 
 ```js
 Promise
@@ -788,7 +754,7 @@ Promise
 */
 ```
 
-#### 1.15 Promise.all, Promise.race
+#### 16) Promise.all, Promise.race
 
 ```js
 const one = new Promise((resolve) => {
@@ -828,7 +794,7 @@ Promise.race([one, two, three]).then((res) => {
 */
 ```
 
-#### 1.16 Promise.all
+#### 17) Promise.all
 
 ```js
 function runAsync(x) {
@@ -875,7 +841,7 @@ Promise.all([
 */
 ```
 
-#### 1.17 Promise.all
+#### 18) Promise.all
 
 ```js
 function runAsync (x) {
@@ -933,7 +899,7 @@ Promise.all([
 */
 ```
 
-#### 1.18 Promise.race
+#### 19) Promise.race
 
 ```js
 function runAsync(x) {
@@ -983,7 +949,7 @@ Promise.race([
 */
 ```
 
-#### 1.19 async
+#### 20) async
 
 ```js
 async function async1() {
@@ -1018,7 +984,7 @@ console.log(4);
 */
 ```
 
-#### 1.20 async, setTimeout, promise
+#### 21) async, setTimeout, promise
 
 ```js
 async function async1() {
@@ -1084,7 +1050,7 @@ console.log('start');
 */
 ```
 
-#### 1.21 async
+#### 22) async
 
 ```js
 async function fn() {
@@ -1105,7 +1071,7 @@ fn().then((res) => {
 */
 ```
 
-#### 1.22 async, promise
+#### 23) async, promise
 
 ```js
 async function async1() {
@@ -1141,7 +1107,7 @@ console.log('script end');
 */
 ```
 
-#### 1.23 async, promise, setTimeout
+#### 24) async, promise, setTimeout
 
 ```js
 async function async1() {
@@ -1185,7 +1151,7 @@ console.log('script end');
 'settimeout'
 ```
 
-#### 1.24 async, promise
+#### 25) async, promise
 
 ```js
 async function testSomething() {
@@ -1238,7 +1204,7 @@ console.log('test end');
 */
 ```
 
-#### 1.25 async, promise
+#### 26) async, promise
 
 ```js
 async function async1() {
@@ -1268,7 +1234,7 @@ async1().then((res) => {
 */
 ```
 
-#### 1.26 promise, setTimeout
+#### 27) promise, setTimeout
 
 ```js
 const first = () => (new Promise((resolve1, reject1) => {
@@ -1311,7 +1277,7 @@ console.log(4);
 */
 ```
 
-#### 1.27 async, promise, setTimeout
+#### 28) async, promise, setTimeout
 
 ```js
 const async1 = async() => {
@@ -1362,7 +1328,7 @@ setTimeout(() => {
 */
 ```
 
-#### 1.28 promise, .finally
+#### 29) promise, .finally
 
 ```js
 const p1 = new Promise((resolve) => {
@@ -1389,498 +1355,4 @@ const p1 = new Promise((resolve) => {
     * 'Promise {<fullfilled>: undefined}'
 */
 ```
-
-### 2. 使用 Promise 实现每隔一秒输出1、2、3
-
-```js
-// 解法一
-const oneToThree = () => {
-  const arr = [1, 2, 3];
-  arr.reduce((prev, next) => {
-    return prev.then(() => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          console.log(next);
-          resolve();
-        }, 1000);
-      })
-    });
-  }, Promise.resolve())
-};
-
-// 解法二
-const oneToThree2 = async() => {
-  const arr = [1, 2, 3];
-
-  for(let i = 0; i < arr.length; i++) {
-    await new Promise((resolve) => {
-      setTimeout(() => {
-        console.log(arr[i]);
-        resolve();
-      }, 1000);
-    });
-  }
-}
-```
-
-### 3. 使用 Promise 实现红绿灯交替重复亮
-
-红灯 3 秒亮一次，黄灯 2 秒亮一次，绿灯 1 秒亮一次，用 Promise 实现 3 个灯交替重复亮。
-
-题解：
-
-```js
-// 解法一
-async function light() {
-  const lightMap = ['red', 'yellow', 'green'];
-  const timeMap = [3000, 2000, 1000];
-  let i = 0;
-
-  while(true) {
-    await new Promise((resolve) => {
-      console.log(lightMap[i]);
-      setTimeout(() => {
-        resolve();
-      }, timeMap[i]);
-    });
-    i = (i + 1) % 3;
-  }
-}
-
-// 解法二
-function light2() {
-  const red = () => console.log('red');
-  const yellow = () => console.log('yellow');
-  const green = () => console.log('green');
-  const light = (cb, timer) => {
-    return new Promise((resolve) => {
-      cb();
-      setTimeout(() => {
-        resolve();
-      }, timer);
-    });
-  }
-
-  const step = () => {
-    Promise.resolve().then(() => {
-      return light(red, 3000);
-    }).then(() => {
-      return light(yellow, 2000);
-    }).then(() => {
-      return light(green, 1000);
-    }).then(() => {
-      return step();
-    });
-  }
-
-  return step();
-}
-```
-
-### 4. 实现 mergePromise 函数
-
-实现 `mergePromise` 函数，将传进去的数组按先后顺序执行，并且把返回的值先后放在数组 `data` 中。
-
-例如：
-
-```js
-const time = (timer) => {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve()
-    }, timer)
-  })
-}
-const ajax1 = () => time(2000).then(() => {
-  console.log(1);
-  return 1
-})
-const ajax2 = () => time(1000).then(() => {
-  console.log(2);
-  return 2
-})
-const ajax3 = () => time(1000).then(() => {
-  console.log(3);
-  return 3
-})
-
-function mergePromise () {
-  // 在这里写代码
-}
-
-mergePromise([ajax1, ajax2, ajax3]).then(data => {
-  console.log("done");
-  console.log(data); // data 为 [1, 2, 3]
-});
-
-// 要求分别输出
-// 1
-// 2
-// 3
-// done
-// [1, 2, 3]
-```
-
-题解：
-
-```js
-// 解法一
-async function mergePromise(arr) {
-  let ret = [];
-
-  for(let i = 0; i < arr.length; i++) {
-    const val = await arr[i]();
-    ret.push(val);
-  }
-
-  return ret;
-}
-
-// 解法二
-function mergePromise (ajaxList) {
-    const data = [];
-    let promise = Promise.resolve();
-  
-    ajaxList.forEach((ajax) => {
-      promise = promise.then(() => {
-        return ajax();
-      }).then((resolve) => {
-        data.push(resolve);
-        return data;
-      })
-    })
-  
-    return promise;
-  }
-```
-
-### 5. 封装一个异步加载图片的方法
-
-```js
-function loadImg(url) {
-  return new Promise((resolve, reject) => {
-    const image = new Image();
-    image.onload = () => {
-      console.log('图片加载完成');
-      resolve(image);
-    }
-    image.onerror = () => {
-      reject(new Error('加载失败' + url));
-    }
-    image.src = url;
-  })
-}
-```
-
-### 6. 限制异步操作并发数并尽可能快地完成
-
-已知图片列表：
-
-```js
-var urls = [
-  "https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting1.png",
-  "https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting2.png",
-  "https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting3.png",
-  "https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting4.png",
-  "https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting5.png",
-  "https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/bpmn6.png",
-  "https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/bpmn7.png",
-  "https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/bpmn8.png",
-];
-```
-
-已知函数：
-
-```js
-function loadImg(url) {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.onload = function() {
-      console.log("一张图片加载完成");
-      resolve(img);
-    };
-    img.onerror = function() {
-    	reject(new Error('Could not load image at' + url));
-    };
-    img.src = url;
-  });
-};
-
-function limitLoad(urls, handler, limit) {
-  // ...实现代码
-}
-```
-
-求同时下载的链接熟练不超过 3 个的情况下，尽可能快地完成。
-
-题解：
-
-解一：
-
-```js
-function limitLoad(urls, handler, limit) {
-  const limitUrls = urls.slice(0, limit);
-  const leftUrls = urls.slice(limit);
-
-  limitUrls.forEach((url, index) => {
-    singleLoad(url, index);
-  })
-
-  function singleLoad(url, index) {
-    handler(url).finally(() => {
-      if (leftUrls.length) {
-        const nextUrl = leftUrls.pop();
-        singleLoad(nextUrl, index);
-      }
-    });
-  }
-}
-```
-
-解二：
-
-```js
-function limitLoad(urls, handler, limit) {
-  let sequence = [].concat(urls); // 复制urls
-  // 这一步是为了初始化 promises 这个"容器"
-  let promises = sequence.splice(0, limit).map((url, index) => {
-    return handler(url).then(() => {
-      // 返回下标是为了知道数组中是哪一项最先完成
-      return index;
-    });
-  });
-  // 注意这里要将整个变量过程返回，这样得到的就是一个Promise，可以在外面链式调用
-  return sequence
-    .reduce((pCollect, url) => {
-      return pCollect
-        .then(() => {
-          return Promise.race(promises); // 返回已经完成的下标
-        })
-        .then((fastestIndex) => {
-          // 获取到已经完成的下标
-          // 将"容器"内已经完成的那一项替换
-          promises[fastestIndex] = handler(url).then(() => {
-            return fastestIndex; // 要继续将这个下标返回，以便下一次变量
-          });
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }, Promise.resolve()) // 初始化传入
-    .then(() => {
-      // 最后三个用.all来调用
-      return Promise.all(promises);
-    });
-}
-limitLoad(urls, loadImg, 3)
-  .then((res) => {
-    console.log("图片全部加载完毕");
-    console.log(res);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-```
-
-### 7. 实现异步调度器
-
-审题并完成下面代码：
-
-```js
-/**
- * 题目：JS 实现异步调度器
- * 要求：
- *  JS 实现一个带并发限制的异步调度器 Scheduler，保证同时运行的任务最多有 2 个
- *  完善下面代码中的 Scheduler 类，使程序能正确输出
- */
-
-class Scheduler {
-  add(promiseCreator) {
-    // ...
-  }
-  // ...
-}
-
-const timeout = (time) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, time);
-  });
-};
-const scheduler = new Scheduler();
-const addTack = (time, order) => {
-  return scheduler
-    .add(() => timeout(time))
-    .then(() => console.log(order));
-};
-addTack(1000, '1');
-addTack(500, '2');
-addTack(300, '3');
-addTack(400, '4');
-
-// 输出：2 3 1 4
-// 一开始，1、2 两个任务进入队列
-// 500ms 时，完成 2，输出 2，任务 3 进队
-// 800ms 时，完成 3，输出 3，任务 4 进队
-// 1000ms 时，完成 1，输出 1，没有下一个进队的
-// 1200ms 时，完成 4，输出 4，没有下一个进队的
-// 进队完成，输出 2 3 1 4
-```
-
-实现方式（`async/await`）：
-
-```js
-/**
- * 题目：JS 实现异步调度器
- * 要求：
- *  JS 实现一个带并发限制的异步调度器 Scheduler，保证同时运行的任务最多有 2 个
- *  完善下面代码中的 Scheduler 类，使程序能正确输出
- */
-
-class Scheduler {
-  constructor(maxNum) {
-    this.taskList = [];
-    this.count = 0;
-    this.maxNum = maxNum; // 最大并发数
-  }
-  async add(promiseCreator) {
-    // 如果当前并发超过最大并发，那就进入任务队列等待
-    if (this.count >= this.maxNum) {
-      await new Promise((resolve) => {
-        this.taskList.push(resolve);
-      })
-    }
-
-    // 次数 + 1（如果前面的没执行完，那就一直添加）
-    this.count++;
-
-    // 等待里面内容执行完毕
-    const result = await promiseCreator();
-
-    // 次数 - 1
-    this.count--;
-
-    // 将队首出队
-    if (this.taskList.length) {
-      this.taskList.shift()();
-    }
-
-    // 链式调用，将结果值返回出去
-    return result;
-  }
-}
-
-const timeout = (time) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, time);
-  });
-};
-
-const scheduler = new Scheduler(2);
-const addTack = (time, order) => {
-  return scheduler
-    .add(() => timeout(time))
-    .then(() => console.log(order));
-};
-addTack(1000, '1');
-addTack(500, '2');
-addTack(300, '3');
-addTack(400, '4');
-
-// 输出：2 3 1 4
-```
-
-
-
-### 8. 手写Promise
-
-```js
-// 简版
-const PENDING = 'pending';
-const FULLFILLED = 'fullfilled';
-const REJECTED = 'rejected';
-
-function MyPromise(fn) {
-  const that = this;
-  that.status = PENDING;
-  that.value = null;
-  that.reason = null;
-
-  that.resolveCbs = [];
-  that.rejectCbs = [];
-
-  function resolve(value) {
-    if (that.status === PENDING) {
-      that.status = FULLFILLED;
-      that.value = value;
-      that.resolveCbs.map(cb => cb(value));
-    }
-  }
-
-  function reject(reason) {
-    if (that.status === PENDING) {
-      that.status = REJECTED;
-      that.reason = reason;
-      that.rejectCbs.map(cb => cb(reason));
-    }
-  }
-
-  try {
-    fn(resolve, reject);
-  } catch (e) {
-    reject(e);
-  }
-}
-
-MyPromise.prototype.then = function(onFullFilled, onRejected) {
-  const that = this;
-  if (that.status === PENDING) {
-    that.resolveCbs.push(onFullFilled);
-    that.rejectCbs.push(onRejected);
-  }
-  if (that.status === FULLFILLED) {
-    onFullFilled(that.value);
-  }
-  if (that.status === REJECTED) {
-    onRejected(that.reason);
-  }
-  return that;
-}
-
-MyPromise.prototype.catch = function(onRejected) {
-  const that = this;
-  if (that.status === PENDING) {
-    that.rejectCbs.push(onRejected);
-  }
-  if (that.status === REJECTED) {
-    onRejected(that.reason);
-  }
-  return that;
-}
-```
-
-
-
-## 隐式类型转换
-
-### 1. 设计一个数据结构，使 `a==1 && a==2 && a==3` 为 true
-
-隐式类型转换
-
-#### 使`a===1 && a===2 && a===3` 为 true
-
-Object.defineProperty
-
-参考笔记：JavaScript-基本概念
-
-<https://blog.csdn.net/Bule_daze/article/details/103470176>
-
-
-
-## 参考链接
-
-[JavaScript 异步 - jsliang](https://github.com/LiangJunrong/document-library/blob/master/系列-面试资料/JavaScript/异步系列/README.md#chapter-three)
 

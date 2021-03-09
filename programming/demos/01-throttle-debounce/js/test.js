@@ -40,6 +40,7 @@ function throttle(fn, wait) {
             clearTimeout(timer);
 
             timer = setTimeout(function() {
+                lastTime = now;
                 fn.apply(context, args);
             }, wait);
         } else {

@@ -1,4 +1,4 @@
-# 基础
+# 知识点
 
 ## 作用域、闭包
 
@@ -44,7 +44,34 @@ if (true) {
 
 ### 3. 什么是作用域链(scope chain)？可举例说明。
 
-几个要点：作用域的范围是函数，函数嵌套函数，查找变量从内层函数依次向外层找，最后找不到在window上找。
+作用域链可以理解为一组对象列表，包含父级和自身的变量对象，因此我们便能通过作用域链访问到父级里声明的变量或函数。
+
+查找变量从自身依次向外层查找，最后在全局对象window上找，找不到返回undefined。
+
+
+
+### 4. 什么是执行上下文？
+
+ES标准把一段代码执行所需的所有信息，定义为“执行上下文”。
+
+执行上下文包括：
+
+- this
+- 词法环境
+- 变量环境
+
+执行上下文的类型：
+
+- 全局执行上下文
+- 函数执行上下文
+- eval执行上下文
+
+代码执行的过程：
+
+- 创建 **全局上下文** (global EC)
+- 全局执行上下文 (caller) 逐行 **自上而下** 执行。遇到函数时，**函数执行上下文** (callee) 被`push`到执行栈顶层
+- 函数执行上下文被激活，成为 active EC，开始执行函数中的代码，caller 被挂起
+- 函数执行完后，callee 被`pop`移除出执行栈，控制权交还全局上下文 (caller)，继续执行
 
 
 
@@ -52,7 +79,7 @@ if (true) {
 
 ### 1. 如何实现对象的继承？
 
-写出让B原型继承A的代码。
+- 原型链继承：
 
 ```javascript
 function A() {
@@ -62,17 +89,28 @@ function A() {
 function B() {
     this.b = 2;
 }
-```
 
 B.prototype = new A(); 
+```
+
+- 使用ES6的语法糖 `extends`
+
+
 
 ### 2. 什么是原型链(prototype chain)？可举例说明。
 
 每个实例对象（ object ）都有一个私有属性（称之为 `__proto__` ）指向它的构造函数的原型对象（**prototype** ）。该原型对象也有一个自己的原型对象( `__proto__` ) ，层层向上直到一个对象的原型对象为 `null`。根据定义，`null` 没有原型，并作为这个**原型链**中的最后一个环节。
 
-上一题的例子
 
 ```javascript
+function A() {
+    this.a = 1;
+}
+  
+function B() {
+    this.b = 2;
+}
+
 var b = new B();
 // b.b == 2
 // b.a == 1
@@ -82,10 +120,29 @@ b.b在b自己的属性上找，b.a自己的属性里没找到则去b的原型即
 
 参见笔记：JavaScript-对象-原型、原型链
 
+### 3. instanceof 原理是什么？
+
+[instanceof 运算符](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof) 用于检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上。
+
+即查找实例的原型链，如果找到构造函数的原型对象，就返回true：
+
+```js
+instance instanceof constructor
+
+// 实例原型链上是否能找到构造函数的原型对象
+instance.[__proto__...] === constructor.prototype
+
+```
+
+
+
 
 ## 数据类型
 
 ### 1. 如何获取一个变量的数据类型？
+
+- `typeof`能识别的：string、number、boolean、undefined、function
+- `typeof`为object：null、其他引用类型（Array、Date、RegExp等）调用`Object.prototype.toString.call(obj)` 可以进一步获取具体数据类型
 
 ```js
 function getType(param) {
@@ -104,6 +161,80 @@ function getType(param) {
     }
 }
 ```
+
+### 2. 隐式类型转换
+
+#### 触发时机
+
+JS有原始类型和对象类型，一些运算符可能会触发js的隐式类型转换。
+
+- `+, ==` 运算符，存在js的隐式类型转换，转换为原始值。
+- `-, *, /, %` 运算符，用于数学计算，存在js的隐式类型转换，转换为Number类型。
+- 隐式转换为布尔值
+  - if()语句中的条件判断表达式
+  - for(..; ..; ..)语句中的条件判断表达式
+  - while()和do .. while()
+  - ? : 中的条件判断表达式
+  - 逻辑运算符||和&&左边的操作数
+
+#### 具体过程
+
+隐式类型主要涉及到这几种转换：ToPrimitive、ToBoolean、ToNumber、ToString
+
+ToPrimitive(input, PreferredType)
+
+- PreferredType为Number：原始值 -> valueOf -> toString
+- PreferredType为String：原始值 -> toString -> valueOf
+- PreferredType 未指定：Date对象，PreferredType置为String；其他，PreferredType置为Number
+
+`+`运算符：
+
+- 数字 + 字符串 = 字符串， 运算顺序是从左到右
+- 数字 + 对象， 优先调用对象的`valueOf` -> `toString`
+- 数字 + `boolean/null` -> 数字
+- 数字 + `undefined` -> `NaN`
+
+`==`运算符，以`x==y`为例：
+
+- x、y类型相同，没有类型转换，直接进行比较，注意`NaN != NaN`
+- x、y为null、undefined时，返回true
+- x、y为Number、String类型时，调用ToNumber将String转为Number类型比较
+- x、y其中一个为Boolean类型时，调用ToNumber将Boolean转为Number类型比较
+- x、y其中一个为String或Number，另外一个为Object时，调用ToPrimitive将Object转为原始值比较
+
+#### 设计一个数据结构，使 `a==1 && a==2 && a==3` 为 true
+
+利用隐式类型转换
+
+```js
+const a = {
+  i: 1,
+  valueOf() {
+    return a.i++;
+  },
+};
+
+console.log(a == 1 && a == 2 && a == 3); // true
+```
+
+#### 设计一个数据结构，使`a===1 && a===2 && a===3` 为 true
+
+利用 Object.defineProperty 和 window：
+
+```js
+var value = 1; // window.value
+Object.defineProperty(window, 'a', {
+  get() {
+    return this.value++;
+  }
+});
+
+console.log(a === 1 && a === 2 && a === 3); // true
+```
+
+参考笔记：JavaScript-基本概念-数据类型
+
+<https://blog.csdn.net/Bule_daze/article/details/103470176>
 
 
 
@@ -248,4 +379,63 @@ click事件有300ms的延迟。点击蒙层上的关闭按钮，蒙层消失后�
   - 消费掉touch后的click
 
     例如加个透明蒙层、pointer-events、下面元素的事件处理器处理等等。
+
+## JavaScript 执行
+
+### 1. JavaScript代码的执行机制？
+
+参考笔记：JavaScript-异步
+
+JavaScript是单线程的，同一时刻只能执行一段代码。代码顺序执行。
+
+#### 单线程的优缺点？解决方案？为什么不设计成多线程？
+
+优点：实现相对简单、执行环境相对单纯。缺点：任务耗时很长时，会出现页面卡死。
+
+解决方案：异步。
+
+为了避免多线程处理状态不同步的问题。单线程可以保证（DOM）状态的可靠性。
+
+#### 如何实现异步？
+
+回调、事件监听、发布/订阅、Promise、async/await
+
+### 2. 详述js异步机制Event Loop
+
+参考笔记：JavaScript-异步-Event Loop
+
+1个主线程+n个任务队列，浏览器异步处理后推入队列，循环处理，一个macroTask后跟全部microtask
+
+Event Loop 执行过程：
+1. 一开始整个脚本 script 作为一个宏任务执行
+2. 执行过程中，同步代码直接执行，宏任务进入宏任务队列，微任务进入微任务队列。
+3. 当前宏任务执行完出队，检查微任务列表，有则依次执行，直到全部执行完毕。
+4. 执行浏览器 UI 线程的渲染工作。
+5. 检查是否有 Web Worker 任务，有则执行。
+6. 执行完本轮的宏任务，回到步骤 2，依次循环，直到宏任务和微任务队列为空。
+
+
+
+## this
+
+### new 运算符的执行过程？
+
+使用 new 调用函数时，会自动执行以下操作：
+
+1. 创建（或者说构造）一个全新的对象。
+2. 这个新对象会被执行 [[Prototype]] 连接。
+3. 这个新对象会绑定到函数调用的 `this`。
+4. 如果函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象。
+
+```js
+// new F();
+var obj = new Object(); // 创建一个空对象
+obj.__proto__ = F.prototype; // obj的__proto__指向构造函数的prototype
+var result = F.call(obj); // 把构造函数的this指向obj，并执行构造函数把结果赋值给result
+if (typeof(result) === 'object') {
+    objB = result; // 构造函数F的执行结果是对象，就把这个引用类型的对象返回给objB
+} else {
+    objB = obj; // 构造函数F的执行结果不是对象，就返回obj这个对象给objB
+}
+```
 
