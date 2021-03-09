@@ -1031,6 +1031,51 @@
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="../../question/03-javascript/01-principle.html">
+            
+                <a href="../../question/03-javascript/01-principle.html">
+            
+                    
+                    知识点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="../../question/03-javascript/02-code.html">
+            
+                <a href="../../question/03-javascript/02-code.html">
+            
+                    
+                    手写代码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.3" data-path="../../question/03-javascript/03-exercise.html">
+            
+                <a href="../../question/03-javascript/03-exercise.html">
+            
+                    
+                    习题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="3.4" data-path="../../question/04-framework/">
@@ -3659,6 +3704,14 @@ define(<span class="hljs-function"><span class="hljs-keyword">function</span> (<
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> { }
 </code></pre>
 <p>ES6 &#x6A21;&#x5757;&#xFF0C;ECMA &#x63D0;&#x51FA;&#x7684;JS&#x6A21;&#x5757;&#x89C4;&#x8303;&#x3002;</p>
+<h4 id="import-&#x548C;-require-&#x7684;&#x533A;&#x522B;"><a name="import-&#x548C;-require-&#x7684;&#x533A;&#x522B;" class="anchor-navigation-ex-anchor" href="#import-&#x548C;-require-&#x7684;&#x533A;&#x522B;"><i class="fa fa-link" aria-hidden="true"></i></a>import &#x548C; require &#x7684;&#x533A;&#x522B;</h4>
+<p>require&#x4E0E;import&#x7684;&#x533A;&#x522B;&#xFF1A;</p>
+<ul>
+<li><code>require</code>&#x662F;CommonJS&#x4E2D;&#x52A0;&#x8F7D;&#x6A21;&#x5757;&#x7684;&#x8BED;&#x6CD5;&#xFF1B;<code>import</code>&#x662F;ES6&#x6807;&#x51C6;&#x4E2D;&#x52A0;&#x8F7D;&#x6A21;&#x5757;&#x7684;&#x8BED;&#x6CD5;&#x3002;</li>
+<li><code>require</code>&#x662F; <strong>&#x503C;&#x62F7;&#x8D1D;</strong>&#xFF0C;&#x5BFC;&#x51FA;&#x503C;&#x53D8;&#x5316;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x5BFC;&#x5165;&#x503C;&#xFF1B;<code>import</code>&#x6307;&#x5411; <strong>&#x5185;&#x5B58;&#x5730;&#x5740;</strong>&#xFF0C;&#x5BFC;&#x5165;&#x503C;&#x4F1A;&#x968F;&#x5BFC;&#x51FA;&#x503C;&#x800C;&#x53D8;&#x5316;&#x3002;</li>
+<li><code>require</code>&#x52A0;&#x8F7D;&#x6A21;&#x5757;&#x65B9;&#x5F0F;&#x5355;&#x4E00;&#xFF0C;&#x76F4;&#x63A5;&#x52A0;&#x8F7D;&#x6574;&#x4E2A;&#x6A21;&#x5757;&#xFF1B;<code>import</code>&#x52A0;&#x8F7D;&#x6A21;&#x5757;&#x65B9;&#x5F0F;&#x591A;&#x6837;&#xFF0C;&#x53EF;&#x4EE5;&#x52A0;&#x8F7D;&#x90E8;&#x5206;&#x6A21;&#x5757;&#x3002;</li>
+<li><code>require</code>&#x662F;<strong>&#x540C;&#x6B65;</strong>&#x52A0;&#x8F7D;&#x7684;&#xFF1B;&#x800C;<code>import</code>&#x53EF;&#x4EE5;<strong>&#x5F02;&#x6B65;</strong>&#x52A0;&#x8F7D;&#x3002;</li>
+</ul>
 <h3 id="babel"><a name="babel" class="anchor-navigation-ex-anchor" href="#babel"><i class="fa fa-link" aria-hidden="true"></i></a>Babel</h3>
 <p>&#x5B9E;&#x9645;&#x4E0A;&#x6211;&#x4EEC;&#x80FD;&#x611F;&#x89C9;&#x5230;&#xFF0C;&#x8FD9;&#x79CD;&#x6A21;&#x5757;&#x5316;&#x65B9;&#x5F0F;&#x7528;&#x8D77;&#x6765;&#x6BD4;CMD/AMD&#x65B9;&#x4FBF;&#x3002;</p>
 <p>&#x4F46;&#x5728;&#x6700;&#x5F00;&#x59CB;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x5374;&#x4E0D;&#x80FD;&#x5728;&#x524D;&#x7AEF;&#x9875;&#x9762;&#x4E2D;&#x4F7F;&#x7528;&#x5B83;&#x4EEC;&#xFF0C;&#x56E0;&#x4E3A;&#x6D4F;&#x89C8;&#x5668;&#x5E76;&#x4E0D;&#x80FD;&#x7406;&#x89E3;&#x8FD9;&#x79CD;&#x8BED;&#x6CD5;&#x3002;</p>
@@ -3669,7 +3722,6 @@ define(<span class="hljs-function"><span class="hljs-keyword">function</span> (<
 <li>&#x5728;&#x5F00;&#x53D1;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x8FFD;&#x6C42;&#x7684;&#x662F;&#x7F16;&#x7A0B;&#x7684;&#x4FBF;&#x6377;&#x6027;&#x548C;&#x53EF;&#x9605;&#x8BFB;&#x6027;&#x3002;</li>
 <li>&#x800C;&#x5728;&#x751F;&#x4EA7;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x8FFD;&#x6C42;&#x7684;&#x662F;&#x4EE3;&#x7801;&#x5BF9;&#x5404;&#x79CD;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x517C;&#x5BB9;&#x6027;&#x3002;</li>
 </ul>
-<h4 id="babel-&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;"><a name="babel-&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;" class="anchor-navigation-ex-anchor" href="#babel-&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a>Babel &#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;</h4>
 <h4 id="babel&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;"><a name="babel&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;" class="anchor-navigation-ex-anchor" href="#babel&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a>Babel&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;</h4>
 <p>Babel&#x7684;&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;&#x53EF;&#x6982;&#x62EC;&#x4E3A;&#x4E09;&#x4E2A;&#x9636;&#x6BB5;</p>
 <ul>
@@ -3845,7 +3897,9 @@ define(<span class="hljs-function"><span class="hljs-keyword">function</span> (<
 <p><a href="https://juejin.im/post/5b4420e7f265da0f4b7a7b27" target="_blank">&#x6398;&#x91D1;|&#x8FD9;&#x4E00;&#x6B21;&#xFF0C;&#x6211;&#x8981;&#x5F04;&#x61C2;javascript&#x7684;&#x6A21;&#x5757;&#x5316;</a></p>
 <p><a href="https://segmentfault.com/a/1190000011081338" target="_blank">segmentfault|JavaScript&#x6A21;&#x5757;&#x5316;&#x5F00;&#x53D1;&#x7684;&#x6F14;&#x8FDB;&#x5386;&#x7A0B;</a></p>
 <p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651240309&amp;idx=1&amp;sn=b5a9ac499b00d402af528c15c1a301fb" target="_blank">&#x524D;&#x7AEF;&#x6A21;&#x5757;&#x5316;&#x7684;&#x5341;&#x5E74;&#x5F81;&#x7A0B;</a></p>
-<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by Shulei 2020-10-29 16:16:56</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2020-04-11 11:16:20</span></div></div>
+<p><a href="https://www.zhihu.com/question/56820346" target="_blank">import&#x548C;require&#x7684;&#x533A;&#x522B;</a></p>
+<p><a href="https://stackoverflow.com/questions/46677752/the-difference-between-requirex-and-import-x" target="_blank">The difference between &#x201C;require(x)&#x201D; and &#x201C;import x&#x201D; - stackoverflow</a></p>
+<div class="git-author-container git-author-bottom"><div class="modified"><span style="font-size:75%">Last modified by wsl 2021-03-09 19:28:03</span></div><div class="created"><span style="font-size:75%">Created by Shulei 2020-04-11 11:16:20</span></div></div>
                                 
                                 </section>
                             
@@ -3888,7 +3942,7 @@ define(<span class="hljs-function"><span class="hljs-keyword">function</span> (<
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"模块的演进","level":"4.15.1","depth":2,"next":{"title":"应用","level":"4.16","depth":1,"path":"javascript/15-apply/README.md","ref":"javascript/15-apply/README.md","articles":[{"title":"监听元素变化","level":"4.16.1","depth":2,"path":"javascript/15-apply/01-resize-observer.md","ref":"javascript/15-apply/01-resize-observer.md","articles":[]},{"title":"复制到剪切板","level":"4.16.2","depth":2,"path":"javascript/15-apply/02-copy.md","ref":"javascript/15-apply/02-copy.md","articles":[]},{"title":"Deeplink调起","level":"4.16.3","depth":2,"path":"javascript/15-apply/03-deeplink.md","ref":"javascript/15-apply/03-deeplink.md","articles":[]},{"title":"XML文件解析","level":"4.16.4","depth":2,"path":"javascript/15-apply/04-xml-parser.md","ref":"javascript/15-apply/04-xml-parser.md","articles":[]},{"title":"弹幕功能","level":"4.16.5","depth":2,"path":"javascript/15-apply/05-danmaku.md","ref":"javascript/15-apply/05-danmaku.md","articles":[]},{"title":"弹幕库-CCL","level":"4.16.6","depth":2,"path":"javascript/15-apply/06-ccl.md","ref":"javascript/15-apply/06-ccl.md","articles":[]}]},"previous":{"title":"模块","level":"4.15","depth":1,"path":"javascript/14-module/README.md","ref":"javascript/14-module/README.md","articles":[{"title":"模块的演进","level":"4.15.1","depth":2,"path":"javascript/14-module/01-module-history.md","ref":"javascript/14-module/01-module-history.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"showLevel":false,"associatedWithSummary":true,"mode":"float","showGoTop":true,"printLog":false,"multipleH1":true,"float":{"floatIcon":"fa fa-navicon","showLevelIcon":false,"level1Icon":"","level2Icon":"","level3Icon":""},"pageTop":{"showLevelIcon":false,"level1Icon":"","level2Icon":"","level3Icon":""}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"javascript/14-module/01-module-history.md","mtime":"2020-11-02T02:49:52.538Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-03-09T09:12:41.899Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"模块的演进","level":"4.15.1","depth":2,"next":{"title":"应用","level":"4.16","depth":1,"path":"javascript/15-apply/README.md","ref":"javascript/15-apply/README.md","articles":[{"title":"监听元素变化","level":"4.16.1","depth":2,"path":"javascript/15-apply/01-resize-observer.md","ref":"javascript/15-apply/01-resize-observer.md","articles":[]},{"title":"复制到剪切板","level":"4.16.2","depth":2,"path":"javascript/15-apply/02-copy.md","ref":"javascript/15-apply/02-copy.md","articles":[]},{"title":"Deeplink调起","level":"4.16.3","depth":2,"path":"javascript/15-apply/03-deeplink.md","ref":"javascript/15-apply/03-deeplink.md","articles":[]},{"title":"XML文件解析","level":"4.16.4","depth":2,"path":"javascript/15-apply/04-xml-parser.md","ref":"javascript/15-apply/04-xml-parser.md","articles":[]},{"title":"弹幕功能","level":"4.16.5","depth":2,"path":"javascript/15-apply/05-danmaku.md","ref":"javascript/15-apply/05-danmaku.md","articles":[]},{"title":"弹幕库-CCL","level":"4.16.6","depth":2,"path":"javascript/15-apply/06-ccl.md","ref":"javascript/15-apply/06-ccl.md","articles":[]}]},"previous":{"title":"模块","level":"4.15","depth":1,"path":"javascript/14-module/README.md","ref":"javascript/14-module/README.md","articles":[{"title":"模块的演进","level":"4.15.1","depth":2,"path":"javascript/14-module/01-module-history.md","ref":"javascript/14-module/01-module-history.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","splitter","anchor-navigation-ex","git-author"],"pluginsConfig":{"chapter-fold":{},"git-author":{"modifyTpl":"<span style=\"font-size:75%\">Last modified by {user} {timeStamp}</span>","createTpl":"<span style=\"font-size:75%\">Created by {user} {timeStamp}</span>"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"showLevel":false,"associatedWithSummary":true,"mode":"float","showGoTop":true,"printLog":false,"multipleH1":true,"float":{"floatIcon":"fa fa-navicon","showLevelIcon":false,"level1Icon":"","level2Icon":"","level3Icon":""},"pageTop":{"showLevelIcon":false,"level1Icon":"","level2Icon":"","level3Icon":""}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"javascript/14-module/01-module-history.md","mtime":"2021-03-09T11:36:26.065Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-03-09T11:36:30.934Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
