@@ -1,21 +1,23 @@
 JavaScript
 
-- [ ] 知识点
-  - [ ] 作用域、闭包
-  - [ ] 原型、原型链
-  - [ ] 数据类型
-  - [ ] 字符串
-  - [ ] 函数
-  - [ ] 代理与反射
-  - [ ] 事件
-  - [ ] JavaScript 执行
-  - [ ] this
-  - [ ] ECMAScript 新特性
-- [ ] 手写代码
-  - [ ] Promise
-  - [ ] 应用
-- [ ] 例题
-  - [ ] EventLoop
+- 知识点
+  - 作用域、闭包
+  - 原型、原型链
+  - 数据类型
+  - 字符串
+  - 函数
+  - 代理与反射
+  - 事件
+  - JavaScript 执行
+  - this
+  - 模块化
+  - ECMAScript 新特性
+- 手写代码
+  - Promise
+  - 应用
+  - 算法
+- 习题
+  - EventLoop
 
 
 

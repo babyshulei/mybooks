@@ -579,6 +579,8 @@ function formatNumber(num) {
 
 **防抖函数**：将多次高频操作优化为只在最后一次执行。即wait时间内多次触发事件，只会在`last+wait`时执行回调。
 
+- 常用场景：用户输入、用户点击
+
 ```js
 function debounce(fn, wait, immediate) {
     let timer = null;
@@ -602,7 +604,9 @@ function debounce(fn, wait, immediate) {
 }
 ```
 
-**节流函数**：将高频操作优化为脉冲操作。即事件如果连续触发，会优化为每隔wait时间触发一次。
+**节流函数**：每隔一段时间后执行一次，也就是降低频率，将高频操作优化成低频操作。
+
+- 常用场景：scroll、resize事件。
 
 ```js
 function throttle(fn, wait, immediate) {

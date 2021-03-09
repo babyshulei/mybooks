@@ -134,6 +134,17 @@ export default { }
 
 ES6 模块，ECMA 提出的JS模块规范。
 
+#### import 和 require 的区别
+
+require与import的区别：
+
+- `require`是CommonJS中加载模块的语法；`import`是ES6标准中加载模块的语法。
+- `require`是 **值拷贝**，导出值变化不会影响导入值；`import`指向 **内存地址**，导入值会随导出值而变化。
+- `require`加载模块方式单一，直接加载整个模块；`import`加载模块方式多样，可以加载部分模块。
+- `require`是**同步**加载的；而`import`可以**异步**加载。
+
+
+
 ### Babel
 
 实际上我们能感觉到，这种模块化方式用起来比CMD/AMD方便。
@@ -149,7 +160,6 @@ Bablel的出现改变了我们的前端开发观点。它让我们意识到：�
 - 在开发的时候，我们追求的是编程的便捷性和可阅读性。
 - 而在生产中，我们追求的是代码对各种浏览器的兼容性。
 
-#### Babel 的工作原理
 
 #### Babel的工作原理
 
@@ -390,3 +400,6 @@ bundleless就是把开发中拖慢速度的打包工作给去掉，从而获得�
 
 [前端模块化的十年征程](https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&mid=2651240309&idx=1&sn=b5a9ac499b00d402af528c15c1a301fb)
 
+[import和require的区别](https://www.zhihu.com/question/56820346)
+
+[The difference between “require(x)” and “import x” - stackoverflow](https://stackoverflow.com/questions/46677752/the-difference-between-requirex-and-import-x)

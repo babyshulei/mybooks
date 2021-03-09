@@ -439,3 +439,25 @@ if (typeof(result) === 'object') {
 }
 ```
 
+## 模块化
+
+模块化开发在现代开发中已是必不可少的一部分，它大大提高了项目的可维护、可拓展和可协作性。通常，我们 **在浏览器中使用 ES6 的模块化支持，在 Node 中使用 CommonJs 的模块化支持。**
+
+模块化演进：无模块化 -> CommonJs -> AMD -> CMD -> ES6 module
+
+- CommonJs：同步加载模块，`require/module.exports/exports`。node.js采用该规范。因为是同步加载，可能会造成阻塞，服务端可以用，浏览器端不建议。
+- AMD：异步加载模块，`define/require`。依赖前置，提前执行，提前加载所有的依赖，然后才可以使用。
+- CMD：异步加载模块，`define/require`。依赖就近，延迟执行，需要时再引用，用到哪个依赖时加载哪个模块。
+- ES6 module：`import/动态import/export`。
+- 伪模块化，通过命名来区分模块，BEM命名规范。export, global+lint检查。
+
+require与import的区别：
+
+- `require`是CommonJS中加载模块的语法；`import`是ES6标准中加载模块的语法。
+- `require`是 **值拷贝**，导出值变化不会影响导入值；`import`指向 **内存地址**，导入值会随导出值而变化。
+- `require`加载模块方式单一，直接加载整个模块；`import`加载模块方式多样，可以加载部分模块。
+- `require`是**同步**加载的；而`import`可以**异步**加载。
+
+
+
+参见笔记：JavaScript-模块
