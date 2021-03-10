@@ -175,6 +175,14 @@
     * [HDFS](computer/01-database/01-base/02-hdfs.md)
     * [Sequelize](computer/01-database/01-base/03-sequelize.md)
     * [索引](computer/01-database/02-mysql/01-index.md)
+* [工具](computer/03-tools/README.md)
+    * [Git](computer/03-tools/01-git/README.md)
+        * [起步](computer/03-tools/01-git/01-start.md)
+        * [Git 基础](computer/03-tools/01-git/02-base.md)
+        * [Git 分支](computer/03-tools/01-git/03-branch.md)
+        * [常用](computer/03-tools/01-git/07-common.md)
+        * [GitLab CI/CD](computer/03-tools/01-git/08-gitlab-ci.md)
+
 
 ## HTTP
 
