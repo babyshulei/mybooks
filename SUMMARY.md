@@ -182,6 +182,8 @@
         * [Git 分支](computer/03-tools/01-git/03-branch.md)
         * [常用](computer/03-tools/01-git/07-common.md)
         * [GitLab CI/CD](computer/03-tools/01-git/08-gitlab-ci.md)
+* [Linux](computer/04-linux/01-overview.md)
+    * [Linux 命令行](computer/04-linux/02-command.md)
 
 
 ## HTTP
