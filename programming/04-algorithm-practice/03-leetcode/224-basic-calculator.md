@@ -81,7 +81,10 @@ var calculate = function(s) {
 };
 ```
 
+复杂度：
 
+- 时间复杂度：O(n)
+- 空间复杂度：O(n)
 
 ## 参考链接
 
