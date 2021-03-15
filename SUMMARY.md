@@ -16,6 +16,7 @@
     * [H5的History](front-end/03-html/02-history.md)
     * [HTML5新特性](front-end/03-html/03-html5.md)
     * [video](front-end/03-html/04-video.md)
+    * [Pug 模板](front-end/03-html/05-pug.md)
 * [浏览器内核](front-end/04-browser-kernel/README.md)
     * [webkit](front-end/04-browser-kernel/01-webkit.md)
     * [blink](front-end/04-browser-kernel/02-blink.md)
