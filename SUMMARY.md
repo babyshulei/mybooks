@@ -185,6 +185,7 @@
         * [Git 分支](computer/03-tools/03-work/01-git/03-branch.md)
         * [常用](computer/03-tools/03-work/01-git/07-common.md)
         * [GitLab CI/CD](computer/03-tools/03-work/01-git/08-gitlab-ci.md)
+    * [babel](computer/03-tools/02-code/01-babel.md)
 * [Linux](computer/04-linux/01-overview.md)
     * [Linux 命令行](computer/04-linux/02-command.md)
 
