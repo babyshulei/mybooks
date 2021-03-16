@@ -165,6 +165,7 @@
     * [Start](language/03-dart/01-start.md)
     * [基础语法](language/03-dart/02-base.md)
 * [Python](language/04-python/README.md)
+* [TypeScript](language/05-typescript/README.md)
 
 
 ## 计算机
