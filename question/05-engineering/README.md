@@ -33,3 +33,11 @@
 
 参考：[JS代码复用模式- SegmentFault 思否](https://segmentfault.com/a/1190000014518349)
 
+
+
+### 3. babel编译原理
+
+- Parse(解析): 通过词法分析和语法分析，将源代码解析成抽象语法树(AST)
+- Transform(转换)：对解析出来的抽象语法树做中间转换处理
+- Generate(生成)：用经过转换后的抽象语法树生成新的代码
+

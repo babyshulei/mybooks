@@ -195,6 +195,26 @@ $ docker container run -p 8000:3000 -it koa-demo /bin/bash
 $ docker container run -p 8000:3000 -it koa-demo:0.0.1 /bin/bash
 ```
 
+### 踩坑
+
+1、报错：
+
+```
+failed to solve with frontend dockerfile.v0: failed to create LLB definition: rpc error: code = Unknown desc = error getting credentials - err: exec: "docker-credential-desktop.exe": executable file not found in $PATH, out: ``
+```
+
+解决方案，添加软链接：
+
+```
+sudo  ln -s /mnt/c/Program\ Files/Docker/Docker/resources/bin/docker-credential-desktop.exe /usr/bin/docker-credential-desktop.exe
+```
+
+参见：
+
+[Update to Docker Desktop Community 2.3.0.2 breaks docker-compose](https://github.com/docker/for-win/issues/6652#)
+
+[WSL2 integration breaks docker inside WSL2 after uninstalling Docker Desktop for Windows](https://github.com/docker/for-win/issues/7957#)
+
 
 
 ## 参考链接
