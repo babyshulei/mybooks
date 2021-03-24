@@ -3,7 +3,8 @@
         "chapter-fold",
         "splitter",
         "anchor-navigation-ex",
-        "git-author"
+        "git-author",
+        "emphasize"
     ],
     "pluginsConfig": {
         "anchor-navigation-ex": {
