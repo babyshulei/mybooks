@@ -87,4 +87,3 @@ var find132pattern = function(nums) {
 ## 参考链接
 
 [456. 132 模式](https://leetcode-cn.com/problems/132-pattern/)
-
