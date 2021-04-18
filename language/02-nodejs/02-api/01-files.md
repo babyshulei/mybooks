@@ -1,7 +1,5 @@
 # 文件处理
 
-> 2019.12.12 @wsl
-
 ## 下载并写入文件
 
 request(url).pipe(fs.createWriteStream(dstpath))

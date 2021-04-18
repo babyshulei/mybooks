@@ -1,7 +1,5 @@
 # Sequelize
 
-> 2020.03.19 @wsl
-
 在一些较为复杂的应用中，我们可能会需要一个 ORM 框架来帮助我们管理数据层的代码。而在 Node.js 社区中，[sequelize](http://docs.sequelizejs.com/) 是一个广泛使用的 ORM 框架，它支持 MySQL、PostgreSQL、SQLite 和 MSSQL 等多个数据源。
 
 ## 模型

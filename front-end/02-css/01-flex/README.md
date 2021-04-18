@@ -1,7 +1,5 @@
 # Flex 布局
 
-> 2019.10.11 @wsl
-
 标准：[CSS Flexible Box Layout Module Level 1](https://www.w3.org/TR/css-flexbox-1/)
 
 为 CSS display 属性增加了 flexbox layout(伸缩盒布局) 及多个新 CSS 属性来控制它：flex，flex-align，flex-direction，flex-flow，flex-item-align，flex-line-pack，flex-order，flex-pack 和 flex-wrap。

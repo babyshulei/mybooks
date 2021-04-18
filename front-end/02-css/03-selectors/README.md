@@ -1,7 +1,5 @@
 # 选择器
 
-> 2019.11.11 @wsl
-
 ## 伪元素
 
 伪元素是一个元素的子元素，并且是inline行内元素。包括 ::first-line, ::first-letter, ::before, ::after。

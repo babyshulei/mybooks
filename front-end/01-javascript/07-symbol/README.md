@@ -1,7 +1,5 @@
 # Symbol和Symbol属性
 
-> 2020.02.12 @wsl
-
 ## 创建Symbol
 
 可以通过全局的Symbol函数创建一个Symbol。

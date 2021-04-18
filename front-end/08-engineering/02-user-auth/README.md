@@ -1,7 +1,5 @@
 # 用户鉴权
 
-> 2020.03.30 @wsl
-
 目前常用的几种鉴权方式：
 
 1. HTTP Basic Authentication

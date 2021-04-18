@@ -1,7 +1,5 @@
  # H5的History
 
-> 2019.11.11 @wsl
-
 ## 前进和后退
 
 - window.history.back()

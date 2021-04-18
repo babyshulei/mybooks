@@ -1,7 +1,5 @@
 # 盒子模型
 
-> 2019.11.11 @wsl
-
 ## margin折叠 (Collapsing margins)
 
 CSS中，两个或者多个盒（可能但不一定是兄弟）的相邻的margin会被结合成一个margin。Margin按这种方式结合叫折叠（collapse），产生的结合的margin叫做margin折叠。

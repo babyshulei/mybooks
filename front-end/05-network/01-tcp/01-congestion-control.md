@@ -1,7 +1,5 @@
 # 拥塞控制
 
-> 2019.11.22 @wsl
-
 接收窗口rwnd和拥塞窗口cwnd
 
 发送窗口 = min(rwnd, cwnd)

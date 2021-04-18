@@ -1,7 +1,5 @@
 # Set集合与Map集合
 
-> 2020.03.09 @wsl
-
 ## Set 集合
 
 size, add(), delete(), clear(), has(), forEach()

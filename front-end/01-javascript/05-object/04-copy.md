@@ -1,7 +1,5 @@
 # 对象的浅拷贝、深拷贝
 
-> 2020.03.17 @wsl
-
 ![img](./images/js-copy.jpg)
 
 
